@@ -352,7 +352,7 @@
 
 
 
-.whole{
+.UserProfile-whole{
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -360,7 +360,7 @@
     display: flex;
 }
 
-.left {
+.UserProfile-left {
     width: 20%;
     height: 100%;
     background-color: #8ECAE6;
@@ -370,12 +370,12 @@
     justify-content: space-between;
   }
   
-  .logo, .functions, .logout {
+  .UserProfile-logo, .UserProfile-functions, .UserProfile-logout {
     width: 100%;
     margin-bottom: 10px;
   }
   
-  .logo {
+  .UserProfile-logo {
     height: 10%;
     font-size: 35px;
     font-weight: 500;
@@ -384,16 +384,16 @@
     align-items: center;
   }
 
-  .logo span{
+  .UserProfile-logo span{
     color: #FFB703;
   }
   
-  .functions {
+  .UserProfile-functions {
     height: 50%;
     margin-bottom: 30%;
   }
 
-  .fuctions-int-div{
+  .UserProfile-fuctions-int-div{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -402,7 +402,7 @@
     height: 90%;
   }
 
-  .func-parts{
+  .UserProfile-func-parts{
     width: 90%;
     height: 25%;
     margin-left: 20px;
@@ -410,7 +410,7 @@
     align-items: center;
   }
 
-  .logout-part{
+  .UserProfile-logout-part{
     width: 90%;
     height: 35%;
     margin-left: 20px;
@@ -419,43 +419,43 @@
     align-items: center;
   }
 
-  .func-parts:hover{
+  .UserProfile-func-parts:hover{
     background-color: #219EBC;
     border-radius: 15px;
     transition: 0.4s;
   }
 
-  .logout-part:hover{
+  .UserProfile-logout-part:hover{
     background-color: #219EBC;
     border-radius: 15px;
     transition: 0.4s;
   }
 
-  .icon{
+  .UserProfile-icon{
     width: 16%;
     font-size: 22px;
     margin-left: 20px;
   }
 
-  .logout-icon{
+  .UserProfile-logout-icon{
     width: 14%;
     font-size: 22px;
     margin-left: 20px;
   }
 
-  .func{
+  .UserProfile-func{
     width: 80%;
     font-size: 21px;
     font-weight: 400;
   }
 
-  .logout-func{
+  .UserProfile-logout-func{
     width: 80%;
     font-size: 21px;
     font-weight: 400;
   }
   
-  .logout {
+  .UserProfile-logout {
     height: 20%;
     font-size: 21px;
     font-weight: 400;
@@ -464,14 +464,14 @@
     justify-content: center;
   }  
 
-.right{
+.UserProfile-right{
     width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.top{
+.UserProfile-top{
     width: 100%;
     height: 11%;
     background-color: white;
@@ -481,7 +481,7 @@
     justify-content: space-between;
 }
 
-.dashboard{
+.UserProfile-dashboard{
     width: 15%;
     font-size: 30px;
     font-weight: 600;
@@ -489,7 +489,7 @@
     justify-content: center;
 }
 
-.user-logo{
+.UserProfile-user-logo{
     width: 20%;
     height: 100%;
     font-size: 30px;
@@ -499,11 +499,12 @@
     align-items: center;
 }
 
-.user-logo-pic:hover{
-    font-size: 35px;
+.UserProfile-user-logo-pic:hover{
+    font-size: 32px;
+    transition: 0.3s;
 }
 
-.cards{
+.UserProfile-cards{
     width: 96%;
     height: 30%;
     display: flex;
@@ -513,27 +514,27 @@
     background-color: rgb(219, 217, 217);
 }
 
-.card-1{
+.UserProfile-card-1{
     width: 24%;
     height: 100%;
 }
 
-.card-2{
+.UserProfile-card-2{
     width: 24%;
     height: 100%;
 }
 
-.card-3{
+.UserProfile-card-3{
     width: 24%;
     height: 100%;
 }
 
-.card-4{
+.UserProfile-card-4{
     width: 24%;
     height: 100%;
 }
 
-.bottom-right{
+.UserProfile-bottom-right{
     width: 96%;
     height: 66%;
     display: flex;
@@ -545,12 +546,12 @@
     background-color: rgb(219, 217, 217);
 }
 
-.booked-appointments{
+.UserProfile-booked-appointments{
     width: 60%;
     height: 100%;
 }
 
-.remaining{
+.UserProfile-remaining{
     width: 40%;
     height: 100%;
     display: flex;
@@ -559,17 +560,17 @@
     justify-content: space-between;
 }
 
-.part-1{
+.UserProfile-part-1{
     width: 100%;
     height: 50%;
 }
 
-.part-2{
+.UserProfile-part-2{
     width: 100%;
     height: 50%;
 }
 
-.booked-appointments-int-div{
+.UserProfile-booked-appointments-int-div{
     width: 94%;
     height: 92%;
     margin: 4% 3%;
@@ -577,30 +578,30 @@
     border-radius: 24px;
 }
 
-.card-1-int-div,.card-2-int-div,.card-3-int-div,.card-4-int-div{
+.UserProfile-card-1-int-div,.UserProfile-card-2-int-div,.UserProfile-card-3-int-div,.UserProfile-card-4-int-div{
     width: 92%;
     height: 92%;
     margin: 4%;
     border-radius: 24px;
 }
 
-.card-1-int-div{
+.UserProfile-card-1-int-div{
     background-color: #219EBC;
 }
 
-.card-2-int-div{
+.UserProfile-card-2-int-div{
     background-color: #023040;
 }
 
-.card-3-int-div{
+.UserProfile-card-3-int-div{
     background-color: #FFB703;
 }
 
-.card-4-int-div{
+.UserProfile-card-4-int-div{
     background-color: #FB8500;
 }
 
-.part-1-int-div{
+.UserProfile-part-1-int-div{
     width: 92%;
     height: 85%;
     margin: 5%;
@@ -608,7 +609,7 @@
     border-radius: 24px;
 }
 
-.part-2-int-div{
+.UserProfile-part-2-int-div{
     width: 92%;
     height: 85%;
     margin: 5%;
