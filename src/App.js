@@ -3,12 +3,13 @@ import './App.css';
 // import Footer from './components/Footer';
 // import UserProfile from './pages/UserProfile';
 import Blogs from './pages/Blogs';
+// import UserProfile from './pages/UserProfile';
 import './styles/Style.css';
 
 function App() {
   return (
     <div className='app'>
-      <Blogs/>
+      <Blogs />
     </div>
   );
 }
