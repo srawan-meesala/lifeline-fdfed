@@ -1,8 +1,9 @@
 import React from 'react'
+import BlogOpen from '../functions/BlogOpen'
 
 const BlogCard = ({blogData}) => {
   return (
-    <div className='Blogs-card'>
+    <div onClick={ BlogOpen } className='Blogs-card'>
         <div className='Blogs-card-content'>
             <div className='Blogs-card-title'>{blogData.title}</div>
             <div className='Blogs-card-author'>
