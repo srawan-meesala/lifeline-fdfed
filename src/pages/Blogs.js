@@ -1,7 +1,33 @@
 import React from 'react'
 import Navbar from '../components/Navbar';
+import BlogCard from '../components/BlogCard';
 
 function Blogs() {
+
+  
+  var data = [
+    {
+      title: 'Lung Cancer Screening Demystified',
+      author: 'Dr.Ramesh',
+      prof: 'Psycholigist',
+    },
+    {
+      title: 'Alcohol Intolerance: What You Need to Know',
+      author: 'Dr.Murali',
+      prof: 'Psychologist'
+    },
+    {
+      title: 'What to Know About the New Covid Variants',
+      author: 'Dr.Sakshi',
+      prof: 'Heptologist'
+    },
+    {
+      title: 'What to Know About the New Covid Variants',
+      author: 'Dr.Sakshi',
+      prof: 'Cardiologist'
+    },
+  ]
+
   return (
     <div className='Blogs-whole'>
       <Navbar title={'Blogs'}/>
@@ -14,16 +40,11 @@ function Blogs() {
         <div className='Blogs-content'>
           <div className='Blogs-content-div'>
             <div className='Blogs-slots-1'>
-              <div className='Blogs-card'>
-                <div className='Blogs-card-content'>
-                  <div className='Blogs-card-title'>What to Know About the New Covid Variants</div>
-                  <div className='Blogs-card-author'>
-                    <div className='Blogs-card-author-name'>By Dr.Sakshi </div>
-                    <div className='Blogs-card-author-prof'>Cardiologist</div>
-                  </div>
-                </div> 
-              </div>
-              <div className='Blogs-card'>
+            {data.map(d => {
+              return <BlogCard blogData={d} />
+            })}
+              {/* <BlogCard data={data}/> */}
+              {/* <div className='Blogs-card'>
                 <div className='Blogs-card-content'>
                   <div className='Blogs-card-title'>Lung Cancer Screening Demystified</div>
                   <div className='Blogs-card-author'>
@@ -76,7 +97,7 @@ function Blogs() {
                     <div className='Blogs-card-author-prof'>psycholigist</div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
