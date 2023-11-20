@@ -1,16 +1,17 @@
 import React from 'react'
 import Navbar from '../components/Navbar';
 import BlogCard from '../components/BlogCard';
+import { useLocation } from 'react-router-dom';
 
 function Blogs() {
 
-  
+  const location = useLocation()
   var data = [
     {
       id: 1,
       title: 'Lung Cancer Screening Demystified',
-      author: 'Dr.Ramesh',
-      prof: 'Psycholigist'
+      author: 'Charan Kumar',
+      prof: 'Sexologist'
     },
     {
       id: 2,

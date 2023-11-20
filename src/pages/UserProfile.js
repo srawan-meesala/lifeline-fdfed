@@ -7,8 +7,11 @@ import { MdLocalPharmacy } from "react-icons/md";
 import { BiRupee } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
+import { useLocation } from 'react-router-dom';
+
 
 function UserProfile() {
+  const location = useLocation()
   return (
     <div className='UserProfile-whole'>
       <div className='UserProfile-left'>
@@ -27,7 +30,7 @@ function UserProfile() {
             </div>
             <div className='UserProfile-func-parts'>
               <div className='UserProfile-icon'><FaUserDoctor/></div>
-              <div className='UserProfile-func'>Doctor</div>
+              <div className='UserProfile-func'>Doctors</div>
             </div>
             <div className='UserProfile-func-parts'>
               <div className='UserProfile-icon'><MdLocalPharmacy/></div>
