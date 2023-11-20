@@ -4,7 +4,6 @@ import BlogCard from '../components/BlogCard';
 
 function Blogs() {
 
-  
   var data = [
     {
       id: 1,
