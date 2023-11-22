@@ -45,7 +45,7 @@ function PatientLogin(){
             <p>OR</p>
             <br />
 
-            <Link to="/PatientRegister">Register </Link>
+            <Link to="/PatientRegister">Log In</Link>
         </div>
     )
 }

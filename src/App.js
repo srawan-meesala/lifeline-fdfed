@@ -1,16 +1,14 @@
-import { Router } from 'express';
+// import { Router } from 'express';
 import './App.css';
-// import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
-// import UserProfile from './pages/UserProfile';
-// import Blogs from './pages/Blogs';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react'
 import UserProfile from './pages/UserProfile';
-// import BlogComplete from './components/BlogComplete'; 
 import './styles/Style.css';
-import { Route, Routes } from 'react-router-dom';
 import Blogs from './pages/Blogs';
 import PatientRegister from './pages/PatientRegister';
 import PatientLogin from './pages/PatientLogin';
+
+// const Router = express.Router();
 
 function App() {
   return (
@@ -23,7 +21,6 @@ function App() {
           <Route path="/userProfile" element={<UserProfile/>}/>
         </Routes>
       </Router>
-      <UserProfile/>
     </div>
   );
 }
