@@ -2,7 +2,7 @@ import React, { useEffect,useState } from "react";
 import axios from "axios";
 import {useNavigate, Link} from 'react-router-dom';
 
-function Patient_login(){
+function PatientLogin(){
     const navigate = useNavigate()
     const [username,setusername] = useState('')
     const [password,setpassword] = useState('')
@@ -50,7 +50,7 @@ function Patient_login(){
     )
 }
 
-export default Patient_login
+export default PatientLogin
 
 
 
