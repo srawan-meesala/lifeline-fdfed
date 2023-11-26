@@ -14,8 +14,8 @@ function Patient_login(){
                 username,password
             })
             .then(res =>{
-                if(res.data == 'exist'){
-                    navigate('/userProfile')
+                if(res.status = 200){
+                    navigate(`/userProfile/${username}`)
                 }
                 else if(res.data == 'doesnot exist'){
                     alert('User is not registered')

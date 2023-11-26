@@ -14,7 +14,7 @@ app.post('/patientLogin',async(req,res)=>{
         const check = await collection1.findOne({username:username})
         if(check){
             if(password == check.password){
-                res.json('exist')
+                res.status(200).json(user);
             }
             else{
                 res.json('invalid credentials')
@@ -65,12 +65,32 @@ app.post('/patientRegister',async(req,res)=>{
         else{
             res.json('not exist')
             await collection1.insertMany([data])
+
+            const user = await collection1.findOne({username:username });
+            res.status(200).json(user);
         }
     }
     catch(e){
         res.json('error')
     }
 })
+
+app.get('/getUserDetails/:username', async (req, res) => {
+    const username = req.params.username;
+
+    try{
+        const user = await collection1.findOne({ username:username });
+        if(!user){
+            return res.json('User not found');
+        }
+        res.status(200).json(user);
+    } 
+    catch(e){
+        console.error(e);
+        res.json('Internal Server Error');
+    }
+});
+
 
 app.listen(8000,()=>{
     console.log("port connected");
