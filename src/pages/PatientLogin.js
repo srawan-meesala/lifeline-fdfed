@@ -16,7 +16,7 @@ function PatientLogin(){
                 username,password
             })
             .then(res =>{
-                if(res.data === 'exist'){
+                if(res.data == 'exist'){
                     navigate('/userProfile')
                 }
                 else if(res.data === 'doesnot exist'){

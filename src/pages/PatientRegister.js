@@ -28,7 +28,6 @@ function PatientRegister() {
                 firstName,lastName,mobileNumber,mailID,dob,occupation,bloodGroup,maritalStatus,gender,username,password
             })
             .then(res=>{
-                console.log(res)
                 if(res.data === "exist"){
                     alert('Registered already')
                 }
