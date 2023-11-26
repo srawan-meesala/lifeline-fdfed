@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 
 
-function Register_patient() {
+function PatientRegister() {
 
     const navigate=useNavigate();
 
@@ -91,4 +91,4 @@ function Register_patient() {
     )
 }
 
-export default Register_patient
+export default PatientRegister

@@ -1,13 +1,14 @@
+// import { Router } from 'express';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import React from 'react'
 import UserProfile from './pages/UserProfile';
-import Blogs from './pages/Blogs';
-import PatientRegister from './pages/PatientRegister'
-import PatientLogin from './pages/PatientLogin';
-import BlogComplete from './components/BlogComplete';
 import './styles/Style.css';
+import Blogs from './pages/Blogs';
+import PatientRegister from './pages/PatientRegister';
+import PatientLogin from './pages/PatientLogin';
+
+// const Router = express.Router();
 
 function App() {
   return (
