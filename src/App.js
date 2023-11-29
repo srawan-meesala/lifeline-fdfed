@@ -1,4 +1,3 @@
-// import { Router } from 'express';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from 'react'
@@ -8,8 +7,6 @@ import Blogs from './pages/Blogs';
 import PatientRegister from './pages/PatientRegister';
 import Login from './pages/Login';
 import DocRegister from './pages/DocRegister';
-
-// const Router = express.Router();
 
 function App() {
   return (
