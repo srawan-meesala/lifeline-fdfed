@@ -83,22 +83,11 @@ function PatientRegister() {
                     <input type="submit" onClick={submit_register} />
 
                 </form>
-
-<<<<<<< Updated upstream
-            </form>
-
-            <br />
-            <p>OR</p>
-            <br />
-
-            <Link to="/login">login </Link>
-=======
                 <br />
                 <p>OR</p>
                 <br />
->>>>>>> Stashed changes
 
-                <Link to="/PatientLogin">login </Link>
+                <Link to="/login">login </Link>
             </div>
         </div>
     )
