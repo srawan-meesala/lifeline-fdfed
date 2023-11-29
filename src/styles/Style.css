@@ -1,3 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Landing Page Styles */
+
+.Landing-body {
+  overflow: hidden;
+  background: radial-gradient(circle, #F8C3D5 10%, transparent 11%);
+  background-size: 1.3em 1.3em;
+  background-color: #ffffff;
+  opacity: 1;
+  font-family: 'Poppins',sans-serif;
+  max-height: 100vh;
+}
+
+.Landing-logo-brand {
+  display: block;
+  text-decoration: none;
+  color: #880808;
+  font-size: 2.6rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.Landing-logo-brand span {
+  color:black;
+}
+
+.Landing-header-1 {
+  padding: 10px 10%;
+  backdrop-filter: blur(1.5px);
+}
+
+.Landing-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.Landing-nav ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 10px 20px;
+}
+
+.Landing-nav ul li a{
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+  position: relative;
+}
+
+.Landing-nav ul li a::after {
+  content:'';
+  width: 0;
+  height: 3px;
+  background: #880808;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.3s;
+}
+
+.Landing-nav ul li a:hover::after {
+  width: 100%;
+}
+
+.Landing-c1{
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+  color: black;
+  height: 90vh;
+}
+.Landing-c1-side h4 {
+  font-size: 3rem;
+  text-align: center;
+}
+.Landing-c1-side h4 span {
+  color: #880808;
+  font-size: 3rem;
+}
+.Landing-c1-side h2 {
+  color: #880808;
+  font-size: 9rem;
+}
+.Landing-c1-side {
+  /* border-left: black 2px solid; */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  width: 120%;
+  padding-right: 3rem;
+}
+.Landing-c1-side button {
+  cursor: pointer;
+  background-color: #880808;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-top: 52px;
+  font-size: medium;
+  transition: 0.2s;
+  border: 0.5px #880808 solid;
+}
+.Landing-c1-side button a {
+  color: white;
+  text-decoration: none;
+}
+.Landing-c1-side button:hover {
+  background-color: white;
+  color: black;
+  border: 0.5px #880808 solid;
+}
+.Landing-c1-side button:hover a{
+  color: #880808;
+}
+.Landing-c1-img {
+  width: 60%;
+}
+.Landing-c1-img img{
+  width: 100%;
+}
+
+
+@media screen and (max-width: 1080px) {
+  .Landing-c1 {
+      flex-direction: column;
+  }
+  .Landing-c1-side{
+      left: 0;
+  }
+
+  .Landing-c2 {
+      margin-top: 30px;
+      flex-direction: column-reverse;
+  }
+  .Landing-c1-side{
+      right: 0;
+  }
+}
+
 /* Blogs css  */
 
 .Blogs-whole{
@@ -245,7 +392,6 @@
     width: 80%;
   }
   
-  /* Reduced font size and padding */
   input[type="text"],
   input[type="email"],
   input[type="tel"],
@@ -502,7 +648,7 @@
 }
 
 .UserProfile-dashboard{
-    width: 15%;
+    width: 25%;
     font-size: 30px;
     font-weight: 600;
     display: flex;
@@ -804,13 +950,9 @@
   width: 98%;
   padding: 15px;
 }
+/* Login Page Styles */
 
-
-
-/* BookAppointment css  */
-
-
-.BookAppointment-whole{
+.PatientLogin-whole {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -853,3 +995,104 @@
   font-size: 16px;
   font-weight: 500;
 }
+  /* overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.PatientLogin-logo{
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.PatientLogin-logo-span {
+  color: #7952b3;
+}
+
+.PatientLogin-logo-side {
+  font-weight: normal;
+  color: black;
+  font-size: 29px;
+}
+
+.PatientLogin-left, .PatientLogin-right {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.PatientLogin-right{
+  height: 70%;
+}
+
+.PatientLogin-image {
+  width: 30rem;
+}
+
+.PatientLogin-form {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.PatientLogin-form input, select {
+  width: 300px;
+  padding: 10px;
+  color: black;
+}
+
+.PatientLogin-form input::placeholder {
+  color: rgba(60, 64, 67, 0.3);
+}
+
+.PatientLogin-form button {
+  background-color: #023040;
+  width: 100px;
+  padding: 10px;
+}
+
+.PatientLogin-input {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.PatientLogin-input label {
+  width: 87%;
+  padding: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 017px;
+}
+
+.PatientLogin-input input {
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.PatientLogin-input select {
+  width: 86%;
+  height: 5vh;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.PatientLogin-right-register {
+  text-decoration: none;
+  color: #023040;
+}
+
