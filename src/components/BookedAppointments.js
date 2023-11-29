@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BookAppointment = () => {
+const BookedAppointments = () => {
   return (
     <div className='BookAppointment-whole'>
         <div className='BookAppointment-matter'>
@@ -48,4 +48,4 @@ const BookAppointment = () => {
   )
 }
 
-export default BookAppointment
+export default BookedAppointments
