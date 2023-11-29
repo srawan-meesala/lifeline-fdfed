@@ -3,7 +3,7 @@ import axios from "axios";
 import {useNavigate, Link} from 'react-router-dom';
 import { ReactComponent as Logo } from "../images/undraw_remotely_2j6y.svg";
 
-function PatientLogin(){
+function Login(){
     const navigate = useNavigate()
     const [username,setusername] = useState('')
     const [password,setpassword] = useState('')
@@ -67,4 +67,4 @@ function PatientLogin(){
     )
 }
 
-export default PatientLogin
+export default Login
