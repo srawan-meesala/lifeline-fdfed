@@ -23,7 +23,6 @@ function PatientRegister() {
         e.preventDefault();
 
         try{
-            console.log("Request Data:", { firstName, username });
             await axios.post("http://localhost:8000/patientRegister",{
                 firstName,lastName,mobileNumber,mailID,dob,occupation,bloodGroup,maritalStatus,gender,username,password
             })
@@ -32,7 +31,7 @@ function PatientRegister() {
                     alert('Registered already')
                 }
                 else if(res.data === "not exist"){
-                    navigate('/userProfile')
+                    navigate('/login')
                 }
             })
             .catch(e=>{
@@ -85,7 +84,7 @@ function PatientRegister() {
             <p>OR</p>
             <br />
 
-            <Link to="/PatientLogin">login </Link>
+            <Link to="/login">login </Link>
 
         </div>
     )

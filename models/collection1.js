@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost:27017/Lifeline-fdfed')
     console.log('Failed to connect to MongoDB')
 })
 
-const patient_RegisterSchema = new mongoose.Schema({
+const collection1Schema = new mongoose.Schema({
     firstName:{
         type:String,
         required:true
@@ -54,6 +54,6 @@ const patient_RegisterSchema = new mongoose.Schema({
     }
 })
 
-const collection1 = new mongoose.model('collection1',patient_RegisterSchema)
+const collection1 = new mongoose.model('collection1',collection1Schema)
 
 module.exports = collection1

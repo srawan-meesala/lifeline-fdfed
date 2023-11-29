@@ -1,12 +1,13 @@
 const express = require('express')
-const collection1 = require('./mongo') 
+const collection1 = require('./models/collection1')
+const collection2 = require('./models/collection2')
 const app = express()
 const cors = require('cors')
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
 
-app.post('/patientLogin',async(req,res)=>{
+app.post('/login',async(req,res)=>{
     const username = req.body.username
     const password = req.body.password
 
@@ -14,7 +15,7 @@ app.post('/patientLogin',async(req,res)=>{
         const check = await collection1.findOne({username:username})
         if(check){
             if(password == check.password){
-                res.status(200).json(user);
+                res.status(200).json(check);
             }
             else{
                 res.json('invalid credentials')
@@ -55,7 +56,6 @@ app.post('/patientRegister',async(req,res)=>{
         username:username,
         password:password
     }
-    console.log(username)
     try{
         const check = await collection1.findOne({username:username})
         if(check){
@@ -67,6 +67,42 @@ app.post('/patientRegister',async(req,res)=>{
             await collection1.insertMany([data])
 
             const user = await collection1.findOne({username:username });
+            res.status(200).json(user);
+        }
+    }
+    catch(e){
+        res.json('error')
+    }
+})
+
+app.post('/docRegister',async(req,res)=>{
+    const name = req.body.name
+    const mobileNumber = req.body.mobileNumber
+    const mailID = req.body.mailID
+    const hospital = req.body.hospital
+    const specialization = req.body.specialization
+    const fee = req.body.fee
+    const docID = req.body.docID
+    const password = req.body.password
+    const data = {
+        name:name,
+        mobileNumber:mobileNumber,
+        mailID:mailID,
+        hospname:hospital,
+        specialization:specialization,
+        fee:fee,
+        docID:docID,
+        password:password
+    }
+    try{
+        const check = await collection2.findOne({docID:docID})
+        if(check){
+            res.json('exist')
+        }
+        else{
+            res.json('not exist')
+            await collection2.insertMany([data])
+            const user = await collection2.findOne({docID:docID });
             res.status(200).json(user);
         }
     }

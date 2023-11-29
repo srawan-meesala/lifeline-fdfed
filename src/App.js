@@ -6,7 +6,8 @@ import UserProfile from './pages/UserProfile';
 import './styles/Style.css';
 import Blogs from './pages/Blogs';
 import PatientRegister from './pages/PatientRegister';
-import PatientLogin from './pages/PatientLogin';
+import Login from './pages/Login';
+import DocRegister from './pages/DocRegister';
 
 // const Router = express.Router();
 
@@ -16,8 +17,9 @@ function App() {
        <Router>
         <Routes>
           <Route path="/" element={<Blogs/>}/>
-          <Route path="/patientLogin" element={<PatientLogin/>}/>
+          <Route path="/login" element={<Login/>}/>
           <Route path="/patientRegister" element={<PatientRegister/>}/>
+          <Route path="/docRegister" element={<DocRegister/>}/>
           <Route path="/userProfile/:username" element={<UserProfile/>}/>
         </Routes>
       </Router>

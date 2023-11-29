@@ -2,7 +2,7 @@ import React, { useEffect,useState } from "react";
 import axios from "axios";
 import {useNavigate, Link} from 'react-router-dom';
 
-function PatientLogin(){
+function Login(){
     const navigate = useNavigate()
     const [username,setusername] = useState('')
     const [password,setpassword] = useState('')
@@ -10,7 +10,7 @@ function PatientLogin(){
     async function submit_login(e){
         e.preventDefault()
         try{
-            await axios.post('http://localhost:8000/patientLogin',{
+            await axios.post('http://localhost:8000/Login',{
                 username,password
             })
             .then(res =>{
@@ -32,8 +32,8 @@ function PatientLogin(){
 
 
     return(
-        <div className="patient-login" >
-            <form method="POST" action="/patientLogin" className="patient-login-form">
+        <div className="login" >
+            <form method="POST" action="/login" className="patient-login-form">
                 <label>Username</label><b/>
                 <input type="text" placeholder="Username" name="username" onChange={(e) => { setusername(e.target.value) }} required /><br/>
                 <label>Password</label><b/>
@@ -45,12 +45,12 @@ function PatientLogin(){
             <p>OR</p>
             <br />
 
-            <Link to="/PatientRegister">Log In</Link>
+            <Link to="/PatientRegister">Register here</Link>
         </div>
     )
 }
 
-export default PatientLogin
+export default Login
 
 
 
