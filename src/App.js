@@ -7,7 +7,9 @@ import './styles/Style.css';
 import Blogs from './pages/Blogs';
 import PatientRegister from './pages/PatientRegister';
 import PatientLogin from './pages/PatientLogin';
-
+import BlogOpen from './functions/BlogOpen';
+import BlogComplete from './components/BlogComplete';
+import BookAppointment from './components/BookAppointment';
 // const Router = express.Router();
 
 function App() {
@@ -15,7 +17,7 @@ function App() {
     <div className='app'>
        <Router>
         <Routes>
-          <Route path="/" element={<Blogs/>}/>
+          <Route path="/" element={<UserProfile/>}/>
           <Route path="/patientLogin" element={<PatientLogin/>}/>
           <Route path="/patientRegister" element={<PatientRegister/>}/>
           <Route path="/userProfile" element={<UserProfile/>}/>

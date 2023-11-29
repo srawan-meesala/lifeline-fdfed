@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar';
 import BlogCard from '../components/BlogCard';
+import { FaRandom } from "react-icons/fa";
 // import { useLocation } from 'react-router-dom';
 
 function Blogs() {
@@ -11,7 +12,7 @@ function Blogs() {
       id: 1,
       title: 'Lung Cancer Screening Demystified',
       author: 'Charan Kumar',
-      prof: 'Sexologist'
+      prof: 'Heptologist'
     },
     {
       id: 2,
@@ -39,7 +40,7 @@ function Blogs() {
         <div className='Blogs-Randomiser'>
           <div className='Blogs-Randomiser-div'>
             <div className='Blogs-Randomiser-question'>cant choose what to read? try our randomiser</div>
-            <div className='Randomiser-div'><button className='Randomiser-Button'><span>Random</span></button></div>
+            <div className='Randomiser-div'><button className='Randomiser-Button'><span><FaRandom/>Random</span></button></div>
             </div>
         </div>
         <div className='Blogs-content'>

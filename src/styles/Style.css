@@ -352,6 +352,9 @@
 
 /* UserProfile css  */
 
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
 
 
 .UserProfile-whole{
@@ -365,7 +368,7 @@
 .UserProfile-left {
     width: 20%;
     height: 100%;
-    background-color: #8ECAE6;
+    background-color: #8ecae6;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -386,8 +389,14 @@
     align-items: center;
   }
 
-  .UserProfile-logo span{
+  .UserProfile-logo-dot{
     color: #FFB703;
+  }
+
+  .UserProfile-logo-dahboard{
+    color: black;
+    font-size: 27px;
+    font-weight: 400;
   }
   
   .UserProfile-functions {
@@ -421,28 +430,33 @@
     align-items: center;
   }
 
+
   .UserProfile-func-parts:hover{
-    background-color: #219EBC;
+    background-color: #a1e4f5;
     border-radius: 15px;
-    transition: 0.4s;
+    transition: 0.2s;
+    color: black;
   }
 
   .UserProfile-logout-part:hover{
-    background-color: #219EBC;
+    background-color: #a1e4f5;
     border-radius: 15px;
-    transition: 0.4s;
+    transition: 0.2s;
+    color: black;
   }
 
   .UserProfile-icon{
     width: 16%;
     font-size: 22px;
     margin-left: 20px;
+    color: black;
   }
 
   .UserProfile-logout-icon{
     width: 14%;
     font-size: 22px;
     margin-left: 20px;
+    color: black;
   }
 
   .UserProfile-func{
@@ -455,6 +469,7 @@
     width: 80%;
     font-size: 21px;
     font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   .UserProfile-logout {
@@ -464,6 +479,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
   }  
 
 .UserProfile-right{
@@ -471,16 +487,18 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color:white;
+    
 }
 
 .UserProfile-top{
     width: 100%;
     height: 11%;
-    background-color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    background-color: white;
 }
 
 .UserProfile-dashboard{
@@ -513,12 +531,50 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.5% 2%;
-    background-color: rgb(219, 217, 217);
+    background-color: #eee;
 }
 
 .UserProfile-card-1{
     width: 24%;
     height: 100%;
+}
+
+.UserProfile-card-1-int-div,.UserProfile-card-2-int-div,.UserProfile-card-3-int-div,.UserProfile-card-4-int-div{
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.UserProfile-card-1-int-div-head{
+  height: 40%;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 25px;
+  font-weight: 300;
+  font-family: 'Manrope', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+.UserProfile-card-1-int-div-head-black{
+  height: 40%;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 25px;
+  font-weight: 200;
+  font-family: 'Manrope', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.UserProfile-card-1-int-div-body{
+  height: 60%;
+  font-size: 50px;
+  font-weight: 400;
+  font-family: 'Manrope', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .UserProfile-card-2{
@@ -545,7 +601,7 @@
     justify-content: space-around;
     padding: 0% 2%;
     padding-bottom: 2%;
-    background-color: rgb(219, 217, 217);
+    background-color: #eee;
 }
 
 .UserProfile-booked-appointments{
@@ -577,37 +633,98 @@
     height: 92%;
     margin: 4% 3%;
     background-color: #023047;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 24px;
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
 }
 
-.UserProfile-card-1-int-div,.UserProfile-card-2-int-div,.UserProfile-card-3-int-div,.UserProfile-card-4-int-div{
+.UserProfile-booked-appointments-int-div-head-top{
+  padding: 5px;
+  font-size: 25px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.UserProfile-booked-appointments-int-div-head-bottom{
+  padding: 5px;
+  padding-bottom: 0;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+.UserProfile-booked-appointments-int-div-head{
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.UserProfile-booked-appointments-int-div-body{
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.UserProfile-booked-appointments-int-div-body-part{
+  font-size:20px;
+  font-weight: 300;
+  color: white;
+  padding: 3px;
+}
+
+.UserProfile-booked-appointments-int-div-body-part:hover{
+  background-color: #12465f;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.UserProfile-card-1-int-div,.UserProfile-card-3-int-div,.UserProfile-card-4-int-div{
     width: 92%;
     height: 92%;
     margin: 4%;
     border-radius: 24px;
-}
-
-.UserProfile-card-1-int-div{
-    background-color: #219EBC;
+    color: black;
 }
 
 .UserProfile-card-2-int-div{
-    background-color: #023040;
+    width: 92%;
+    height: 92%;
+    margin: 4%;
+    border-radius: 24px;
+    color: white;
+}
+
+.UserProfile-card-1-int-div{
+  background-color: #219ebc;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+}
+
+.UserProfile-card-2-int-div{
+  background-color: #023047;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
 .UserProfile-card-3-int-div{
-    background-color: #FFB703;
+  background-color: #ffb703;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
 .UserProfile-card-4-int-div{
-    background-color: #FB8500;
+  background-color: #fb8500;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
 .UserProfile-part-1-int-div{
     width: 92%;
     height: 85%;
     margin: 5%;
-    background-color: #219EBC;
+    background-color: #ffb703;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 24px;
 }
 
@@ -615,7 +732,8 @@
     width: 92%;
     height: 85%;
     margin: 5%;
-    background-color: #8ECAE6;
+    background-color: #fb8500;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 24px;
 }
 
@@ -685,4 +803,53 @@
 .BlogComplete-body{
   width: 98%;
   padding: 15px;
+}
+
+
+
+/* BookAppointment css  */
+
+
+.BookAppointment-whole{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.BookAppointment-matter{
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  box-shadow: #7952b3 0px 2px 8px 0px;                              
+  border-radius: 15px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.BookAppointment-head{
+  width: 100%;
+  height: 5%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.BookAppointment-body{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 16px;
+  font-weight: 500;
 }
