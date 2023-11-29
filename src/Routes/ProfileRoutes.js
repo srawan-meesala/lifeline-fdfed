@@ -10,7 +10,6 @@ const LandingRoutes = () => {
         <Routes>
             <Route path="/userProfile" element={<UserProfile/>}/>
             <Route path="/bookedappointments" element={<BookedAppointments/>}/>
-            <Route path="/blogform" element={<BlogForm/>}/>
         </Routes>
     </Router>
   )
