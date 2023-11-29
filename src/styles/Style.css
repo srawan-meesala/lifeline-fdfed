@@ -9,7 +9,7 @@
 
 .Landing-body {
   overflow: hidden;
-  background: radial-gradient(circle, #F8C3D5 10%, transparent 11%);
+  background: radial-gradient(circle, rgb(193, 189, 255) 10%, transparent 11%);
   background-size: 1.3em 1.3em;
   background-color: #ffffff;
   opacity: 1;
@@ -77,15 +77,15 @@
   height: 90vh;
 }
 .Landing-c1-side h4 {
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
 }
 .Landing-c1-side h4 span {
-  color: #880808;
-  font-size: 3rem;
+  /* color: #3f3d56; */
+  font-size: 2rem;
 }
 .Landing-c1-side h2 {
-  color: #880808;
+  color: #3f3d56;
   font-size: 9rem;
 }
 .Landing-c1-side {
