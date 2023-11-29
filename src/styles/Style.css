@@ -1096,5 +1096,105 @@
   color: #023040;
 }
 
+<<<<<<< Updated upstream
 /* Patient Register Styles */
 
+=======
+
+/* Blogform css */
+
+.Blogform-whole{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Blogform-upper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 15%;
+}
+
+.Blogform-headline{
+  font-size: 55px;
+  font-weight: 600;
+}
+
+.Blogform-mid{
+  width: 100%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Blogform-mid-int{
+  width: 70%;
+  height: 90%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.Blogform-form-div{
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Blogform-remaining{
+  height: 10%;
+}
+
+form{
+  margin-top: 15px;
+  width: 90%;
+  height: 100%;
+}
+
+label{
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.Blog-form-input-Title[type='text']{
+  height: 30px; 
+}
+
+.Blog-form-input-Blog[type='text']{
+  height: 220px; 
+}
+
+textarea{
+  width: 100%;
+  height: 370px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.Blogform-remaining{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.Blogform-remaining-button{
+  width: 20%;
+}
+>>>>>>> Stashed changes
