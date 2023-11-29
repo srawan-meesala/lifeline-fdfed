@@ -100,13 +100,13 @@
 }
 .Landing-c1-side button {
   cursor: pointer;
-  background-color: #880808;
+  background-color: #3f3d56;
   padding: 10px 15px;
   border-radius: 4px;
   margin-top: 52px;
   font-size: medium;
   transition: 0.2s;
-  border: 0.5px #880808 solid;
+  border: 0.5px #3f3d56 solid;
 }
 .Landing-c1-side button a {
   color: white;
@@ -115,10 +115,10 @@
 .Landing-c1-side button:hover {
   background-color: white;
   color: black;
-  border: 0.5px #880808 solid;
+  border: 0.5px #3f3d56 solid;
 }
 .Landing-c1-side button:hover a{
-  color: #880808;
+  color: #3f3d56;
 }
 .Landing-c1-img {
   width: 60%;
@@ -1095,4 +1095,6 @@
   text-decoration: none;
   color: #023040;
 }
+
+/* Patient Register Styles */
 
