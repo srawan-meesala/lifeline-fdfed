@@ -4,12 +4,12 @@ import logo from '../images/logo.png'
 const Landing = () => {
   return (
     <div className='Landing-body'>
-        <div class="Landing-overlay">
-            <div class="Landing-one"></div>
-            <div class="Landing-two"></div>
+        <div className="Landing-overlay">
+            <div className="Landing-one"></div>
+            <div className="Landing-two"></div>
         </div>
-        <div class="Landing-containerr">
-            <div class="Landing-header-1">
+        <div className="Landing-containerr">
+            <div className="Landing-header-1">
                 <nav className='Landing-nav'>
                     <a href="/" class="Landing-logo-brand">Lifeline<span>.</span></a>
                     <ul>
@@ -20,12 +20,12 @@ const Landing = () => {
                     </ul>
                 </nav>
             </div>
-            <div class="container-1">
-                <div class="Landing-c1">
-                    <div class="Landing-c1-img">
+            <div className="container-1">
+                <div classname="Landing-c1">
+                    <div className="Landing-c1-img">
                         <img src={logo} alt="home" />
                     </div>
-                    <div class="Landing-c1-side">
+                    <div className="Landing-c1-side">
                         <h4>Make your life <span>healthier</span> and <span>Safe </span> with</h4>
                         <h2>Lifeline.</h2>
                         <p>Best hospitals. Highly qualified doctors. Online appointments. Blood banks. Organ donations. Research blogs. </p>
