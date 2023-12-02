@@ -12,7 +12,7 @@ function EmailVerification() {
         const response = await axios.post('http://localhost:8000/verifyEmail', {
           verificationToken,
         });
-
+        console.log(verificationToken)
         if (response.data === 'verified') {
           alert('Email verified successfully');
           navigate(`/patientRegister2/${verificationToken}`);
@@ -24,9 +24,8 @@ function EmailVerification() {
         console.error('Error verifying email:', error);
       }
     };
-
-    verifyEmail();
-  }, [verificationToken, navigate]);
+  verifyEmail()
+  });
 
   return (
     <div>

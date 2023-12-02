@@ -78,7 +78,7 @@ app.post('/patientRegister', async (req, res) => {
 
 app.post('/verifyEmail', async (req, res) => {
     const { verificationToken } = req.body;
-  
+    console.log(verificationToken)
     try {
       const data = await Collection3.findOne({ verificationToken });
   
@@ -100,7 +100,6 @@ app.post('/patientRegister2', async (req, res) => {
     const { verificationToken, username, password } = req.body;  
     try {
       const data = await Collection3.findOne({ verificationToken });
-  
       if (data) {
         data.username = username;
         data.password = password;

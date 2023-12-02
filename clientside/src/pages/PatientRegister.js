@@ -22,7 +22,7 @@ function PatientRegister() {
 
     try {
       const response = await axios.post('http://localhost:8000/patientRegister', {
-        firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
+        firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender,verificationToken
       });
 
       if (response.data === 'exist') {
@@ -30,7 +30,6 @@ function PatientRegister() {
       } else {
         alert('Registration successful! Please check your email for verification.');
         setVerificationToken(response.data.verificationToken);
-        navigate(`/verify/${response.data.verificationToken}`);
       }
     } catch (error) {
       alert('Wrong details');

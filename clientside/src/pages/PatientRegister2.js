@@ -9,7 +9,7 @@ function RegisterUsernamePassword({ verificationToken }) {
 
   async function submitPatientRegister2(e) {
     e.preventDefault();
-
+    console.log(verificationToken)
     try {
       const response = await axios.post('http://localhost:8000/patientRegister2', {
         verificationToken, username, password,
@@ -28,12 +28,12 @@ function RegisterUsernamePassword({ verificationToken }) {
 
   return (
     <div>
-      <form onSubmit={submitPatientRegister2}>
+      <form method='POST' action='/patientRegister2'>
         <label>Username</label>
         <input type="text" onChange={(e) => setUsername(e.target.value)} name="Username" placeholder="Username" required />
         <label>Password</label>
         <input type="password" onChange={(e) => setPassword(e.target.value)} name="Password" placeholder="Password" required />
-        <input type="submit" value="Register" />
+        <input type="submit" onClick={submitPatientRegister2} />
       </form>
     </div>
   );
