@@ -11,11 +11,11 @@ function BlogForm() {
         <div className='Blogform-mid'>
             <div className='Blogform-mid-int'>
                 <div className='Blogform-form-div'>
-                    <form>
-                        <label>Title</label>
+                    <form className='Blogform-form'>
+                        <label className='Blogform-label'>Title</label>
                         <input type='text' placeholder='Your Blog Title'/>
-                        <label>Blog</label>
-                        <textarea type='text' placeholder='Your Blog'>
+                        <label className='Blogform-label'>Blog</label>
+                        <textarea type='text' placeholder='Your Blog' className='Blogform-textarea'>
                         </textarea>
                     </form>
                 </div>
