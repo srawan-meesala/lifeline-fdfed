@@ -35,6 +35,6 @@ const collection2Schema = new mongoose.Schema({
     }
 })
 
-const collection2 = new mongoose.model('collection2', collection2Schema)
+const Collection2 = new mongoose.model('Collection2', collection2Schema)
 
-module.exports = collection2
+module.exports = Collection2
