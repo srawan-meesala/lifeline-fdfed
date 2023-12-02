@@ -5,7 +5,7 @@ import Searchbar from '../components/Searchbar'
 const Home = () => {
   return (
     <div>
-        <Navbar />
+        <Navbar title={'Home'}/>
         <Searchbar />
     </div>
   )
