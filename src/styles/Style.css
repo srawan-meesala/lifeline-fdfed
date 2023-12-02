@@ -1155,13 +1155,13 @@
   height: 10%;
 }
 
-form{
+.Blogform-form{
   margin-top: 15px;
   width: 90%;
   height: 100%;
 }
 
-label{
+.Blogform-label{
   font-size: 25px;
   font-weight: 500;
 }
@@ -1174,7 +1174,7 @@ label{
   height: 220px; 
 }
 
-textarea{
+.Blogform-textarea{
   width: 100%;
   height: 370px;
   padding: 10px 10px;
@@ -1208,3 +1208,354 @@ textarea{
   font-size: 15px;
   font-weight: 500;
 }
+
+
+/* css for BookAppointment */
+
+.BookAppointment-whole{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.BookAppointment-form-div{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.BookAppointment-form-main{
+  width: 70%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 0;
+  padding-left: 30px;
+}
+
+.BokkAppointment-Headline{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.BookAppointment-form{
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 70%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+input[type=text]{
+  font-size: 15px;
+}
+
+input[type=date]{
+  width: 13%;
+  height: 7%;
+}
+
+.BookAppointment-button-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+}
+
+.BookAppointment-button{
+  width: 16%;
+  height: 42%;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.BookAppointment-button:active{
+  background-color: orange;
+}
+
+.BookAppointment-textarea{
+  width: 100%;
+  height: 170px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.BookAppointment-label{
+  font-size: 20px;
+  font-weight: 500;
+  padding: 4px;
+}
+
+
+/* css for ShowDoctors */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+}
+
+
+.containerr {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    z-index: 0;
+}
+.container-1 {
+    position: relative;
+    top: 15%;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    left: 0;
+}
+
+.searchbar-div {
+    max-width: 35rem;
+    max-height: 2rem;
+}
+.searchbar-div form {
+    display: flex;
+    width: 100%;
+}
+.searchbar {
+    text-align: left;
+    max-width: 40rem;
+}
+.searchbar-search {
+    position: relative;
+    cursor: pointer;
+    padding: 0.4rem;
+    border: 0.1rem;
+    transition: 0.3s;
+}
+.searchbar-search:hover {
+    background-color: #eee;
+    border-radius: 5px;
+    color: black;
+}
+
+.material-symbols-outlined {
+  position: absolute;
+}
+.header-home-page {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.panels{
+    position: absolute;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    top: 40vh;
+}
+.panel-1 {
+    width: 65vw;
+    height:20rem;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+.panel-1:hover{
+    box-shadow: 0 5px 10px rgb(0 0 0 / 0.6);
+}
+
+.body-panel{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 7%;
+}
+.head-body{
+    height: 35%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.name-dr{
+    font-size: 1.3rem;
+    margin: 0;
+    color: #880808;
+    font-weight: 500;
+}
+.name-hosp{
+    font-size: 0.8rem;
+}
+.bio-body{
+    height: 40%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.bio-body p{
+    margin: 0;
+}
+.contact-body{
+    height: 25%;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.contact-body button{
+    height: 43%;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+.number-panel p span{
+    display: block;
+    font-size: 1.4rem;
+}
+.number-panel p{
+    margin: 0;
+}
+.number-panel{
+    width: 8rem;
+    text-align: end;
+    padding: 5px;
+    background-color: #088812;
+    color: #fff;
+    border-radius: 7px;
+    border: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.number-panel-icon-phone{
+  height: 90%;
+  width: 15%;
+}
+
+.appoint-panel{
+    width: 10rem;
+    padding: 5px;
+    background-color: #880808;
+    color: #fff;
+    border-radius: 7px;
+    border: none;
+}
+.contact-body button:hover{
+    opacity: 0.7;
+}
+
+.ShowDoctors-searchbar{
+  display: flex;
+  width: 100%;
+  height: 7rem
+}
+
+.ShowDoctors-searchbar-int{
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-mid{
+    width: 100%;
+    height: 20vh;
+    top: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+}
+.content-searched{
+    width: 70%;
+}
+.searched-for{
+    margin: 0;
+    font-size: 1.3rem;
+}
+.searched-for span{
+    font-weight: 500;
+}
+.filters{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sort{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 80%;
+}
+
+.spec{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 33%;
+  height: 80%;
+}
+
+.exp-sort{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 80%;
+}
+
+.submit-sort{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-sort button{
+    padding: 8px 10px;
+    background-color: #880808;
+    color: #ddd;
+    border-radius: 5px;
+    border: none;
+    transition: 0.2s;
+    font-weight: 500;
+}
+.submit-sort button:active{
+    background-color: #fff;
+    color: #880808; 
+}
+
