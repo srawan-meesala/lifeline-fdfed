@@ -13,7 +13,7 @@ function BlogForm() {
                 <div className='Blogform-form-div'>
                     <form className='Blogform-form'>
                         <label className='Blogform-label'>Title</label>
-                        <input type='text' placeholder='Your Blog Title'/>
+                        <input type='text' className='Blogform-input' placeholder='Your Blog Title'/>
                         <label className='Blogform-label'>Blog</label>
                         <textarea type='text' placeholder='Your Blog' className='Blogform-textarea'>
                         </textarea>

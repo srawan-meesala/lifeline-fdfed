@@ -95,7 +95,7 @@ function UserProfile() {
         </div>
         <div className='UserProfile-card-2'>
           <div className='UserProfile-card-2-int-div'>
-            <div className='UserProfile-card-1-int-div-head-black'>Total number of Transactions made:</div>
+            <div className='UserProfile-card-1-int-div-head-black'>Total number of Transactions:</div>
             <div className='UserProfile-card-1-int-div-body'>15</div>
           </div>
         </div>
