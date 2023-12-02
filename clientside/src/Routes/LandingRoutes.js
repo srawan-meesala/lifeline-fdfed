@@ -10,7 +10,6 @@ import Blogs from '../pages/Blogs';
 import BlogForm from '../pages/BlogForm';
 import BookAppointment from '../pages/BookAppointment';
 import ShowDoctors from '../pages/ShowDoctors';
-import EachDoctor from '../components/EachDoctor';
 
 const LandingRoutes = () => {
   return (

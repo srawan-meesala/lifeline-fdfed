@@ -11,9 +11,7 @@ function PatientRegister() {
   const [mobileNumber, setMobileNumber] = useState('');
   const [mailID, setMailID] = useState('');
   const [dob, setDob] = useState('');
-  const [occupation, setOccupation] = useState('');
   const [bloodGroup, setBloodGroup] = useState('');
-  const [maritalStatus, setMaritalStatus] = useState('');
   const [gender, setGender] = useState('');
   const [verificationToken, setVerificationToken] = useState('');
   const [username, setUsername] = useState('');
@@ -28,7 +26,7 @@ function PatientRegister() {
 
     try {
       const response = await axios.post('http://localhost:8000/patientRegister', {
-        firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender,verificationToken
+        firstName, lastName, mobileNumber, mailID, dob, bloodGroup,       gender,verificationToken
       });
 
       if (response.data === 'exist') {
