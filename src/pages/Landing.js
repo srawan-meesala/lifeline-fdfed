@@ -11,7 +11,7 @@ const Landing = () => {
         <div className="Landing-containerr">
             <div className="Landing-header-1">
                 <nav className='Landing-nav'>
-                    <a href="/" class="Landing-logo-brand">Lifeline<span>.</span></a>
+                    <a href="/" className="Landing-logo-brand">Lifeline<span>.</span></a>
                     <ul>
                         <li><a href="/patientRegister" target="_self">Join Lifeline</a></li>
                         <li><a href="/login" target="_self">Login</a></li>
