@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/Srawan.css'
+import '../styles/Searchbar.css'
 import { FaSearch } from "react-icons/fa";
 
 const Searchbar = () => {
