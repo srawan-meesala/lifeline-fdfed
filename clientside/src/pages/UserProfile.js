@@ -143,7 +143,6 @@ function UserProfile() {
                 </div>
                 <div className='UserProfile-part-2'>
                   <div className='UserProfile-part-2-int-div'>
-
                   </div>
                 </div>
             </div>

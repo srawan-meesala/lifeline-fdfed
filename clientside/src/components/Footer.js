@@ -88,6 +88,7 @@ function Footer() {
                     onChange={handleInputChange}
                     placeholder='Message'
                     required
+                    className='footer-textarea'
                 ></textarea>
                 </div>
             </div>
