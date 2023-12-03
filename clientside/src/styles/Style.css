@@ -942,6 +942,44 @@ html {
     border-radius: 24px;
 }
 
+.UserProfile-part-1-int-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.UserProfile-part-1-int-div-head{
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  color: black;
+}
+
+.UserProfile-part-1-int-div-body{
+  display: flex;
+  justify-content: space-around;
+  height: 40%;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  color: black;
+}
+
+.UserProfile-part-1-int-div-body-icon{
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  color: black;
+}
+
+
 
 /* BlogComplete css  */
 
@@ -1659,3 +1697,424 @@ html {
     color: #880808; 
 }
 
+
+/* css for doctor profile */
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+.DoctorProfile-whole{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.DoctorProfile-left {
+  width: 20%;
+  height: 100%;
+  background-color: #8ecae6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.DoctorProfile-logo, .DoctorProfile-functions, .DoctorProfile-logout {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.DoctorProfile-logo {
+  height: 10%;
+  font-size: 35px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.DoctorProfile-logo-dot{
+  color: #FFB703;
+}
+
+.DoctorProfile-logo-dahboard{
+  color: black;
+  font-size: 27px;
+  font-weight: 400;
+}
+
+.DoctorProfile-functions {
+  height: 50%;
+  margin-bottom: 30%;
+}
+
+.DoctorProfile-fuctions-int-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 80%;
+  height: 90%;
+}
+
+.DoctorProfile-func-parts{
+  width: 90%;
+  height: 25%;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.DoctorProfile-logout-part{
+  width: 90%;
+  height: 35%;
+  margin-left: 20px;
+  margin-right: 45px;
+  display: flex;
+  align-items: center;
+}
+
+
+.DoctorProfile-func-parts:hover{
+  background-color: #a1e4f5;
+  border-radius: 15px;
+  transition: 0.2s;
+  color: black;
+}
+
+.DoctorProfile-logout-part:hover{
+  background-color: #a1e4f5;
+  border-radius: 15px;
+  transition: 0.2s;
+  color: black;
+}
+
+.DoctorProfile-icon{
+  width: 16%;
+  font-size: 22px;
+  margin-left: 20px;
+  color: black;
+}
+
+.DoctorProfile-logout-icon{
+  width: 14%;
+  font-size: 22px;
+  margin-left: 20px;
+  color: black;
+}
+
+.DoctorProfile-func{
+  width: 80%;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.DoctorProfile-logout-func{
+  width: 80%;
+  font-size: 21px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.DoctorProfile-logout {
+  height: 20%;
+  font-size: 21px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}  
+
+.DoctorProfile-right{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color:white;
+}
+
+.DoctorProfile-top{
+  width: 100%;
+  height: 11%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.DoctorProfile-dashboard{
+  width: 25%;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+}
+
+.DoctorProfile-user-logo{
+  width: 20%;
+  height: 100%;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.DoctorProfile-user-logo-pic:hover{
+  font-size: 32px;
+  transition: 0.3s;
+}
+
+.DoctorProfile-cards{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5% 2%;
+  background-color: #eee;
+}
+
+.DoctorProfile-card-1{
+  width: 24%;
+  height: 100%;
+}
+
+.DoctorProfile-card-1-int-div,.DoctorProfile-card-2-int-div,.DoctorProfile-card-3-int-div,.DoctorProfile-card-4-int-div{
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.DoctorProfile-card-1-int-div-head{
+  height: 40%;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 25px;
+  font-weight: 300;
+  font-family: 'Manrope', sans-serif;
+  color: black;
+}
+
+.DoctorProfile-card-1-int-div-head-black{
+  height: 40%;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 25px;
+  font-weight: 200;
+  font-family: 'Manrope', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.DoctorProfile-card-1-int-div-body{
+  height: 60%;
+  font-size: 50px;
+  font-weight: 400;
+  font-family: 'Manrope', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+.DoctorProfile-card-2{
+    width: 24%;
+    height: 100%;
+}
+
+.DoctorProfile-card-3{
+    width: 24%;
+    height: 100%;
+}
+
+.DoctorProfile-card-4{
+    width: 24%;
+    height: 100%;
+}
+
+.DoctorProfile-bottom-right{
+    width: 100%;
+    height: 66%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0% 2%;
+    padding-bottom: 2%;
+    background-color: #eee;
+}
+
+.DoctorProfile-booked-appointments{
+    width: 60%;
+    height: 100%;
+}
+
+.DoctorProfile-remaining{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.DoctorProfile-part-1{
+    width: 100%;
+    height: 50%;
+}
+
+.DoctorProfile-part-2{
+    width: 100%;
+    height: 50%;
+}
+
+.DoctorProfile-booked-appointments-int-div{
+    width: 94%;
+    height: 92%;
+    margin: 4% 3%;
+    background-color: #023047;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 24px;
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+}
+
+.DoctorProfile-booked-appointments-int-div-head-top{
+  padding: 5px;
+  font-size: 25px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.DoctorProfile-booked-appointments-int-div-head-bottom{
+  padding: 5px;
+  padding-bottom: 0;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+.DoctorProfile-booked-appointments-int-div-head{
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.DoctorProfile-booked-appointments-int-div-body{
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.DoctorProfile-booked-appointments-int-div-body-part{
+  font-size:20px;
+  font-weight: 300;
+  color: white;
+  padding: 3px;
+}
+
+.DoctorProfile-booked-appointments-int-div-body-part:hover{
+  background-color: #12465f;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.DoctorProfile-card-1-int-div,.DoctorProfile-card-3-int-div,.DoctorProfile-card-4-int-div{
+    width: 92%;
+    height: 92%;
+    margin: 4%;
+    border-radius: 24px;
+    color: black;
+}
+
+.DoctorProfile-card-2-int-div{
+    width: 92%;
+    height: 92%;
+    margin: 4%;
+    border-radius: 24px;
+    color: white;
+}
+
+.DoctorProfile-card-1-int-div{
+  background-color: #219ebc;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+}
+
+.DoctorProfile-card-2-int-div{
+  background-color: #023047;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+}
+
+.DoctorProfile-card-3-int-div{
+  background-color: #ffb703;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+}
+
+.DoctorProfile-card-4-int-div{
+  background-color: #fb8500;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+}
+
+.DoctorProfile-part-1-int-div{
+    width: 92%;
+    height: 85%;
+    margin: 5%;
+    background-color: #ffb703;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 24px;
+}
+
+.DoctorProfile-part-2-int-div{
+    width: 92%;
+    height: 85%;
+    margin: 5%;
+    background-color: #fb8500;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 24px;
+}
+
+.DoctorProfile-part-1-int-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.DoctorProfile-part-1-int-div-head{
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  color: black;
+}
+
+.DoctorProfile-part-1-int-div-body{
+  display: flex;
+  justify-content: space-around;
+  height: 40%;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  color: black;
+}
+
+.DoctorProfile-part-1-int-div-body-icon{
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  color: black;
+}

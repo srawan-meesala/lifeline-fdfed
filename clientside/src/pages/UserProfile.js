@@ -138,7 +138,8 @@ function UserProfile() {
             <div className='UserProfile-remaining'>
                 <div className='UserProfile-part-1'>
                   <div className='UserProfile-part-1-int-div'>
-
+                  <div className="UserProfile-part-1-int-div-head">Total Income</div>
+                  <div className="UserProfile-part-1-int-div-body"><div className='UserProfile-part-1-int-div-body-icon'><BiRupee/></div><span>100000</span></div>
                   </div>
                 </div>
                 <div className='UserProfile-part-2'>

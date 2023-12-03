@@ -6,12 +6,14 @@ import BlogForm from '../pages/BlogForm';
 import BookAppointment from '../pages/BookAppointment';
 import ShowDoctors from '../pages/ShowDoctors';
 import EachDoctor from '../components/EachDoctor';
+import DoctorProfile from '../pages/DoctorProfile';
 
 const LandingRoutes = () => {
   return (
     <Router>
         <Routes>
             <Route path="/userProfile" element={<UserProfile/>}/>
+            <Route path="/DoctorProfile" element={<DoctorProfile/>}/>
             <Route path="/bookedappointments" element={<BookedAppointments/>}/>
         </Routes>
     </Router>
