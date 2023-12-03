@@ -22,7 +22,7 @@ const Landing = () => {
                 </nav>
             </div>
             <div className="Landing-container-1">
-                <div classname="Landing-c1">
+                <div className="Landing-c1">
                     <div className="Landing-c1-img">
                         <img src={logo} alt="home" />
                     </div>

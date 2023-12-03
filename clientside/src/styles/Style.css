@@ -113,7 +113,6 @@ html {
   font-size: 9rem;
 }
 .Landing-c1-side {
-  border-left: black 6px solid;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -121,7 +120,6 @@ html {
   align-items: center;
   width: 130%;
   margin-left: -10px;
-  top: 7rem;
 }
 .Landing-c1-side button {
   cursor: pointer;
@@ -146,15 +144,15 @@ html {
   color: #880808;
 }
 .Landing-c1-img {
-  width: 40%;
+  width: 60%;
   height: 150%;
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .Landing-c1-img img{
-  width: 80%;
+  width: 110%;
 }
 
 @media screen and (max-width: 1080px) {
