@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Collection2 = require('./models/collection2')
 const app = express()
+const bodyParser = require('body-parser');
 const uuid = require('uuid')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
@@ -25,21 +26,32 @@ mongoose.connect('mongodb://localhost:27017/Lifeline-fdfed')
 app.post('/login',async(req,res)=>{
     const username = req.body.username
     const password = req.body.password
+    const type = req.body.type
 
     try{
-        const check = await Collection3.findOne({username:username})
-        if(check){
+        if (type === 'patient'){
+          const check = await Collection3.findOne({username:username})
+          if(check){
             if(password == check.password){
                 res.status(200).json(check);
             }
             else{
                 res.json('invalid credentials')
+            }            
+          }
+        else if(type === 'doctor'){
+          const check = await Collection2.findOne({docID:username})
+          if(check){
+            if(password === check.password){
+                res.status(200).json(check);
             }
-            
+            else{
+                res.json('invalid credentials')
+            }
+          }
         }
-        else{
-            res.json('doesnot exist')
-        }
+        
+
     }
     catch(e){
         res.json('error')
@@ -78,7 +90,6 @@ app.post('/patientRegister', async (req, res) => {
 
 app.post('/verifyEmail', async (req, res) => {
     const { verificationToken } = req.body;
-    console.log(verificationToken)
     try {
       const data = await Collection3.findOne({ verificationToken });
   

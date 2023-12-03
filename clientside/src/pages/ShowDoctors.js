@@ -3,6 +3,7 @@ import { MdCall } from "react-icons/md";
 import Navbar from '../components/Navbar';
 import Diamond from '../images/6.png';
 import EachDoctor from '../components/EachDoctor';
+import Searchbar from '../components/Searchbar';
 
 
 const ShowDoctors = () => {
@@ -10,8 +11,7 @@ const ShowDoctors = () => {
     <div class="containerr">
         <Navbar/>
         <div className='ShowDoctors-searchbar'>
-            <div className='ShowDoctors-searchbar-int'>searchbar
-            </div>
+            <Searchbar/>
         </div>
         <div class="content-mid">
             <div class="content-searched">

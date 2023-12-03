@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 
-function RegisterUsernamePassword({ verificationToken }) {
+function RegisterUsernamePassword() {
   const navigate = useNavigate();
+  const {verificationToken} = useParams()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   async function submitPatientRegister2(e) {
     e.preventDefault();
-    console.log(verificationToken)
     try {
       const response = await axios.post('http://localhost:8000/patientRegister2', {
         verificationToken, username, password,

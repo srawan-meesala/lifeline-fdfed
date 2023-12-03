@@ -40,7 +40,7 @@ function Blogs() {
         <div className='Blogs-Randomiser'>
           <div className='Blogs-Randomiser-div'>
             <div className='Blogs-Randomiser-question'>cant choose what to read? try our randomiser</div>
-            <div className='Randomiser-div'><button className='Randomiser-Button'><span><FaRandom/>Random</span></button></div>
+            <div className='Randomiser-div'><button className='Randomiser-Button'><FaRandom/><span>Random</span></button></div>
             </div>
         </div>
         <div className='Blogs-content'>

@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../images/logo.png'
+import '../styles/Style.css'
 
 const Landing = () => {
   return (
@@ -20,7 +21,7 @@ const Landing = () => {
                     </ul>
                 </nav>
             </div>
-            <div className="container-1">
+            <div className="Landing-container-1">
                 <div classname="Landing-c1">
                     <div className="Landing-c1-img">
                         <img src={logo} alt="home" />

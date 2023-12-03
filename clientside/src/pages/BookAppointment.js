@@ -28,7 +28,7 @@ function BookAppointment() {
                     <option>Suresh</option>
                 </select>
                 <label className='BookAppointment-label'>Date</label>
-                <input type='date'></input>
+                <input type='date' className='BookAppointment-input-date'></input>
                 <label className='BookAppointment-label'>Time</label>
                 <select name='type'>
                     <option selected>10AM-11AM</option>

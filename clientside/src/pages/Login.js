@@ -12,8 +12,8 @@ function Login(){
     async function submit_login(e){
         e.preventDefault()
         try{
-            await axios.post('http://localhost:8000/patientLogin',{
-                username,password
+            await axios.post('http://localhost:8000/login',{
+                username,password,type
             })
             .then(res =>{
                 if(res.data == 'exist'){
