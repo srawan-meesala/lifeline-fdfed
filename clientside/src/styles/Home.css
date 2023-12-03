@@ -83,6 +83,11 @@
 .Home-c3-1, .Home-c3-2{
     height: 50%;
     width: 100%;
+    display: flex;
+}
+
+.Home-c3-1-title {
+    font-size: 30px;
 }
 
 .Home-c4 {

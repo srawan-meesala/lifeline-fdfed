@@ -41,8 +41,19 @@ const Home = () => {
             </div>
           </div>
           <div className="Home-c3">
-            <div className="Home-c3-1"></div>
-            <div className="Home-c3-2"></div>
+            <div className="Home-c3-1">
+              <div className="Home-c3-1-title">
+                Tests Provided Include
+              </div>
+              <div className="Home-c3-1-body">
+
+              </div>
+            </div>
+            <div className="Home-c3-2">
+              <div className="Home-c3-1-title">
+                Blood Banks
+              </div>
+            </div>
           </div>
           <div className="Home-c4">
             <div className="Home-c4-img">
