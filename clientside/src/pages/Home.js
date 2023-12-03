@@ -53,7 +53,7 @@ const Home = () => {
               <div className="Home-c3-1-title">
                 Blood Banks
               </div>
-            </div>
+            </div>svd
           </div>
           <div className="Home-c4">
             <div className="Home-c4-img">
