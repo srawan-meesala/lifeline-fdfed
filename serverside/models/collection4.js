@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const collection2Schema = new mongoose.Schema({
-    name:{
+const collection4Schema = new mongoose.Schema({
+    hospName:{
         type:String,
         required:true
     },
@@ -13,15 +13,19 @@ const collection2Schema = new mongoose.Schema({
         type:String,
         required:true
     },
-    hospName:{
+    city:{
         type:String,
         required:true
     },
-    specialization:{
+    diagnosisCenter:{
         type:String,
         required:true
     },
-    fee:{
+    bloodBanks:{
+        type:String,
+        required:true
+    },
+    organDonation:{
         type:String,
         required:true
     },
@@ -31,7 +35,7 @@ const collection2Schema = new mongoose.Schema({
     verificationStatus:{
         type:String,
     },
-    docID:{
+    hospID:{
         type:String,
     },
     password:{
@@ -39,6 +43,5 @@ const collection2Schema = new mongoose.Schema({
     }
 })
 
-const Collection2 = new mongoose.model('Collection2', collection2Schema)
-
-module.exports = Collection2
+const Collection4 = new mongoose.model('collection4',collection4Schema)
+module.exports = Collection4

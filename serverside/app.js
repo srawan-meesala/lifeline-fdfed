@@ -1,12 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Collection2 = require('./models/collection2')
+const Collection3 = require('./models/collection3')
+const Collection4 = require('./models/collection4')
 const app = express()
 const bodyParser = require('body-parser');
 const uuid = require('uuid')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
-const Collection3 = require('./models/collection3')
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
@@ -78,7 +79,7 @@ app.post('/patientRegister', async (req, res) => {
 
     await data.save();
 
-    const verificationLink = `http://localhost:3000/verify/${verificationToken}`;
+    const verificationLink = `http://localhost:3000/verifypatient/${verificationToken}`;
     sendVerificationEmail(mailID, verificationLink);
 
     res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
@@ -88,8 +89,64 @@ app.post('/patientRegister', async (req, res) => {
   }
 });
 
+app.post('/docRegister', async (req, res) => {
+  const {
+    name, mobileNumber, mailID, hospName, specialization, fee
+  } = req.body;
 
-app.post('/verifyEmail', async (req, res) => {
+  try {
+    const check = await Collection2.findOne({ mailID });
+
+    if (check) {
+      return res.json('exist');
+    }
+
+    const verificationToken = uuid.v4();
+    const data = new Collection2({
+      name, mobileNumber, mailID, hospName, specialization, fee, verificationToken
+    });
+
+    await data.save();
+
+    const verificationLink = `http://localhost:3000/verifydoctor/${verificationToken}`;
+    sendVerificationEmail(mailID, verificationLink);
+
+    res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+app.post('/hospRegister', async (req, res) => {
+  const {
+    hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
+  } = req.body;
+
+  try {
+    const check = await Collection4.findOne({ mailID });
+
+    if (check) {
+      return res.json('exist');
+    }
+
+    const verificationToken = uuid.v4();
+    const data = new Collection4({
+      hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation,verificationToken
+    });
+
+    await data.save();
+
+    const verificationLink = `http://localhost:3000/verifyhospital/${verificationToken}`;
+    sendVerificationEmail(mailID, verificationLink);
+    res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+app.post('/verifyEmailPatient', async (req, res) => {
     const { verificationToken } = req.body;
     try {
       const data = await Collection3.findOne({ verificationToken });
@@ -106,6 +163,44 @@ app.post('/verifyEmail', async (req, res) => {
       console.error(error);
       res.status(500).json('Internal Server Error');
     }
+});
+
+app.post('/verifyEmailDoc', async (req, res) => {
+  const { verificationToken } = req.body;
+  try {
+    const data = await Collection2.findOne({ verificationToken });
+
+    if (data) {
+      data.verificationStatus = true;
+      await data.save();
+      res.json('verified');
+    } else {
+      res.json('invalid-token');
+    }
+  } 
+  catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+app.post('/verifyEmailHosp', async (req, res) => {
+  const { verificationToken } = req.body;
+  try {
+    const data = await Collection4.findOne({ verificationToken });
+
+    if (data) {
+      data.verificationStatus = true;
+      await data.save();
+      res.json('verified');
+    } else {
+      res.json('invalid-token');
+    }
+  } 
+  catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
 });
 
 app.post('/patientRegister2', async (req, res) => {
@@ -126,41 +221,42 @@ app.post('/patientRegister2', async (req, res) => {
     }
 });
 
-app.post('/docRegister',async(req,res)=>{
-    const name = req.body.name
-    const mobileNumber = req.body.mobileNumber
-    const mailID = req.body.mailID
-    const hospital = req.body.hospital
-    const specialization = req.body.specialization
-    const fee = req.body.fee
-    const docID = req.body.docID
-    const password = req.body.password
-    const data = {
-        name:name,
-        mobileNumber:mobileNumber,
-        mailID:mailID,
-        hospname:hospital,
-        specialization:specialization,
-        fee:fee,
-        docID:docID,
-        password:password
+app.post('/docRegister2', async (req, res) => {
+  const { verificationToken, docID, password } = req.body;  
+  try {
+    const data = await Collection2.findOne({ verificationToken });
+    if (data) {
+      data.docID = docID;
+      data.password = password;
+      await data.save();
+      res.json('registered');
+    } else {
+      res.json('invalid-token');
     }
-    try{
-        const check = await Collection2.findOne({docID:docID})
-        if(check){
-            res.json('exist')
-        }
-        else{
-            res.json('not exist')
-            await Collection2.insertMany([data])
-            const user = await Collection2.findOne({docID:docID });
-            res.status(200).json(user);
-        }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+app.post('/hospRegister2', async (req, res) => {
+  const { verificationToken, hospID, password } = req.body;  
+  try {
+    const data = await Collection4.findOne({ verificationToken });
+    if (data) {
+      data.hospID = hospID;
+      data.password = password;
+      await data.save();
+      res.json('registered');
+    } else {
+      res.json('invalid-token');
     }
-    catch(e){
-        res.json('error')
-    }
-})
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
 
 app.get('/getUserDetails/:username', async (req, res) => {
     const username = req.params.username;

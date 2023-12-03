@@ -2,22 +2,22 @@ import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function EmailVerification() {
+function EmailVerificationDoc() {
   const navigate = useNavigate();
   const { verificationToken } = useParams();
 
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/verifyEmail', {
+        const response = await axios.post('http://localhost:8000/verifyEmailDoc', {
           verificationToken,
         });
         if (response.data === 'verified') {
           alert('Email verified successfully');
-          navigate(`/patientRegister2/${verificationToken}`);
+          navigate(`/docRegister2/${verificationToken}`);
         } else {
           alert('Error while verifying');
-          navigate('/patientRegister');
+          navigate('/docRegister');
         }
       } catch (error) {
         console.error('Error verifying email:', error);
@@ -28,9 +28,9 @@ function EmailVerification() {
 
   return (
     <div>
-      <p>Verifying email...</p>
+      <p>Create Your Doctor ID and Password after Verifying</p>
     </div>
   );
 }
 
-export default EmailVerification;
+export default EmailVerificationDoc;

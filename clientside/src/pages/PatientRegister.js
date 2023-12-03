@@ -11,22 +11,18 @@ function PatientRegister() {
   const [mobileNumber, setMobileNumber] = useState('');
   const [mailID, setMailID] = useState('');
   const [dob, setDob] = useState('');
+  const [occupation, setOccupation] = useState('');
   const [bloodGroup, setBloodGroup] = useState('');
+  const [maritalStatus, setMaritalStatus] = useState('');
   const [gender, setGender] = useState('');
   const [verificationToken, setVerificationToken] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  
-  const [error, setError] = useState('');
-
 
   async function submitRegister(e) {
     e.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:8000/patientRegister', {
-        firstName, lastName, mobileNumber, mailID, dob, bloodGroup,       gender,verificationToken
+        firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
       });
 
       if (response.data === 'exist') {
@@ -41,38 +37,40 @@ function PatientRegister() {
     }
   }
 
-
     return (
         <div className="PatientLogin-whole">
-          <div className="PatientLogin-logo ">Lifeline<span className="PatientLogin-logo-span">.</span>&nbsp;<span className="PatientLogin-logo-side">Registration</span></div>
-            <div className="PatientRegister-body">
-                <form method="POST" action="/patientRegister"  className="PatientRegister-form">
-                  <div className="PatientRegister-left">
-                    <label >First Name</label>
+
+            <div className="PatientLogin-left">
+                <div className="PatientLogin-logo ">Lifeline<span className="PatientLogin-logo-span">.</span>&nbsp;<span className="PatientLogin-logo-side">Registration</span></div>
+                <Logo className="PatientLogin-image"/>
+            </div>
+            <div className="PatientLogin-right">
+                <form method="POST" action="/patientRegister"  className="patient-register-form">
+                    <label >First Name</label><b/>
                     <input type="text" onChange={(e) => { setFirstName(e.target.value) }} name="firstName" placeholder="First Name" required  />
-                    <label >Last Name</label>
+                    <label >Last Name</label><b/>
                     <input type="text" onChange={(e) => { setLastName(e.target.value) }} name="lastName" placeholder="Last Name" required  />
-                    <label >Mobile Number</label>
+                    <label >Mobile Number</label><b/>
                     <input type="number" onChange={(e) => { setMobileNumber(e.target.value) }} name="mobileNumber" placeholder="mobileNumber" required  />
-                    <label >Email ID</label>
+                    <label >Email ID</label><b/>
                     <input type="email" onChange={(e) => { setMailID(e.target.value) }} name="mailID" placeholder="mailID" required  />
-                    <label >Date of Birth</label>
+                    <label >Date of Birth</label><b/>
                     <input type="date" onChange={(e) => { setDob(e.target.value) }} name="dob" required  />
-                  </div>
-                  <div className="PatientRegister-right">
-                    <label >Blood Group</label>
+                    <label >Occupation</label><b/>
+                    <input type="text" onChange={(e) => { setOccupation(e.target.value) }} name="occupation" placeholder="occupation" required  />
+                    <label >Blood Group</label><b/>
                     <input type="text" onChange={(e) => { setBloodGroup(e.target.value) }} name="bloodGroup" placeholder="bloodGroup" required  />
-                    <label >Gender</label>
+                    <label >Marital Status</label><b/>
+                    <input type="text" onChange={(e) => { setMaritalStatus(e.target.value) }} name="maritalStatus" placeholder="maritalStatus" required  />
+                    <label >Gender</label><b/>
                     <input type="text" onChange={(e) => { setGender(e.target.value) }} name="gender" placeholder="gender" required  />
-                    <label >Username</label>
-                    <input type="text" onChange={(e) => { setUsername(e.target.value) }} name="firstName" placeholder="First Name" required  />
-                    <label >Password</label>
-                    <input type="password" onChange={(e) => { setPassword(e.target.value) }} name="firstName" placeholder="First Name" required  />
-                    <label >Confirm Password</label>
-                    <input type="password" onChange={(e) => { setConfirmPassword(e.target.value) }} name="firstName" placeholder="First Name" required  />
                     <input type="submit" onClick={submitRegister} />
-                  </div>
                 </form>
+                <br />
+                <p>OR</p>
+                <br />
+                <Link to='/hospRegister'>Register as Hospital</Link>
+                <Link to='/docRegister'>Register as Doctor</Link>
                 <Link to="/login">login </Link>
             </div>
         </div>
