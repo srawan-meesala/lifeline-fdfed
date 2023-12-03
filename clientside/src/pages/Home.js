@@ -3,7 +3,9 @@ import Navbar from '../components/Navbar'
 import Searchbar from '../components/Searchbar'
 import Footer from '../components/Footer'
 import '../styles/Home.css'
-import { RiHeartPulseLine, RiChatHeartLine  } from "react-icons/ri";
+import { RiHeartPulseLine  } from "react-icons/ri";
+import envi from '../images/envi.jpg'
+import nahwc from '../images/nahwc.png'
 
 const Home = () => {
   return (
@@ -11,7 +13,20 @@ const Home = () => {
         <Navbar title={'Home'}/>
         <Searchbar/>
         <div className="Home-whole">
-          <div className="Home-c1"></div>
+          <div className="Home-c1">
+            <div className="Home-c1-box">
+              <div className="Home-c1-title">Explore Our All New Pharmacy Now.</div>
+              <div className="Home-c1-features">
+                Simple and Easy to Use. <br/>
+                <span>Everything In Your Fingertips.</span><br />
+                Faster Delivery, Always On-time.
+              </div>
+              <div className="Home-c1-link">
+                <a href="/" target="_self">Explore Pharmacy</a>
+              </div>
+            </div>
+            
+          </div>
           <div className="Home-c2">
             <div className="Home-c2-content">
               <div className="Home-c2-content-title">
@@ -26,7 +41,50 @@ const Home = () => {
             </div>
           </div>
           <div className="Home-c3"></div>
-          <div className="Home-c4"></div>
+          <div className="Home-c4">
+            <div className="Home-c4-img">
+              <img className='Home-c4-img-img' src={envi} alt="Save Planet" />
+            </div>
+            <div className="Home-c4-content"></div>
+          </div>
+          <div className="Home-c5">
+            <div className="Home-c5-content">
+              <div className="Home-c5-content-new">
+                <div className="Home-c5-title">Get An Appointment From Our Best Doctors Today.</div>
+                <div className="Home-c5-docs">
+                  <div className="Home-c5-docs-title">
+                    Our Doctors with High Demand
+                  </div>
+                  <div className="Home-c5-docs-cards">
+                    <div className="Home-c5-docs-card">
+                      <div className="Home-c5-docs-card-name">Dr. Anand Chakrobarthy</div>
+                      <div className="Home-c5-docs-card-down">
+                        <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
+                        <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                      </div>
+                    </div>
+                    <div className="Home-c5-docs-card">
+                      <div className="Home-c5-docs-card-name">Dr. Anitha Chaudhary</div>
+                      <div className="Home-c5-docs-card-down">
+                        <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
+                        <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                      </div>
+                    </div>
+                    <div className="Home-c5-docs-card">
+                      <div className="Home-c5-docs-card-name">Dr. Pavan Pandey</div>
+                      <div className="Home-c5-docs-card-down">
+                        <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
+                        <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="Home-c5-img">
+              <img src={nahwc} alt="" className="Home-c5-img-img" />
+            </div>
+          </div>
         </div>
         <Footer/>
     </div>
