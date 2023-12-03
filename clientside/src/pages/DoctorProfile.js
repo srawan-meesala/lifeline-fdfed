@@ -137,7 +137,7 @@ function DoctorProfile() {
                     <div className="DoctorProfile-part-1-int-div-head">Total Income</div>
                     <div className="DoctorProfile-part-1-int-div-body"><div className='DoctorProfile-part-1-int-div-body-icon'><BiRupee/></div><span>100000</span></div>
                   </div>
-                </div>
+                </div> 
                 <div className='DoctorProfile-part-2'>
                   <div className='DoctorProfile-part-2-int-div'>
                   </div>
