@@ -1386,12 +1386,22 @@ html {
 
 .BookAppointment-input-name[type=text]{
   font-size: 15px;
-  border-radius: 5px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  height: 14%;
 }
 
 .BookAppointment-input-date[type=date]{
   width: 43%;
-  height: 20%;
+  height: 12%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.BookAppointment-select{
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  height: 9%;
 }
 
 .BookAppointment-button-div{
@@ -1419,9 +1429,8 @@ html {
 
 .BookAppointment-textarea{
   width: 100%;
-  height: 170px;
+  height: 120px;
   padding: 10px 10px;
-  box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
@@ -1439,6 +1448,21 @@ html {
   font-size: 13px;
 }
 
+.BookAppointment-input-mobileNumber{
+  height: 14%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.BookAppointment-Cost{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+}
 
 
 /* css for ShowDoctors */
