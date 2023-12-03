@@ -27,7 +27,7 @@ const LandingRoutes = () => {
           <Route path="/" element={<Landing/>}/>
           <Route path="/home" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/about" element={<AboutUs/>}/>
+          <Route path="/AboutUs" element={<AboutUs/>}/>
           <Route path="/patientRegister" element={<PatientRegister/>}/>
           <Route path="/verifypatient/:verificationToken" element={<EmailVerificationPatient/>}/>
           <Route path="/patientRegister2/:verificationToken" element={<PatientRegister2/>}/>
