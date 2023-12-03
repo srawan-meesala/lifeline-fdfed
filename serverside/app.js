@@ -4,7 +4,7 @@ const Collection2 = require('./models/collection2')
 const Collection3 = require('./models/collection3')
 const Collection4 = require('./models/collection4')
 const app = express()
-const bodyParser = require('body-parser');
+require('dotenv').config();
 const uuid = require('uuid')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
@@ -12,7 +12,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
 
-require('dotenv').config();
 
 mongoose.connect('mongodb://localhost:27017/Lifeline-fdfed')
 .then(()=>{
@@ -23,42 +22,34 @@ mongoose.connect('mongodb://localhost:27017/Lifeline-fdfed')
 })
 
 
+app.post('/login', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const type = req.body.type;
 
-app.post('/login',async(req,res)=>{
-    const username = req.body.username
-    const password = req.body.password
-    const type = req.body.type
-
-    try{
-        if (type === 'patient'){
-          const check = await Collection3.findOne({username:username})
-          if(check){
-            if(password == check.password){
-                res.status(200).json(check);
-            }
-            else{
-                res.json('invalid credentials')
-            }            
+  try {
+      let check;
+      if (type === 'patient') {
+          check = await Collection3.findOne({ username });
+      } else if (type === 'doctor') {
+          check = await Collection2.findOne({ docID: username });
+      } else if (type === 'hospital') {
+          check = await Collection4.findOne({ hospID: username });
+      }
+      console.log(check)
+      if (check) {
+          if (password === check.password) {
+              res.status(200).json('exist');
+          } else {
+              res.json('invalid credentials');
           }
-        }
-        else if(type === 'doctor'){
-          const check = await Collection2.findOne({docID:username})
-          if(check){
-            if(password === check.password){
-                res.status(200).json(check);
-            }
-            else{
-                res.json('invalid credentials')
-            }
-          }
-        }
-        
-
-    }
-    catch(e){
-        res.json('error')
-    }
-})
+      } else {
+          res.json('does not exist');
+      }
+  } catch (e) {
+      res.json('error');
+  }
+});
 
 app.post('/patientRegister', async (req, res) => {
   const {
