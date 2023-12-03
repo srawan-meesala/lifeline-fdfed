@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 
+
 function BookAppointment() {
-  return (
+    const [patientName,setPatientName] = useState('')
+    const [date,setDate] = useState('')
+    const [time,setTime] = useState('')
+    const [mobileNumber,setMobileNumber] = useState('')
+    const [note,setNote] = useState('')
+
+    async function BookAppointment(){
+        
+    }
+
+
+   return (
     <div className='BookAppointment-whole'>
     <Navbar/>
     <div className='BokkAppointment-Headline'>Book Your Appointment</div>
@@ -10,35 +22,21 @@ function BookAppointment() {
             <form className='BookAppointment-form'>
                 <div className='BookAppointment-form-main'>
                 <label className='BookAppointment-label'>Patient Name</label>
-                <input type='text' className='BookAppointment-input-name' placeholder='Patient Name'></input>
-                <label className='BookAppointment-label'>Hospital</label>
-                <select name='type'>
-                    <option selected>Hospital</option>
-                    <option>Sunshine Hospitals</option>
-                    <option>Ramesh Clinic</option>
-                    <option>Andhra Saruku</option>
-                    <option>Lokesh Hospitals</option>
-                </select>
-                <label className='BookAppointment-label'>Doctor</label>
-                <select name='type'>
-                    <option selected>Doctor </option>
-                    <option>Ramesh</option>
-                    <option>Rakesh</option>
-                    <option>Krupesh</option>
-                    <option>Suresh</option>
-                </select>
-                <label className='BookAppointment-label'>Date</label>
-                <input type='date' className='BookAppointment-input-date'></input>
+                <input type='text' className='BookAppointment-input-name' placeholder='Patient Name' onChange={(e)=>setPatientName(e.target.value)} required />
+                <label className='BookAppointment-label' >Date</label>
+                <input type='date' className='BookAppointment-input-date' onChange={(e)=>setDate(e.target.value)} required />
                 <label className='BookAppointment-label'>Time</label>
-                <select name='type'>
+                <select name='time'value={time} onChange={(e)=>setTime(e.target.value)} required >
                     <option selected>10AM-11AM</option>
                     <option>11AM-12PM</option>
                     <option>1PM-2PM</option>
                     <option>2AM-3PM</option>
                     <option>3PM-4PM</option>
                 </select>
+                <label className='BookAppointment-label'> Mobile Number</label>
+                <input type='number' name='mobileNumber' className='BookAppointment-input-mobileNumber' onChange={(e)=>setMobileNumber(e.target.value)} required/>
                 <label className='BookAppointment-label'>Note</label>
-                <textarea placeholder='something you want to say to the Doctor' className='BookAppointment-textarea'></textarea>
+                <textarea placeholder='something you want to say to the Doctor' className='BookAppointment-textarea' onChange={(e)=>{setNote(e.target.value)}}></textarea>
                 </div>
                 <div className='BookAppointment-button-div'><button className='BookAppointment-button'>Book Appointment</button></div>
             </form>

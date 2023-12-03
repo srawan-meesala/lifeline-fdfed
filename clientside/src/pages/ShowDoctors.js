@@ -1,22 +1,46 @@
-import React from 'react'
-import { MdCall } from "react-icons/md";
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import Diamond from '../images/6.png';
 import EachDoctor from '../components/EachDoctor';
 import Searchbar from '../components/Searchbar';
-
+import axios from 'axios';
 
 const ShowDoctors = () => {
+  const [doctorsList, setDoctorsList] = useState([]);
+  const [hospitalsList, setHospitalsList] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/hospitalsAPI')
+      .then(response => {
+        setHospitalsList(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching hospital data:', error);
+      });
+
+    axios.get('http://localhost:8000/doctorsAPI') 
+      .then(response => {
+        setDoctorsList(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching doctor data:', error);
+      });
+  }, []);
+
+  const getHospitalCity = (hospitalName) => {
+    const hospital = hospitalsList.find(hospital => hospital.hospitalName === hospitalName);
+    return hospital ? hospital.city : 'Unknown';
+  };
+
   return (
-    <div class="containerr">
-        <Navbar/>
-        <div className='ShowDoctors-searchbar'>
-            <Searchbar/>
-        </div>
-        <div class="content-mid">
+    <div className="containerr">
+      <Navbar />
+      <div className="ShowDoctors-searchbar">
+        <Searchbar />
+      </div>
+      <div class="content-mid">
             <div class="content-searched">
                 <p class="searched-for">
-                    Search results for &nbsp;"<span>Ram prasad</span>"
+                    Search results 
                 </p>
             </div>
             <form action="/" class="filters">
@@ -50,15 +74,17 @@ const ShowDoctors = () => {
                 </div>
             </form>
         </div>
-        <div class="panels">
-            <EachDoctor/>
-            <EachDoctor/>
-            <EachDoctor/>
-            <EachDoctor/>
-            <EachDoctor/>
-        </div>
+      <div className="panels">
+        {doctorsList.map((doctor, index) => (
+          <EachDoctor
+            key={index}
+            city={getHospitalCity(doctor.hospitalName)}
+            {...doctor}
+          />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShowDoctors
+export default ShowDoctors;

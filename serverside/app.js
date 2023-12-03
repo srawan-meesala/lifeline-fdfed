@@ -265,8 +265,25 @@ app.get('/getUserDetails/:username', async (req, res) => {
     }
 });
 
+app.get('/hospitalsAPI', async (req, res) => {
+  try {
+    const hospitals = await Collection4.find();
+    res.json(hospitals);
+  } catch (error) {
+    console.error('Error fetching hospital data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
-        
+app.get('/doctorsAPI', async (req, res) => {
+  try {
+    const doctors = await Collection2.find();
+    res.json(doctors);
+  } catch (error) {
+    console.error('Error fetching doctor data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});      
 
 
 function sendVerificationEmail(to, link) {
