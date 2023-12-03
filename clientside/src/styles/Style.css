@@ -11,6 +11,7 @@ html {
 
 /* Landing Page Styles */
 
+
 .Landing-body {
   overflow: hidden;
   background: radial-gradient(circle, rgb(193, 189, 255) 10%, transparent 11%);
@@ -18,7 +19,6 @@ html {
   background-color: #ffffff;
   opacity: 1;
   font-family: 'Poppins',sans-serif;
-  max-height: 100vh;
 }
 
 .Landing-logo-brand {
@@ -68,49 +68,70 @@ html {
   bottom: -6px;
   transition: 0.3s;
 }
-
 .Landing-nav ul li a:hover::after {
   width: 100%;
+}
+
+.Landing-containerr {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  z-index: 0;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.Landing-container-1 {
+  position: relative;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  left: 0;
 }
 
 .Landing-c1{
   display: flex;
   align-items: center;
-  /* justify-content: space-around; */
+  justify-content: space-around;
   color: black;
   height: 90vh;
 }
+
 .Landing-c1-side h4 {
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
 }
 .Landing-c1-side h4 span {
-  /* color: #3f3d56; */
-  font-size: 2rem;
+  color: #880808;
+  font-size: 3rem;
 }
 .Landing-c1-side h2 {
-  color: #3f3d56;
+  color: #880808;
   font-size: 9rem;
 }
 .Landing-c1-side {
-  /* border-left: black 2px solid; */
+  border-left: black 6px solid;
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: space-between;
   align-items: center;
-  width: 120%;
-  padding-right: 3rem;
+  width: 130%;
+  margin-left: -10px;
+  top: 7rem;
 }
 .Landing-c1-side button {
   cursor: pointer;
-  background-color: #3f3d56;
+  background-color: #880808;
   padding: 10px 15px;
   border-radius: 4px;
   margin-top: 52px;
   font-size: medium;
   transition: 0.2s;
-  border: 0.5px #3f3d56 solid;
+  border: 0.5px #880808 solid;
 }
 .Landing-c1-side button a {
   color: white;
@@ -119,18 +140,22 @@ html {
 .Landing-c1-side button:hover {
   background-color: white;
   color: black;
-  border: 0.5px #3f3d56 solid;
+  border: 0.5px #880808 solid;
 }
 .Landing-c1-side button:hover a{
-  color: #3f3d56;
+  color: #880808;
 }
 .Landing-c1-img {
-  width: 60%;
+  width: 40%;
+  height: 150%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Landing-c1-img img{
-  width: 100%;
+  width: 80%;
 }
-
 
 @media screen and (max-width: 1080px) {
   .Landing-c1 {
@@ -1058,6 +1083,7 @@ html {
   background-color: #023040;
   width: 100px;
   padding: 10px;
+  color: white;
 }
 
 .PatientLogin-input {
@@ -1094,6 +1120,7 @@ html {
 .PatientLogin-right-register {
   text-decoration: none;
   color: #023040;
+  padding-top: 20px;
 }
 
 
