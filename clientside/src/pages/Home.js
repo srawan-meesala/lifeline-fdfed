@@ -40,12 +40,28 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="Home-c3"></div>
+          <div className="Home-c3">
+            <div className="Home-c3-1"></div>
+            <div className="Home-c3-2"></div>
+          </div>
           <div className="Home-c4">
             <div className="Home-c4-img">
               <img className='Home-c4-img-img' src={envi} alt="Save Planet" />
             </div>
-            <div className="Home-c4-content"></div>
+            <div className="Home-c4-content">
+              <div className="Home-c4-content-blank"></div>
+              <div className="Home-c4-content-title">
+                Life is Short.<br/>
+                Help the people in Need.<br/>
+                Save a life afterlife.<br/>
+                You will live on even after you are gone.<br/>
+                Organ Donation Camps by <span>Lifeline.</span>
+              </div>
+              <div className="Home-c4-content-body">
+                <a className="Home-c4-content-body-a" href='/'>Register for Lifeline Organ Donation Camp Today.</a>
+              </div>
+            </div>
+            {/* Register for Lifeline Organ Donation Camp and Help the People in Need. */}
           </div>
           <div className="Home-c5">
             <div className="Home-c5-content">
