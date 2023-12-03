@@ -62,7 +62,7 @@ function Login(){
                             <option value="admin">Admin</option>
                         </select><br/>
                     </div>
-                    <input type="submit" onClick={submitLogin} />
+                    <input type="submit" onClick={submitLogin} className="PatientLogin-form-btn"/>
                 </form>
                 <Link className="PatientLogin-right-register" to="/PatientRegister">Haven't Registered yet?</Link>
             </div>

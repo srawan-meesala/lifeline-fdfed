@@ -1149,7 +1149,7 @@ html {
   color: rgba(60, 64, 67, 0.3);
 }
 
-.PatientLogin-form button {
+.PatientLogin-form input[type=submit]{
   background-color: #023040;
   width: 100px;
   padding: 10px;
