@@ -39,6 +39,7 @@ app.post('/login',async(req,res)=>{
                 res.json('invalid credentials')
             }            
           }
+        }
         else if(type === 'doctor'){
           const check = await Collection2.findOne({docID:username})
           if(check){
