@@ -8,11 +8,11 @@ function Navbar({title}) {
       </div>
       <div className='Navbar-right-side'>
         <ul>
-        <li><a href='/'>Home</a></li>
-        <li><a href='/'>Dashboard</a></li>
-        <li><a href='/'>Blogs</a></li>
-        <li><a href='/'>About us</a></li>
-        <li><a href='/'>Logout</a></li>
+        <li><a href='/Home'>Home</a></li>
+        <li><a href='/UserProfile'>Dashboard</a></li>
+        <li><a href='/Blogs'>Blogs</a></li>
+        <li><a href='/AboutUs'>About us</a></li>
+        <li><a href='/Logout'>Logout</a></li>
         </ul>
       </div>
     </div>

@@ -48,7 +48,7 @@ function DoctorProfile() {
             </div>
             <div className='DoctorProfile-func-parts'>
               <div className='DoctorProfile-icon'><BsFillStickiesFill/></div>
-              <div className='DoctorProfile-func'>appointments</div>
+              <div className='DoctorProfile-func'>Appointments</div>
             </div>
             <div className='DoctorProfile-func-parts'>
               <div className='DoctorProfile-icon'><MdLocalPharmacy/></div>
@@ -134,7 +134,7 @@ function DoctorProfile() {
             <div className='DoctorProfile-remaining'>
                 <div className='DoctorProfile-part-1'>
                   <div className='DoctorProfile-part-1-int-div'>
-                    <div className="DoctorProfile-part-1-int-div-head">Total Income</div>
+                    <div className="DoctorProfile-part-1-int-div-head">Total Income:</div>
                     <div className="DoctorProfile-part-1-int-div-body"><div className='DoctorProfile-part-1-int-div-body-icon'><BiRupee/></div><span>100000</span></div>
                   </div>
                 </div> 
