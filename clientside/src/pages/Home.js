@@ -135,35 +135,38 @@ const Home = () => {
                   <div className="Home-c6-blogs-cards">
                     <div className="Home-c6-blogs-cards-1">
                       <div className="Home-c6-blogs-card">
-                        <div className="Home-c6-blogs-card-name">Dr. Anand Chakrobarthy</div>
-                        <div className="Home-c5-docs-card-down">
-                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
-                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                        <div className="Home-c6-blogs-card-name">Lung Cancer Screening Demystified</div>
+                        <div className="Home-c6-blogs-card-down">
+                          <div className="Home-c6-blogs-card-down-doc">By Charan Kumar </div>
+                          <div className="Home-c6-blogs-card-down-spec">Heptologist</div>
                         </div>
                       </div>
                       <div className="Home-c6-blogs-card">
-                        <div className="Home-c5-docs-card-name">Dr. Anand Chakrobarthy</div>
-                        <div className="Home-c5-docs-card-down">
-                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
-                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                        <div className="Home-c6-blogs-card-name">Lung Cancer Screening Demystified</div>
+                        <div className="Home-c6-blogs-card-down">
+                          <div className="Home-c6-blogs-card-down-doc">By Charan Kumar </div>
+                          <div className="Home-c6-blogs-card-down-spec">Heptologist</div>
                         </div>
                       </div>
                     </div>
                     <div className="Home-c6-blogs-cards-1">
-                      <div className="Home-c5-docs-card">
-                        <div className="Home-c5-docs-card-name">Dr. Anitha Chaudhary</div>
-                        <div className="Home-c5-docs-card-down">
-                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
-                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                      <div className="Home-c6-blogs-card">
+                        <div className="Home-c6-blogs-card-name">Lung Cancer Screening Demystified</div>
+                        <div className="Home-c6-blogs-card-down">
+                          <div className="Home-c6-blogs-card-down-doc">By Charan Kumar </div>
+                          <div className="Home-c6-blogs-card-down-spec">Heptologist</div>
                         </div>
                       </div>
-                      <div className="Home-c5-docs-card">
-                        <div className="Home-c5-docs-card-name">Dr. Pavan Pandey</div>
-                        <div className="Home-c5-docs-card-down">
-                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
-                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                      <div className="Home-c6-blogs-card">
+                        <div className="Home-c6-blogs-card-name">Lung Cancer Screening Demystified</div>
+                        <div className="Home-c6-blogs-card-down">
+                          <div className="Home-c6-blogs-card-down-doc">By Charan Kumar </div>
+                          <div className="Home-c6-blogs-card-down-spec">Heptologist</div>
                         </div>
                       </div>
+                    </div>
+                    <div className="Home-c6-blogs-explore">
+                      <a href="/blogs">View All Blogs</a>
                     </div>
                   </div>
                 </div>
