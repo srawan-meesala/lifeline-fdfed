@@ -7,6 +7,7 @@ import { RiHeartPulseLine  } from "react-icons/ri";
 import envi from '../images/envi.jpg'
 import nahwc from '../images/nahwc.png'
 import appoint from '../images/appoint.png'
+import stays from '../images/stays.png'
 
 const Home = () => {
   return (
@@ -121,6 +122,52 @@ const Home = () => {
             </div>
             <div className="Home-c5-img">
               <img src={nahwc} alt="" className="Home-c5-img-img" />
+            </div>
+          </div>
+          <div className="Home-c6">
+            <div className="Home-c6-img">
+              <img src={stays} alt="" className="Home-c6-img-img" />
+            </div>
+          <div className="Home-c6-content">
+              <div className="Home-c6-content-new">
+                <div className="Home-c6-title">Latest and Informative Blogs. From Our Expert Doctors.</div>
+                <div className="Home-c6-blogs">
+                  <div className="Home-c6-blogs-cards">
+                    <div className="Home-c6-blogs-cards-1">
+                      <div className="Home-c6-blogs-card">
+                        <div className="Home-c6-blogs-card-name">Dr. Anand Chakrobarthy</div>
+                        <div className="Home-c5-docs-card-down">
+                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
+                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                        </div>
+                      </div>
+                      <div className="Home-c6-blogs-card">
+                        <div className="Home-c5-docs-card-name">Dr. Anand Chakrobarthy</div>
+                        <div className="Home-c5-docs-card-down">
+                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
+                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="Home-c6-blogs-cards-1">
+                      <div className="Home-c5-docs-card">
+                        <div className="Home-c5-docs-card-name">Dr. Anitha Chaudhary</div>
+                        <div className="Home-c5-docs-card-down">
+                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
+                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                        </div>
+                      </div>
+                      <div className="Home-c5-docs-card">
+                        <div className="Home-c5-docs-card-name">Dr. Pavan Pandey</div>
+                        <div className="Home-c5-docs-card-down">
+                          <div className="Home-c5-docs-card-down-spec">Cardiologist</div>
+                          <a className="Home-c5-docs-card-down-book" href="/">Click to Book an Appointment</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
