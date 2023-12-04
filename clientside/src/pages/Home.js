@@ -6,6 +6,7 @@ import '../styles/Home.css'
 import { RiHeartPulseLine  } from "react-icons/ri";
 import envi from '../images/envi.jpg'
 import nahwc from '../images/nahwc.png'
+import appoint from '../images/appoint.png'
 
 const Home = () => {
   return (
@@ -30,13 +31,23 @@ const Home = () => {
           <div className="Home-c2">
             <div className="Home-c2-content">
               <div className="Home-c2-content-title">
-                Explore the best in class service from the best in class doctors from your city.
+                Get the Best In Class Service from the Best In Class Doctors.
                 <br/><span>Only on Lifeline.</span><RiHeartPulseLine/>
               </div>
               <div className="Home-c2-content-body">
-                Booking appointments to Ordering Medicines.&nbsp;<span>Everything in your fingertips.</span><br />
-                Only service provider to provide all kinds of Healthcare services.<br />
-                
+                <div className="Home-c2-content-body-img">
+                  <img src={appoint} className='Home-c2-content-body-img-img' alt='Book Appointments Online'></img>
+                </div>
+                <div className="Home-c2-content-body-body">
+                  <div className="Home-c2-content-body-body-text">
+                    Lifeline provides the best price to service ratio when compared to other service providers in the market.
+                    Booking appointments to Ordering Medicines.&nbsp;<span>Everything in your fingertips.</span>&nbsp;
+                    Only service provider to provide<br /> all types of Healthcare services. Check out the ease in Booking Appointments on Lifeline.
+                  </div>
+                  <div className="Home-c2-content-body-body-btn">
+                    <a href="/">Explore and Book Appointments</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -53,7 +64,7 @@ const Home = () => {
               <div className="Home-c3-1-title">
                 Blood Banks
               </div>
-            </div>svd
+            </div>
           </div>
           <div className="Home-c4">
             <div className="Home-c4-img">
