@@ -58,12 +58,28 @@ const Home = () => {
                 Tests Provided Include
               </div>
               <div className="Home-c3-1-body">
-
-              </div>
-            </div>
-            <div className="Home-c3-2">
-              <div className="Home-c3-1-title">
-                Blood Banks
+                <div className="Home-c3-1-body-cards">
+                  <div className="Home-c3-1-body-card Home-c3-1-body-card-mri">
+                    <div className="Home-c3-1-body-card-name">MRI</div>
+                  </div>
+                  <div className="Home-c3-1-body-card Home-c3-1-body-card-xray">
+                    <div className="Home-c3-1-body-card-name">X-Ray</div>
+                  </div>
+                  <div className="Home-c3-1-body-card Home-c3-1-body-card-ct">
+                    <div className="Home-c3-1-body-card-name">CT</div>
+                  </div>
+                </div>
+                <div className="Home-c3-1-body-cards">
+                  <div className="Home-c3-1-body-card Home-c3-1-body-card-pet">
+                    <div className="Home-c3-1-body-card-name">PET</div>
+                  </div>
+                  <div className="Home-c3-1-body-card Home-c3-1-body-card-ultra">
+                    <div className="Home-c3-1-body-card-name">Ultrasound</div>
+                  </div>
+                  <div className="Home-c3-1-body-card Home-c3-1-body-card-blood">
+                    <div className="Home-c3-1-body-card-name">Blood Test</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

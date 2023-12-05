@@ -14,10 +14,9 @@
 .Home-c1-box {
     height: 85%;
     width: 80%;
-    background-image: url(../images/bg-easy.png);
-    /* filter: contrast(125%) brightness(1); */
+    /* background-image: url(../images/bg-easy.png); */
     border-radius: 22px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
+    box-shadow: rgba(0, 0, 0, 0.10) 0px 3px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +50,6 @@
     width: 100%;
     background-color: #023047;
     padding-top: 7%;
-    /* background-image: linear-gradient(to bottom, #ffffff, #edeffb, #d4e1f8, #b5d5f4, #8ecaec); */
 }
 
 .Home-c2-content {
@@ -123,18 +121,83 @@
 .Home-c3 {
     height: 100vh;
     width: 100%;
+    background-color: #eee;
     /* background-image: linear-gradient(to top, #ffffff, #edeffb, #d4e1f8, #b5d5f4, #8ecaec); */
 }
 
-.Home-c3-1, .Home-c3-2{
-    height: 50%;
+.Home-c3-1 {
+    height: 100%;
     width: 100%;
     display: flex;
+    flex-direction: column;
     padding: 3% 4%;
 }
 
 .Home-c3-1-title {
     font-size: 30px;
+}
+
+.Home-c3-1-body {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Home-c3-1-body-cards {
+    display: flex;
+    width: 90%;
+    height: 40%;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.Home-c3-1-body-card {
+    height: 100%;
+    width: 32%;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border-radius: 5px;
+}
+
+.Home-c3-1-body-card-mri {
+    background-image: url('../images/mri.jpg');
+}
+
+.Home-c3-1-body-card-xray {
+    background-image: url('../images/xray.png');
+}
+
+.Home-c3-1-body-card-ct {
+    background-image: url('../images/ctscan.gif');
+}
+
+.Home-c3-1-body-card-pet {
+    background-image: url('../images/pet.png');
+}
+
+.Home-c3-1-body-card-ultra {
+    background-image: url('../images/ultra.jpg');
+}
+
+.Home-c3-1-body-card-blood {
+    background-image: url('../images/blood.jpg');
+}
+
+.Home-c3-1-body-card-name {
+    background-color: #fff;
+    width: 30%;
+    height: fit-content;
+    text-align: center;
+    padding: 5px;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-bottom-right-radius: 5px;
 }
 
 .Home-c4 {
