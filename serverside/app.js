@@ -1,8 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const Collection2 = require('./models/collection2')
-const Collection3 = require('./models/collection3')
-const Collection4 = require('./models/collection4')
+const Collection2 = require('./models/docRegister')
+const Collection3 = require('./models/patientRegister')
+const Collection4 = require('./models/hospRegister')
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
