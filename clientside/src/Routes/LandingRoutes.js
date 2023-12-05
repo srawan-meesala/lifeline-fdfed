@@ -19,6 +19,7 @@ import BookAppointment from '../pages/BookAppointment';
 import ShowDoctors from '../pages/ShowDoctors';
 import DoctorProfile from '../pages/DoctorProfile';
 import PharmacyPage from '../pages/PharmacyPage';
+import HospitalProfile from '../pages/HospitalProfile';
 
 const LandingRoutes = () => {
   return (
@@ -43,6 +44,7 @@ const LandingRoutes = () => {
           <Route path="/ShowDoctors" element={<ShowDoctors/>}/>
           <Route path='/docProfile' element={<DoctorProfile/>}/>
           <Route path='/pharmacy' element={<PharmacyPage/>}/>
+          <Route path='/HospitalProfile' element={<HospitalProfile/>}/>
         </Routes>
     </Router>
   )
