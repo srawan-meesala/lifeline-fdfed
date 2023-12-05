@@ -2177,7 +2177,6 @@ html {
 .AboutUs-Part-1-info{
   width: 50%;
   height: 100%;
-  font-size: 25px;
   display: flex;
   align-items: center;
 }
@@ -2185,6 +2184,8 @@ html {
 .AboutUs-Part-1-info-data{
   height: 50%;
   margin-bottom: 90px;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .AboutUs-Part-2{
@@ -2205,7 +2206,7 @@ html {
   width: 90%;
   height: 75%;
   border-radius: 15px;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
   margin-left: 70px;
 }
 
@@ -2220,11 +2221,7 @@ html {
 
 .AboutUs-Part-2-info-data{
   height: 50%;
-  margin-bottom: 150px;
-}
-
-ul {
-  list-style: none;
-  margin-left: 0.5em;
-  letter-spacing: 0.5px;
+  margin-bottom: 180px;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
 }

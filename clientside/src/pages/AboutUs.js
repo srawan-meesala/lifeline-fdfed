@@ -22,14 +22,9 @@ const AboutUs = () => {
         </div>
         <div className='AboutUs-Part-2'>
           <div className='AboutUs-Part-2-info'>
-          <div className='AboutUs-Part-2-info-data'><b>Our team of developers:</b><br></br>
-          <ul>
-              <li>Srawan Meesala </li>
-              <li>Kovid MS </li>
-              <li>Charan Kumar M </li>
-              <li>Heshvitha M </li>
-              <li>Sampath Kumar T </li>
-          </ul></div>
+          <div className='AboutUs-Part-2-info-data'>
+          Our innovative approach, powered by cutting-edge smart algorithm technology, enables millions of users worldwide to proactively manage their health. Through Lifeline, users gain access to personalized health-life support, utilizing intelligent algorithms to guide them on their unique health journeys. Our platform not only serves as a repository of invaluable health resources but also offers inspiring content, motivating users to make informed choices for a healthier lifestyle. Whether it's real-time health monitoring, personalized health plans, or expert advice, Lifeline is committed to providing a seamless and empowering experience. 
+          </div>
           </div>
           <div className='AboutUs-Part-2-img'><img src={about2} alt="♥" className="AboutUs-Part-2-img-int" /></div>
         </div>
