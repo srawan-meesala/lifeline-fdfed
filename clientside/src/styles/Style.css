@@ -24,7 +24,7 @@ html {
 .Landing-logo-brand {
   display: block;
   text-decoration: none;
-  color: #880808;
+  color: orange;
   font-size: 2.6rem;
   font-weight: bold;
   cursor: pointer;
@@ -62,7 +62,7 @@ html {
   content:'';
   width: 0;
   height: 3px;
-  background: #880808;
+  background: orange;
   position: absolute;
   left: 0;
   bottom: -6px;
@@ -105,11 +105,11 @@ html {
   text-align: center;
 }
 .Landing-c1-side h4 span {
-  color: #880808;
+  color: orange;
   font-size: 3rem;
 }
 .Landing-c1-side h2 {
-  color: #880808;
+  color: orange;
   font-size: 9rem;
 }
 .Landing-c1-side {
@@ -123,13 +123,13 @@ html {
 }
 .Landing-c1-side button {
   cursor: pointer;
-  background-color: #880808;
+  background-color: orange;
   padding: 10px 15px;
   border-radius: 4px;
   margin-top: 52px;
   font-size: medium;
   transition: 0.2s;
-  border: 0.5px #880808 solid;
+  border: 0.5px orange solid;
 }
 .Landing-c1-side button a {
   color: white;
@@ -138,10 +138,10 @@ html {
 .Landing-c1-side button:hover {
   background-color: white;
   color: black;
-  border: 0.5px #880808 solid;
+  border: 0.5px orange solid;
 }
 .Landing-c1-side button:hover a{
-  color: #880808;
+  color: orange;
 }
 .Landing-c1-img {
   width: 60%;
@@ -1342,7 +1342,7 @@ html {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: rgba(88, 08, 08, 1);
+  background-color: #023040;
 }
 
 .BookAppointment-form-div{
@@ -1370,7 +1370,7 @@ html {
   align-items: center;
   font-size: 40px;
   font-weight: 600;
-  color: #ddd;
+  color: #fff;
 }
 
 .BookAppointment-form{
@@ -1417,14 +1417,14 @@ html {
   border-radius: 10px;
   font-size: 17px;
   font-weight: 500;
-  background-color: #ff9900;
+  background-color: #023040;
   border: 0;
   color: #fff;
   cursor: pointer;
 }
 
 .BookAppointment-button:active{
-  background-color: orange;
+  background-color: #034b63;
 }
 
 .BookAppointment-textarea{
@@ -1570,7 +1570,7 @@ html {
 .name-dr{
     font-size: 1.3rem;
     margin: 0;
-    color: #880808;
+    color: orange;
     font-weight: 500;
 }
 .name-hosp{
@@ -1625,7 +1625,7 @@ html {
 .appoint-panel{
     width: 10rem;
     padding: 5px;
-    background-color: #880808;
+    background-color: orange;
     color: #fff;
     border-radius: 7px;
     border: none;
@@ -1707,7 +1707,7 @@ html {
 
 .submit-sort button{
     padding: 8px 10px;
-    background-color: #880808;
+    background-color: orange;
     color: #ddd;
     border-radius: 5px;
     border: none;
@@ -1716,7 +1716,7 @@ html {
 }
 .submit-sort button:active{
     background-color: #fff;
-    color: #880808; 
+    color: orange; 
 }
 
 
@@ -2647,4 +2647,95 @@ html {
   font-weight: 500;
   font-family: 'Manrope', sans-serif;
   color: black;
+}
+
+
+/* css for Thankyou */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap'); 
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'poppins',sans-serif;
+}
+.containerr{
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.logo{
+    width: 80%;
+    font-weight: 600;
+    font-size: 3rem;
+    color: white;
+    margin: 2rem;
+}
+.content{
+    width: 90%;
+    height: 30%;
+    margin-top: 8%;
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;    
+}
+.btn-home{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-home button{
+    padding: 10px;
+    cursor: pointer;
+    background-color: #023040;
+    border: 1px solid #023040;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+.btn-home button:hover{
+    background-color: #fff;
+}
+.btn-home button:hover a{
+    transition: 0.2s;
+    color: #023040;
+}
+.btn-home button a{
+    color: #fff;
+    text-decoration: none;
+}
+.btn-go-back {
+    color: white;
+}
+.btn-go-back:hover {
+    color: #023040;
+}
+.new-btn-hello{
+    color: #fff;
+}
+.new-btn-hello:hover{
+    color: #023040;
+}
+/* Background styles */
+
+.background{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 0;
+    scale: 1.2;
+}
+.background svg{
+    width: 100%;
+    height: 100%;
 }

@@ -23,6 +23,7 @@ import DoctorProfile from './pages/DoctorProfile';
 import PharmacyPage from './pages/PharmacyPage';
 import UserProfile from './pages/UserProfile';
 import BookedAppointments from './components/BookedAppointments';
+import Thankyou from './pages/Thankyou';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/userProfile/:username" element={<UserProfile/>}/>
           <Route path="/DoctorProfile/:username" element={<DoctorProfile/>}/>
           <Route path="/bookedappointments" element={<BookedAppointments/>}/>
+          <Route path="/Thankyou" element={<Thankyou/>}/>
         </Routes>
       </Router>
       
