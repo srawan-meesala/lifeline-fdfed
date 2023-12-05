@@ -1,8 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const Collection2 = require('./models/docRegister')
-const Collection3 = require('./models/patientRegister')
-const Collection4 = require('./models/hospRegister')
+const DocRegisters = require('./models/docRegister')
+const PatientRegisters = require('./models/patientRegister')
+const HospRegisters = require('./models/hospRegister')
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
@@ -30,13 +30,12 @@ app.post('/login', async (req, res) => {
   try {
       let check;
       if (type === 'patient') {
-          check = await Collection3.findOne({ username });
+          check = await PatientRegisters.findOne({ username });
       } else if (type === 'doctor') {
-          check = await Collection2.findOne({ docID: username });
+          check = await DocRegisters.findOne({ docID: username });
       } else if (type === 'hospital') {
-          check = await Collection4.findOne({ hospID: username });
+          check = await HospRegisters.findOne({ hospID: username });
       }
-      console.log(check)
       if (check) {
           if (password === check.password) {
               res.status(200).json('exist');
@@ -57,14 +56,14 @@ app.post('/patientRegister', async (req, res) => {
   } = req.body;
 
   try {
-    const check = await Collection3.findOne({ mailID });
+    const check = await PatientRegisters.findOne({ mailID });
 
     if (check) {
       return res.json('exist');
     }
 
     const verificationToken = uuid.v4();
-    const data = new Collection3({
+    const data = new PatientRegisters({
       firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender, verificationToken
     });
 
@@ -86,14 +85,14 @@ app.post('/docRegister', async (req, res) => {
   } = req.body;
 
   try {
-    const check = await Collection2.findOne({ mailID });
+    const check = await DocRegisters.findOne({ mailID });
 
     if (check) {
       return res.json('exist');
     }
 
     const verificationToken = uuid.v4();
-    const data = new Collection2({
+    const data = new DocRegisters({
       name, mobileNumber, mailID, hospName, specialization, fee, verificationToken
     });
 
@@ -115,14 +114,14 @@ app.post('/hospRegister', async (req, res) => {
   } = req.body;
 
   try {
-    const check = await Collection4.findOne({ mailID });
+    const check = await HospRegisters.findOne({ mailID });
 
     if (check) {
       return res.json('exist');
     }
 
     const verificationToken = uuid.v4();
-    const data = new Collection4({
+    const data = new HospRegisters({
       hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation,verificationToken
     });
 
@@ -140,7 +139,7 @@ app.post('/hospRegister', async (req, res) => {
 app.post('/verifyEmailPatient', async (req, res) => {
     const { verificationToken } = req.body;
     try {
-      const data = await Collection3.findOne({ verificationToken });
+      const data = await PatientRegisters.findOne({ verificationToken });
   
       if (data) {
         data.verificationStatus = true;
@@ -159,7 +158,7 @@ app.post('/verifyEmailPatient', async (req, res) => {
 app.post('/verifyEmailDoc', async (req, res) => {
   const { verificationToken } = req.body;
   try {
-    const data = await Collection2.findOne({ verificationToken });
+    const data = await DocRegisters.findOne({ verificationToken });
 
     if (data) {
       data.verificationStatus = true;
@@ -178,7 +177,7 @@ app.post('/verifyEmailDoc', async (req, res) => {
 app.post('/verifyEmailHosp', async (req, res) => {
   const { verificationToken } = req.body;
   try {
-    const data = await Collection4.findOne({ verificationToken });
+    const data = await HospRegisters.findOne({ verificationToken });
 
     if (data) {
       data.verificationStatus = true;
@@ -197,7 +196,7 @@ app.post('/verifyEmailHosp', async (req, res) => {
 app.post('/patientRegister2', async (req, res) => {
     const { verificationToken, username, password } = req.body;  
     try {
-      const data = await Collection3.findOne({ verificationToken });
+      const data = await PatientRegisters.findOne({ verificationToken });
       if (data) {
         data.username = username;
         data.password = password;
@@ -215,7 +214,7 @@ app.post('/patientRegister2', async (req, res) => {
 app.post('/docRegister2', async (req, res) => {
   const { verificationToken, docID, password } = req.body;  
   try {
-    const data = await Collection2.findOne({ verificationToken });
+    const data = await DocRegisters.findOne({ verificationToken });
     if (data) {
       data.docID = docID;
       data.password = password;
@@ -233,7 +232,7 @@ app.post('/docRegister2', async (req, res) => {
 app.post('/hospRegister2', async (req, res) => {
   const { verificationToken, hospID, password } = req.body;  
   try {
-    const data = await Collection4.findOne({ verificationToken });
+    const data = await HospRegisters.findOne({ verificationToken });
     if (data) {
       data.hospID = hospID;
       data.password = password;
@@ -251,9 +250,8 @@ app.post('/hospRegister2', async (req, res) => {
 
 app.get('/getUserDetails/:username', async (req, res) => {
     const username = req.params.username;
-
     try{
-        const user = await Collection3.findOne({ username:username });
+        const user = await PatientRegisters.findOne({ username:username });
         if(!user){
             return res.json('User not found');
         }

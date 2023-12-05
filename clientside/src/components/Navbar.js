@@ -1,6 +1,7 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
-function Navbar({title}) {
+function Navbar({title, username}) {
   return (
     <div className='Navbar-whole'>
       <div className='Navbar-left-side'>
@@ -8,11 +9,11 @@ function Navbar({title}) {
       </div>
       <div className='Navbar-right-side'>
         <ul>
-        <li><a href='/Home'>Home</a></li>
-        <li><a href='/UserProfile'>Dashboard</a></li>
-        <li><a href='/Blogs'>Blogs</a></li>
-        <li><a href='/AboutUs'>About us</a></li>
-        <li><a href='/Logout'>Logout</a></li>
+          <li><Link to={`/home/${username}`}>Home</Link></li>
+          <li><Link to={`/userProfile/${username}`}>Dashboard</Link></li>
+          <li><Link to='/Blogs'>Blogs</Link></li>
+          <li><Link to='/AboutUs'>About us</Link></li>
+          <li><Link to='/Logout'>Logout</Link></li>
         </ul>
       </div>
     </div>

@@ -22,6 +22,7 @@ function UserProfile() {
         const response = await axios.get(`http://localhost:8000/getUserDetails/${username}`);
         if(response.status == 200){
           setUserDetails(response.data)
+          console.log(userDetails)
         }
         else{
           console.error('Failed to fetch user details')

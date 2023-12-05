@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar'
 
 
 function BookAppointment() {
+    const [docID,setDocID] = useState('')
+    const [hospID,setHospID] = useState('')
     const [patientName,setPatientName] = useState('')
     const [date,setDate] = useState('')
     const [time,setTime] = useState('')

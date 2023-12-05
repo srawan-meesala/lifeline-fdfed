@@ -43,5 +43,5 @@ const collection4Schema = new mongoose.Schema({
     }
 })
 
-const Collection4 = new mongoose.model('collection4',collection4Schema)
-module.exports = Collection4
+const HospRegisters = new mongoose.model('collection4',collection4Schema)
+module.exports = HospRegisters

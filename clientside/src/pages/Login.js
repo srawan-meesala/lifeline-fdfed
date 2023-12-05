@@ -20,11 +20,11 @@ function Login(){
 
             if (response.data === 'exist') {
                 if (type === 'patient') {
-                    navigate('/home');
+                    navigate(`/home/${username}`);
                 } else if (type === 'doctor') {
-                    navigate('/blogs');
+                    navigate(`/docProfile/${username}`);
                 } else if (type === 'hospital') {
-                    navigate('/about');
+                    navigate(`/docProfile/${username}`);
                 }
             } else if (response.data === 'does not exist') {
                 alert('User does not exist');

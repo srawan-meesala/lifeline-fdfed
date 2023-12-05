@@ -39,6 +39,6 @@ const collection2Schema = new mongoose.Schema({
     }
 })
 
-const Collection2 = new mongoose.model('Collection2', collection2Schema)
+const DocRegisters = new mongoose.model('Collection2', collection2Schema)
 
-module.exports = Collection2
+module.exports = DocRegisters

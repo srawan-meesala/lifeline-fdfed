@@ -51,5 +51,5 @@ const collection3Schema = new mongoose.Schema({
     }
 })
 
-const Collection3 = new mongoose.model('collection3',collection3Schema)
-module.exports = Collection3
+const PatientRegisters = new mongoose.model('collection3',collection3Schema)
+module.exports = PatientRegisters

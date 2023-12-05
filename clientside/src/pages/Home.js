@@ -8,11 +8,13 @@ import envi from '../images/envi.jpg'
 import nahwc from '../images/nahwc.png'
 import appoint from '../images/appoint.png'
 import stays from '../images/stays.png'
+import { useParams } from 'react-router-dom'
 
 const Home = () => {
+  const {username} = useParams()
   return (
     <div>
-        <Navbar title={'Home'}/>
+        <Navbar title={'Home'} username={username}/>
         <Searchbar/>
         <div className="Home-whole">
           <div className="Home-c1">

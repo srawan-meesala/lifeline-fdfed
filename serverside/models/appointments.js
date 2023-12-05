@@ -29,7 +29,11 @@ const AppointSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    Note:{
+        type:String,
+        required:true
+    }
 })
 
-var Appointments = new mongoose.model('appointments',AppointSchema)
+const Appointments = new mongoose.model('appointments',AppointSchema)
 module.exports = Appointments
