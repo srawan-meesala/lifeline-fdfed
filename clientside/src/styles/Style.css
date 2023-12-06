@@ -24,7 +24,7 @@ html {
 .Landing-logo-brand {
   display: block;
   text-decoration: none;
-  color: orange;
+  color: #880808;
   font-size: 2.6rem;
   font-weight: bold;
   cursor: pointer;
@@ -62,7 +62,7 @@ html {
   content:'';
   width: 0;
   height: 3px;
-  background: orange;
+  background: #880808;
   position: absolute;
   left: 0;
   bottom: -6px;
@@ -105,11 +105,11 @@ html {
   text-align: center;
 }
 .Landing-c1-side h4 span {
-  color: orange;
+  color: #880808;
   font-size: 3rem;
 }
 .Landing-c1-side h2 {
-  color: orange;
+  color: #880808;
   font-size: 9rem;
 }
 .Landing-c1-side {
@@ -123,13 +123,13 @@ html {
 }
 .Landing-c1-side button {
   cursor: pointer;
-  background-color: orange;
+  background-color: #880808;
   padding: 10px 15px;
   border-radius: 4px;
   margin-top: 52px;
   font-size: medium;
   transition: 0.2s;
-  border: 0.5px orange solid;
+  border: 0.5px #880808 solid;
 }
 .Landing-c1-side button a {
   color: white;
@@ -138,10 +138,10 @@ html {
 .Landing-c1-side button:hover {
   background-color: white;
   color: black;
-  border: 0.5px orange solid;
+  border: 0.5px #880808 solid;
 }
 .Landing-c1-side button:hover a{
-  color: orange;
+  color: #880808;
 }
 .Landing-c1-img {
   width: 60%;
