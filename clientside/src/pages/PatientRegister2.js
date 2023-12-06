@@ -54,7 +54,7 @@ function RegisterUsernamePassword() {
             </div>
             <div className="PatientLogin-password PatientLogin-input">
                 <label htmlFor="confirm-password">Confirm Password</label><b/>
-                <input type="password" placeholder="Confirm Password" name="password" onChange={(e) => { setConfirmPassword(e.target.value) }} required/><br/>
+                <input type="password" placeholder="Confirm Password" name="confirm-password" onChange={(e) => { setConfirmPassword(e.target.value) }} required/><br/>
             </div>
             <input type="submit" onClick={submitPatientRegister2} className="PatientLogin-form-btn"/>
         </form>

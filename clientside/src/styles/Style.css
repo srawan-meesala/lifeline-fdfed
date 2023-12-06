@@ -1154,6 +1154,7 @@ html {
   width: 100px;
   padding: 10px;
   color: white;
+  cursor: pointer;
 }
 
 .PatientLogin-input {
