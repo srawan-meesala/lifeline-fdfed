@@ -19,7 +19,7 @@ function DoctorProfile() {
   useEffect(()=>{
     async function fetchData(){
       try{
-        const response = await axios.get(`http://localhost:8000/getUserDetails/${username}`);
+        const response = await axios.get(`http://localhost:8000/getDocDetails/${username}`);
         if(response.status == 200){
           setUserDetails(response.data)
         }
@@ -75,7 +75,7 @@ function DoctorProfile() {
       <div className='DoctorProfile-top'>
         <div className='DoctorProfile-dashboard'>
           <div></div>
-          <div>Welcome {userDetails.firstName}</div>
+          <div>Welcome {userDetails.name}</div>
         </div>
         <div className='DoctorProfile-user-logo'>
           <div className='DoctorProfile-user-logo-pic'><FaUserCircle/></div>

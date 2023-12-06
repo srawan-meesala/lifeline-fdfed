@@ -18,7 +18,6 @@ function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city,do
       <div className="body-panel">
         <div className="head-body">
           <p className="name-dr">{name}</p>
-          <p className="name-dr">{docID}</p>
           <p className="name-hosp">{hospName}</p>
         </div>
         <div className="bio-body">

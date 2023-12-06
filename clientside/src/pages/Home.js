@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Searchbar from '../components/Searchbar'
 import Footer from '../components/Footer'
@@ -26,7 +27,7 @@ const Home = () => {
                 Faster Delivery, Always On-time.
               </div>
               <div className="Home-c1-link">
-                <a href="/" target="_self">Explore Pharmacy</a>
+                <Link to="/" target="_self">Explore Pharmacy</Link>
               </div>
             </div>
             
@@ -48,7 +49,7 @@ const Home = () => {
                     Only service provider to provide<br /> all types of Healthcare services. Check out the ease in Booking Appointments on Lifeline.
                   </div>
                   <div className="Home-c2-content-body-body-btn">
-                    <a href="/">Explore and Book Appointments</a>
+                    <Link to="/showdoctors">Explore and Book Appointments</Link>
                   </div>
                 </div>
               </div>

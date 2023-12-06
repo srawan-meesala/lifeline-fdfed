@@ -19,7 +19,7 @@ function HospitalProfile() {
   useEffect(()=>{
     async function fetchData(){
       try{
-        const response = await axios.get(`http://localhost:8000/getUserDetails/${username}`);
+        const response = await axios.get(`http://localhost:8000/getHospDetails/${username}`);
         if(response.status == 200){
           setUserDetails(response.data)
         }
@@ -75,7 +75,7 @@ function HospitalProfile() {
       <div className='HospitalProfile-top'>
         <div className='HospitalProfile-dashboard'>
           <div></div>
-          <div>Welcome {userDetails.firstName}</div>
+          <div>Welcome {userDetails.hospID}</div>
         </div>
         <div className='HospitalProfile-user-logo'>
           <div className='HospitalProfile-user-logo-pic'><FaUserCircle/></div>

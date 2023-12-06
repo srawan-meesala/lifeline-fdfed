@@ -20,11 +20,13 @@ import BlogForm from './pages/BlogForm';
 import BookAppointment from './pages/BookAppointment';
 import ShowDoctors from './pages/ShowDoctors';
 import DoctorProfile from './pages/DoctorProfile';
+import HospitalProfile from './pages/HospitalProfile';
 import PharmacyPage from './pages/PharmacyPage';
 import UserProfile from './pages/UserProfile';
 import BookedAppointments from './components/BookedAppointments';
 import Thankyou from './pages/Thankyou';
 import Sent from './pages/Sent';
+import BlogComplete from './pages/BlogComplete';
 
 function App() {
   return (
@@ -46,12 +48,13 @@ function App() {
           <Route path="/docRegister2/:verificationToken" element={<DocRegister2/>}/>
           <Route path="/blogs" element={<Blogs/>}/>
           <Route path="/blogform" element={<BlogForm/>}/>
+          <Route path="/blogcomplete" element={<BlogComplete/>}/>
           <Route path="/bookAppointment/:docID" element={<BookAppointment/>}/>
           <Route path="/showDoctors" element={<ShowDoctors/>}/>
-          <Route path='/docProfile' element={<DoctorProfile/>}/>
+          <Route path='/docProfile/:username' element={<DoctorProfile/>}/>
+          <Route path='/hospProfile/:username' element={<HospitalProfile/>}/>
           <Route path='/pharmacy' element={<PharmacyPage/>}/>
           <Route path="/userProfile/:username" element={<UserProfile/>}/>
-          <Route path="/doctorProfile/:username" element={<DoctorProfile/>}/>
           <Route path="/bookedappointments" element={<BookedAppointments/>}/>
           <Route path="/thankyou/:username" element={<Thankyou/>}/>
           <Route path="/sent" element={<Sent/>}/>

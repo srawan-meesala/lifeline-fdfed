@@ -2,11 +2,9 @@ import React from 'react'
 import Navbar from '../components/Navbar';
 import BlogCard from '../components/BlogCard';
 import { FaRandom } from "react-icons/fa";
-// import { useLocation } from 'react-router-dom';
 
 function Blogs() {
 
-  // const location = useLocation()
   var data = [
     {
       id: 1,

@@ -269,6 +269,36 @@ app.get('/getUserDetails/:username', async (req, res) => {
     }
 });
 
+app.get('/getDocDetails/:username', async (req, res) => {
+  const docID = req.params.username;
+  try{
+      const user = await DocRegisters.findOne({ docID:docID });
+      if(!user){
+          return res.json('User not found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getHospDetails/:username', async (req, res) => {
+  const hospID = req.params.username;
+  try{
+      const user = await HospRegisters.findOne({ hospID:hospID });
+      if(!user){
+          return res.json('User not found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
 app.get('/hospitalsAPI', async (req, res) => {
   try {
     const hospitals = await HospRegisters.find();
