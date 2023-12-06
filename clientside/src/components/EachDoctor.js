@@ -1,8 +1,15 @@
 import React from 'react';
 import { MdCall } from 'react-icons/md';
 import Diamond from '../images/6.png';
+import {useNavigate} from 'react-router-dom'
 
-function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city }) {
+function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city,docID }) {
+  const navigate = useNavigate();
+
+  const handleBookAppointment = () =>{
+    navigate(`/BookAppointment/${docID}`)
+  }
+
   return (
     <div className="panel-1">
       <div className="ShowDoctors-docimage">
@@ -11,6 +18,7 @@ function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city })
       <div className="body-panel">
         <div className="head-body">
           <p className="name-dr">{name}</p>
+          <p className="name-dr">{docID}</p>
           <p className="name-hosp">{hospName}</p>
         </div>
         <div className="bio-body">
@@ -22,7 +30,7 @@ function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city })
           <button className="number-panel">
             <MdCall className='number-panel-icon-phone' /><p>{mobileNumber}</p>
           </button>
-          <button className="appoint-panel">
+          <button className="appoint-panel" onClick={handleBookAppointment}> 
             Book Appointment
           </button>
         </div>

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const DocRegisters = require('./models/docRegister')
 const PatientRegisters = require('./models/patientRegister')
 const HospRegisters = require('./models/hospRegister')
+const Appointments = require('./models/appointments')
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
@@ -286,7 +287,28 @@ app.get('/doctorsAPI', async (req, res) => {
     console.error('Error fetching doctor data:', error);
     res.status(500).send('Internal Server Error');
   }
-});      
+}); 
+
+app.post('/bookAppointment', async (req, res) => {
+  const {docID,PatientName,Date,Timeslot,Contact,Note} = req.body;
+  const user = await PatientRegisters.findOne({firstName:PatientName})
+  const doc = await DocRegisters.findOne({docID:docID})
+  const hosp = await HospRegisters.findOne({hospName:doc.hospName})
+  const Username = user.username
+  const hospID = hosp.hospName
+  try {
+    const newAppointment = new Appointments({
+      docID,hospID,Username,PatientName,Date,Timeslot,Contact,Note
+    });
+
+    await newAppointment.save();
+
+    res.status(201).json('Appointment created successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
 
 
 function sendVerificationEmail(to, link) {

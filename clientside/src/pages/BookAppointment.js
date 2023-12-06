@@ -1,27 +1,41 @@
 import React, { useState } from 'react'
+import {useParams} from 'react-router-dom'
+import axios from 'axios'
 import Navbar from '../components/Navbar'
 
 
 function BookAppointment() {
-    const [docID,setDocID] = useState('')
-    const [hospID,setHospID] = useState('')
     const [patientName,setPatientName] = useState('')
     const [date,setDate] = useState('')
     const [time,setTime] = useState('')
     const [mobileNumber,setMobileNumber] = useState('')
     const [note,setNote] = useState('')
+    const {docID} = useParams()
 
-    async function BookAppointment(){
-        
+    async function Appointment(e){
+        e.preventDefault();
+
+        try {
+          const response = await axios.post('http://localhost:8000/bookAppointment', {
+            docID,patientName, date, time, mobileNumber, note
+          });
+          if (response.data === 'Appointment created successfully') {
+            alert('Appointment Booked successfully');
+          } else {
+            alert('Error while Bookking Appointment');
+          }
+        } catch (error) {
+          alert('Wrong details');
+          console.error(error);
+        }
     }
-
 
    return (
     <div className='BookAppointment-whole'>
     <Navbar/>
     <div className='BokkAppointment-Headline'>Book Your Appointment</div>
         <div className='BookAppointment-form-div'>
-            <form className='BookAppointment-form'>
+            <form className='BookAppointment-form' action='/bookAppointment' method='POST' onSubmit={Appointment}>
                 <div className='BookAppointment-form-main'>
                 <label className='BookAppointment-label'>Patient Name</label>
                 <input type='text' className='BookAppointment-input-name' placeholder='Patient Name' onChange={(e)=>setPatientName(e.target.value)} required />
