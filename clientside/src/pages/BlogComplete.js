@@ -1,13 +1,15 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 const BlogComplete = () => {
 
   const blogData = {
     'title': 'Lung Cancer Screening Demystified',
-    'content': ''
   }
 
   return (
+    <>
+    <Navbar />
     <div className='BlogComplete-whole'>
         <div className='BlogComplete-matter'>
           <div className='BlogComplete-head'>
@@ -83,6 +85,7 @@ The Cedars-Sinai Centralized Lung Cancer Screening Program includes pulmonary sp
 “The possibility of a CT scan finding a nodule is part of the shared decision-making discussion a patient would have with their doctor—or if they’re referred to our Centralized Lung Cancer Screening Program, with a member of our team,” Ghandehari said. “Finding a nodule is very common, and they are often benign.”</div>
         </div>
     </div>
+    </>
   )
 }
 
