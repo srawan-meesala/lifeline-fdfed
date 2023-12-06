@@ -20,7 +20,7 @@ function HospitalProfile() {
     async function fetchData(){
       try{
         const response = await axios.get(`http://localhost:8000/getHospDetails/${username}`);
-        if(response.status == 200){
+        if(response.status === 200){
           setUserDetails(response.data)
         }
         else{
