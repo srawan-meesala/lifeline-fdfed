@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {useNavigate, Link} from 'react-router-dom';
 import { ReactComponent as Logo } from "../images/undraw_remotely_2j6y.svg";
