@@ -21,7 +21,7 @@ function RegisterUsernamePassword() {
           alert('Registration successful!');
           navigate('/login');
         }else if (response.data === 'exists'){
-          
+          alert('Username already exists');
         } else {
           alert('Error registering username and password');
         }
