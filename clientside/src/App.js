@@ -46,14 +46,14 @@ function App() {
           <Route path="/docRegister2/:verificationToken" element={<DocRegister2/>}/>
           <Route path="/blogs" element={<Blogs/>}/>
           <Route path="/blogform" element={<BlogForm/>}/>
-          <Route path="/BookAppointment/:docID" element={<BookAppointment/>}/>
-          <Route path="/ShowDoctors" element={<ShowDoctors/>}/>
+          <Route path="/bookAppointment/:docID" element={<BookAppointment/>}/>
+          <Route path="/showDoctors" element={<ShowDoctors/>}/>
           <Route path='/docProfile' element={<DoctorProfile/>}/>
           <Route path='/pharmacy' element={<PharmacyPage/>}/>
           <Route path="/userProfile/:username" element={<UserProfile/>}/>
-          <Route path="/DoctorProfile/:username" element={<DoctorProfile/>}/>
+          <Route path="/doctorProfile/:username" element={<DoctorProfile/>}/>
           <Route path="/bookedappointments" element={<BookedAppointments/>}/>
-          <Route path="/Thankyou" element={<Thankyou/>}/>
+          <Route path="/thankyou/:username" element={<Thankyou/>}/>
           <Route path="/sent" element={<Sent/>}/>
         </Routes>
       </Router>

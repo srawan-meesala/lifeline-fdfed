@@ -1,6 +1,8 @@
 import React from 'react'
+import {Link,useParams} from 'react-router-dom'
 
 function Thankyou() {
+  const {username} = useParams()
   return (
     <div><div class="Thankyou-containerr">
     <div class="Thankyou-logo">Lifeline.</div>
@@ -9,8 +11,13 @@ function Thankyou() {
         <div class="Thankyou-l2">Thank you for choosing Lifeline as your medical partner.</div>
         <div class="Thankyou-l3"> We will assure you the best service possible.</div>
     </div>
+<<<<<<< Updated upstream
     <div class="Thankyou-btn-home">
         <button><a href="Thankyou-home-page">Back to Home</a></button>
+=======
+    <div class="btn-home">
+        <button><Link to={`/home/${username}`}>Back to Home</Link></button>
+>>>>>>> Stashed changes
     </div>
 </div>
 <div class="Thankyou-background">

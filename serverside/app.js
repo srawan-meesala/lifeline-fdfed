@@ -290,20 +290,27 @@ app.get('/doctorsAPI', async (req, res) => {
 }); 
 
 app.post('/bookAppointment', async (req, res) => {
-  const {docID,PatientName,Date,Timeslot,Contact,Note} = req.body;
-  const user = await PatientRegisters.findOne({firstName:PatientName})
+  const {docID,patientName,date,time,mobileNumber,note} = req.body;
+  const user = await PatientRegisters.findOne({firstName:patientName})
   const doc = await DocRegisters.findOne({docID:docID})
   const hosp = await HospRegisters.findOne({hospName:doc.hospName})
-  const Username = user.username
-  const hospID = hosp.hospName
+  const username = user.username
+  const hospID = hosp.hospID
   try {
     const newAppointment = new Appointments({
-      docID,hospID,Username,PatientName,Date,Timeslot,Contact,Note
+      docID:docID,
+      hospID:hospID,
+      Username:username,
+      PatientName:patientName,
+      Date:date,
+      Timeslot:time,
+      Contact:mobileNumber,
+      Note:note
     });
 
     await newAppointment.save();
 
-    res.status(201).json('Appointment created successfully');
+    res.status(200).json({status: 'created',username:username});
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');

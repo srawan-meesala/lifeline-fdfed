@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams,useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../components/Navbar'
 
 
 function BookAppointment() {
+  const navigate = useNavigate()
     const [patientName,setPatientName] = useState('')
     const [date,setDate] = useState('')
     const [time,setTime] = useState('')
@@ -19,8 +20,9 @@ function BookAppointment() {
           const response = await axios.post('http://localhost:8000/bookAppointment', {
             docID,patientName, date, time, mobileNumber, note
           });
-          if (response.data === 'Appointment created successfully') {
-            alert('Appointment Booked successfully');
+          if (response.data.status === 'created') {
+            const username = response.data.username
+            navigate(`/thankyou/${username}`)
           } else {
             alert('Error while Bookking Appointment');
           }
@@ -43,7 +45,7 @@ function BookAppointment() {
                 <input type='date' className='BookAppointment-input-date' onChange={(e)=>setDate(e.target.value)} required />
                 <label className='BookAppointment-label'>Time</label>
                 <select name='time'value={time} onChange={(e)=>setTime(e.target.value)} required className='BookAppointment-select'>
-                    <option selected>10AM-11AM</option>
+                    <option>10AM-11AM</option>
                     <option>11AM-12PM</option>
                     <option>1PM-2PM</option>
                     <option>2AM-3PM</option>

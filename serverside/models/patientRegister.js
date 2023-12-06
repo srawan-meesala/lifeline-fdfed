@@ -41,7 +41,8 @@ const collection3Schema = new mongoose.Schema({
         type:String,
     },
     verificationStatus:{
-        type:String,
+        type:Boolean,
+        default:false
     },
     username:{
         type:String,
