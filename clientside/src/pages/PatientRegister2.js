@@ -7,33 +7,49 @@ function RegisterUsernamePassword() {
   const {verificationToken} = useParams()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   async function submitPatientRegister2(e) {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:8000/patientRegister2', {
-        verificationToken, username, password,
-      });
+    if (password === confirmPassword) {
+      try {
+        const response = await axios.post('http://localhost:8000/patientRegister2', {
+          verificationToken, username, password,
+        });
 
-      if (response.data === 'registered') {
-        alert('Registration successful!');
-        navigate('/login');
-      } else {
-        alert('Error registering username and password');
+        if (response.data === 'registered') {
+          alert('Registration successful!');
+          navigate('/login');
+        }else if (response.data === 'exists'){
+          
+        } else {
+          alert('Error registering username and password');
+        }
+      } catch (error) {
+        console.error('Error registering username and password:', error);
       }
-    } catch (error) {
-      console.error('Error registering username and password:', error);
+    }
+    else {
+      alert('Passwords Mismatch.')
     }
   }
 
   return (
     <div>
-      <form method='POST' action='/patientRegister2'>
-        <label>Username</label>
-        <input type="text" onChange={(e) => setUsername(e.target.value)} name="Username" placeholder="Username" required />
-        <label>Password</label>
-        <input type="password" onChange={(e) => setPassword(e.target.value)} name="Password" placeholder="Password" required />
-        <input type="submit" onClick={submitPatientRegister2} />
+      <form method="POST" action="/login" className="PatientLogin-form">
+          <div className="PatientLogin-username PatientLogin-input">
+              <label htmlFor="username">Username</label><b/>
+              <input type="text" placeholder="Username" name="username" onChange={(e) => { setUsername(e.target.value) }} required /><br/>
+          </div>
+          <div className="PatientLogin-password PatientLogin-input">
+              <label htmlFor="password">Password</label><b/>
+              <input type="password" placeholder="Password" name="password" onChange={(e) => { setPassword(e.target.value) }} required/><br/>
+          </div>
+          <div className="PatientLogin-password PatientLogin-input">
+              <label htmlFor="confirm-password">Confirm Password</label><b/>
+              <input type="password" placeholder="Confirm Password" name="password" onChange={(e) => { setConfirmPassword(e.target.value) }} required/><br/>
+          </div>
+          <input type="submit" onClick={submitPatientRegister2} className="PatientLogin-form-btn"/>
       </form>
     </div>
   );

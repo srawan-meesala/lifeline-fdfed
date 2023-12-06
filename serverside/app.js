@@ -197,17 +197,22 @@ app.post('/patientRegister2', async (req, res) => {
     const { verificationToken, username, password } = req.body;  
     try {
       const data = await PatientRegisters.findOne({ verificationToken });
-      if (data) {
-        data.username = username;
-        data.password = password;
-        await data.save();
-        res.json('registered');
+      const data2 = await PatientRegisters.findOne({ username });
+      if(data2) {
+        res.json('exists');
       } else {
-        res.json('invalid-token');
+        if (data) {
+          data.username = username;
+          data.password = password;
+          await data.save();
+          res.json('registered');
+        } else {
+          res.json('invalid-token');
+        }
       }
     } catch (error) {
       console.error(error);
-      res.status(500).json('Internal Server Error');
+      res.status(500).json('Internal Server Error.');
     }
 });
 
@@ -265,7 +270,7 @@ app.get('/getUserDetails/:username', async (req, res) => {
 
 app.get('/hospitalsAPI', async (req, res) => {
   try {
-    const hospitals = await Collection4.find();
+    const hospitals = await HospRegisters.find();
     res.json(hospitals);
   } catch (error) {
     console.error('Error fetching hospital data:', error);
@@ -275,7 +280,7 @@ app.get('/hospitalsAPI', async (req, res) => {
 
 app.get('/doctorsAPI', async (req, res) => {
   try {
-    const doctors = await Collection2.find();
+    const doctors = await DocRegisters.find();
     res.json(doctors);
   } catch (error) {
     console.error('Error fetching doctor data:', error);

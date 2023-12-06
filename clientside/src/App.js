@@ -24,6 +24,7 @@ import PharmacyPage from './pages/PharmacyPage';
 import UserProfile from './pages/UserProfile';
 import BookedAppointments from './components/BookedAppointments';
 import Thankyou from './pages/Thankyou';
+import Sent from './pages/Sent';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
           <Route path="/" element={<Landing/>}/>
           <Route path="/home/:username" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/AboutUs" element={<AboutUs/>}/>
+          <Route path="/about" element={<AboutUs/>}/>
           <Route path="/patientRegister" element={<PatientRegister/>}/>
           <Route path="/verifypatient/:verificationToken" element={<EmailVerificationPatient/>}/>
           <Route path="/patientRegister2/:verificationToken" element={<PatientRegister2/>}/>
@@ -53,6 +54,7 @@ function App() {
           <Route path="/DoctorProfile/:username" element={<DoctorProfile/>}/>
           <Route path="/bookedappointments" element={<BookedAppointments/>}/>
           <Route path="/Thankyou" element={<Thankyou/>}/>
+          <Route path="/sent" element={<Sent/>}/>
         </Routes>
       </Router>
       
