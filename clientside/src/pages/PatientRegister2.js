@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate,useParams } from 'react-router-dom';
+import { ReactComponent as Logo } from "../images/undraw_remotely_2j6y.svg";
+
 
 function RegisterUsernamePassword() {
   const navigate = useNavigate();
@@ -35,22 +37,28 @@ function RegisterUsernamePassword() {
   }
 
   return (
-    <div>
-      <form method="POST" action="/login" className="PatientLogin-form">
-          <div className="PatientLogin-username PatientLogin-input">
-              <label htmlFor="username">Username</label><b/>
-              <input type="text" placeholder="Username" name="username" onChange={(e) => { setUsername(e.target.value) }} required /><br/>
-          </div>
-          <div className="PatientLogin-password PatientLogin-input">
-              <label htmlFor="password">Password</label><b/>
-              <input type="password" placeholder="Password" name="password" onChange={(e) => { setPassword(e.target.value) }} required/><br/>
-          </div>
-          <div className="PatientLogin-password PatientLogin-input">
-              <label htmlFor="confirm-password">Confirm Password</label><b/>
-              <input type="password" placeholder="Confirm Password" name="password" onChange={(e) => { setConfirmPassword(e.target.value) }} required/><br/>
-          </div>
-          <input type="submit" onClick={submitPatientRegister2} className="PatientLogin-form-btn"/>
-      </form>
+    <div className="PatientLogin-whole">
+      <div className="PatientLogin-left">
+          <div className="PatientLogin-logo ">Lifeline<span className="PatientLogin-logo-span">.</span>&nbsp;<span className="PatientLogin-logo-side">Confirm your Username and Password</span></div>
+          <Logo className="PatientLogin-image"/>
+      </div>
+      <div className="PatientLogin-right">
+        <form method="POST" action="/login" className="PatientLogin-form">
+            <div className="PatientLogin-username PatientLogin-input">
+                <label htmlFor="username">Username</label><b/>
+                <input type="text" placeholder="Username" name="username" onChange={(e) => { setUsername(e.target.value) }} required /><br/>
+            </div>
+            <div className="PatientLogin-password PatientLogin-input">
+                <label htmlFor="password">Password</label><b/>
+                <input type="password" placeholder="Password" name="password" onChange={(e) => { setPassword(e.target.value) }} required/><br/>
+            </div>
+            <div className="PatientLogin-password PatientLogin-input">
+                <label htmlFor="confirm-password">Confirm Password</label><b/>
+                <input type="password" placeholder="Confirm Password" name="password" onChange={(e) => { setConfirmPassword(e.target.value) }} required/><br/>
+            </div>
+            <input type="submit" onClick={submitPatientRegister2} className="PatientLogin-form-btn"/>
+        </form>
+      </div>
     </div>
   );
 }
