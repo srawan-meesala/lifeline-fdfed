@@ -1,7 +1,9 @@
 import React from 'react'
+import { useParams,Link } from 'react-router-dom'
 
 function Thankyou() {
-  return (
+    const {username} = useParams()
+  return (  
     <div><div class="Thankyou-containerr">
     <div class="Thankyou-logo">Lifeline.</div>
     <div class="Thankyou-content">
@@ -10,7 +12,7 @@ function Thankyou() {
         <div class="Thankyou-l3"> We will assure you the best service possible.</div>
     </div>
     <div class="Thankyou-btn-home">
-        <button><a href="Thankyou-home-page">Back to Home</a></button>
+        <button><Link to={`/home/${username}`}>Back to Home</Link></button>
     </div>
 </div>
 <div class="Thankyou-background">

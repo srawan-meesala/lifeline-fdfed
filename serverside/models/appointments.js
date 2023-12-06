@@ -29,6 +29,10 @@ const AppointSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    Fee:{
+        type:Number,
+        required:true
+    },
     Note:{
         type:String,
         required:true

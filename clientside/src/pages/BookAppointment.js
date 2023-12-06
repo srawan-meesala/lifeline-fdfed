@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import {useParams,useNavigate} from 'react-router-dom'
+import {useParams,useNavigate,useLocation} from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../components/Navbar'
 
-
 function BookAppointment() {
+  const {state} = useLocation()
+  const fee = state ? state.fee : null
+  const fees = (1.1)*fee
   const navigate = useNavigate()
     const [patientName,setPatientName] = useState('')
     const [date,setDate] = useState('')
@@ -45,6 +47,7 @@ function BookAppointment() {
                 <input type='date' className='BookAppointment-input-date' onChange={(e)=>setDate(e.target.value)} required />
                 <label className='BookAppointment-label'>Time</label>
                 <select name='time'value={time} onChange={(e)=>setTime(e.target.value)} required className='BookAppointment-select'>
+                    <option value=''>Select Timeslot</option>
                     <option>10AM-11AM</option>
                     <option>11AM-12PM</option>
                     <option>1PM-2PM</option>
@@ -55,7 +58,7 @@ function BookAppointment() {
                 <input type='tel' name='mobileNumber' className='BookAppointment-input-mobileNumber' onChange={(e)=>setMobileNumber(e.target.value)} required/>
                 <label className='BookAppointment-label'>Note</label>
                 <textarea placeholder='something you want to say to the Doctor' className='BookAppointment-textarea' onChange={(e)=>{setNote(e.target.value)}}></textarea>
-                <div className='BookAppointment-Cost'><p>Doctor fee:<span>&nbsp;400</span></p><p>Online Charges:&nbsp;10%</p><p>Total Amount to be paid:<span>&nbsp;440</span></p></div>
+                <div className='BookAppointment-Cost'><p>Doctor fee:<span>&nbsp;{fee}</span></p><p>Online Charges:&nbsp;10%</p><p>Total Amount to be paid:<span>&nbsp;{fees}</span></p></div>
                 </div>
                 <div className='BookAppointment-button-div'><button className='BookAppointment-button'>Book Appointment</button></div>
             </form>

@@ -7,7 +7,7 @@ function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city,do
   const navigate = useNavigate();
 
   const handleBookAppointment = () =>{
-    navigate(`/BookAppointment/${docID}`)
+    navigate(`/BookAppointment/${docID}`,{state:{fee}})
   }
 
   return (

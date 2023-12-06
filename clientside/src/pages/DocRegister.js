@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import axios from "axios"
 import {  Link } from "react-router-dom"
 import { ReactComponent as Logo } from '../images/undraw_remotely_2j6y.svg';
@@ -8,16 +8,29 @@ function DocRegister() {
     const [name,setName] = useState('')
     const [mobileNumber,setMobileNumber] = useState('')
     const [mailID,setMailID] = useState('')
-    const [hospName,setHospName] = useState('available')
+    const [hospitals,setHospitals]=useState([])
+    const [hospName,setHospName] = useState('')
     const [specialization,setSpecialization] = useState('')
     const [fee,setFee] = useState('')
     const [verificationToken,setVerificationToken] = useState('')
 
+    useEffect(() => {
+      const fetchHospitals = async()=>{
+        try{
+          const response = await axios.get('http://localhost:8000/hospitalsAPI');
+          setHospitals(response.data);
+        } 
+        catch(error){
+          console.error('Error fetching hospitals:', error);
+        }
+      };
+      fetchHospitals();
+    }, []);
+
     async function submitDocRegister(e) {
         e.preventDefault();
-    
-        try {
-          const response = await axios.post('http://localhost:8000/docRegister', {
+          try {
+            const response = await axios.post('http://localhost:8000/docRegister', {
             name, mobileNumber, mailID, hospName, specialization,fee
           });
           if (response.data === 'exist') {
@@ -56,10 +69,12 @@ function DocRegister() {
                   <div className="PatientRegister-form-input">
                     <label htmlFor="hospName">Hospital</label><b/>
                     <select name="hospName" value={hospName} onChange={(e) => { setHospName(e.target.value) }} required>
-                        <option value="available"  >Available</option>
-                        <option value="unavailable">Unavailable</option>
+                        <option value="">Select Hospital</option>
+                        {hospitals.map((hospital) => (
+                          <option key={hospital._id} value={hospital.hospName}>{hospital.hospName}</option>
+                        ))}
                     </select>
-                  </div>
+                    </div>
                   <div className="PatientRegister-form-input">
                     <label >Specialization</label><b/>
                     <input type="text" onChange={(e) => { setSpecialization(e.target.value) }} name="specialization" placeholder="Specialization" required  />

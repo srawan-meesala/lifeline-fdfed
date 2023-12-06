@@ -4,6 +4,7 @@ const DocRegisters = require('./models/docRegister')
 const PatientRegisters = require('./models/patientRegister')
 const HospRegisters = require('./models/hospRegister')
 const Appointments = require('./models/appointments')
+const Blogs = require('./models/blogs')
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
@@ -326,6 +327,7 @@ app.post('/bookAppointment', async (req, res) => {
   const hosp = await HospRegisters.findOne({hospName:doc.hospName})
   const username = user.username
   const hospID = hosp.hospID
+  const fee = doc.fee
   try {
     const newAppointment = new Appointments({
       docID:docID,
@@ -335,17 +337,39 @@ app.post('/bookAppointment', async (req, res) => {
       Date:date,
       Timeslot:time,
       Contact:mobileNumber,
+      Fee:fee,
       Note:note
     });
-
     await newAppointment.save();
-
     res.status(200).json({status: 'created',username:username});
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');
   }
 });
+
+app.post('/uploadBlog',async(req,res)=> {
+    const {docID,title,blog} = req.body
+    const doc = await DocRegisters.findOne({docID})
+    const docName = doc.docName
+    const spec = doc.specialization
+
+    try{
+      const newBlog = new Blogs({
+        docID:docID,
+        docName:docName,
+        specialization:spec,
+        title:title,
+        blog:blog
+      })
+      await newBlog.save();
+      res.status(200).json({status: 'uploaded'});
+    }
+    catch(e){
+      console.log(error)
+      res.status(500).json('Internal Server Error');
+    }
+})
 
 
 function sendVerificationEmail(to, link) {
