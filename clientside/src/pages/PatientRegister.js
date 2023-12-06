@@ -39,57 +39,84 @@ function PatientRegister() {
 
     return (
         <div className="PatientLogin-whole">
-
             <div className="PatientLogin-left">
-                <div className="PatientLogin-logo ">Lifeline<span className="PatientLogin-logo-span">.</span>&nbsp;<span className="PatientLogin-logo-side">Registration</span></div>
+                <div className="PatientLogin-logo ">Lifeline<span className="PatientLogin-logo-span">.</span>&nbsp;<span className="PatientLogin-logo-side">Patient Registration</span></div>
                 <Logo className="PatientLogin-image"/>
             </div>
             <div className="PatientLogin-right">
-                <form method="POST" action="/patientRegister"  className="patient-register-form">
-                    <label >First Name</label><b/>
-                    <input type="text" onChange={(e) => { setFirstName(e.target.value) }} name="firstName" placeholder="First Name" required  />
-                    <label >Last Name</label><b/>
-                    <input type="text" onChange={(e) => { setLastName(e.target.value) }} name="lastName" placeholder="Last Name" required  />
-                    <label >Mobile Number</label><b/>
-                    <input type="number" onChange={(e) => { setMobileNumber(e.target.value) }} name="mobileNumber" placeholder="mobileNumber" required  />
-                    <label >Email ID</label><b/>
-                    <input type="email" onChange={(e) => { setMailID(e.target.value) }} name="mailID" placeholder="mailID" required  />
-                    <label >Date of Birth</label><b/>
-                    <input type="date" onChange={(e) => { setDob(e.target.value) }} name="dob" required  />
-                    <label >Occupation</label><b/>
-                    <input type="text" onChange={(e) => { setOccupation(e.target.value) }} name="occupation" placeholder="occupation" required  />
-                    <label >Blood Group</label><b/>
-                    <select value={bloodGroup} onChange={(e) => { setBloodGroup(e.target.value) }} name="bloodGroup" required >
-                      <option value="A+" selected>A+</option>
-                      <option value="B+">B+</option>
-                      <option value="O+">O+</option>
-                      <option value="AB+">AB+</option>
-                      <option value="A-">A-</option>
-                      <option value="B-">B-</option>
-                      <option value="O-">O-</option>
-                      <option value="AB-">AB-</option>
-                    </select>
-                    <label >Marital Status</label><b/>
-                    <select value={maritalStatus} onChange={(e) => { setMaritalStatus(e.target.value) }} name="maritalStatus">
-                      <option value='married' selected>Married</option>
-                      <option value='unmarried'>Unmarried</option>
-                    </select>
-                    <label >Gender</label><b/>
-                    <select value={gender} onChange={(e) => { setGender(e.target.value) }} name="gender" >
-                      <option value="male" selected>Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select>
-                    <input type="submit" onClick={submitRegister} />
-                </form>
-                <br />
-                <p>OR</p>
-                <br />
-                <Link to='/hospRegister'>Register as Hospital</Link>
-                <Link to='/docRegister'>Register as Doctor</Link>
-                <Link to="/login">login </Link>
+                <div className="PatientRegister-right-content">
+                  <form method="POST" action="/patientRegister"  className="PatientRegister-form">
+                      <div className="PatientRegister-form-input">
+                        <label >First Name</label><b/>
+                        <input type="text" onChange={(e) => { setFirstName(e.target.value) }} name="firstName" placeholder="First Name" required  />
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Last Name</label><b/>
+                        <input type="text" onChange={(e) => { setLastName(e.target.value) }} name="lastName" placeholder="Last Name" required  />
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Mobile Number</label><b/>
+                        <input type="number" onChange={(e) => { setMobileNumber(e.target.value) }} name="mobileNumber" placeholder="Mobile Number" required  />
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Email ID</label><b/>
+                        <input type="email" onChange={(e) => { setMailID(e.target.value) }} name="mailID" placeholder="Email ID" required  />
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Date of Birth</label><b/>
+                        <input type="date" onChange={(e) => { setDob(e.target.value) }} name="dob" required  />
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Occupation</label><b/>
+                        <input type="text" onChange={(e) => { setOccupation(e.target.value) }} name="occupation" placeholder="Occupation" required  />
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Blood Group</label><b/>
+                        <select value={bloodGroup} onChange={(e) => { setBloodGroup(e.target.value) }} name="bloodGroup" required >
+                          <option value="A+" selected>A+</option>
+                          <option value="B+">B+</option>
+                          <option value="O+">O+</option>
+                          <option value="AB+">AB+</option>
+                          <option value="A-">A-</option>
+                          <option value="B-">B-</option>
+                          <option value="O-">O-</option>
+                          <option value="AB-">AB-</option>
+                        </select>
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Marital Status</label><b/>
+                        <select value={maritalStatus} onChange={(e) => { setMaritalStatus(e.target.value) }} name="maritalStatus">
+                          <option value='married' selected>Married</option>
+                          <option value='unmarried'>Unmarried</option>
+                        </select>
+                      </div>
+                      <div className="PatientRegister-form-input">
+                        <label >Gender</label><b/>
+                        <select value={gender} onChange={(e) => { setGender(e.target.value) }} name="gender" >
+                          <option value="male" selected>Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                      <div className="PatientRegister-form-submit">
+                        <input type="submit" onClick={submitRegister} className='PatientRegister-form-btn'/>
+                      </div>
+                  </form>
+                  <div className="Patientregister-links">
+                    <div className="Patientregister-link">
+                      Already a member?&nbsp;<Link to="/login">Login Here</Link>
+                    </div>
+                    <div className="Patientregister-link">
+                      Here as a Hospital?&nbsp;<Link to='/hospRegister'>Register as Hospital</Link>
+                    </div>
+                    <div className="Patientregister-link">
+                      Here as a Doctor?&nbsp;<Link to='/docRegister'>Register as Doctor</Link>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
+
     )
 }
 
