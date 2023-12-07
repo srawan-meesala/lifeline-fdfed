@@ -25,6 +25,37 @@ function DoctorProfile() {
   const ProfileOpener = () => setChoose(3)
   const SettingsOpener = () => setChoose(4)
 
+  const [appointments, setAppointments] = useState([])
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/AppointmentsAPI/${userDetails.docID}`);
+        setAppointments(Array.isArray(response.data) ? response.data : []);
+        console.log(appointments);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchAppointments();
+  }, [userDetails.docID]);
+
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/blogsAPI/${userDetails.docID}`);
+        setBlogs(Array.isArray(response.data) ? response.data : []);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchBlogs();
+  }, [userDetails.docID]);
+
   useEffect(()=>{
     async function fetchData(){
       try{
@@ -81,10 +112,15 @@ function DoctorProfile() {
         </div>
       </div>
       {choose===1 && (
-        <DoctorDashboard userDetails={userDetails} />
+        <DoctorDashboard 
+          userDetails={userDetails}
+          appointments={appointments}
+          appointmentsLength={appointments.length}
+          blogsLength={blogs.length}
+        />
       )}
       {choose===2 && (
-        <DoctorAppointments userDetails={userDetails} />
+        <DoctorAppointments userDetails={userDetails} appointments={appointments}/>
       )}
       {choose===3 && (
         <DoctorProfileShow userDetails={userDetails} />
@@ -93,7 +129,7 @@ function DoctorProfile() {
         <DoctorSettings userDetails={userDetails} />
       )}
       {choose===5 && (
-        <DoctorBlogs userDetails={userDetails} />
+        <DoctorBlogs userDetails={userDetails} blogs={blogs}/>
       )}
     </div>
   )

@@ -1,22 +1,7 @@
-import React, { useEffect,useState } from 'react'
-import axios from 'axios'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-const DoctorBlogs = ({ userDetails }) => {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8000/blogsAPI/${userDetails.docID}`);
-        setBlogs(Array.isArray(response.data) ? response.data : []);
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-      }
-    };
-
-    fetchBlogs();
-  }, [userDetails.docID]);
+const DoctorBlogs = ({ userDetails, blogs }) => {
 
   const ConvertDate = (timestamp) => {
     const date = new Date(timestamp);

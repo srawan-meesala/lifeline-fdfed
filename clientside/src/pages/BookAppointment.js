@@ -34,25 +34,59 @@ function BookAppointment() {
         }
     }
 
+    const [appointments, setAppointments] = useState([])
+
+    const dateChangeHandler = async (e) => {
+      setDate(e.target.value)
+      try{
+        console.log(date);
+        const response = await axios.get(`http://localhost:8000/AppointmentsAPI/dateanddocid`,{
+          params: {docID, date}
+        });
+        if(response.status === 200){
+          setAppointments(response.data)
+          console.log('success');
+        } else {
+          console.error('Failed to fetch user details')
+        }
+      }
+      catch(e) {
+        console.log(e)
+      }
+    }
+
+    console.log(appointments);
+    var times = []
+    for (let a in appointments) {
+      times.push(a.Timeslot)
+    }
+
+    var timeslots = [
+      '10AM-11AM',
+      '11AM-12PM',
+      '1PM-2PM',
+      '2AM-3PM',
+      '3PM-4PM',
+    ]
+    
+    var timeslotsNew = timeslots.filter(n => !times.includes(n))
    return (
     <div className='BookAppointment-whole'>
     <Navbar/>
-    <div className='BokkAppointment-Headline'>Book Your Appointment</div>
+    <div className='BookAppointment-Headline'>Book Your Appointment</div>
         <div className='BookAppointment-form-div'>
             <form className='BookAppointment-form' action='/bookAppointment' method='POST' onSubmit={Appointment}>
                 <div className='BookAppointment-form-main'>
                 <label className='BookAppointment-label'>Patient Name</label>
                 <input type='text' className='BookAppointment-input-name' placeholder='Patient Name' onChange={(e)=>setPatientName(e.target.value)} required />
                 <label className='BookAppointment-label' >Date</label>
-                <input type='date' className='BookAppointment-input-date' onChange={(e)=>setDate(e.target.value)} required />
+                <input type='date' className='BookAppointment-input-date' onChange={dateChangeHandler} required />
                 <label className='BookAppointment-label'>Time</label>
-                <select name='time'value={time} onChange={(e)=>setTime(e.target.value)} required className='BookAppointment-select'>
-                    <option value=''>Select Timeslot</option>
-                    <option>10AM-11AM</option>
-                    <option>11AM-12PM</option>
-                    <option>1PM-2PM</option>
-                    <option>2AM-3PM</option>
-                    <option>3PM-4PM</option>
+                <select name='time' value={time} onChange={(e)=>setTime(e.target.value)} required className='BookAppointment-select'>
+                  <option value=''>Select Timeslot</option>
+                  {timeslotsNew.map((t, index)=>{
+                    return <option key={index}>{t}</option>
+                  })}
                 </select>
                 <label className='BookAppointment-label'> Mobile Number</label>
                 <input type='tel' name='mobileNumber' className='BookAppointment-input-mobileNumber' onChange={(e)=>setMobileNumber(e.target.value)} required/>
