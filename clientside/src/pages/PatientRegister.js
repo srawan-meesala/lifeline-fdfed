@@ -5,6 +5,8 @@ import { ReactComponent as Logo } from '../images/undraw_remotely_2j6y.svg';
 
 function PatientRegister() {
   const navigate = useNavigate();
+  var mobile  = new RegExp(/^\d{10}$/);
+
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -19,21 +21,26 @@ function PatientRegister() {
 
   async function submitRegister(e) {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:8000/patientRegister', {
-        firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
-      });
-
-      if (response.data === 'exist') {
-        alert('User already registered');
-      } else {
-        navigate('/sent');
-        setVerificationToken(response.data.verificationToken);
+        if(!mobile.test(mobileNumber)) {
+          alert("Invalid Mobile number!!");
+      }else{
+        try {
+          const response = await axios.post('http://localhost:8000/patientRegister', {
+            firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
+          });
+    
+          if (response.data === 'exist') {
+            alert('User already registered');
+          } else {
+            navigate('/sent');
+            setVerificationToken(response.data.verificationToken);
+          }
+        } catch (error) {
+          alert('Wrong details');
+          console.error(error);
+        }
       }
-    } catch (error) {
-      alert('Wrong details');
-      console.error(error);
-    }
+    
   }
 
     return (

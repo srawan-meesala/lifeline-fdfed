@@ -5,6 +5,7 @@ import { ReactComponent as Logo } from '../images/undraw_remotely_2j6y.svg';
 
 
 function DocRegister() {
+    var mobile  = new RegExp(/^\d{10}$/);
     const [name,setName] = useState('')
     const [mobileNumber,setMobileNumber] = useState('')
     const [mailID,setMailID] = useState('')
@@ -29,22 +30,27 @@ function DocRegister() {
 
     async function submitDocRegister(e) {
         e.preventDefault();
+        if(!mobile.test(mobileNumber)){
+          alert("Invalid Mobile number!!");
+        }
+        else{
           try {
             const response = await axios.post('http://localhost:8000/docRegister', {
-            name, mobileNumber, mailID, hospID, specialization,fee
-          });
-          if (response.data === 'exist') {
-            alert('Doctor already registered');
-          } else {
-            alert('Registration successful! Please check your email for verification.');
-            setVerificationToken(response.data.verificationToken);
+              name, mobileNumber, mailID, hospID, specialization,fee
+            });
+            if (response.data === 'exist') {
+              alert('Doctor already registered');
+            } else {
+              alert('Registration successful! Please check your email for verification.');
+              setVerificationToken(response.data.verificationToken);
+            }
+          } catch (error) {
+            alert('Wrong details');
+            console.error(error);
           }
-        } catch (error) {
-          alert('Wrong details');
-          console.error(error);
         }
-      }
-
+    }
+          
       return (
         <div className="PatientLogin-whole">
             <div className="PatientLogin-left">
@@ -59,8 +65,14 @@ function DocRegister() {
                     <input type="text" onChange={(e) => { setName(e.target.value) }} name="Name" placeholder="Name" required  />
                   </div>
                   <div className="PatientRegister-form-input">
-                    <label >Mobile Number</label><b/>
-                    <input type="number" onChange={(e) => { setMobileNumber(e.target.value) }} name="mobileNumber" placeholder="Mobile Number" required  />
+                    <label>Mobile Number</label><b />
+                    <input
+                      type="text"
+                      onChange={(e) => { setMobileNumber(e.target.value) }}
+                      name="mobileNumber"
+                      placeholder="Mobile Number"
+                      required
+                    />
                   </div>
                   <div className="PatientRegister-form-input">
                     <label >Email ID</label><b/>

@@ -71,7 +71,8 @@
     background-color: #023047;
     color: #fff;
     letter-spacing: 0.5px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .OrganDonation-btn:active{

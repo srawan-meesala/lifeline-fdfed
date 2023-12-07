@@ -31,6 +31,7 @@ import Admin from './pages/Admin'
 import OrganDonation from './pages/OrganDonation';
 import ODThankyou from './pages/ODThankyou';
 import PleaseVerify from './pages/Misc/PleaseVerify';
+import BloodDonation from './pages/BloodDonation';
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
           <Route path="/organdonation/:username" element={<OrganDonation />} />
           <Route path="/odthankyou/:username" element={<ODThankyou />} />
           <Route path="/sent" element={<PleaseVerify />} />
+          <Route path="/BloodDonation" element={<BloodDonation />} />
         </Routes>
       </Router>
 
