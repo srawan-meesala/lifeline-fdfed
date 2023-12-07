@@ -17,12 +17,26 @@ function UserProfile() {
   const [choose, setChoose] = useState(1)
   const {username} = useParams()
   const [userDetails,setUserDetails]=useState({})
+  const [appointments, setAppointments] = useState([])
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
   const ProfileOpener = () => setChoose(3)
   const SettingsOpener = () => setChoose(4)
 
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/AppointmentsAPI3/${userDetails.username}`);
+        setAppointments(Array.isArray(response.data) ? response.data : []);
+        console.log(appointments);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchAppointments();
+  }, [userDetails.username]);
 
   useEffect(()=>{
     async function fetchData(){
@@ -86,7 +100,7 @@ function UserProfile() {
         <UserDashboard userDetails={userDetails} />
       )}
       {choose===2 && (
-        <UserAppointments userDetails={userDetails} />
+        <UserAppointments userDetails={userDetails} appointments={appointments} />
       )}
       {choose===3 && (
         <UserProfileShow userDetails={userDetails} />

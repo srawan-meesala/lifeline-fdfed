@@ -356,6 +356,17 @@ app.get('/AppointmentsAPI/:docID', async (req, res) => {
   }
 });
 
+app.get('/AppointmentsAPI3/:username', async (req, res) => {
+  const {username} = req.params
+  try {
+    const appointments = await Appointments.find({Username:username});
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching appointments:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.get('/AppointmentsAPI/dateanddocid', async (req, res) => {
   const {docID, date} = req.params
   try {
