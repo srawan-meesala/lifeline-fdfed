@@ -53,7 +53,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogComplete" element={<BlogComplete />} />
           <Route path="/blogform/:docID" element={<BlogForm />} />
-          <Route path="/blogcomplete" element={<BlogComplete />} />
+          <Route path="/blogcomplete/:blogID" element={<BlogComplete />} />
           <Route path="/bookAppointment/:docID" element={<BookAppointment />} />
           <Route path="/showDoctors" element={<ShowDoctors />} />
           <Route path='/docProfile/:username' element={<DoctorProfile />} />

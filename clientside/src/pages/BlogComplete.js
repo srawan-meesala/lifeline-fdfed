@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {useParams} from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 const BlogComplete = () => {
-
-  const blogData = {
-    'title': 'Lung Cancer Screening Demystified',
+  const blogID = useParams()
+  const [blogData,setBlogData] = useState('')
+  const fetchBlogData = async()=>{
+    try{
+      const response = await axios.get('/localhost/')
+    }
   }
-
   return (
     <>
     <Navbar title={'Blogs'}/>

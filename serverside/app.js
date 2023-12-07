@@ -321,6 +321,16 @@ app.get('/doctorsAPI', async (req, res) => {
   }
 });
 
+app.get('/blogAPI', async (req, res) => {
+  try {
+    const blogs = await Blogs.find();
+    res.json(blogs);
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.get('/blogsAPI/:docID', async (req, res) => {
   const {docID} = req.params
   try {
@@ -376,7 +386,7 @@ app.post('/bookAppointment', async (req, res) => {
 app.post('/uploadBlog',async(req,res)=> {
     const {docID,title,blog} = req.body
     const doc = await DocRegisters.findOne({docID})
-    const docName = doc.docName
+    const docName = doc.name
     const spec = doc.specialization
 
     try{

@@ -8,15 +8,15 @@ function Blogs() {
   const [blogs, setBlogs] = useState([]);
   
   useEffect(() => {
-    const fetchDoctors = async () => {
+    const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/blogsAPI');
+        const response = await axios.get('http://localhost:8000/blogAPI');
         setBlogs(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
       }
     };
-    fetchDoctors();
+    fetchBlogs();
   }, []);
 
   return (
@@ -30,11 +30,10 @@ function Blogs() {
       </div>
       <div className='Blogs-content'>
         <div className='Blogs-content-div'>
-          
           <div className='Blogs-slots-1'>
-            {blogs.map((d) => {
-              return <BlogCard blogIndex={d.blogID} blogData={d} />
-            })}
+            {blogs.map((blog) => (
+               <BlogCard key={blog.blogID} {...blog} />
+            ))}
           </div>
           
         </div>
