@@ -9,7 +9,7 @@ const BlogComplete = () => {
 
   return (
     <>
-    <Navbar />
+    <Navbar title={'Blogs'}/>
     <div className='BlogComplete-whole'>
         <div className='BlogComplete-matter'>
           <div className='BlogComplete-head'>

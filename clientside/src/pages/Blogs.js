@@ -1,9 +1,13 @@
 import React from 'react'
+import { useState } from 'react';
+import { useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import BlogCard from '../components/BlogCard';
 import { FaRandom } from "react-icons/fa";
 
 function Blogs() {
+  const navigate = useNavigate();
 
   var data = [
     {
@@ -43,11 +47,13 @@ function Blogs() {
         </div>
         <div className='Blogs-content'>
           <div className='Blogs-content-div'>
-            <div className='Blogs-slots-1'>
-              {data.map(d => {
-                return <BlogCard blogData={d} />
-              })}
-            </div>
+            
+              <div className='Blogs-slots-1'>
+                {data.map(d => {
+                    <BlogCard blogData={d} />
+                })}
+              </div>
+            
           </div>
         </div>
     </div>
