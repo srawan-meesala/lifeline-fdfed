@@ -4,12 +4,14 @@ import { AiFillDashboard } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
 import { BsFillStickiesFill } from "react-icons/bs";
 import { IoSettingsSharp } from "react-icons/io5";
+import { TfiWrite } from "react-icons/tfi";
 import { BiLogOut } from "react-icons/bi";
 import { useParams } from 'react-router-dom';
 import DoctorAppointments from "../components/DoctorProfile/DoctorAppointments";
 import DoctorDashboard from "../components/DoctorProfile/DoctorDashboard";
 import DoctorSettings from "../components/DoctorProfile/DoctorSettings";
 import DoctorProfileShow from "../components/DoctorProfile/DoctorProfileShow";
+import DoctorBlogs from "../components/DoctorProfile/DoctorBlogs";
 
 
 function DoctorProfile() {
@@ -19,6 +21,7 @@ function DoctorProfile() {
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
+  const BlogsOpener = () => setChoose(5)
   const ProfileOpener = () => setChoose(3)
   const SettingsOpener = () => setChoose(4)
 
@@ -56,6 +59,10 @@ function DoctorProfile() {
               <div className='DoctorProfile-icon'><BsFillStickiesFill/></div>
               <div className='DoctorProfile-func'>Appointments</div>
             </div>
+            <div className='DoctorProfile-func-parts' onClick={BlogsOpener}>
+              <div className='DoctorProfile-icon'><TfiWrite/></div>
+              <div className='DoctorProfile-func'>Your Blogs</div>
+            </div>
             <div className='DoctorProfile-func-parts' onClick={ProfileOpener}>
               <div className='DoctorProfile-icon'><FaUserDoctor/></div>
               <div className='DoctorProfile-func'>Profile</div>
@@ -64,7 +71,7 @@ function DoctorProfile() {
               <div className='DoctorProfile-icon'><IoSettingsSharp/></div>
               <div className='DoctorProfile-func'>Settings</div>
             </div>
-            </div>
+          </div>
         </div>
         <div className='DoctorProfile-logout'>
           <div className='DoctorProfile-logout-part'>
@@ -84,6 +91,9 @@ function DoctorProfile() {
       )}
       {choose===4 && (
         <DoctorSettings userDetails={userDetails} />
+      )}
+      {choose===5 && (
+        <DoctorBlogs userDetails={userDetails} />
       )}
     </div>
   )
