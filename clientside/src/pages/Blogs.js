@@ -35,23 +35,23 @@ function Blogs() {
   return (
     <div className='Blogs-whole'>
       <Navbar title={'Blogs'}/>
-        <div className='Blogs-Randomiser'>
-          <div className='Blogs-Randomiser-div'>
-            <div className='Blogs-Randomiser-question'>cant choose what to read? try our randomiser</div>
-            <div className='Randomiser-div'><button className='Randomiser-Button'><FaRandom/><span>Random</span></button></div>
-            </div>
+      <div className='Blogs-Randomiser'>
+        <div className='Blogs-Randomiser-div'>
+          <div className='Blogs-Randomiser-question'>cant choose what to read? try our randomiser</div>
+          <div className='Randomiser-div'><button className='Randomiser-Button'><FaRandom/><span>Random</span></button></div>
         </div>
-        <div className='Blogs-content'>
-          <div className='Blogs-content-div'>
-            
-              <div className='Blogs-slots-1'>
-                {data.map((d) => {
-                  return <BlogCard blogIndex={d.blogID} blogData={d} />
-                })}
-              </div>
-            
+      </div>
+      <div className='Blogs-content'>
+        <div className='Blogs-content-div'>
+          
+          <div className='Blogs-slots-1'>
+            {data.map((d) => {
+              return <BlogCard blogIndex={d.blogID} blogData={d} />
+            })}
           </div>
+          
         </div>
+      </div>
     </div>
   )
 }
