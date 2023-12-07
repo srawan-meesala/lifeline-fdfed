@@ -9,7 +9,6 @@ const BloodDonation = () => {
     const [bloodGroup,setbloodGroup] = useState('')
     const [age, setAge] = useState("")
     const [isValidAge, setIsValidAge] = useState(true);
-    const [aadhar, setAadhar] = useState("");
     const [isValidAadhar, setIsValidAadhar] = useState(true);
   
     const handleAgeChange = (e) => {

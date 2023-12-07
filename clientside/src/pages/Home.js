@@ -113,10 +113,9 @@ const Home = () => {
               </div>
               <div className="Home-c4-content-body">
                 <Link className="Home-c4-content-body-a" to={`/organDonation/${username}`}>Register for Lifeline Organ Donation Camp Today.</Link><br />
-                <Link className="Home-c4-content-body-a" to='/'>Register for Lifeline Blood Bank Today.</Link>
+                <Link className="Home-c4-content-body-a" to={`/bloodDonation/${username}`} >Register for Lifeline Blood Bank Today.</Link>
               </div>
             </div>
-            {/* Register for Lifeline Organ Donation Camp and Help the People in Need. */}
           </div>
           <div className="Home-c5">
             <div className="Home-c5-content">

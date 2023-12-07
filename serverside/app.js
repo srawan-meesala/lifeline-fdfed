@@ -4,6 +4,7 @@ const DocRegisters = require('./models/docRegister')
 const PatientRegisters = require('./models/patientRegister')
 const HospRegisters = require('./models/hospRegister')
 const ODRegisters = require('./models/organdonation')
+const BBRegisters = require('./models/bloodbanks')
 const Appointments = require('./models/appointments')
 const Blogs = require('./models/blogs')
 const app = express()
@@ -444,6 +445,24 @@ app.post('/organDonation', async (req, res) => {
     }
     const data = new ODRegisters({
       username, name, aadhaar, gender, donation, particular, past
+    });
+    await data.save();
+    res.status(200).json({ message: 'Registration successful'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+app.post('/bloodBanks', async (req, res) => {
+  const {username, name, aadhar, gender, bloodGroup, age, past} = req.body
+  try {
+    const check = await BBRegisters.findOne({ username });
+    if (check) {
+      return res.json('exist');
+    }
+    const data = new BBRegisters({
+      username, name, aadhar, gender, bloodGroup, age, past
     });
     await data.save();
     res.status(200).json({ message: 'Registration successful'});

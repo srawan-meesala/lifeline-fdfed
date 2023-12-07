@@ -67,7 +67,7 @@ function App() {
           <Route path="/organdonation/:username" element={<OrganDonation />} />
           <Route path="/odthankyou/:username" element={<ODThankyou />} />
           <Route path="/sent" element={<PleaseVerify />} />
-          <Route path="/BloodDonation" element={<BloodDonation />} />
+          <Route path="/bloodDonation/:username" element={<BloodDonation />} />
         </Routes>
       </Router>
 
