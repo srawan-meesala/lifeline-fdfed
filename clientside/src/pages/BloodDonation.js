@@ -5,8 +5,8 @@ import '../styles/OrganDonation.css'
 const BloodDonation = () => {
     const [name,setName] = useState('')
     const [aadhar,setAadhar] = useState('')
-    const [name,setName] = useState('')
-    const [name,setName] = useState('')
+    const [gender,setGender] = useState('')
+    const [bloodGroup,setbloodGroup] = useState('')
     const [age, setAge] = useState("")
     const [isValidAge, setIsValidAge] = useState(true);
   
