@@ -4,10 +4,8 @@ import { AiFillDashboard } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
 import { BsFillStickiesFill } from "react-icons/bs";
 import { IoSettingsSharp } from "react-icons/io5";
-import { MdLocalPharmacy } from "react-icons/md";
-import { BiRupee } from "react-icons/bi";
 import { BiLogOut } from "react-icons/bi";
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import DoctorAppointments from "../components/DoctorProfile/DoctorAppointments";
 import DoctorDashboard from "../components/DoctorProfile/DoctorDashboard";
 import DoctorSettings from "../components/DoctorProfile/DoctorSettings";
@@ -28,7 +26,7 @@ function DoctorProfile() {
     async function fetchData(){
       try{
         const response = await axios.get(`http://localhost:8000/getDocDetails/${username}`);
-        if(response.status == 200){
+        if(response.status === 200){
           setUserDetails(response.data)
         }
         else{
