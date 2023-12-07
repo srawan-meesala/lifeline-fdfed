@@ -51,7 +51,6 @@ function App() {
           <Route path="/verifydoctor/:verificationToken" element={<EmailVerificationDoc />} />
           <Route path="/docRegister2/:verificationToken" element={<DocRegister2 />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogComplete" element={<BlogComplete />} />
           <Route path="/blogform/:docID" element={<BlogForm />} />
           <Route path="/blogcomplete/:blogID" element={<BlogComplete />} />
           <Route path="/bookAppointment/:docID" element={<BookAppointment />} />

@@ -406,6 +406,20 @@ app.post('/uploadBlog',async(req,res)=> {
     }
 })
 
+app.get('/blogdata',async(req,res)=>{
+  const {blogID} = req.query;
+  try{
+  const data = await Blogs.findOne({blogID:blogID})
+  console.log(data)
+  if(data){
+  res.status(200).json(data)
+    }
+  }
+  catch(error){
+    console.log(error)
+    res.status(500).json('Internal Server Error');
+  }
+})
 
 function sendVerificationEmail(to, link) {
   const transporter = nodemailer.createTransport({
