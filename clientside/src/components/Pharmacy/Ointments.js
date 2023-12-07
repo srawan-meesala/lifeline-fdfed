@@ -1,10 +1,10 @@
 import React from 'react';
 import { ointmentData } from '../../functions/ointments';
-import eye from '../images/Ointments/eye.jpg'
-import injuries from '../images/Ointments/injuries.jpg'
-import rashes from '../images/Ointments/rashes.jpg'
-import bodypains from '../images/Ointments/bodypains.jpg'
-import infections from '../images/Ointments/infections.jpg'
+import eye from '../../images/Ointments/eye.jpg'
+import injuries from '../../images/Ointments/injuries.jpg'
+import rashes from '../../images/Ointments/rashes.jpg'
+import bodypains from '../../images/Ointments/bodypains.jpg'
+import infections from '../../images/Ointments/infections.jpg'
 
 const Ointments = () => {
   const firstFiveImages = ointmentData.slice(0, 5);

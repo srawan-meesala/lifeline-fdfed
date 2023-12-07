@@ -1,10 +1,10 @@
 import React from 'react';
 import { equipmentData } from '../../functions/equipment';
-import Thermometer from '../images/Equipments/Thermometer.jpg'
-import BPChecker from '../images/Equipments/BPChecker.jpg'
-import PPE from '../images/Equipments/PPE.jpg'
-import Sthethoscope from '../images/Equipments/Sthethoscope.jpg'
-import SurgicalKit from '../images/Equipments/SurgicalKit.jpg'
+import Thermometer from '../../images/Equipments/Thermometer.jpg'
+import BPChecker from '../../images/Equipments/BPChecker.jpg'
+import PPE from '../../images/Equipments/PPE.jpg'
+import Sthethoscope from '../../images/Equipments/Sthethoscope.jpg'
+import SurgicalKit from '../../images/Equipments/SurgicalKit.jpg'
 
 const Equipment = () => {
   const firstFiveImages = equipmentData.slice(0, 5);

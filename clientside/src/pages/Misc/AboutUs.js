@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
-import about1 from '../images/about1.jpg'
-import about2 from '../images/about2.jpeg'
+import about1 from '../../images/about1.jpg'
+import about2 from '../../images/about2.jpeg'
 import Footer from '../../components/Footer'
 
 const AboutUs = () => {
@@ -17,7 +17,8 @@ const AboutUs = () => {
             algo technology, health-life support, and
             inspiring content. Founded in 2023 and setup in IIITS
             with additional offices in chennai, pune and surat
-            is <b>100%</b> founder-owned and highly profitable.Driven by a passion for making a positive impact, Lifeline not only addresses immediate health concerns but also inspires and educates through engaging content. Our platform is a dynamic hub where users find not only solutions but also a community that encourages and uplift</div>
+            is <b>100%</b> founder-owned and highly profitable.Driven by a passion for making a positive impact, Lifeline not only addresses immediate health concerns but also inspires and educates through engaging content. Our platform is a dynamic hub where users find not only solutions but also a community that encourages and uplift
+          </div>
         </div>
       </div>
       <div className='AboutUs-Part-2'>

@@ -1,10 +1,10 @@
 import React from 'react'
 import { antibioticData } from '../../functions/antibiotics'
-import AntibioticSoap from '../images/AntiBiotics/AntibioticSoap.jpg'
-import BodyLotion from '../images/AntiBiotics/BodyLotion.jpg'
-import HairConditioner from '../images/AntiBiotics/HairConditioner.jpg'
-import Sanitizer from '../images/AntiBiotics/Sanitizer.jpg'
-import Moisturizer from '../images/AntiBiotics/Moisturizer.jpg'
+import AntibioticSoap from '../../images/AntiBiotics/AntibioticSoap.jpg'
+import BodyLotion from '../../images/AntiBiotics/BodyLotion.jpg'
+import HairConditioner from '../../images/AntiBiotics/HairConditioner.jpg'
+import Sanitizer from '../../images/AntiBiotics/Sanitizer.jpg'
+import Moisturizer from '../../images/AntiBiotics/Moisturizer.jpg'
 
 const AntiBiotics = () => {
 

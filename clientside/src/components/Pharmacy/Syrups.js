@@ -1,10 +1,10 @@
 import React from 'react'
 import { syrupData } from '../../functions/syrups'
-import Fever from '../images/Syrups/Fever.jpg'
-import Kids from '../images/Syrups/Kids.jpg'
-import Iodine from '../images/Syrups/Iodine.jpg'
-import NandH from '../images/Syrups/NandH.jpg'
-import Freemotions from '../images/Syrups/Freemotions.jpg'
+import Fever from '../../images/Syrups/Fever.jpg'
+import Kids from '../../images/Syrups/Kids.jpg'
+import Iodine from '../../images/Syrups/Iodine.jpg'
+import NandH from '../../images/Syrups/NandH.jpg'
+import Freemotions from '../../images/Syrups/Freemotions.jpg'
 
 const Syrups = () => {
   const firstFiveImages = syrupData.slice(0, 5);

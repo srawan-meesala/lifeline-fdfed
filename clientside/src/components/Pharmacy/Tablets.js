@@ -1,10 +1,10 @@
 import React from 'react';
 import { tabletData } from '../../functions/tablets';
-import paracetemol from '../images/Tablets/paracetemol.jpg'
-import Dolo from '../images/Tablets/Dolo.jpg'
-import citrogen from '../images/Tablets/citrogen.jpg'
-import Sleepingpills from '../images/Tablets/Sleepingpills.jpg'
-import capsules from '../images/Tablets/capsules.jpg'
+import paracetemol from '../../images/Tablets/paracetemol.jpg'
+import Dolo from '../../images/Tablets/Dolo.jpg'
+import citrogen from '../../images/Tablets/citrogen.jpg'
+import Sleepingpills from '../../images/Tablets/Sleepingpills.jpg'
+import capsules from '../../images/Tablets/capsules.jpg'
 
 const Tablets = () => {
   const firstFiveImages = tabletData.slice(0, 5);

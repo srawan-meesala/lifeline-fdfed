@@ -7,10 +7,10 @@ import { MdLocalPharmacy } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { Link, useParams } from 'react-router-dom';
-import UserDashboard from "../components/UserDashboard";
-import UserAppointments from "../components/UserAppointments";
-import UserProfileShow from "../components/UserProfileShow";
-import UserSettings from "../components/UserSettings";
+import UserDashboard from "../components/UserProfile/UserDashboard";
+import UserAppointments from "../components/UserProfile/UserAppointments";
+import UserProfileShow from "../components/UserProfile/UserProfileShow";
+import UserSettings from "../components/UserProfile/UserSettings";
 
 
 function UserProfile() {
