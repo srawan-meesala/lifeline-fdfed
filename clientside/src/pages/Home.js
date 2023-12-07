@@ -10,6 +10,8 @@ import nahwc from '../images/nahwc.png'
 import appoint from '../images/appoint.png'
 import stays from '../images/stays.png'
 import { useParams } from 'react-router-dom'
+import syringe from '../images/Home/syringe.png'
+import flask from '../images/Home/flask.png'
 
 const Home = () => {
   const {username} = useParams()
@@ -20,14 +22,24 @@ const Home = () => {
         <div className="Home-whole">
           <div className="Home-c1">
             <div className="Home-c1-box">
-              <div className="Home-c1-title">Explore Our All New Pharmacy.</div>
+              <div className="Home-c1-title">convenience meets care.</div>
               <div className="Home-c1-features">
+                Explore the Lifeline Pharmacy.<br />
                 Simple and Easy to Use. <br/>
-                <span>Everything In Your Fingertips.</span><br />
-                Faster Delivery, Always On-time.
+                Everything In Your Fingertips.<br />
+                Faster Delivery, Always On-time.<br />
+                Stay Healthy, Shop Smart.<br />
+                Stay one step ahead with Lifeline because,<br />
+                <span>"Your Health is Our Priority."</span>
               </div>
               <div className="Home-c1-link">
                 <Link to="/pharmacy" target="_self">Explore Pharmacy</Link>
+              </div>
+              <div className="Home-c1-pharm">
+                <img className='Home-c1-pharm-img' src={syringe} alt="syringe" />
+              </div>
+              <div className="Home-c1-pharm2">
+                <img className='Home-c1-pharm1-img' src={flask} alt="syringe" />
               </div>
             </div>
             
