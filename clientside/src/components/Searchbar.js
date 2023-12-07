@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
+import '../styles/Searchbar.css'
 
 const Searchbar = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');

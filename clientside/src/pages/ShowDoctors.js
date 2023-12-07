@@ -51,32 +51,32 @@ const ShowDoctors = () => {
           <p className="searched-for">
             Search results 
           </p>
-          <form action="/" class="filters">
-                <div class="sort">
-                    <label for="sortOrder">Sort order</label>
-                    <select name="sortOrder" id="sortOrder">
-                        <option value="priceAsc">Price &darr;</option>
-                        <option value="priceDesc">Price &uarr;</option>
-                    </select>
-                </div>
-                <div class="spec">
-                    <label for="specialization">Specialization</label>
-                    <select name="specialization" id="specialization">
-                        <option value="cardiology">cardiology</option>
-                        <option value="cardiology">cardiology</option>
-                        <option value="cardiology">cardiology</option>
-                        <option value="cardiology">cardiology</option>
-                        <option value="cardiology">cardiology</option>
-                        <option value="cardiology">cardiology</option>
-                    </select>
-                </div>
-                <div class="exp-sort">
-                    <label for="expSort">Hospital Name</label>
-                    <select name="expSort" id="expSort">
-                        <option value="Ram Prasad Clinic">Ram Prasad Clinic</option>
-                    </select>
-                </div>
-            </form>
+          <form action="/" className="filters">
+              <div className="sort">
+                  <label htmlFor="sortOrder">Sort order</label>
+                  <select name="sortOrder" id="sortOrder">
+                      <option value="priceAsc">Price &darr;</option>
+                      <option value="priceDesc">Price &uarr;</option>
+                  </select>
+              </div>
+              <div className="spec sort">
+                  <label htmlFor="specialization">Specialization</label>
+                  <select name="specialization" id="specialization">
+                      <option value="cardiology">cardiology</option>
+                      <option value="cardiology">cardiology</option>
+                      <option value="cardiology">cardiology</option>
+                      <option value="cardiology">cardiology</option>
+                      <option value="cardiology">cardiology</option>
+                      <option value="cardiology">cardiology</option>
+                  </select>
+              </div>
+              <div className="exp-sort sort">
+                  <label htmlFor="expSort">Hospital Name</label>
+                  <select name="expSort" id="expSort">
+                      <option value="Ram Prasad Clinic">Ram Prasad Clinic</option>
+                  </select>
+              </div>
+          </form>
         </div>
       </div>
       <div className="panels">

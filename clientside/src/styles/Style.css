@@ -1829,8 +1829,8 @@ html {
 
 .ShowDoctors-searchbar{
   display: flex;
-  width: 100%;
-  height: 7rem
+  width: 100vw;
+  height: 7rem;
 }
 
 .ShowDoctors-searchbar-int{
@@ -1861,9 +1861,11 @@ html {
     font-weight: 500;
 }
 .filters{
-    width: 60%;
-    display: flex;
-    justify-content: space-around;
+  width: 80%;
+  margin: 0 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sort{
@@ -1871,27 +1873,10 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 33%;
+  width: 28%;
   height: 80%;
 }
 
-.spec{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 33%;
-  height: 80%;
-}
-
-.exp-sort{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 33%;
-  height: 80%;
-}
 
 .submit-sort{
   display: flex;
