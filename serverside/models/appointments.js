@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const DocRegisters = require('../models/docRegister');
+const HospRegisters = require('./hospRegister');
 
 const AppointSchema = new mongoose.Schema({
     docID: {
@@ -57,6 +58,16 @@ AppointSchema.pre('save', async function (next) {
     try {
         await DocRegisters.findOneAndUpdate(
             { docID: this.docID },
+            { $push: { appointments: this.appointmentID } },
+            { new: true }
+        );
+    } catch (error) {
+        return next(error);
+    }
+
+    try {
+        await HospRegisters.findOneAndUpdate(
+            { hospID: this.hospID },
             { $push: { appointments: this.appointmentID } },
             { new: true }
         );

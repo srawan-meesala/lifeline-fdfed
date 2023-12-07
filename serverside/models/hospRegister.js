@@ -40,7 +40,12 @@ const collection4Schema = new mongoose.Schema({
     },
     password:{
         type:String,
-    }
+    },
+    appointments: [
+        {
+            type: Number,
+        }
+    ],
 })
 
 const HospRegisters = new mongoose.model('collection4',collection4Schema)
