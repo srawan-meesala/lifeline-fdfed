@@ -1,36 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import BlogCard from '../components/BlogCard';
 import { FaRandom } from "react-icons/fa";
+import axios from 'axios';
 
 function Blogs() {
-
-  var data = [
-    {
-      blogID: 1,
-      title: 'Lung Cancer Screening Demystified',
-      docName: 'Charan Kumar',
-      specialization: 'Heptologist'
-    },
-    {
-      blogID: 2,
-      title: 'Alcohol Intolerance: What You Need to Know',
-      docName: 'Murali',
-      specialization: 'Psychologist'
-    },
-    {
-      blogID: 3,
-      title: 'What to Know About the New Covid Variants',
-      docName: 'Sakshi',
-      specialization: 'Heptologist'
-    },
-    {
-      blogID: 4,
-      title: 'What to Know About the New Covid Variants',
-      docName: 'Sakshi',
-      specialization: 'Cardiologist'
-    },
-  ]
+  const [blogs, setBlogs] = useState([]);
+  
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/blogsAPI');
+        setBlogs(response.data);
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
+    };
+    fetchDoctors();
+  }, []);
 
   return (
     <div className='Blogs-whole'>
@@ -45,7 +32,7 @@ function Blogs() {
         <div className='Blogs-content-div'>
           
           <div className='Blogs-slots-1'>
-            {data.map((d) => {
+            {blogs.map((d) => {
               return <BlogCard blogIndex={d.blogID} blogData={d} />
             })}
           </div>
