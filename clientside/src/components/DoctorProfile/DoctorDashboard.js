@@ -6,8 +6,7 @@ const DoctorDashboard = ({ userDetails }) => {
     <div className='DoctorProfile-right'>
         <div className='DoctorProfile-top'>
           <div className='DoctorProfile-dashboard'>
-            <div></div>
-            <div>Welcome {userDetails.name}</div>
+            <div>Welcome, <span>{userDetails.name}</span></div>
           </div>
           <div className='DoctorProfile-user-logo'>
             <div className='DoctorProfile-user-logo-pic'></div>
