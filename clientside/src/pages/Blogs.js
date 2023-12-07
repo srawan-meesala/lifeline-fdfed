@@ -1,38 +1,34 @@
-import React from 'react'
-import { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import BlogCard from '../components/BlogCard';
 import { FaRandom } from "react-icons/fa";
 
 function Blogs() {
-  const navigate = useNavigate();
 
   var data = [
     {
-      id: 1,
+      blogID: 1,
       title: 'Lung Cancer Screening Demystified',
-      author: 'Charan Kumar',
-      prof: 'Heptologist'
+      docName: 'Charan Kumar',
+      specialization: 'Heptologist'
     },
     {
-      id: 2,
+      blogID: 2,
       title: 'Alcohol Intolerance: What You Need to Know',
-      author: 'Dr.Murali',
-      prof: 'Psychologist'
+      docName: 'Murali',
+      specialization: 'Psychologist'
     },
     {
-      id: 3,
+      blogID: 3,
       title: 'What to Know About the New Covid Variants',
-      author: 'Dr.Sakshi',
-      prof: 'Heptologist'
+      docName: 'Sakshi',
+      specialization: 'Heptologist'
     },
     {
-      id: 4,
+      blogID: 4,
       title: 'What to Know About the New Covid Variants',
-      author: 'Dr.Sakshi',
-      prof: 'Cardiologist'
+      docName: 'Sakshi',
+      specialization: 'Cardiologist'
     },
   ]
 
@@ -49,8 +45,8 @@ function Blogs() {
           <div className='Blogs-content-div'>
             
               <div className='Blogs-slots-1'>
-                {data.map(d => {
-                    <BlogCard blogData={d} />
+                {data.map((d) => {
+                  return <BlogCard blogIndex={d.blogID} blogData={d} />
                 })}
               </div>
             

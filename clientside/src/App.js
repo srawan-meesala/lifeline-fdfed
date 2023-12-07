@@ -24,7 +24,7 @@ import HospitalProfile from './pages/HospitalProfile';
 import PharmacyPage from './pages/PharmacyPage';
 import UserProfile from './pages/UserProfile';
 import BookedAppointments from './components/BookedAppointments';
-import Thankyou from './pages/Thankyou';
+import Thankyou from './pages/Misc/Thankyou';
 import Sent from './pages/Sent';
 import BlogComplete from './pages/BlogComplete';
 import Cart from './pages/Cart';
@@ -32,6 +32,7 @@ import Admin from './pages/Admin'
 import OrganDonation from './pages/OrganDonation';
 import ODThankyou from './pages/ODThankyou';
 import PleaseVerify from './pages/Misc/PleaseVerify';
+
 function App() {
   return (
     <div className='app'>
@@ -68,7 +69,6 @@ function App() {
           <Route path="/OrganDonation" element={<OrganDonation/>}/>
           <Route path="/ODThankyou" element={<ODThankyou/>}/>
           <Route path="/verifynow" element={<PleaseVerify/>}/>
-
         </Routes>
       </Router>
       
