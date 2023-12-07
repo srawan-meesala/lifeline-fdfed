@@ -13,22 +13,37 @@ const OrganDonation = () => {
     const [donation, setDonation] = useState('full body')
     const [particular, setParticular] = useState('Invalid')
     const [past, setPast] = useState('')
+    const [isValidAadhaar, setIsValidAadhaar] = useState(true);
+
+
+
+    const handleAadhaarChange = (e) => {
+      const inputAadhaar = e.target.value;
+      setAadhaar(inputAadhaar);
+      const isValid = /^\d{12}$/.test(inputAadhaar);
+      setIsValidAadhaar(isValid);
+    };
 
     async function submitHandler(e) {
         e.preventDefault();
-        try {
-          const response = await axios.post('http://localhost:8000/organDonation', {
-            username, name, aadhaar, gender, donation, particular, past
-          });
-    
-          if (response.data === 'exist') {
-            alert('Registered already.Cannot register again');
-          } else if(response.status === 200) {
-            navigate(`/odthankyou/${username}`)
+        if (!isValidAadhaar) {
+          alert("Invalid Aadhar card. Please enter a valid 12-digit Aadhar card number.");  
+        }
+        else{
+          try {
+            const response = await axios.post('http://localhost:8000/organDonation', {
+              username, name, aadhaar, gender, donation, particular, past
+            });
+      
+            if (response.data === 'exist') {
+              alert('Registered already.Cannot register again');
+            } else if(response.status === 200) {
+              navigate(`/odthankyou/${username}`)
+            }
+          } catch (error) {
+            alert('Wrong details');
+            console.error(error);
           }
-        } catch (error) {
-          alert('Wrong details');
-          console.error(error);
         }
       }
 
@@ -40,10 +55,10 @@ const OrganDonation = () => {
             <div className='OrganDonation-whole-int-body'>
                 <form onSubmit={submitHandler} className='OrganDonation-whole-int-body-form' method='post' action='/organDonation'>
                     <div className='OrganDonation-whole-int-body-form-upper'>
-                        <label className='OrganDonation-label'>Name:</label>
+                        <label className='OrganDonation-label' required>Name:</label>
                         <input onChange={(e)=>setName(e.target.value)} type='text' className='OrganDonation-input-name'></input>
                         <label className='OrganDonation-label'>Aadhar number:</label>
-                        <input onChange={(e)=>setAadhaar(e.target.value)} type='number' className='OrganDonation-input-aadhar'></input>
+                        <input type='number' className='OrganDonation-input-aadhar'  value={aadhaar} onChange={handleAadhaarChange}></input>
                         <label className='OrganDonation-label'>Gender:</label>
                         <select onChange={(e)=>setGender(e.target.value)} className='OrganDonation-select'>
                             <option value='male'>Male</option>

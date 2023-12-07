@@ -26,7 +26,6 @@ const ODSchema = new mongoose.Schema({
     },
     past:{
         type:String,
-        required:true
     }
 })
 
