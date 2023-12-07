@@ -2086,11 +2086,14 @@ html {
 }
 
 .DoctorProfile-dashboard{
-  width: 25%;
+  width: 35%;
   font-size: 30px;
   font-weight: 600;
-  display: flex;
-  justify-content: center;
+  margin-left: 3rem;
+}
+
+.DoctorProfile-dashboard span {
+  font-weight: 400;
 }
 
 .DoctorProfile-user-logo{
