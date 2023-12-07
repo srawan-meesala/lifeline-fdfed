@@ -29,6 +29,8 @@ import Sent from './pages/Sent';
 import BlogComplete from './pages/BlogComplete';
 import Cart from './pages/Cart';
 import Admin from './pages/Admin'
+import OrganDonation from './pages/OrganDonation';
+import ODThankyou from './pages/ODThankyou';
 function App() {
   return (
     <div className='app'>
@@ -61,7 +63,10 @@ function App() {
           <Route path="/thankyou/:username" element={<Thankyou/>}/>
           <Route path="/sent" element={<Sent/>}/>
           <Route path="/cart" element={<Cart/>}/>
-          <Route path="/admin" element={<Admin />}/>
+          <Route path="/admin" element={<Admin/>}/>
+          <Route path="/OrganDonation" element={<OrganDonation/>}/>
+          <Route path="/ODThankyou" element={<ODThankyou/>}/>
+
         </Routes>
       </Router>
       

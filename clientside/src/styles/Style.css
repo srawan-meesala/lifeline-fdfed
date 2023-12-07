@@ -724,6 +724,7 @@ html {
   font-weight: 400;
 }
 
+
 .UserProfile-cards{
   width: 100%;
   height: 30%;
@@ -1200,11 +1201,6 @@ html {
   font-size: 16px;
   font-weight: 500;
 }
-  /* overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .PatientLogin-logo{
   position: absolute;
@@ -2940,7 +2936,7 @@ html {
     z-index: 0;
     scale: 1.2;
 }
-.Thanjyou-background svg{
+.Thankyou-background svg{
     width: 100%;
     height: 100%;
 }

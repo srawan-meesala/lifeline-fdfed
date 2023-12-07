@@ -1,0 +1,90 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap'); 
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'poppins',sans-serif;
+}
+.ODThankyou-containerr{
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.ODThankyou-logo{
+    width: 80%;
+    font-weight: 600;
+    font-size: 3rem;
+    color: white;
+    margin: 2rem;
+}
+.ODThankyou-content{
+    width: 90%;
+    height: 30%;
+    margin-top: 8%;
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;    
+}
+.ODThankyou-btn-home{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ODThankyou-btn-home button{
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #023040;
+    border: 1px solid #023040;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+.ODThankyou-btn-home button:hover{
+    background-color: #fff;
+    color: #023040;
+}
+.ODThankyou-btn-home button:hover a{
+    transition: 0.2s;
+    color: #023040;
+}
+.ODThankyou-btn-home button a{
+    color: #fff;
+    text-decoration: none;
+}
+.ODThankyou-btn-go-back {
+    color: white;
+}
+.ODThankyou-btn-go-back:hover {
+    color: #023040;
+}
+.ODThankyou-new-btn-hello{
+    color: #fff;
+}
+.ODThankyou-new-btn-hello:hover{
+    color: #023040;
+}
+/* Background styles */
+
+.ODThankyou-background{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 0;
+    scale: 1.2;
+}
+.ODThankyou-background svg{
+    width: 100%;
+    height: 100%;
+}
