@@ -3,8 +3,14 @@ import Medicines from '../pages/Medicines'
 import '../styles/Pharmacy.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { useParams } from 'react-router-dom'
 
 const PharmacyPage = () => {
+
+  const username = useParams()
+
+  
+
   return (
     <div className='Pharmacy-whole'>
       <Navbar title={'Pharmacy'}/>

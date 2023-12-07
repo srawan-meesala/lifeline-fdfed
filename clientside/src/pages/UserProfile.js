@@ -8,12 +8,11 @@ import { MdLocalPharmacy } from "react-icons/md";
 import { BiRupee } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 function UserProfile() {
   const {username} = useParams()
-  const location = useLocation()
   const [userDetails,setUserDetails]=useState({})
 
   useEffect(()=>{
@@ -56,7 +55,7 @@ function UserProfile() {
               <div className='UserProfile-func'>Doctors</div>
             </div>
             <div className='UserProfile-func-parts'>
-              <Link className="UserProfile-func-parts-link">
+              <Link to='/pharmacy' className="UserProfile-func-parts-link">
                 <div className='UserProfile-icon'><MdLocalPharmacy/></div>
                 <div className='UserProfile-func'>Pharmacy</div>
               </Link>
@@ -81,8 +80,7 @@ function UserProfile() {
       <div className='UserProfile-right'>
       <div className='UserProfile-top'>
         <div className='UserProfile-dashboard'>
-          <div></div>
-          <div>Welcome {userDetails.firstName}</div>
+          <div>Welcome, <span>{userDetails.firstName}</span></div>
         </div>
         <div className='UserProfile-user-logo'>
           <div className='UserProfile-user-logo-pic'><FaUserCircle/></div>

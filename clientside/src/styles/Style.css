@@ -623,6 +623,7 @@ html {
   margin-left: 20px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .UserProfile-logout-part{
@@ -632,10 +633,13 @@ html {
   margin-right: 45px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .UserProfile-func-parts-link {
-  
+  display: flex;
+  color: #000;
+  width: 100%;
 }
 
 .UserProfile-func-parts:hover{
@@ -708,11 +712,15 @@ html {
 }
 
 .UserProfile-dashboard{
-  width: 25%;
-  font-size: 30px;
+  width: 35%;
+  padding-left: 3rem;
+  font-size: 28px;
   font-weight: 600;
   display: flex;
-  justify-content: center;
+}
+
+.UserProfile-dashboard span {
+  font-weight: 400;
 }
 
 .UserProfile-user-logo{
@@ -726,8 +734,9 @@ html {
 }
 
 .UserProfile-user-logo-pic:hover{
-  font-size: 32px;
+  font-size: 30px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .UserProfile-cards{
@@ -847,14 +856,14 @@ html {
 }
 
 .UserProfile-booked-appointments-int-div-head-top{
-  padding: 5px;
+  padding: 10px;
   font-size: 25px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .UserProfile-booked-appointments-int-div-head-bottom{
-  padding: 5px;
+  padding: 10px;
   padding-bottom: 0;
   font-size: 20px;
   font-weight: 400;
