@@ -16,7 +16,7 @@ import HospitalDoctors from "../components/HospitalProfile/HospitalDoctors";
 
 function HospitalProfile() {
   const [choose, setChoose] = useState(1)
-  const {username} = useParams()
+  const {hospID} = useParams()
   const [userDetails,setUserDetails]=useState({})
 
   const DashboardOpener = () => setChoose(1)
@@ -26,13 +26,25 @@ function HospitalProfile() {
   const SettingsOpener = () => setChoose(5)
 
   const [appointments, setAppointments] = useState([])
+  const [doctors, setDoctors] = useState([])
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/AppointmentsAPI2/${userDetails.hospID}`);
+        const response = await axios.get(`http://localhost:8000/AppointmentsAPI2/${hospID}`);
         setAppointments(Array.isArray(response.data) ? response.data : []);
-        console.log(appointments);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+    fetchAppointments();
+  }, [userDetails.hospID]);
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/DoctorsAPI2/${hospID}`);
+        setDoctors(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching blogs:', error);
       }
@@ -43,7 +55,7 @@ function HospitalProfile() {
   useEffect(()=>{
     async function fetchData(){
       try{
-        const response = await axios.get(`http://localhost:8000/getHospDetails/${username}`);
+        const response = await axios.get(`http://localhost:8000/getHospDetails/${hospID}`);
         if(response.status === 200){
           setUserDetails(response.data)
         }
@@ -56,7 +68,7 @@ function HospitalProfile() {
       }
     }
     fetchData()
-  },[username])
+  },[hospID])
 
   return (
     <div className='HospitalProfile-whole'>
@@ -99,10 +111,10 @@ function HospitalProfile() {
         <HospitalDashboard userDetails={userDetails} />
       )}
       {choose===2 && (
-        <HospitalAppointments userDetails={userDetails} />
+        <HospitalAppointments userDetails={userDetails} appointments={appointments}/>
       )}
       {choose===3 && (
-        <HospitalDoctors userDetails={userDetails} />
+        <HospitalDoctors userDetails={userDetails} doctors={doctors}/>
       )}
       {choose===4 && (
         <HospitalProfileShow userDetails={userDetails} />

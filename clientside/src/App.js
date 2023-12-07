@@ -57,7 +57,7 @@ function App() {
           <Route path="/bookAppointment/:docID" element={<BookAppointment />} />
           <Route path="/showDoctors" element={<ShowDoctors />} />
           <Route path='/docProfile/:username' element={<DoctorProfile />} />
-          <Route path='/hospProfile/:username' element={<HospitalProfile />} />
+          <Route path='/hospProfile/:hospID' element={<HospitalProfile />} />
           <Route path='/pharmacy' element={<PharmacyPage />} />
           <Route path="/userProfile/:username" element={<UserProfile />} />
           <Route path="/bookedappointments" element={<BookedAppointments />} />
