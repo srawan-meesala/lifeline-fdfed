@@ -5,8 +5,8 @@ const cartSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    items: {
-        item: {
+    items: [
+        {
             title: {
                 type:String,
                 required:true
@@ -20,7 +20,7 @@ const cartSchema = new mongoose.Schema({
                 required:true
             }
         }
-    }
+    ]
 })
 
 const PharmacyCart = new mongoose.model('pharmacycart',cartSchema)

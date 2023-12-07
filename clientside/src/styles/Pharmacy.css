@@ -54,9 +54,15 @@
 }
 
 .btn{
-    font-size: 15px;
-    text-align: center;
-    background-color: #360568;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #111;
+    transition: .5s;
+    border: none;
+    cursor: pointer;
 }
 
 
@@ -265,4 +271,8 @@
 .submenu ul li{
     list-style: none;
     margin: 5px;
+}
+
+.disappear {
+    display: none;
 }

@@ -28,7 +28,7 @@ export const equipmentData = [
         "Medicine": "equipment",
         "image": "/Equipment/Personal Protective Equipment.jpg", // External URL
         "price": "100.00",
-        "name": "Personal Protective Equipment"
+        "name": "PPE Kit"
       },
 
       {
@@ -36,7 +36,7 @@ export const equipmentData = [
         "Medicine": "equipment",
         "image": "/Equipment/Surgical kit.jpg", // External URL
         "price": "30.00",
-        "name": "Surgical kit"
+        "name": "Surgical Kit"
       },
       
       

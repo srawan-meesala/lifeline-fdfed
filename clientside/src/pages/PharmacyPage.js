@@ -9,8 +9,6 @@ const PharmacyPage = () => {
 
   const username = useParams()
 
-  
-
   return (
     <div className='Pharmacy-whole'>
       <Navbar title={'Pharmacy'}/>

@@ -13,70 +13,36 @@ const Equipment = () => {
 
     return (
         <div className='container'>
-          <div className='card'>
-              <div className='imgBx'>
-                  <img src={Thermometer} alt="" />
-              </div>
-              <div className="contentBx">
-                  <h2>Thermometer</h2>
+          {firstFiveImages.map((item, index) => {
+            return (
+              <div className='card' key={index}>
+                <div className='imgBx'>
+                  {item.name === 'Thermometer' && (
+                    <img src={Thermometer} alt="" />
+                  )}
+                  {item.name === 'BP Checker' && (
+                    <img src={BPChecker} alt="" />
+                  )}
+                  {item.name === 'PPE Kit' && (
+                    <img src={PPE} alt="" />
+                  )}
+                  {item.name === 'Surgical Kit' && (
+                    <img src={SurgicalKit} alt="" />
+                  )}
+                  {item.name === 'Sthethoscope' && (
+                    <img src={Sthethoscope} alt="" />
+                  )}
+                </div>
+                <div className="contentBx">
+                  <h2>{item.name}</h2>
                   <div className="name">
-                  <h3>Rs. 100</h3>
+                    <h3>Rs. {item.price}</h3>
                   </div>
-                  <a href="#" className='btn'>Add to Cart</a>
+                  <button className='btn'>Add to Cart</button>
+                </div>
               </div>
-          </div>
-
-          <div className='card'>
-              <div className='imgBx'>
-                  <img src={Sthethoscope} alt="" />
-              </div>
-              <div className="contentBx">
-                  <h2>Sthethoscope</h2>
-                  <div className="name">
-                  <h3>Rs. 1000</h3>
-                  </div>
-                  <a href="#" className='btn'>Add to Cart</a>
-              </div>
-          </div>
-
-          <div className='card'>
-              <div className='imgBx'>
-                  <img src={PPE} alt="" />
-              </div>
-              <div className="contentBx">
-                  <h2>PPE Kit</h2>
-                  <div className="name">
-                  <h3>Rs. 500</h3>
-                  </div>
-                  <a href="#" className='btn'>Add to Cart</a>
-              </div>
-          </div>
-
-          <div className='card'>
-              <div className='imgBx'>
-                  <img src={BPChecker} alt="" />
-              </div>
-              <div className="contentBx">
-                  <h2>BP Checker</h2>
-                  <div className="name">
-                  <h3>Rs. 1500</h3>
-                  </div>
-                  <a href="#" className='btn'>Add to Cart</a>
-              </div>
-          </div>
-
-          <div className='card'>
-              <div className='imgBx'>
-                  <img src={SurgicalKit} alt="" />
-              </div>
-              <div className="contentBx">
-                  <h2>Surgical Kit</h2>
-                  <div className="name">
-                  <h3>Rs. 2500</h3>
-                  </div>
-                  <a href="#" className='btn'>Add to Cart</a>
-              </div>
-          </div>
+            );
+          })}
         </div>
     );
 };
