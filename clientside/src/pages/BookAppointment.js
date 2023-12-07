@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar'
 function BookAppointment() {
   const {state} = useLocation()
   const fee = state ? state.fee : null
-  const fees = parseInt(1.1)*fee
+  const fees = parseInt((1.1)*fee)
   const navigate = useNavigate()
     const [patientName,setPatientName] = useState('')
     const [date,setDate] = useState('')

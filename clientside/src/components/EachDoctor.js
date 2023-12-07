@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 
 function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city,docID }) {
   const navigate = useNavigate();
-
+  
   const handleBookAppointment = () =>{
     navigate(`/BookAppointment/${docID}`,{state:{fee}})
   }
