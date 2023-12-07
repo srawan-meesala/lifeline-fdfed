@@ -17,13 +17,13 @@ function EachDoctor({ name, mobileNumber, hospName, specialization, fee, city,do
       </div>
       <div className="body-panel">
         <div className="head-body">
-          <p className="name-dr">{name}</p>
+          <p className="name-dr">Dr. {name}</p>
           <p className="name-hosp">{hospName}</p>
         </div>
         <div className="bio-body">
-          <p className="spec">Specialised in <span>{specialization}</span></p>
+          <p className="spec">Specialized as <span>{specialization}</span></p>
           <p className="city">Practicing in <span>{city}</span></p>
-          <p className="ll-exp">Appointment Fee <span>{fee}</span></p>
+          <p className="ll-exp">Appointment Fee - <span>Rs. {fee}</span></p>
         </div>
         <div className="contact-body">
           <button className="number-panel">
