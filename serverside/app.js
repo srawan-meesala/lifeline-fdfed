@@ -344,6 +344,17 @@ app.get('/blogsAPI/:docID', async (req, res) => {
   }
 });
 
+app.get('/AppointmentsAPI/:docID', async (req, res) => {
+  const {docID} = req.params
+  try {
+    const appointments = await Appointments.find({docID:docID});
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.post('/searchDoctors', async (req, res) => {
   try {
     const { name } = req.body;
@@ -366,6 +377,7 @@ app.post('/bookAppointment', async (req, res) => {
   try {
     const newAppointment = new Appointments({
       docID:docID,
+      docName:doc.name,
       hospID:hospID,
       Username:username,
       PatientName:patientName,

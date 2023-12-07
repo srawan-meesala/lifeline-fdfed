@@ -35,20 +35,20 @@ const DoctorBlogs = ({ userDetails }) => {
       <div className='UserProfile-appointments'>
         <div className='UserProfile-appointments-title'>Your Blogs</div>
         <div className='UserProfile-appointments-cards'>
-          {blogs.length === 0 ? (
-            <p>No blogs uploaded.</p>
-          ) : (
-            blogs.map((blog) => (
-              <div key={blog.id} className='UserProfile-appointments-card'>
-                <div className='UserProfile-appointments-card-name'>
-                  Blog Title: <span>{blog.title}</span>
+            {blogs.length === 0 ? (
+                <p>No blogs uploaded.</p>
+            ) : (
+                blogs.map((blog) => (
+                <div key={blog.id} className='UserProfile-appointments-card'>
+                    <div className='UserProfile-appointments-card-name'>
+                    Blog Title: <span>{blog.title}</span>
+                    </div>
+                    <div className='UserProfile-appointments-card-name'>
+                    Published Date: <span>{ConvertDate(blog.createdAt)}</span>
+                    </div>
                 </div>
-                <div className='UserProfile-appointments-card-name'>
-                  Published Date: <span>{ConvertDate(blog.createdAt)}</span>
-                </div>
-              </div>
-            ))
-          )}
+                ))
+            )}
         </div>
       </div>
       <div className='DoctorProfile-blog-add'>

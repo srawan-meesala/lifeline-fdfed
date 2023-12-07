@@ -7,6 +7,9 @@ const AppointSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    docName: {
+        type: String,
+    },
     hospID: {
         type: String,
         required: true
