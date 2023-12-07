@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from './pages/Landing';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import AboutUs from './pages/AboutUs';
+import AboutUs from './pages/Misc/AboutUs';
 import PatientRegister from './pages/PatientRegister';
 import PatientRegister2 from './pages/PatientRegister2';
 import EmailVerificationPatient from './pages/EmailVerificationPatient';
@@ -38,40 +38,40 @@ function App() {
     <div className='app'>
       <Router>
         <Routes>
-          <Route path="/" element={<Landing/>}/>
-          <Route path="/home/:username" element={<Home/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/about" element={<AboutUs/>}/>
-          <Route path="/patientRegister" element={<PatientRegister/>}/>
-          <Route path="/verifypatient/:verificationToken" element={<EmailVerificationPatient/>}/>
-          <Route path="/patientRegister2/:verificationToken" element={<PatientRegister2/>}/>
-          <Route path="/hospRegister" element={<HospRegister/>}/>
-          <Route path="/verifyhospital/:verificationToken" element={<EmailVerificationHosp/>}/>
-          <Route path="/hospRegister2/:verificationToken" element={<HospRegister2/>}/>
-          <Route path="/docRegister" element={<DocRegister/>}/>
-          <Route path="/verifydoctor/:verificationToken" element={<EmailVerificationDoc/>}/>
-          <Route path="/docRegister2/:verificationToken" element={<DocRegister2/>}/>
-          <Route path="/blogs" element={<Blogs/>}/>
-          <Route path="/blogComplete" element={<BlogComplete/>}/>
-          <Route path="/blogform" element={<BlogForm/>}/>
-          <Route path="/blogcomplete" element={<BlogComplete/>}/>
-          <Route path="/bookAppointment/:docID" element={<BookAppointment/>}/>
-          <Route path="/showDoctors" element={<ShowDoctors/>}/>
-          <Route path='/docProfile/:username' element={<DoctorProfile/>}/>
-          <Route path='/hospProfile/:username' element={<HospitalProfile/>}/>
-          <Route path='/pharmacy' element={<PharmacyPage/>}/>
-          <Route path="/userProfile/:username" element={<UserProfile/>}/>
-          <Route path="/bookedappointments" element={<BookedAppointments/>}/>
-          <Route path="/thankyou/:username" element={<Thankyou/>}/>
-          <Route path="/sent" element={<Sent/>}/>
-          <Route path="/cart" element={<Cart/>}/>
-          <Route path="/admin" element={<Admin/>}/>
-          <Route path="/OrganDonation" element={<OrganDonation/>}/>
-          <Route path="/ODThankyou" element={<ODThankyou/>}/>
-          <Route path="/verifynow" element={<PleaseVerify/>}/>
+          <Route path="/" element={<Landing />} />
+          <Route path="/home/:username" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/patientRegister" element={<PatientRegister />} />
+          <Route path="/verifypatient/:verificationToken" element={<EmailVerificationPatient />} />
+          <Route path="/patientRegister2/:verificationToken" element={<PatientRegister2 />} />
+          <Route path="/hospRegister" element={<HospRegister />} />
+          <Route path="/verifyhospital/:verificationToken" element={<EmailVerificationHosp />} />
+          <Route path="/hospRegister2/:verificationToken" element={<HospRegister2 />} />
+          <Route path="/docRegister" element={<DocRegister />} />
+          <Route path="/verifydoctor/:verificationToken" element={<EmailVerificationDoc />} />
+          <Route path="/docRegister2/:verificationToken" element={<DocRegister2 />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogComplete" element={<BlogComplete />} />
+          <Route path="/blogform" element={<BlogForm />} />
+          <Route path="/blogcomplete" element={<BlogComplete />} />
+          <Route path="/bookAppointment/:docID" element={<BookAppointment />} />
+          <Route path="/showDoctors" element={<ShowDoctors />} />
+          <Route path='/docProfile/:username' element={<DoctorProfile />} />
+          <Route path='/hospProfile/:username' element={<HospitalProfile />} />
+          <Route path='/pharmacy' element={<PharmacyPage />} />
+          <Route path="/userProfile/:username" element={<UserProfile />} />
+          <Route path="/bookedappointments" element={<BookedAppointments />} />
+          <Route path="/thankyou/:username" element={<Thankyou />} />
+          <Route path="/sent" element={<Sent />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/OrganDonation" element={<OrganDonation />} />
+          <Route path="/ODThankyou" element={<ODThankyou />} />
+          <Route path="/verifynow" element={<PleaseVerify />} />
         </Routes>
       </Router>
-      
+
     </div>
   );
 }

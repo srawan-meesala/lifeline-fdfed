@@ -1,5 +1,5 @@
 import React from 'react'
-import { antibioticData } from '../functions/antibiotics'
+import { antibioticData } from '../../functions/antibiotics'
 import AntibioticSoap from '../images/AntiBiotics/AntibioticSoap.jpg'
 import BodyLotion from '../images/AntiBiotics/BodyLotion.jpg'
 import HairConditioner from '../images/AntiBiotics/HairConditioner.jpg'
@@ -8,11 +8,11 @@ import Moisturizer from '../images/AntiBiotics/Moisturizer.jpg'
 
 const AntiBiotics = () => {
 
-    const firstFiveImages = antibioticData.slice(0,5)
+  const firstFiveImages = antibioticData.slice(0, 5)
 
-    console.log(antibioticData)
-    return (
-      <div className='container'>
+  console.log(antibioticData)
+  return (
+    <div className='container'>
       {firstFiveImages.map((item, index) => {
         return (
           <div className='card' key={index}>
@@ -44,7 +44,7 @@ const AntiBiotics = () => {
         );
       })}
     </div>
-      );
-} 
+  );
+}
 
 export default AntiBiotics;

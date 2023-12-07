@@ -7,7 +7,7 @@ import Equipment from './Equipment';
 
 const Medicines = () => {
     return (
-        
+
         <div>
             <div className='Medicines'>Tablets</div>
             <Tablets />
@@ -20,8 +20,8 @@ const Medicines = () => {
             <div className='Medicines'>Equipment</div>
             <Equipment />
         </div>
-        
+
     )
-} 
+}
 
 export default Medicines;

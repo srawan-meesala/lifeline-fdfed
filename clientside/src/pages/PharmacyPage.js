@@ -1,5 +1,5 @@
 import React from 'react'
-import Medicines from '../pages/Medicines'
+import Medicines from '../components/Pharmacy/Medicines'
 import '../styles/Pharmacy.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -11,9 +11,9 @@ const PharmacyPage = () => {
 
   return (
     <div className='Pharmacy-whole'>
-      <Navbar title={'Pharmacy'}/>
+      <Navbar title={'Pharmacy'} />
       <Medicines />
-      <Footer/>
+      <Footer />
     </div>
   )
 }
