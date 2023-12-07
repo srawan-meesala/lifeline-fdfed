@@ -356,6 +356,17 @@ app.get('/AppointmentsAPI/:docID', async (req, res) => {
   }
 });
 
+app.get('/AppointmentsAPI2/:hospID', async (req, res) => {
+  const {hospID} = req.params
+  try {
+    const appointments = await Appointments.find({hospID:hospID});
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.get('/AppointmentsAPI/dateanddocid', async (req, res) => {
   const {docID, date} = req.params
   try {
@@ -446,6 +457,17 @@ app.get('/blogdata',async(req,res)=>{
     res.status(500).json('Internal Server Error');
   }
 })
+
+app.get('/DoctorsAPI2/:hospID', async (req, res) => {
+  const {hospID} = req.params
+  try {
+    const doctors = await DocRegisters.find({hospID:hospID});
+    res.json(doctors);
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 app.post('/organDonation', async (req, res) => {
   const {username, name, aadhaar, gender, donation, particular, past} = req.body
