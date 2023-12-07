@@ -6,7 +6,6 @@ import Footer from '../components/Footer'
 
 const PharmacyPage = () => {
   return (
-    
     <div className='Pharmacy-whole'>
       <Navbar title={'Pharmacy'}/>
       <Medicines />

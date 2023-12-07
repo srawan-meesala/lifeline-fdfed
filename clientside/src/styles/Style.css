@@ -586,7 +586,7 @@ html {
 
 .UserProfile-logo {
   height: 10%;
-  font-size: 35px;
+  font-size: 28px;
   font-weight: 500;
   display: flex;
   justify-content: center;
@@ -634,6 +634,9 @@ html {
   align-items: center;
 }
 
+.UserProfile-func-parts-link {
+  
+}
 
 .UserProfile-func-parts:hover{
   background-color: #a1e4f5;
@@ -1777,6 +1780,7 @@ html {
 .spec{
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 33%;
   height: 80%;
@@ -2248,8 +2252,9 @@ html {
 .AboutUs-Part-1{
   margin-top: 50px;
   display: flex;
-  width: 100%;
-  height: 95vh;
+  width: 90%;
+  margin: 5% 5%;
+  height: 75vh;
   padding: 20px;
 }
 
@@ -2262,7 +2267,7 @@ html {
 
 .AboutUs-Part-1-img-int{
   width: 90%;
-  height: 75%;
+  height: 65%;
   border-radius: 10px;
 }
 
@@ -2276,13 +2281,14 @@ html {
 .AboutUs-Part-1-info-data{
   height: 50%;
   margin-bottom: 90px;
-  font-size: 29px;
+  font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .AboutUs-Part-2{
   display: flex;
-  width: 100%;
+  width: 90%;
+  margin: 5%;
   height: 95vh;
   padding: 20px;
 }
@@ -2296,7 +2302,7 @@ html {
 
 .AboutUs-Part-2-img-int{
   width: 90%;
-  height: 75%;
+  height: 65%;
   border-radius: 15px;
   margin-bottom: 150px;
   margin-left: 70px;
@@ -2314,7 +2320,7 @@ html {
 .AboutUs-Part-2-info-data{
   height: 50%;
   margin-bottom: 180px;
-  font-size: 28px;
+  font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
 }
 

@@ -47,15 +47,13 @@ const ShowDoctors = () => {
                 <div class="sort">
                     <label for="sortOrder">Sort order</label>
                     <select name="sortOrder" id="sortOrder">
-                        <option value="asc">A-Z</option>
-                        <option value="desc">Z-A</option>
                         <option value="priceAsc">Price &darr;</option>
                         <option value="priceDesc">Price &uarr;</option>
                     </select>
                 </div>
                 <div class="spec">
-                    <label for="specialisation">Specialisation</label>
-                    <select name="specialisation" id="specialisation">
+                    <label for="specialization">Specialization</label>
+                    <select name="specialization" id="specialization">
                         <option value="cardiology">cardiology</option>
                         <option value="cardiology">cardiology</option>
                         <option value="cardiology">cardiology</option>
@@ -65,11 +63,9 @@ const ShowDoctors = () => {
                     </select>
                 </div>
                 <div class="exp-sort">
-                    <label for="expSort">Experience</label>
+                    <label for="expSort">Hospital Name</label>
                     <select name="expSort" id="expSort">
-                        <option value="<5">5 years or less</option>
-                        <option value="5-10">5-10 years</option>
-                        <option value=">10">10 years or more</option>
+                        <option value="Ram Prasad Clinic">Ram Prasad Clinic</option>
                     </select>
                 </div>
             </form>

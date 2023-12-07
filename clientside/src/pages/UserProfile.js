@@ -8,7 +8,7 @@ import { MdLocalPharmacy } from "react-icons/md";
 import { BiRupee } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 
 function UserProfile() {
@@ -56,8 +56,10 @@ function UserProfile() {
               <div className='UserProfile-func'>Doctors</div>
             </div>
             <div className='UserProfile-func-parts'>
-              <div className='UserProfile-icon'><MdLocalPharmacy/></div>
-              <div className='UserProfile-func'>Pharmacy</div>
+              <Link className="UserProfile-func-parts-link">
+                <div className='UserProfile-icon'><MdLocalPharmacy/></div>
+                <div className='UserProfile-func'>Pharmacy</div>
+              </Link>
             </div>
             <div className='UserProfile-func-parts'>
               <div className='UserProfile-icon'><BiRupee/></div>

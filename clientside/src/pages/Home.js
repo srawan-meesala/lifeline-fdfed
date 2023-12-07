@@ -27,7 +27,7 @@ const Home = () => {
                 Faster Delivery, Always On-time.
               </div>
               <div className="Home-c1-link">
-                <Link to="/" target="_self">Explore Pharmacy</Link>
+                <Link to="/pharmacy" target="_self">Explore Pharmacy</Link>
               </div>
             </div>
             

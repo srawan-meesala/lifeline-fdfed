@@ -11,9 +11,9 @@ function Navbar({title, username}) {
         <ul>
           <li><Link to={`/home/${username}`}>Home</Link></li>
           <li><Link to={`/userProfile/${username}`}>Dashboard</Link></li>
-          <li><Link to='/Blogs'>Blogs</Link></li>
-          <li><Link to='/AboutUs'>About us</Link></li>
-          <li><Link to='/Logout'>Logout</Link></li>
+          <li><Link to='/blogs'>Blogs</Link></li>
+          <li><Link to='/about'>About us</Link></li>
+          <li><Link to='/'>Logout</Link></li>
         </ul>
       </div>
     </div>
