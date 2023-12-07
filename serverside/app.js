@@ -360,6 +360,16 @@ app.post('/bookAppointment', async (req, res) => {
   }
 });
 
+app.get('/blogsAPI', async (req, res) => {
+  try {
+    const blogs = await Blogs.find();
+    res.json(blogs);
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.post('/uploadBlog',async(req,res)=> {
     const {docID,title,blog} = req.body
     const doc = await DocRegisters.findOne({docID})
@@ -377,7 +387,7 @@ app.post('/uploadBlog',async(req,res)=> {
       await newBlog.save();
       res.status(200).json({status: 'uploaded'});
     }
-    catch(e){
+    catch(error){
       console.log(error)
       res.status(500).json('Internal Server Error');
     }
