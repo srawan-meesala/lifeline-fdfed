@@ -51,18 +51,14 @@ function UserProfile() {
               <div className='UserProfile-func'>Appointments</div>
             </div>
             <div className='UserProfile-func-parts'>
-              <div className='UserProfile-icon'><FaUserDoctor/></div>
-              <div className='UserProfile-func'>Doctors</div>
+              <div className='UserProfile-icon'><FaUserCircle/></div>
+              <div className='UserProfile-func'>Profile</div>
             </div>
             <div className='UserProfile-func-parts'>
               <Link to='/pharmacy' className="UserProfile-func-parts-link">
                 <div className='UserProfile-icon'><MdLocalPharmacy/></div>
                 <div className='UserProfile-func'>Pharmacy</div>
               </Link>
-            </div>
-            <div className='UserProfile-func-parts'>
-              <div className='UserProfile-icon'><BiRupee/></div>
-              <div className='UserProfile-func'>Transactions</div>
             </div>
             <div className='UserProfile-func-parts'>
               <div className='UserProfile-icon'><IoSettingsSharp/></div>
@@ -81,10 +77,6 @@ function UserProfile() {
       <div className='UserProfile-top'>
         <div className='UserProfile-dashboard'>
           <div>Welcome, <span>{userDetails.firstName}</span></div>
-        </div>
-        <div className='UserProfile-user-logo'>
-          <div className='UserProfile-user-logo-pic'><FaUserCircle/></div>
-          <div></div>
         </div>
       </div>
       <div className='UserProfile-cards'>
