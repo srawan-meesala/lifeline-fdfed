@@ -724,22 +724,6 @@ html {
   font-weight: 400;
 }
 
-.UserProfile-user-logo{
-  width: 20%;
-  height: 100%;
-  font-size: 30px;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.UserProfile-user-logo-pic:hover{
-  font-size: 30px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
 .UserProfile-cards{
   width: 100%;
   height: 30%;
