@@ -704,6 +704,7 @@ html {
 .UserProfile-top{
   width: 100%;
   height: 11%;
+  max-height: 11%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -807,9 +808,117 @@ html {
     height: 100%;
 }
 
+.UserProfile-appointments {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.UserProfile-appointments-title {
+  width: 90%;
+  font-size: 25px;
+  margin: 10px 10px 25px 10px;
+}
+
+.UserProfile-appointments-cards {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserProfile-appointments-card {
+  background-color: #eee;
+  width: 90%;
+  margin: 5px;
+  padding: 10px 30px;
+}
+
+.UserProfile-appointments-card-name {
+  font-size: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.UserProfile-appointments-card-name span {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+}
+
+.UserProfile-profile {
+  margin-top: 2rem;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  justify-content: space-between;
+}
+
+.UserProfile-profile-name {
+  font-size: 23px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.UserProfile-profile-name span {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  color: #023047;
+}
+
+.UserProfile-settings-cards {
+  width: 80%;
+  padding: 10vh 0 5vh 0;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserProfile-settings-title {
+  width: 100%;
+  font-size: 23px;
+}
+
+.UserProfile-settings-form {
+  width: 100%;
+  height: 34vh;
+  padding: 7vh 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.UserProfile-settings-form-field {
+  font-size: 15px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.UserProfile-settings-form-field input {
+  padding: 5px;
+  width: 15rem;
+}
+
+.UserProfile-settings-form-submit button {
+  width: 13rem;
+  cursor: pointer;
+  height: 2rem;
+  background-color: #880808;
+  border: none;
+  color: #fff;
+}
+
+.UserProfile-settings-form-submit button:hover {
+  background-color: #ae1d1d;
+}
+
 .UserProfile-bottom-right{
     width: 100%;
-    height: 66%;
+    height: 69%;
     display: flex;
     flex-direction: row;
     align-items: center;
