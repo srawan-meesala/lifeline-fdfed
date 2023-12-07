@@ -315,10 +315,21 @@ app.get('/doctorsAPI', async (req, res) => {
     const doctors = await DocRegisters.find();
     res.json(doctors);
   } catch (error) {
-    console.error('Error fetching doctor data:', error);
+    console.error('Error fetching doctors:', error);
     res.status(500).send('Internal Server Error');
   }
-}); 
+});
+
+app.post('/searchDoctors', async (req, res) => {
+  try {
+    const { name } = req.body;
+    const doctors = await DocRegisters.find({ name: { $regex: new RegExp(name, 'i') } });
+    res.json(doctors);
+  } catch (error) {
+    console.error('Error searching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 app.post('/bookAppointment', async (req, res) => {
   const {docID,patientName,date,time,mobileNumber,note} = req.body;
