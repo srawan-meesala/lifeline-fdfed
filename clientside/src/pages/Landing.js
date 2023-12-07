@@ -14,10 +14,9 @@ const Landing = () => {
                 <nav className='Landing-nav'>
                     <a href="/" className="Landing-logo-brand">Lifeline<span>.</span></a>
                     <ul>
+                        <li><a href="/about">About Us</a></li>
                         <li><a href="/patientRegister" target="_self">Join Lifeline</a></li>
                         <li><a href="/login" target="_self">Login</a></li>
-                        <li><a href="/">Contact Us</a></li>
-                        <li><a href="/about">About Us</a></li>
                     </ul>
                 </nav>
             </div>
