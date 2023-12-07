@@ -17,6 +17,15 @@ const collection2Schema = new mongoose.Schema({
         type:String,
         required:true
     },
+    hospID:{
+        type:String,
+        required:true
+    },
+    appointments: [
+        {
+            type: Number,
+        }
+    ],
     specialization:{
         type:String,
         required:true

@@ -9,7 +9,7 @@ function DocRegister() {
     const [mobileNumber,setMobileNumber] = useState('')
     const [mailID,setMailID] = useState('')
     const [hospitals,setHospitals]=useState([])
-    const [hospName,setHospName] = useState('')
+    const [hospID,setHospID] = useState('')
     const [specialization,setSpecialization] = useState('')
     const [fee,setFee] = useState('')
     const [verificationToken,setVerificationToken] = useState('')
@@ -31,7 +31,7 @@ function DocRegister() {
         e.preventDefault();
           try {
             const response = await axios.post('http://localhost:8000/docRegister', {
-            name, mobileNumber, mailID, hospName, specialization,fee
+            name, mobileNumber, mailID, hospID, specialization,fee
           });
           if (response.data === 'exist') {
             alert('Doctor already registered');
@@ -68,10 +68,10 @@ function DocRegister() {
                   </div>
                   <div className="PatientRegister-form-input">
                     <label htmlFor="hospName">Hospital</label><b/>
-                    <select name="hospName" value={hospName} onChange={(e) => { setHospName(e.target.value) }} required>
+                    <select name="hospName" value={hospID} onChange={(e) => { setHospID(e.target.value) }} required>
                         <option value="">Select Hospital</option>
                         {hospitals.map((hospital) => (
-                          <option key={hospital._id} value={hospital.hospName}>{hospital.hospName}</option>
+                          <option key={hospital._id} value={hospital.hospID}>{hospital.hospName}</option>
                         ))}
                     </select>
                     </div>
