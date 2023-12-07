@@ -24,7 +24,6 @@ const blogsSchema = new mongoose.Schema({
     blogID: {
         type: Number,
         unique: true,
-        required: true
     }
 }, {
     timestamps: true 
@@ -39,6 +38,17 @@ blogsSchema.pre('save', async function (next) {
             return next(error);
         }
     }
+
+    try {
+        await DocRegisters.findOneAndUpdate(
+            { docID: this.docID },
+            { $push: { blogs: this.blogID } },
+            { new: true }
+        );
+    } catch (error) {
+        return next(error);
+    }
+
     next();
 });
 
