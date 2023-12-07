@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom'
 const Home = () => {
   const {username} = useParams()
   return (
-    <div>
+    <div className='Home-page'>
         <Navbar title={'Home'} username={username}/>
         <Searchbar/>
         <div className="Home-whole">

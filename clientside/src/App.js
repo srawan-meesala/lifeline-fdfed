@@ -25,7 +25,6 @@ import PharmacyPage from './pages/PharmacyPage';
 import UserProfile from './pages/UserProfile';
 import BookedAppointments from './components/BookedAppointments';
 import Thankyou from './pages/Misc/Thankyou';
-import Sent from './pages/Sent';
 import BlogComplete from './pages/BlogComplete';
 import Cart from './pages/Cart';
 import Admin from './pages/Admin'
@@ -63,12 +62,11 @@ function App() {
           <Route path="/userProfile/:username" element={<UserProfile />} />
           <Route path="/bookedappointments" element={<BookedAppointments />} />
           <Route path="/thankyou/:username" element={<Thankyou />} />
-          <Route path="/sent" element={<Sent />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/OrganDonation" element={<OrganDonation />} />
           <Route path="/ODThankyou" element={<ODThankyou />} />
-          <Route path="/verifynow" element={<PleaseVerify />} />
+          <Route path="/sent" element={<PleaseVerify />} />
         </Routes>
       </Router>
 
