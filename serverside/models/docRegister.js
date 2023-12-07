@@ -26,6 +26,11 @@ const collection2Schema = new mongoose.Schema({
             type: Number,
         }
     ],
+    blogs: [
+        {
+            type: Number,
+        }
+    ],
     specialization:{
         type:String,
         required:true
