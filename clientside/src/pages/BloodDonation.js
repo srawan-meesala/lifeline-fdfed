@@ -1,13 +1,18 @@
 import {React,useState} from 'react'
+import axios from'axios'
+import { useParams,useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import '../styles/OrganDonation.css'
 
 const BloodDonation = () => {
+    const navigate = useNavigate()
+    const {username} = useParams()
     const [name,setName] = useState('')
     const [aadhar,setAadhar] = useState('')
-    const [gender,setGender] = useState('')
-    const [bloodGroup,setbloodGroup] = useState('')
-    const [age, setAge] = useState("")
+    const [gender,setGender] = useState('male')
+    const [bloodGroup,setbloodGroup] = useState('O+')
+    const [age, setAge] = useState('')
+    const [past, setPast] = useState('')
     const [isValidAge, setIsValidAge] = useState(true);
     const [isValidAadhar, setIsValidAadhar] = useState(true);
   
@@ -18,7 +23,6 @@ const BloodDonation = () => {
       setIsValidAge(isValid);
     };
 
-
     const handleAadharChange = (e) => {
       const inputAadhar = e.target.value;
       setAadhar(inputAadhar);
@@ -26,16 +30,31 @@ const BloodDonation = () => {
       setIsValidAadhar(isValid);
     };
   
-    const handleSubmit = (e) => {
+    async function submitHandler(e) {
       e.preventDefault();
-  
-      if (!isValidAge) {
+      if (!(isValidAge)){
         alert("Invalid age. Please enter a valid age (must be 18 or older).");
       }
-      if (!isValidAadhar) {
-        alert("Invalid Aadhar card. Please enter a valid 12-digit Aadhar card number.");  
+      else if (!isValidAadhar) {
+        alert("Invalid Aadhar card. Please enter a valid 12-digit Aadhar card number.");  
       }
-    };
+      else{
+        try {
+          const response = await axios.post('http://localhost:8000/bloodBanks', {
+            username, name, aadhar, gender, bloodGroup, age, past
+          });
+    
+          if (response.data === 'exist') {
+            alert('Registered already.Cannot register again');
+          } else if(response.status === 200) {
+            navigate(`/odthankyou/${username}`)
+          }
+        } catch (error) {
+          alert('Wrong details');
+          console.log(error);
+        }
+    }
+  }
 
 
   return (
@@ -44,33 +63,35 @@ const BloodDonation = () => {
         <Navbar/>
         <div className='OrganDonation-whole-int-title'>Blood Donation Form</div>
         <div className='OrganDonation-whole-int-body'>
-            <form className='OrganDonation-whole-int-body-form' onSubmit={handleSubmit}>
+            <form className='OrganDonation-whole-int-body-form' onSubmit={submitHandler}>
                 <div className='OrganDonation-whole-int-body-form-upper'>
                 <label className='OrganDonation-label'>Name:</label>
-                <input type='text' className='OrganDonation-input-name'></input>
+                <input type='text' className='OrganDonation-input-name' onChange={(e)=>{setName(e.target.value)}} />
                 <label className='OrganDonation-label'>Aadhar number:</label>
-                <input type='number' className='OrganDonation-input-aadhar' value={aadhar} onChange={handleAadharChange}></input>
+                <input type='number' className='OrganDonation-input-aadhar' onChange={handleAadharChange} />
                 <label className='OrganDonation-label'>Gender:</label>
-                <select className='OrganDonation-select'>
-                    <option value>Male</option>
-                    <option value>Female</option>
-                    <option value>Others</option>
+                <select className='OrganDonation-select' onChange={(e)=>{setGender(e.target.value)}} >
+                    <option value=''>Choose gender</option>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='others'>Others</option>
                 </select>
                 <label className='OrganDonation-label'>Blood Group:</label>
-                <select>
-                    <option value>O+</option>
-                    <option value>O-</option>
-                    <option value>A+</option>
-                    <option value>A-</option>
-                    <option value>B+</option>
-                    <option value>B-</option>
-                    <option value>AB+</option>
-                    <option value>AB-</option>
+                <select className='OrganDonation-select' onChange={(e)=>{setbloodGroup(e.target.value)}} >
+                    <option value=''>Choose BloodGroup</option>
+                    <option value='O+'>O+</option>
+                    <option value='O-'>O-</option>
+                    <option value='A+'>A+</option>
+                    <option value='A-'>A-</option>
+                    <option value='B+'>B+</option>
+                    <option value='B-'>B-</option>
+                    <option value='AB+'>AB+</option>
+                    <option value='AB-'>AB-</option>
                 </select>
                 <label className='OrganDonation-label'>Age:</label>
                 <input  type='number' className='OrganDonation-input-aadhar' value={age} onChange={handleAgeChange}></input>
                 <label className='OrganDonation-label'>Any health issues in the past?</label>
-                <textarea className='OrganDonation-Textarea'></textarea>
+                <textarea className='OrganDonation-Textarea' onChange={(e)=>{setPast(e.target.value)}} ></textarea>
                 </div>
                 <div className='OrganDonation-whole-int-body-form-lower' type='submit'><button className='OrganDonation-btn'>Donate</button></div>
             </form>
