@@ -14,7 +14,7 @@ function BlogForm() {
             docID,title,blog
           });
     
-          if (response.data === 'uploaded') {
+          if (response.data.status === 'uploaded') {
             alert('Blog uploaded successfully');
           } else {
             alert('Error while uploading blog')

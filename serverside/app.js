@@ -321,6 +321,17 @@ app.get('/doctorsAPI', async (req, res) => {
   }
 });
 
+app.get('/blogsAPI/:docID', async (req, res) => {
+  const {docID} = req.params
+  try {
+    const blogs = await Blogs.find({docID:docID});
+    res.json(blogs);
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.post('/searchDoctors', async (req, res) => {
   try {
     const { name } = req.body;
@@ -360,15 +371,7 @@ app.post('/bookAppointment', async (req, res) => {
   }
 });
 
-app.get('/blogsAPI', async (req, res) => {
-  try {
-    const blogs = await Blogs.find();
-    res.json(blogs);
-  } catch (error) {
-    console.error('Error fetching doctors:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+
 
 app.post('/uploadBlog',async(req,res)=> {
     const {docID,title,blog} = req.body

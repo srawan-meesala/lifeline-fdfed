@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const DocRegisters = require('../models/docRegister');
-const HospRegisters = require('./hospRegister');
+const HospRegisters = require('../models/hospRegister');
 
 const AppointSchema = new mongoose.Schema({
     docID: {

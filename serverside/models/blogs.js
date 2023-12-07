@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const DocRegisters = require('../models/docRegister');
 
 const blogsSchema = new mongoose.Schema({
     docID: {
@@ -7,7 +8,6 @@ const blogsSchema = new mongoose.Schema({
     },
     docName: {
         type: String,
-        required: true
     },
     specialization: {
         type: String,
