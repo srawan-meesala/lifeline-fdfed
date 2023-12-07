@@ -20,7 +20,7 @@ const Home = () => {
         <div className="Home-whole">
           <div className="Home-c1">
             <div className="Home-c1-box">
-              <div className="Home-c1-title">Explore Our All New Pharmacy Now.</div>
+              <div className="Home-c1-title">Explore Our All New Pharmacy.</div>
               <div className="Home-c1-features">
                 Simple and Easy to Use. <br/>
                 <span>Everything In Your Fingertips.</span><br />

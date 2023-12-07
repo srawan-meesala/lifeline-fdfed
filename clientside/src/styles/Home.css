@@ -14,7 +14,9 @@
 .Home-c1-box {
     height: 85%;
     width: 80%;
-    /* background-image: url(../images/bg-easy.png); */
+    background-image: url(../images/Home/PharmacyDesign.png);
+    background-size: cover;
+    background-position: -10px;
     border-radius: 22px;
     box-shadow: rgba(0, 0, 0, 0.10) 0px 3px 10px;
     display: flex;
@@ -36,8 +38,10 @@
 }
 
 .Home-c1-link {
-    padding: 5px;
+    padding: 5px 10px;
     background-color: #fff;
+    border: rgba(0, 0, 0, 0.2) 1px solid;
+    border-radius: 5px;
 }
 
 .Home-c1-link a {
