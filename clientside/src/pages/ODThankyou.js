@@ -1,7 +1,13 @@
 import React from 'react'
 import '../styles/ODThankyou.css'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function ODThankyou() {
+  
+  const navigate = useNavigate()
+  const {username} = useParams()
+  const ButtonHandler = () => navigate(`/home/${username}`)
+
   return (  
     <div><div class="ODThankyou-containerr">
     <div class="ODThankyou-logo">Lifeline.</div>
@@ -11,7 +17,7 @@ function ODThankyou() {
         <div class="ODThankyou-l3">Thank you for choosing Lifeline as your medical partner.</div>
     </div>
     <div class="ODThankyou-btn-home">
-        <button>Back to Home</button>
+        <button onClick={ButtonHandler}>Back to Home</button>
     </div>
 </div>
 <div class="ODThankyou-background">

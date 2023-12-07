@@ -63,8 +63,8 @@ function App() {
           <Route path="/thankyou/:username" element={<Thankyou />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/OrganDonation" element={<OrganDonation />} />
-          <Route path="/ODThankyou" element={<ODThankyou />} />
+          <Route path="/organdonation/:username" element={<OrganDonation />} />
+          <Route path="/odthankyou/:username" element={<ODThankyou />} />
           <Route path="/sent" element={<PleaseVerify />} />
         </Routes>
       </Router>

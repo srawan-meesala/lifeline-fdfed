@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const ODSchema = new mongoose.Schema({
+    username:{
+        type:String,
+        required:true
+    },
     name:{
         type:String,
         required:true
@@ -18,8 +22,7 @@ const ODSchema = new mongoose.Schema({
         required:true
     },
     organ:{
-        type:String,
-        required:true
+        type:String
     },
     past:{
         type:String,
@@ -27,5 +30,5 @@ const ODSchema = new mongoose.Schema({
     }
 })
 
-const ODRegisters = new mongoose.model('collection3', ODSchema)
+const ODRegisters = new mongoose.model('OD', ODSchema)
 module.exports = ODRegisters

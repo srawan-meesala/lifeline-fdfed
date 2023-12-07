@@ -19,7 +19,6 @@ function PatientRegister() {
 
   async function submitRegister(e) {
     e.preventDefault();
-    console.log('gender', gender);
     try {
       const response = await axios.post('http://localhost:8000/patientRegister', {
         firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender

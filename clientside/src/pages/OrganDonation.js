@@ -1,14 +1,36 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+import {useParams,useNavigate} from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import '../styles/OrganDonation.css'
 
 const OrganDonation = () => {
+    const navigate = useNavigate()
+    const {username} = useParams()
     const [name, setName] = useState('')
     const [aadhaar, setAadhaar] = useState('')
-    const [gender, setGender] = useState('')
-    const [donation, setDonation] = useState('')
-    const [particular, setParticular] = useState('')
+    const [gender, setGender] = useState('male')
+    const [donation, setDonation] = useState('full body')
+    const [particular, setParticular] = useState('Invalid')
     const [past, setPast] = useState('')
+
+    async function submitHandler(e) {
+        e.preventDefault();
+        try {
+          const response = await axios.post('http://localhost:8000/organDonation', {
+            username, name, aadhaar, gender, donation, particular, past
+          });
+    
+          if (response.data === 'exist') {
+            alert('Registered already.Cannot register again');
+          } else if(response.status === 200) {
+            navigate(`/odthankyou/${username}`)
+          }
+        } catch (error) {
+          alert('Wrong details');
+          console.error(error);
+        }
+      }
 
     return (
         <div className='OrganDonation-whole'>
@@ -16,7 +38,7 @@ const OrganDonation = () => {
             <Navbar title={'Organ Donation'}/>
             <div className='OrganDonation-whole-int-title'>Organ Donation Form</div>
             <div className='OrganDonation-whole-int-body'>
-                <form className='OrganDonation-whole-int-body-form' method='post' action='/organdonationform'>
+                <form onSubmit={submitHandler} className='OrganDonation-whole-int-body-form' method='post' action='/organDonation'>
                     <div className='OrganDonation-whole-int-body-form-upper'>
                         <label className='OrganDonation-label'>Name:</label>
                         <input onChange={(e)=>setName(e.target.value)} type='text' className='OrganDonation-input-name'></input>

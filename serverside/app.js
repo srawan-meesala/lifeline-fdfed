@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const DocRegisters = require('./models/docRegister')
 const PatientRegisters = require('./models/patientRegister')
 const HospRegisters = require('./models/hospRegister')
+const ODRegisters = require('./models/organdonation')
 const Appointments = require('./models/appointments')
 const Blogs = require('./models/blogs')
 const app = express()
@@ -382,7 +383,6 @@ app.post('/bookAppointment', async (req, res) => {
 });
 
 
-
 app.post('/uploadBlog',async(req,res)=> {
     const {docID,title,blog} = req.body
     const doc = await DocRegisters.findOne({docID})
@@ -420,6 +420,25 @@ app.get('/blogdata',async(req,res)=>{
     res.status(500).json('Internal Server Error');
   }
 })
+
+app.post('/organDonation', async (req, res) => {
+  const {username, name, aadhaar, gender, donation, particular, past} = req.body
+  try {
+    const check = await ODRegisters.findOne({ username });
+
+    if (check) {
+      return res.json('exist');
+    }
+    const data = new ODRegisters({
+      username, name, aadhaar, gender, donation, particular, past
+    });
+    await data.save();
+    res.status(200).json({ message: 'Registration successful'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
 
 function sendVerificationEmail(to, link) {
   const transporter = nodemailer.createTransport({
