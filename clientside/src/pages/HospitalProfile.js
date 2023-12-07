@@ -25,6 +25,21 @@ function HospitalProfile() {
   const ProfileOpener = () => setChoose(4)
   const SettingsOpener = () => setChoose(5)
 
+  const [appointments, setAppointments] = useState([])
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/AppointmentsAPI2/${userDetails.hospID}`);
+        setAppointments(Array.isArray(response.data) ? response.data : []);
+        console.log(appointments);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+    fetchAppointments();
+  }, [userDetails.hospID]);
+
   useEffect(()=>{
     async function fetchData(){
       try{

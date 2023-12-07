@@ -159,18 +159,18 @@ const Home = () => {
                     Our Doctors with High Demand
                   </div>
                   <div className="Home-c5-docs-cards">
-        {topDoctors.map((doctor) => (
-          <div key={doctor.docID} className="Home-c5-docs-card">
-            <div className="Home-c5-docs-card-name">{doctor.name}</div>
-            <div className="Home-c5-docs-card-down">
-              <div className="Home-c5-docs-card-down-spec">{doctor.specialization}</div>
-              <button className="Home-c5-docs-card-down-book"  onClick={()=>handleBookAppointment(doctor)} >
-                Click to Book an Appointment
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+                    {topDoctors.map((doctor) => (
+                      <div key={doctor.docID} className="Home-c5-docs-card">
+                        <div className="Home-c5-docs-card-name">{doctor.name}</div>
+                        <div className="Home-c5-docs-card-down">
+                          <div className="Home-c5-docs-card-down-spec">{doctor.specialization}</div>
+                          <button className="Home-c5-docs-card-down-book"  onClick={()=>handleBookAppointment(doctor)} >
+                            Click to Book an Appointment
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
