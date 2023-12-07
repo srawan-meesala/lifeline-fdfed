@@ -34,7 +34,7 @@ const DoctorAppointments = ({userDetails}) => {
                 <div className="UserProfile-appointments-cards">
                     
                     {appointments.length === 0 ? (
-                        <p>No blogs uploaded.</p>
+                        <p>No Appointments Found.</p>
                     ) : (
                         appointments.map((appointment) => (
                             <div className="UserProfile-appointments-card">
