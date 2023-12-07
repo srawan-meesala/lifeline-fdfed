@@ -31,6 +31,7 @@ import Cart from './pages/Cart';
 import Admin from './pages/Admin'
 import OrganDonation from './pages/OrganDonation';
 import ODThankyou from './pages/ODThankyou';
+import PleaseVerify from './pages/Misc/PleaseVerify';
 function App() {
   return (
     <div className='app'>
@@ -66,6 +67,7 @@ function App() {
           <Route path="/admin" element={<Admin/>}/>
           <Route path="/OrganDonation" element={<OrganDonation/>}/>
           <Route path="/ODThankyou" element={<ODThankyou/>}/>
+          <Route path="/verifynow" element={<PleaseVerify/>}/>
 
         </Routes>
       </Router>

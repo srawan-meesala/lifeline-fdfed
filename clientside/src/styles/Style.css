@@ -1720,29 +1720,38 @@ html {
     justify-content: space-around;
 }
 .panels{
-    position: absolute;
-    display:flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    top: 40vh;
+  position: absolute;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  top: 40vh;
 }
+
 .panel-1 {
-    width: 65vw;
-    height:20rem;
-    background-color: white;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10px;
+  width: 65vw;
+  height: 16rem;
+  background-color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
 }
 .panel-1:hover{
-    box-shadow: 0 5px 10px rgb(0 0 0 / 0.6);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+}
+
+.ShowDoctors-docimage {
+  margin-left: 1rem;
+  width: 24%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .body-panel{
@@ -1753,60 +1762,66 @@ html {
     margin-left: 7%;
 }
 .head-body{
-    height: 35%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  height: 35%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .name-dr{
-    font-size: 1.3rem;
-    margin: 0;
-    color: orange;
-    font-weight: 500;
+  font-size: 1.6rem;
+  margin: 0;
+  color: orange;
+  font-weight: 500;
 }
 .name-hosp{
-    font-size: 0.8rem;
+  font-size: 0.8rem;
+  color: #022a45;
 }
 .bio-body{
-    height: 40%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.bio-body span {
+  color: #022a45;
+  font-weight: 600;
 }
 .bio-body p{
-    margin: 0;
+  margin: 0;
 }
 .contact-body{
-    height: 25%;
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  height: 35%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .contact-body button{
-    height: 43%;
-    font-size: 0.9rem;
-    transition: 0.3s;
+  height: 43%;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  cursor: pointer;
 }
 .number-panel p span{
-    display: block;
-    font-size: 1.4rem;
+  display: block;
+  font-size: 1.4rem;
 }
 .number-panel p{
-    margin: 0;
+  margin: 0;
 }
 .number-panel{
-    width: 8rem;
-    text-align: end;
-    padding: 5px;
-    background-color: #088812;
-    color: #fff;
-    border-radius: 7px;
-    border: none;
-    display: flex;
-    justify-content: space-around;
+  width: 8rem;
+  text-align: end;
+  padding: 5px;
+  background-color: #088812;
+  color: #fff;
+  border-radius: 7px;
+  border: none;
+  display: flex;
+  justify-content: space-around;
 }
 
 .number-panel-icon-phone{
@@ -1815,21 +1830,21 @@ html {
 }
 
 .appoint-panel{
-    width: 10rem;
-    padding: 5px;
-    background-color: orange;
-    color: #fff;
-    border-radius: 7px;
-    border: none;
+  width: 10rem;
+  padding: 5px;
+  background-color: orange;
+  color: #fff;
+  border-radius: 7px;
+  border: none;
 }
 .contact-body button:hover{
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .ShowDoctors-searchbar{
   display: flex;
-  width: 100%;
-  height: 7rem
+  width: 100vw;
+  height: 7rem;
 }
 
 .ShowDoctors-searchbar-int{
@@ -1857,12 +1872,14 @@ html {
     font-size: 1.3rem;
 }
 .searched-for span{
-    font-weight: 500;
+  font-weight: 500;
 }
 .filters{
-    width: 60%;
-    display: flex;
-    justify-content: space-around;
+  width: 80%;
+  margin: 0 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sort{
@@ -1870,27 +1887,10 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 33%;
+  width: 28%;
   height: 80%;
 }
 
-.spec{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 33%;
-  height: 80%;
-}
-
-.exp-sort{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 33%;
-  height: 80%;
-}
 
 .submit-sort{
   display: flex;
