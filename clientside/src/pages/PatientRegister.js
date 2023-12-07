@@ -91,14 +91,14 @@ function PatientRegister() {
                       </div>
                       <div className="PatientRegister-form-input">
                         <label >Marital Status</label><b/>
-                        <select value={maritalStatus} onChange={(e) => { setMaritalStatus(e.target.value) }} name="maritalStatus">
+                        <select value={maritalStatus} onChange={(e) => { setMaritalStatus(e.target.value) }} name="maritalStatus" required>
                           <option value='married' selected>Married</option>
                           <option value='unmarried'>Unmarried</option>
                         </select>
                       </div>
                       <div className="PatientRegister-form-input">
                         <label >Gender</label><b/>
-                        <select value={gender} onChange={(e) => { setGender(e.target.value) }} name="gender" >
+                        <select value={gender} onChange={(e) => { setGender(e.target.value) }} name="gender" required>
                           <option value="male" selected>Male</option>
                           <option value="female">Female</option>
                           <option value="other">Other</option>

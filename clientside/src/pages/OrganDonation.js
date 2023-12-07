@@ -56,17 +56,17 @@ const OrganDonation = () => {
                 <form onSubmit={submitHandler} className='OrganDonation-whole-int-body-form' method='post' action='/organDonation'>
                     <div className='OrganDonation-whole-int-body-form-upper'>
                         <label className='OrganDonation-label' required>Name:</label>
-                        <input onChange={(e)=>setName(e.target.value)} type='text' className='OrganDonation-input-name'></input>
+                        <input onChange={(e)=>setName(e.target.value)} type='text' className='OrganDonation-input-name' required></input>
                         <label className='OrganDonation-label'>Aadhar number:</label>
-                        <input type='number' className='OrganDonation-input-aadhar'  value={aadhaar} onChange={handleAadhaarChange}></input>
+                        <input type='number' className='OrganDonation-input-aadhar'  value={aadhaar} onChange={handleAadhaarChange} required></input>
                         <label className='OrganDonation-label'>Gender:</label>
-                        <select onChange={(e)=>setGender(e.target.value)} className='OrganDonation-select'>
+                        <select onChange={(e)=>setGender(e.target.value)} className='OrganDonation-select' required>
                             <option value='male'>Male</option>
                             <option value='female'>Female</option>
                             <option value='other'>Others</option>
                         </select>
                         <label className='OrganDonation-label'>Donation</label>
-                        <select onChange={(e)=>setDonation(e.target.value)}>
+                        <select onChange={(e)=>setDonation(e.target.value)} required>
                             <option value='full body'>Full body or tissues</option>
                             <option value='particular'>Particular Organ</option>
                         </select>
@@ -78,7 +78,7 @@ const OrganDonation = () => {
                             <input onChange={(e)=>setParticular(e.target.value)} type='text' className='OrganDonation-input-name'></input>
                         )}
                         <label className='OrganDonation-label'>Any health issues in the past?</label>
-                        <textarea onChange={(e)=>setPast(e.target.value)} className='OrganDonation-Textarea'></textarea>
+                        <textarea onChange={(e)=>setPast(e.target.value)} className='OrganDonation-Textarea' required></textarea>
                     </div>
                     <div className='OrganDonation-whole-int-body-form-lower'><button className='OrganDonation-btn'>Donate</button></div>
                 </form>

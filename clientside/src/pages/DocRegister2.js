@@ -31,7 +31,7 @@ function RegisterDocUsernamePassword() {
 
 
 
-
+    
     if (password === confirmPassword) {
       try {
         const response = await axios.post('http://localhost:8000/docRegister2', {
