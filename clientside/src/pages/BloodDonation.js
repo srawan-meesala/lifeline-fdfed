@@ -9,6 +9,8 @@ const BloodDonation = () => {
     const [bloodGroup,setbloodGroup] = useState('')
     const [age, setAge] = useState("")
     const [isValidAge, setIsValidAge] = useState(true);
+    const [aadhar, setAadhar] = useState("");
+    const [isValidAadhar, setIsValidAadhar] = useState(true);
   
     const handleAgeChange = (e) => {
       const inputAge = e.target.value;
@@ -16,17 +18,25 @@ const BloodDonation = () => {
       const isValid = /^\d+$/.test(inputAge) && parseInt(inputAge, 10) >= 18;
       setIsValidAge(isValid);
     };
+
+
+    const handleAadharChange = (e) => {
+      const inputAadhar = e.target.value;
+      setAadhar(inputAadhar);
+      const isValid = /^\d{12}$/.test(inputAadhar);
+      setIsValidAadhar(isValid);
+    };
   
     const handleSubmit = (e) => {
       e.preventDefault();
   
-      if (isValidAge) {
-        alert(`Age ${age} is valid!`);
-      } else {
+      if (!isValidAge) {
         alert("Invalid age. Please enter a valid age (must be 18 or older).");
       }
+      if (!isValidAadhar) {
+        alert("Invalid Aadhar card. Please enter a valid 12-digit Aadhar card number.");  
+      }
     };
-
 
 
   return (
@@ -40,7 +50,7 @@ const BloodDonation = () => {
                 <label className='OrganDonation-label'>Name:</label>
                 <input type='text' className='OrganDonation-input-name'></input>
                 <label className='OrganDonation-label'>Aadhar number:</label>
-                <input type='number' className='OrganDonation-input-aadhar'></input>
+                <input type='number' className='OrganDonation-input-aadhar' value={aadhar} onChange={handleAadharChange}></input>
                 <label className='OrganDonation-label'>Gender:</label>
                 <select className='OrganDonation-select'>
                     <option value>Male</option>
