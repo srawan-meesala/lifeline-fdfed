@@ -1977,16 +1977,17 @@ html {
   align-items: center;
   justify-content: space-evenly;
   width: 80%;
-  height: 90%;
+  height: 80%;
 }
 
 .DoctorProfile-func-parts{
   width: 90%;
-  height: 25%;
+  height: 18%;
   margin-left: 20px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 .DoctorProfile-logout-part{
@@ -2578,11 +2579,15 @@ html {
 }
 
 .HospitalProfile-dashboard{
-  width: 25%;
+  width: 45%;
   font-size: 30px;
   font-weight: 600;
   display: flex;
-  justify-content: center;
+  padding-left: 3rem;
+}
+
+.HospitalProfile-dashboard span {
+  font-weight: 400;
 }
 
 .HospitalProfile-user-logo{
