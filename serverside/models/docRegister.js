@@ -15,11 +15,13 @@ const collection2Schema = new mongoose.Schema({
     },
     hospName:{
         type:String,
-        required:true
     },
     hospID:{
         type:String,
         required:true
+    },
+    city:{
+        type:String,
     },
     appointments: [
         {

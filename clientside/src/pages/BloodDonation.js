@@ -3,7 +3,11 @@ import Navbar from '../components/Navbar'
 import '../styles/OrganDonation.css'
 
 const BloodDonation = () => {
-    const [age, setAge] = useState("");
+    const [name,setName] = useState('')
+    const [aadhar,setAadhar] = useState('')
+    const [name,setName] = useState('')
+    const [name,setName] = useState('')
+    const [age, setAge] = useState("")
     const [isValidAge, setIsValidAge] = useState(true);
   
     const handleAgeChange = (e) => {

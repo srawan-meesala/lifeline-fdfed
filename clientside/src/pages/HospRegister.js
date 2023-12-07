@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from '../images/undraw_remotely_2j6y.svg';
 
 function HospitalRegister() {
-
+  const navigate = useNavigate()
   const [hospName, setHospName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [mailID, setMailID] = useState('');
@@ -25,7 +25,7 @@ function HospitalRegister() {
       if (response.data === 'exist') {
         alert('Hospital already registered');
       } else {
-        alert('Registration successful! Please check your email for verification.');
+        navigate('/sent')
         setVerificationToken(response.data.verificationToken);
       }
     } catch (error) {

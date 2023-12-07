@@ -91,13 +91,14 @@ app.post('/docRegister', async (req, res) => {
     const check = await DocRegisters.findOne({ mailID });
     const hospital = await HospRegisters.findOne({hospID:hospID})
     const hospName = hospital.hospName
+    const city = hospital.city
     if (check) {
       return res.json('exist');
     }
 
     const verificationToken = uuid.v4();
     const data = new DocRegisters({
-      name, mobileNumber, mailID,hospName, hospID, specialization, fee, verificationToken
+      name, mobileNumber, mailID,hospName, hospID,city, specialization, fee, verificationToken
     });
 
     await data.save();
