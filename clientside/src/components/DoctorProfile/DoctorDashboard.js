@@ -1,7 +1,13 @@
 import React from 'react'
 import { BiRupee } from "react-icons/bi";
 
-const DoctorDashboard = ({ userDetails }) => {
+const DoctorDashboard = ({ userDetails, appointmentsLength, blogsLength, appointments }) => {
+  var appointmentsThree = []
+  if (appointmentsLength >=3) {
+    appointmentsThree = appointments.slice(appointmentsLength-3, appointmentsLength)
+  } else {
+    appointmentsThree = appointments.slice(0, 3)
+  }
   return (
     <div className='DoctorProfile-right'>
         <div className='DoctorProfile-top'>
@@ -17,19 +23,19 @@ const DoctorDashboard = ({ userDetails }) => {
           <div className='DoctorProfile-card-1'>
             <div className='DoctorProfile-card-1-int-div'>
               <div className='DoctorProfile-card-1-int-div-head'>Total number of Appointments:</div>
-              <div className='DoctorProfile-card-1-int-div-body'>10</div>
+              <div className='DoctorProfile-card-1-int-div-body'>{appointmentsLength}</div>
             </div>
           </div>
           <div className='DoctorProfile-card-2'>
             <div className='DoctorProfile-card-2-int-div'>
               <div className='DoctorProfile-card-1-int-div-head-black'>Total number of Transactions:</div>
-              <div className='DoctorProfile-card-1-int-div-body'>15</div>
+              <div className='DoctorProfile-card-1-int-div-body'>{appointmentsLength}</div>
             </div>
           </div>
           <div className='DoctorProfile-card-3'>
             <div className='DoctorProfile-card-3-int-div'>
-              <div className='DoctorProfile-card-1-int-div-head'>Total number of patients booked:</div>
-              <div className='DoctorProfile-card-1-int-div-body'>10</div>
+              <div className='DoctorProfile-card-1-int-div-head'>Total Number of Blogs Uploaded:</div>
+              <div className='DoctorProfile-card-1-int-div-body'>{blogsLength}</div>
             </div>
           </div>
           <div className='DoctorProfile-card-4'>
@@ -44,21 +50,19 @@ const DoctorDashboard = ({ userDetails }) => {
             <div className='DoctorProfile-booked-appointments-int-div'>
               <div className='DoctorProfile-booked-appointments-int-div-head'><span className='DoctorProfile-booked-appointments-int-div-head-top'>Booked Appointments:</span><span className='DoctorProfile-booked-appointments-int-div-head-bottom'>Your recent 3 appointments</span></div>
               <div className='DoctorProfile-booked-appointments-int-div-body'>
-                <div className='DoctorProfile-booked-appointments-int-div-body-part'>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-date'>26/11/23</div>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-time'>5:00 PM</div>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-Doctor'>mukesh</div>
-                </div>
-                <div className='DoctorProfile-booked-appointments-int-div-body-part'>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-date'>2/10/23</div>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-time'>1:00 PM</div>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-Doctor'>Lavanya</div>
-                </div>
-                <div className='DoctorProfile-booked-appointments-int-div-body-part'>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-date'>13/9/23</div>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-time'>10:00 AM</div>
-                  <div className='DoctorProfile-booked-appointments-int-div-body-Doctor'>Kaleja</div>
-                </div>
+                {appointmentsLength===0 ? (
+                  <div className='DoctorProfile-booked-appointments-int-div-body-part'>
+                    <p>No Recent Appointments</p>
+                  </div>
+                ) : (
+                  appointmentsThree.map((a) => (
+                    <div key={a.appointmentID} className='DoctorProfile-booked-appointments-int-div-body-part'>
+                      <div className='DoctorProfile-booked-appointments-int-div-body-date'>{a.Date}</div>
+                      <div className='DoctorProfile-booked-appointments-int-div-body-time'>{a.Timeslot}</div>
+                      <div className='DoctorProfile-booked-appointments-int-div-body-Doctor'>{a.PatientName}</div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </div>
@@ -66,7 +70,7 @@ const DoctorDashboard = ({ userDetails }) => {
                   <div className='DoctorProfile-part-1'>
                     <div className='DoctorProfile-part-1-int-div'>
                       <div className="DoctorProfile-part-1-int-div-head">Total Income:</div>
-                      <div className="DoctorProfile-part-1-int-div-body"><div className='DoctorProfile-part-1-int-div-body-icon'><BiRupee/></div><span>100000</span></div>
+                      <div className="DoctorProfile-part-1-int-div-body"><div className='DoctorProfile-part-1-int-div-body-icon'><BiRupee/></div><span>{appointmentsLength * userDetails.fee}</span></div>
                     </div>
                   </div> 
                   <div className='DoctorProfile-part-2'>

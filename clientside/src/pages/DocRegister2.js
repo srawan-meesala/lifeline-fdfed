@@ -4,6 +4,7 @@ import { useNavigate,useParams } from 'react-router-dom';
 import { ReactComponent as Logo } from '../images/undraw_remotely_2j6y.svg';
 
 function RegisterDocUsernamePassword() {
+  var regularExpression  = new RegExp(/^[A-Za-z]\w{8,15}$/);
   const navigate = useNavigate();
   const {verificationToken} = useParams()
   const [docID, setDocID] = useState('');
@@ -12,6 +13,25 @@ function RegisterDocUsernamePassword() {
 
   async function submitDocRegister2(e) {
     e.preventDefault();
+    if(docID.length < 5 || docID.length > 25 )
+    {
+       alert("Username should be between 5 to 25 characters!!")
+        return false;
+    }
+    else if(regularExpression.test(password)) 
+    {
+       alert("password should contain atleast one number and one special character");
+        return false;
+    }
+    else if(password.length < 8 || password.length > 15) 
+    {  
+        alert("Password should be between 8 to 15 characters!!")
+        return false;
+    }
+
+
+
+    
     if (password === confirmPassword) {
       try {
         const response = await axios.post('http://localhost:8000/docRegister2', {
@@ -27,6 +47,9 @@ function RegisterDocUsernamePassword() {
       } catch (error) {
         console.error('Error registering username and password:', error);
       }
+    }
+    else {
+      alert('Passwords Mismatch.')
     }
   }
 

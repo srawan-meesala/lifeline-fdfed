@@ -36,9 +36,9 @@ function BlogForm() {
                 <div className='Blogform-form-div'>
                     <form className='Blogform-form'method='POST' action='/uploadBlog' onSubmit={uploadBlog} >
                         <label className='Blogform-label'>Title</label>
-                        <input type='text' className='Blogform-input' placeholder='Your Blog Title' onChange={(e)=>{setTitle(e.target.value)}} />
+                        <input type='text' className='Blogform-input-Title' placeholder='Your Blog Title' onChange={(e)=>{setTitle(e.target.value)}} required/>
                         <label className='Blogform-label'>Blog</label>
-                        <textarea type='text' placeholder='Your Blog' className='Blogform-textarea' onChange={(e)=>{setBlog(e.target.value)}} >
+                        <textarea type='text' placeholder='Your Blog' className='Blogform-textarea' onChange={(e)=>{setBlog(e.target.value)}} required>
                         </textarea>
                         <div className='Blogform-remaining'>
                             <button className='Blogform-remaining-button'>Upload</button>

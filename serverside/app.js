@@ -356,6 +356,18 @@ app.get('/AppointmentsAPI/:docID', async (req, res) => {
   }
 });
 
+app.get('/AppointmentsAPI/dateanddocid', async (req, res) => {
+  const {docID, date} = req.params
+  try {
+    const appointments2 = await Appointments.find({docID:docID});
+    const appointments = appointments2.find({Date:date});
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.post('/searchDoctors', async (req, res) => {
   try {
     const { name } = req.body;

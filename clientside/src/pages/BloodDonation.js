@@ -66,18 +66,18 @@ const BloodDonation = () => {
             <form className='OrganDonation-whole-int-body-form' onSubmit={submitHandler}>
                 <div className='OrganDonation-whole-int-body-form-upper'>
                 <label className='OrganDonation-label'>Name:</label>
-                <input type='text' className='OrganDonation-input-name' onChange={(e)=>{setName(e.target.value)}} />
+                <input type='text' className='OrganDonation-input-name' onChange={(e)=>{setName(e.target.value)}} required />
                 <label className='OrganDonation-label'>Aadhar number:</label>
-                <input type='number' className='OrganDonation-input-aadhar' onChange={handleAadharChange} />
+                <input type='number' className='OrganDonation-input-aadhar' onChange={handleAadharChange} required/>
                 <label className='OrganDonation-label'>Gender:</label>
-                <select className='OrganDonation-select' onChange={(e)=>{setGender(e.target.value)}} >
+                <select className='OrganDonation-select' onChange={(e)=>{setGender(e.target.value)}} required>
                     <option value=''>Choose gender</option>
                     <option value='male'>Male</option>
                     <option value='female'>Female</option>
                     <option value='others'>Others</option>
                 </select>
                 <label className='OrganDonation-label'>Blood Group:</label>
-                <select className='OrganDonation-select' onChange={(e)=>{setbloodGroup(e.target.value)}} >
+                <select className='OrganDonation-select' onChange={(e)=>{setbloodGroup(e.target.value)}} required>
                     <option value=''>Choose BloodGroup</option>
                     <option value='O+'>O+</option>
                     <option value='O-'>O-</option>
@@ -89,9 +89,9 @@ const BloodDonation = () => {
                     <option value='AB-'>AB-</option>
                 </select>
                 <label className='OrganDonation-label'>Age:</label>
-                <input  type='number' className='OrganDonation-input-aadhar' value={age} onChange={handleAgeChange}></input>
+                <input  type='number' className='OrganDonation-input-aadhar' value={age} onChange={handleAgeChange} required></input>
                 <label className='OrganDonation-label'>Any health issues in the past?</label>
-                <textarea className='OrganDonation-Textarea' onChange={(e)=>{setPast(e.target.value)}} ></textarea>
+                <textarea className='OrganDonation-Textarea' onChange={(e)=>{setPast(e.target.value)}} required></textarea>
                 </div>
                 <div className='OrganDonation-whole-int-body-form-lower' type='submit'><button className='OrganDonation-btn'>Donate</button></div>
             </form>
