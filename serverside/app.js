@@ -675,7 +675,7 @@ app.post('/checkout', async (req, res) => {
     const newCart = new PharmacyCart({
       username,
       items: cartItems.map((item) => ({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         title: item.title,
         quantity: item.quantity,
         priceEach: item.priceEach,

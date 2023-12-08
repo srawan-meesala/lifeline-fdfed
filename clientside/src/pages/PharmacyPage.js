@@ -31,8 +31,8 @@ const PharmacyPage = () => {
   return (
     <div className="Pharmacy-whole">
       <Navbar title={'Pharmacy'} />
-      <div>
-        <Link to={`/cart/${username}`}>Cart</Link>
+      <div className='Pharmacy-cart-div'>
+        <Link className='Pharmacy-cart' to={`/cart/${username}`}>Cart</Link>
       </div>
       <Medicines addToCart={addToCart} />
       {cartItems.map((cartItem, index) => (
