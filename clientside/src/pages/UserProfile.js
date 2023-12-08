@@ -6,7 +6,7 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { MdLocalPharmacy } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import UserDashboard from "../components/UserProfile/UserDashboard";
 import UserAppointments from "../components/UserProfile/UserAppointments";
 import UserProfileShow from "../components/UserProfile/UserProfileShow";
@@ -19,6 +19,7 @@ function UserProfile() {
   const [userDetails,setUserDetails]=useState({})
   const [appointments, setAppointments] = useState([])
   const [totalExpenditure, setTotalExpenditure] = useState(0)
+  const navigate = useNavigate();
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
@@ -108,7 +109,7 @@ function UserProfile() {
             </div>
         </div>
         <div className='UserProfile-logout'>
-          <div className='UserProfile-logout-part'>
+          <div className='UserProfile-logout-part' onClick={()=>navigate('/')}>
             <div className='UserProfile-logout-icon'><BiLogOut/></div>
             <div className='UserProfile-logout-func'>Logout</div>
           </div>

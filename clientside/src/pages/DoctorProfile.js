@@ -6,7 +6,7 @@ import { BsFillStickiesFill } from "react-icons/bs";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TfiWrite } from "react-icons/tfi";
 import { BiLogOut } from "react-icons/bi";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import DoctorAppointments from "../components/DoctorProfile/DoctorAppointments";
 import DoctorDashboard from "../components/DoctorProfile/DoctorDashboard";
 import DoctorSettings from "../components/DoctorProfile/DoctorSettings";
@@ -19,7 +19,7 @@ function DoctorProfile() {
   const [choose, setChoose] = useState(1)
   const [userDetails,setUserDetails]=useState({})
   const [totalExpenditure, setTotalExpenditure] = useState(0)
-
+  const navigate = useNavigate()
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
@@ -124,7 +124,7 @@ function DoctorProfile() {
           </div>
         </div>
         <div className='DoctorProfile-logout'>
-          <div className='DoctorProfile-logout-part'>
+          <div className='DoctorProfile-logout-part' onClick={()=>navigate('/')}>
             <div className='DoctorProfile-logout-icon'><BiLogOut/></div>
             <div className='DoctorProfile-logout-func'>Logout</div>
           </div>

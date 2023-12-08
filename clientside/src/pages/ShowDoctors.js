@@ -5,7 +5,6 @@ import Searchbar from '../components/Searchbar';
 import axios from 'axios';
 
 const ShowDoctors = () => {
-  const [doctorsList, setDoctorsList] = useState([]);
   const [hospitalsList, setHospitalsList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
 
@@ -13,7 +12,7 @@ const ShowDoctors = () => {
     const fetchDoctors = async () => {
       try {
         const response = await axios.get('http://localhost:8000/doctorsAPI');
-        setDoctorsList(response.data);
+        setSearchResults(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
       }
@@ -39,6 +38,10 @@ const ShowDoctors = () => {
     setSearchResults(query);
   };
 
+  const [sortOrder, setSortOrder] = useState('priceAsc')
+
+
+
   return (
     <div className="containerr">
       <Navbar />
@@ -53,7 +56,7 @@ const ShowDoctors = () => {
           <form action="/" className="filters">
               <div className="sort">
                   <label htmlFor="sortOrder">Sort order</label>
-                  <select name="sortOrder" id="sortOrder">
+                  <select onChange={e=>setSortOrder(e.target.value)} name="sortOrder" id="sortOrder">
                       <option value="priceAsc">Price &darr;</option>
                       <option value="priceDesc">Price &uarr;</option>
                   </select>
@@ -72,7 +75,9 @@ const ShowDoctors = () => {
               <div className="exp-sort sort">
                   <label htmlFor="expSort">Hospital Name</label>
                   <select name="expSort" id="expSort">
-                      <option value="Ram Prasad Clinic">Ram Prasad Clinic</option>
+                    {hospitalsList.map(hospital=>(
+                      <option key={hospital.hospID} value={hospital.hospName}>{hospital.hospName}</option>
+                    ))}
                   </select>
               </div>
           </form>
@@ -88,13 +93,7 @@ const ShowDoctors = () => {
             />
           ))
         ) : (
-          doctorsList.map((doctor, index) => (
-            <EachDoctor
-              key={index}
-              city={getHospitalCity(doctor.hospitalName)}
-              {...doctor}
-            />
-          ))
+          <div>Not Found</div>
         )}
       </div>
     </div>
