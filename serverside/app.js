@@ -279,6 +279,21 @@ app.get('/getUserDetails/:username', async (req, res) => {
     }
 });
 
+app.get('/getAdminDetails/:username', async (req, res) => {
+  const username = req.params.username;
+  try{
+      const user = await AdminRegisters.findOne({ username:username });
+      if(!user){
+          return res.json('User not found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
 app.get('/getDocDetails/:username', async (req, res) => {
   const docID = req.params.username;
   try{
@@ -303,6 +318,76 @@ app.get('/getHospDetails/:username', async (req, res) => {
       }
       res.status(200).json(user);
   } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllPatients', async (req, res) => {
+  try{
+      const user = await PatientRegisters.find();
+      if(!user){
+          return res.json('No User found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllHospitals', async (req, res) => {
+  try{
+      const user = await HospRegisters.find();
+      if(!user){
+          return res.json('No Hospital found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllDoctors', async (req, res) => {
+  try{
+      const user = await DocRegisters.find();
+      if(!user){
+          return res.json('No Doctor found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllDonors', async (req, res) => {
+  try{
+      const user = await ODRegisters.find();
+      if(!user){
+          return res.json('No Donor found');
+      }
+      res.status(200).json(user);
+  }
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllAppointments', async (req, res) => {
+  try{
+      const user = await Appointments.find();
+      if(!user){
+          return res.json('No Appointment found');
+      }
+      res.status(200).json(user);
+  }
   catch(e){
       console.error(e);
       res.json('Internal Server Error');
@@ -616,6 +701,57 @@ app.get('/cartData', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+app.post('/deleteuser',async(req,res)=>{
+  const {enteredUsername,enteredPassword,actualusername,actualpassword} = req.body
+  try{
+    if(enteredUsername === actualusername && enteredPassword === actualpassword){
+       await PatientRegisters.deleteOne({username : enteredUsername})
+      res.json('deleted')
+    }
+    else{
+      res.json('mismatched')
+    }
+  }
+  catch(error){
+    console.error('Error fetching cart data:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+})
+
+app.post('/deletedoc',async(req,res)=>{
+  const {entereddocID,enteredPassword,actualdocID,actualpassword} = req.body
+  try{
+    if(entereddocID === actualdocID && enteredPassword === actualpassword){
+       await DocRegisters.deleteOne({docID : entereddocID})
+      res.json('deleted')
+    }
+    else{
+      res.json('mismatched')
+    }
+  }
+  catch(error){
+    console.error('Error fetching cart data:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+})
+
+app.post('/deletehosp',async(req,res)=>{
+  const {enteredhospID,enteredPassword,actualhospID,actualPassword} = req.body
+  try{
+    if(enteredhospID === actualhospID && enteredPassword === actualPassword){
+       await HospRegisters.deleteOne({hospID : enteredhospID})
+      res.json('deleted')
+    }
+    else{
+      res.json('mismatched')
+    }
+  }
+  catch(error){
+    console.error('Error fetching cart data:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+})
 
 function sendVerificationEmail(to, link) {
   const transporter = nodemailer.createTransport({
