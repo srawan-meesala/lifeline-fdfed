@@ -1660,6 +1660,18 @@ html {
 }
 
 
+.AdminProfile-booked-appointments-int-div-body-date {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 2rem 0
+}
+
+.AdminProfile-booked-appointments-int-div-body-time {
+  font-size: 30px;
+  font-weight: 400; 
+  margin-bottom: 2rem;
+}
+
 /* css for ShowDoctors */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap');

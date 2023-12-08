@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { FaPlus } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
-import RegistrationForm from '../HospitalRegistration';
+import RegistrationForm from '../DoctorRegistration';
 
-function Patients({patients}) {
+function Donors({donors}) {
   const { username } = useParams()
   const [userDetails, setUserDetails] = useState({});
   const [isListVisible, setListVisible] = useState(false);
   const [isFormVisible, setFormVisible] = useState(false);
 
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getUserDetails/${username}`);
+        const response = await axios.get(`http://localhost:8000/getAdminDetails/${username}`);
         if (response.status === 200) {
           setUserDetails(response.data)
         }
@@ -27,16 +29,15 @@ function Patients({patients}) {
     }
     fetchData()
   }, [username])
-  
+
+  const handleAddClick = () => {
+    setFormVisible(!isFormVisible);
+    setListVisible(!isListVisible)
+  };
+
   const handleCloseForm = () => {
     setFormVisible(false);
     setFormVisible(false);
-  };
-  const [activeComponent, setActiveComponent] = useState('dashboard');
-
-  const toggleComponent = (componentName) => {
-    setActiveComponent(componentName);
-
   };
 
   return (
@@ -44,16 +45,13 @@ function Patients({patients}) {
       <br />
       <div className='DoctorProfile-top'>
         <div className='DoctorProfile-dashboard'>
-          <div></div>
           <div>Welcome {userDetails.name}</div>
         </div>
       </div>
-      <div className="Hospitals-right" >
-        <div id="viewHosp" className="Hospitals-right-table">
-          <div className="ViewHosp"> <h5>User Details</h5>
-
+      <div className="Doctors-right">
+        <div id="viewDoc" className="Doctors-right-table">
+          <div className="ViewDoc"><h5>Donor Details</h5>
           </div>
-
           {isFormVisible && (
             <div className="modal-container">
               <RegistrationForm onClose={handleCloseForm} />
@@ -64,36 +62,31 @@ function Patients({patients}) {
             <table>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Mobile Number</th>
-                  <th>Mail ID</th>
-                  <th>Gender</th>
-                  <th>DOB</th>
-                  <th>Blood Group</th>
-                  <th>Marital Status</th>
-                  <th>Occupation</th>
                   <th>Username</th>
+                  <th>Name</th>
+                  <th>Aadhaar Number</th>
+                  <th>Gender</th>
+                  <th>Donation</th>
+                  <th>Particular</th>
+                  <th>Past</th>
                 </tr>
               </thead>
               <tbody>
-                {patients.map((patient) => (
-                  <tr key={patient.username}>
-                    <td>{patient.firstName} {patient.lastName}</td>
-                    <td>{patient.mobileNumber}</td>
-                    <td>{patient.mailID}</td>
-                    <td>{patient.gender}</td>
-                    <td>{patient.dob}</td>
-                    <td>{patient.bloodGroup}</td>
-                    <td>{patient.maritalStatus}</td>
-                    <td>{patient.occupation}</td>
-                    <td>{patient.username}</td>
+                {donors.map((donor) => (
+                  <tr key={donor.username}>
+                    <td>{donor.username}</td>
+                    <td>{donor.name}</td>
+                    <td>{donor.aadhaar}</td>
+                    <td>{donor.gender}</td>
+                    <td>{donor.donation}</td>
+                    <td>{donor.particular}</td>
+                    <td>{donor.past}</td>
                   </tr>
                 ))}
               </tbody>
 
             </table>
           </div>
-
         </div>
       </div>
     </div>
@@ -101,4 +94,4 @@ function Patients({patients}) {
   )
 }
 
-export default Patients
+export default Donors

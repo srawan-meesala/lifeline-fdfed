@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { FaUserCircle, FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { FaUserCircle, FaPlus } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import RegistrationForm from '../DoctorRegistration';
 
-function Doctors() {
+function Doctors({doctors}) {
   const { username } = useParams()
   const [userDetails, setUserDetails] = useState({});
   const [isListVisible, setListVisible] = useState(false);
@@ -29,14 +29,6 @@ function Doctors() {
     }
     fetchData()
   }, [username])
-  const doctors = [
-    { id: 1, name: 'Doctor A', mobile: '8956235689', mail: 'DoctorA@gmail.com', hospital: 'Hospital A', specialization: 'Neurologist', fee: 'Rs. 600', docID: 'DoctorA@123' },
-    { id: 2, name: 'Doctor B', mobile: '8972623569', mail: 'DoctorB@gmail.com', hospital: 'Hospital B', specialization: 'Gynocologist', fee: 'Rs. 600', docID: 'DoctorB@123' },
-    { id: 3, name: 'Doctor C', mobile: '8956235279', mail: 'DoctorC@gmail.com', hospital: 'Hospital B', specialization: 'Cardiologist', fee: 'Rs. 650', docID: 'DoctorC@123' },
-    { id: 4, name: 'Doctor D', mobile: '8972623599', mail: 'DoctorD@gmail.com', hospital: 'Hospital D', specialization: 'General Physician', fee: 'Rs. 450', docID: 'DoctorD@123' },
-    { id: 5, name: 'Doctor E', mobile: '8956235249', mail: 'DoctorE@gmail.com', hospital: 'Hospital A', specialization: 'General Physician', fee: 'Rs. 450', docID: 'DoctorE@123' },
-    // Add more Doctors as needed...
-  ];
 
   // State to track the selected hospital for detailed view
 
@@ -64,12 +56,7 @@ function Doctors() {
       <br />
       <div className='DoctorProfile-top'>
         <div className='DoctorProfile-dashboard'>
-          <div></div>
-          <div>Welcome {userDetails.firstName}</div>
-        </div>
-        <div className='DoctorProfile-user-logo'>
-          <div className='DoctorProfile-user-logo-pic'><FaUserCircle /></div>
-          <div></div>
+          <div>Welcome {userDetails.name}</div>
         </div>
       </div>
       <div className="Doctors-right">
@@ -87,32 +74,27 @@ function Doctors() {
             <table>
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>Doctor ID</th>
                   <th>Name</th>
                   <th>Mobile Number</th>
                   <th>Mail ID</th>
                   <th>Hospital</th>
                   <th>Specialization</th>
                   <th>Appointment Fee</th>
-                  <th>Doctor ID</th>
-                  <th>Actions</th>
+                  <th>Number of Blogs</th>
                 </tr>
               </thead>
               <tbody>
                 {doctors.map((doctor) => (
-                  <tr key={doctor.id}>
-                    <td>{doctor.id}</td>
+                  <tr key={doctor.docID}>
+                    <td>{doctor.docID}</td>
                     <td>{doctor.name}</td>
-                    <td>{doctor.mobile}</td>
-                    <td>{doctor.mail}</td>
-                    <td>{doctor.hospital}</td>
+                    <td>{doctor.mobileNumber}</td>
+                    <td>{doctor.mailID}</td>
+                    <td>{doctor.hospID}</td>
                     <td>{doctor.specialization}</td>
                     <td>{doctor.fee}</td>
-                    <td>{doctor.docID}</td>
-                    <td>
-                      <button className="Doctors-edit-icon" onClick={() => handleEdit(doctor.id)}><FaEdit /></button>
-                      <button className="Doctors-delete-icon" onClick={() => handleDelete(doctor.id)}><FaTrash /></button>
-                    </td>
+                    <td>{doctor.blogs.length}</td>
                   </tr>
                 ))}
               </tbody>

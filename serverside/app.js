@@ -325,7 +325,7 @@ app.get('/getHospDetails/:username', async (req, res) => {
 
 app.get('/getAllPatients', async (req, res) => {
   try{
-      const user = await PatientRegisters.findAll();
+      const user = await PatientRegisters.find();
       if(!user){
           return res.json('No User found');
       }
@@ -339,7 +339,7 @@ app.get('/getAllPatients', async (req, res) => {
 
 app.get('/getAllHospitals', async (req, res) => {
   try{
-      const user = await HospRegisters.findAll();
+      const user = await HospRegisters.find();
       if(!user){
           return res.json('No Hospital found');
       }
@@ -353,12 +353,40 @@ app.get('/getAllHospitals', async (req, res) => {
 
 app.get('/getAllDoctors', async (req, res) => {
   try{
-      const user = await DocRegisters.findAll();
+      const user = await DocRegisters.find();
       if(!user){
           return res.json('No Doctor found');
       }
       res.status(200).json(user);
   } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllDonors', async (req, res) => {
+  try{
+      const user = await ODRegisters.find();
+      if(!user){
+          return res.json('No Donor found');
+      }
+      res.status(200).json(user);
+  }
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllAppointments', async (req, res) => {
+  try{
+      const user = await Appointments.find();
+      if(!user){
+          return res.json('No Appointment found');
+      }
+      res.status(200).json(user);
+  }
   catch(e){
       console.error(e);
       res.json('Internal Server Error');

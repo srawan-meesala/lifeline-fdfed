@@ -15,8 +15,6 @@ const HospitalRegistration = ({ onClose }) => {
         e.preventDefault();
         alert('Registration successful!');
         onClose();    
-          
-    
     }
 
 

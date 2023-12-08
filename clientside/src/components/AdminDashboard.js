@@ -16,7 +16,7 @@ import Hospitals from './Admin/Hospitals'
 import Dashboard from "./Dashboard";
 import Doctors from "./Admin/Doctors";
 import Patients from "./Admin/Patients";
-import Donors from "./Donors";
+import Donors from "./Admin/Donors";
 import Transactions from "./Transactions";
 import Settings from "./Settings";
 import Pharmacy from "./Pharmacy";
@@ -75,16 +75,142 @@ function AdminDashboard() {
     fetchData()
   }, [])
 
+  const [hospitals, setHospitals] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:8000/getAllHospitals`);
+        if (response.status === 200) {
+          setHospitals(response.data)
+        }
+        else {
+          console.error('Failed to fetch user details')
+        }
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const [doctors, setDoctors] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:8000/getAllDoctors`);
+        if (response.status === 200) {
+          setDoctors(response.data)
+        }
+        else {
+          console.error('Failed to fetch user details')
+        }
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const [donors, setDonors] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:8000/getAllDonors`);
+        if (response.status === 200) {
+          setDonors(response.data)
+        }
+        else {
+          console.error('Failed to fetch user details')
+        }
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const [appointments, setAppointments] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:8000/getAllAppointments`);
+        if (response.status === 200) {
+          setAppointments(response.data)
+        }
+        else {
+          console.error('Failed to fetch user details')
+        }
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const [bloodDonors, setBloodDonors] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:8000/getAllBloodDonors`);
+        if (response.status === 200) {
+          setBloodDonors(response.data)
+        }
+        else {
+          console.error('Failed to fetch user details')
+        }
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const [blogs, setBlogs] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:8000/blogsAPI`);
+        if (response.status === 200) {
+          setBlogs(response.data)
+        }
+        else {
+          console.error('Failed to fetch user details')
+        }
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    fetchData()
+  }, [])
+
   const componentMap = {
-    dashboard: <Dashboard />,
-    Hospitals: <Hospitals />,
-    Doctors: <Doctors />,
+    dashboard: <Dashboard 
+      hospitals={hospitals}
+      doctors={doctors}
+      patients={patients}
+      donors={donors}
+      appointments={appointments}
+      bloodDonors={bloodDonors}
+      blogs={blogs}
+    />,
+    Hospitals: <Hospitals hospitals={hospitals}/>,
+    Doctors: <Doctors doctors={doctors}/>,
     Patients: <Patients patients={patients}/>,
-    Pharmacy: < Pharmacy />,
-    Donors: <Donors />,
-    Transactions: <Transactions />,
-    Settings: <Settings />,
-    Logout: < Logout />
+    Pharmacy: <Pharmacy />,
+    Donors: <Donors donors={donors}/>,
+    Transactions: <Transactions />
   }
 
   return (
@@ -123,10 +249,6 @@ function AdminDashboard() {
             <div className='Admin-func-parts' onClick={() => toggleComponent('Transactions')}>
               <div className='Admin-icon'><BiRupee /></div>
               <div className='DoctorProfile-func'>Transactions</div>
-            </div>
-            <div className='Admin-func-parts' onClick={() => toggleComponent('Settings')}>
-              <div className='Admin-icon'><IoSettingsSharp /></div>
-              <div className='DoctorProfile-func'>Settings</div>
             </div>
           </div>
         </div>

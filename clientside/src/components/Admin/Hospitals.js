@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { FaUserCircle } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import RegistrationForm from '../HospitalRegistration';
 
-function Hospitals() {
+function Hospitals({hospitals}) {
   const { username } = useParams()
   const [userDetails, setUserDetails] = useState({});
   const [isListVisible, setListVisible] = useState(false);
@@ -14,8 +13,8 @@ function Hospitals() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getUserDetails/${username}`);
-        if (response.status == 200) {
+        const response = await axios.get(`http://localhost:8000/getAdminDetails/${username}`);
+        if (response.status === 200) {
           setUserDetails(response.data)
         }
         else {
@@ -28,13 +27,7 @@ function Hospitals() {
     }
     fetchData()
   }, [username])
-  const hospitals = [
-    { id: 1, name: 'Hospital A', mobile: '8956235689', mail: 'hospitalA@gmail.com', diag: 'Yes', city: 'Chennai', Bloodbank: 'No', Approval: 'Yes', userID: 'Hospital@123' },
-    { id: 2, name: 'Hospital B', mobile: '8972623569', mail: 'hospitalB@gmail.com', diag: 'Yes', city: 'Bangalore', Bloodbank: 'Yes', Approval: 'Yes', userID: 'HospitalB@123' },
-    { id: 3, name: 'Hospital C', mobile: '8956235279', mail: 'hospitalC@gmail.com', diag: 'No', city: 'Bangalore', Bloodbank: 'No', Approval: 'No', userID: 'HospitalC@123' },
-    { id: 4, name: 'Hospital D', mobile: '8972623599', mail: 'hospitalD@gmail.com', diag: 'Yes', city: 'Chennai', Bloodbank: 'Yes', Approval: 'Yes', userID: 'HospitalD@123' },
-    { id: 5, name: 'Hospital E', mobile: '8956235249', mail: 'hospitalE@gmail.com', diag: 'No', city: 'Chennai', Bloodbank: 'No', Approval: 'No', userID: 'HospitalE@123' },
-  ];
+  
   const handleCloseForm = () => {
     setFormVisible(false);
     setFormVisible(false);
@@ -52,11 +45,7 @@ function Hospitals() {
       <div className='DoctorProfile-top'>
         <div className='DoctorProfile-dashboard'>
           <div></div>
-          <div>Welcome {userDetails.firstName}</div>
-        </div>
-        <div className='DoctorProfile-user-logo'>
-          <div className='DoctorProfile-user-logo-pic'><FaUserCircle /></div>
-          <div></div>
+          <div>Welcome {userDetails.name}</div>
         </div>
       </div>
       <div className="Hospitals-right" >
@@ -75,27 +64,27 @@ function Hospitals() {
             <table>
               <thead>
                 <tr>
+                  <th>Hospital ID</th>
                   <th>Hospital Name</th>
                   <th>Mobile Number</th>
                   <th>Mail ID</th>
-                  <th>If Diag</th>
                   <th>City</th>
+                  <th>Diagnosis Center</th>
                   <th>Blood Bank</th>
-                  <th>Approval</th>
-                  <th>User ID</th>
+                  <th>Organ Donation</th>
                 </tr>
               </thead>
               <tbody>
                 {hospitals.map((hospital) => (
-                  <tr key={hospital.id}>
-                    <td>{hospital.name}</td>
-                    <td>{hospital.mobile}</td>
-                    <td>{hospital.mail}</td>
-                    <td>{hospital.diag}</td>
+                  <tr key={hospital.hospID}>
+                    <td>{hospital.hospID}</td>
+                    <td>{hospital.hospName}</td>
+                    <td>{hospital.mobileNumber}</td>
+                    <td>{hospital.mailID}</td>
                     <td>{hospital.city}</td>
-                    <td>{hospital.Bloodbank}</td>
-                    <td>{hospital.Approval}</td>
-                    <td>{hospital.userID}</td>
+                    <td>{hospital.diagnosisCenter}</td>
+                    <td>{hospital.bloodBanks}</td>
+                    <td>{hospital.organDonation}</td>
                   </tr>
                 ))}
               </tbody>
