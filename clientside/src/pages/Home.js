@@ -47,11 +47,16 @@ const Home = () => {
     });
   };
 
+  const searchHandler = () => {
+    navigate('/showdoctors', {
+      
+    })
+  }
 
   return (
     <div className='Home-page'>
         <Navbar title={'Home'} username={username}/>
-        <Searchbar/>
+        <Searchbar onSearch={searchHandler}/>
         <div className="Home-whole">
           <div className="Home-c1">
             <div className="Home-c1-box">

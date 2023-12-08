@@ -494,10 +494,20 @@ app.get('/AppointmentsAPI/dateanddocid', async (req, res) => {
   }
 });
 
+app.post('/searchDoctors/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const doctors = await DocRegisters.find({ name: { $regex: name, $options: 'i' } });
+    res.json(doctors);
+  } catch (error) {
+    console.error('Error searching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.post('/searchDoctors', async (req, res) => {
   try {
-    const { name } = req.body;
-    const doctors = await DocRegisters.find({ name: { $regex: new RegExp(name, 'i') } });
+    const doctors = await DocRegisters.find();
     res.json(doctors);
   } catch (error) {
     console.error('Error searching doctors:', error);
@@ -861,7 +871,7 @@ function sendVerificationEmail(to, link) {
     });
 }
 
-app.post('/api/submit-feedback', (req, res) => {
+app.post('/api/submit-feedback', async(req, res) => {
   const { name, email, message } = req.body;
 
   const newFeedback = new Feedback({
@@ -870,7 +880,7 @@ app.post('/api/submit-feedback', (req, res) => {
     message,
   });
 
-  newFeedback.save((err) => {
+  await newFeedback.save((err) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error saving feedback');
