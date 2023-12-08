@@ -19,6 +19,7 @@ function HospitalProfile() {
   const {hospID} = useParams()
   const [userDetails,setUserDetails]=useState({})
 
+
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
   const DoctorsOpener = () => setChoose(3)

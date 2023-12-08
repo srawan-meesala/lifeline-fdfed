@@ -7,6 +7,7 @@ const ODRegisters = require('./models/organdonation')
 const BBRegisters = require('./models/bloodbanks')
 const Appointments = require('./models/appointments')
 const Blogs = require('./models/blogs')
+const PharmacyCart = require('./models/pharmacyCart')
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
@@ -561,6 +562,54 @@ app.post('/bloodBanks', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');
+  }
+});
+
+app.post('/addToCart', async (req, res) => {
+  const { username, item } = req.body;
+
+  try {
+    let cart = await PharmacyCart.findOne({ username });
+
+    if (!cart) {
+      cart = new PharmacyCart({
+        username,
+        items: [item],
+      });
+    } else {
+      const existingItemIndex = cart.items.findIndex((i) => i.title === item.title);
+
+      if (existingItemIndex !== -1) {
+        // If item already exists, update quantity
+        cart.items[existingItemIndex].quantity += 1;
+      } else {
+        // If item doesn't exist, add to the cart
+        cart.items.push(item);
+      }
+    }
+
+    await cart.save();
+
+    res.json({ message: 'Item added to cart successfully' });
+  } catch (error) {
+    console.error('Error adding item to the cart:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+app.get('/cartData', async (req, res) => {
+  const { username } = req.query;
+
+  try {
+    const cart = await PharmacyCart.findOne({ username });
+
+    if (!cart) {
+      return res.json([]);
+    }
+    res.json(cart.items);
+  } catch (error) {
+    console.error('Error fetching cart data:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

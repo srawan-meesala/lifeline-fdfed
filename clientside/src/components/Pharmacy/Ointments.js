@@ -6,7 +6,7 @@ import rashes from '../../images/Ointments/rashes.jpg'
 import bodypains from '../../images/Ointments/bodypains.jpg'
 import infections from '../../images/Ointments/infections.jpg'
 
-const Ointments = () => {
+const Ointments = ({addToCart}) => {
   const firstFiveImages = ointmentData.slice(0, 5);
 
   console.log(ointmentData);
@@ -39,7 +39,7 @@ const Ointments = () => {
                 <h3>Rs. {item.price}</h3>
               </div>
 
-              <button className='btn'>Add to Cart</button>
+              <button className='btn' onClick={() => addToCart(item)}>Add to Cart</button>
             </div>
           </div>
         );

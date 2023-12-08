@@ -6,7 +6,7 @@ import Iodine from '../../images/Syrups/Iodine.jpg'
 import NandH from '../../images/Syrups/NandH.jpg'
 import Freemotions from '../../images/Syrups/Freemotions.jpg'
 
-const Syrups = () => {
+const Syrups = ({addToCart}) => {
   const firstFiveImages = syrupData.slice(0, 5);
 
   console.log(syrupData);
@@ -39,7 +39,7 @@ const Syrups = () => {
                 <h3>Rs. {item.price}</h3>
               </div>
 
-              <button className='btn'>Add to Cart</button>
+              <button className='btn'onClick={() => addToCart(item)} >Add to Cart</button>
             </div>
           </div>
         );

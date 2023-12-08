@@ -96,7 +96,7 @@ function UserProfile() {
               <div className='UserProfile-func'>Profile</div>
             </div>
             <div className='UserProfile-func-parts'>
-              <Link to='/pharmacy' className="UserProfile-func-parts-link">
+              <Link to={`/pharmacy/${username}`} className="UserProfile-func-parts-link">
                 <div className='UserProfile-icon'><MdLocalPharmacy/></div>
                 <div className='UserProfile-func'>Pharmacy</div>
               </Link>

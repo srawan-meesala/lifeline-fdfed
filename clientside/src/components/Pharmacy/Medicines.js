@@ -5,21 +5,22 @@ import Ointments from './Ointments';
 import Syrups from './Syrups';
 import Equipment from './Equipment';
 
-const Medicines = () => {
+const Medicines = ({addToCart}) => {
     return (
 
         <div>
             <div className='Medicines'>Tablets</div>
-            <Tablets />
+            <Tablets addToCart={addToCart} />
             <div className='Medicines'>AntiBiotics</div>
-            <AntiBiotics />
+            <AntiBiotics addToCart={addToCart}/>
             <div className='Medicines'>Ointments</div>
-            <Ointments />
+            <Ointments addToCart={addToCart}/>
             <div className='Medicines'>Syrups</div>
-            <Syrups />
+            <Syrups addToCart={addToCart}/>
             <div className='Medicines'>Equipment</div>
-            <Equipment />
+            <Equipment addToCart={addToCart}/>
         </div>
+        
 
     )
 }

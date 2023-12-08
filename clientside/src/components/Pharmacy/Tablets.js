@@ -6,7 +6,7 @@ import citrogen from '../../images/Tablets/citrogen.jpg'
 import Sleepingpills from '../../images/Tablets/Sleepingpills.jpg'
 import capsules from '../../images/Tablets/capsules.jpg'
 
-const Tablets = () => {
+const Tablets = ({addToCart}) => {
   const firstFiveImages = tabletData.slice(0, 5);
 
   return (
@@ -37,7 +37,7 @@ const Tablets = () => {
                 <h3>Rs. {item.price}</h3>
               </div>
 
-              <button className='btn'>Add to Cart</button>
+              <button className='btn' onClick={() => addToCart(item)}>Add to Cart</button>
             </div>
           </div>
         );

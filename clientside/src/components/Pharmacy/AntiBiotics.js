@@ -6,7 +6,7 @@ import HairConditioner from '../../images/AntiBiotics/HairConditioner.jpg'
 import Sanitizer from '../../images/AntiBiotics/Sanitizer.jpg'
 import Moisturizer from '../../images/AntiBiotics/Moisturizer.jpg'
 
-const AntiBiotics = () => {
+const AntiBiotics = ({addToCart}) => {
 
   const firstFiveImages = antibioticData.slice(0, 5)
 
@@ -38,7 +38,7 @@ const AntiBiotics = () => {
               <div className="name">
                 <h3>Rs. {item.price}</h3>
               </div>
-              <button className='btn'>Add to Cart</button>
+              <button className='btn' onClick={() => addToCart(item)}>Add to Cart</button>
             </div>
           </div>
         );

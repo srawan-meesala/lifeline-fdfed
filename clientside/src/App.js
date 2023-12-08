@@ -58,11 +58,11 @@ function App() {
           <Route path="/showDoctors" element={<ShowDoctors />} />
           <Route path='/docProfile/:username' element={<DoctorProfile />} />
           <Route path='/hospProfile/:hospID' element={<HospitalProfile />} />
-          <Route path='/pharmacy' element={<PharmacyPage />} />
+          <Route path='/pharmacy/:username' element={<PharmacyPage />} />
           <Route path="/userProfile/:username" element={<UserProfile />} />
           <Route path="/bookedappointments" element={<BookedAppointments />} />
           <Route path="/thankyou/:username" element={<Thankyou />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/:username" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/organdonation/:username" element={<OrganDonation />} />
           <Route path="/odthankyou/:username" element={<ODThankyou />} />

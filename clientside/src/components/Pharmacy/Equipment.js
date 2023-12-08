@@ -6,7 +6,7 @@ import PPE from '../../images/Equipments/PPE.jpg'
 import Sthethoscope from '../../images/Equipments/Sthethoscope.jpg'
 import SurgicalKit from '../../images/Equipments/SurgicalKit.jpg'
 
-const Equipment = () => {
+const Equipment = ({addToCart}) => {
   const firstFiveImages = equipmentData.slice(0, 5);
 
   console.log(equipmentData);
@@ -38,7 +38,7 @@ const Equipment = () => {
               <div className="name">
                 <h3>Rs. {item.price}</h3>
               </div>
-              <button className='btn'>Add to Cart</button>
+              <button className='btn' onClick={() => addToCart(item)}>Add to Cart</button>
             </div>
           </div>
         );
