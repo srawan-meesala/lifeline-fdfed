@@ -89,7 +89,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios'
-import { useNavigate,useParams } from 'react-router-dom';
+import { Link, useNavigate,useParams } from 'react-router-dom';
 import Medicines from '../components/Pharmacy/Medicines';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
@@ -119,6 +119,9 @@ const PharmacyPage = () => {
   return (
     <div className="Pharmacy-whole">
       <Navbar title={'Pharmacy'} />
+      <div>
+        <Link to={`/cart/${username}`}>Cart</Link>
+      </div>
       <Medicines addToCart={addToCart} />
       {cartItems.map((cartItem, index) => (
         <CartItem

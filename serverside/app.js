@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const DocRegisters = require('./models/docRegister')
 const PatientRegisters = require('./models/patientRegister')
 const HospRegisters = require('./models/hospRegister')
+const AdminRegisters = require('./models/admin')
 const ODRegisters = require('./models/organdonation')
 const BBRegisters = require('./models/bloodbanks')
 const Appointments = require('./models/appointments')
@@ -40,6 +41,8 @@ app.post('/login', async (req, res) => {
           check = await DocRegisters.findOne({ docID: username });
       } else if (type === 'hospital') {
           check = await HospRegisters.findOne({ hospID: username });
+      } else if (type === 'admin') {
+          check = await AdminRegisters.findOne({ username: username });
       }
       if (check) {
           if (password === check.password) {
@@ -515,7 +518,7 @@ app.get('/getTotalExpenditure2/:docID', async (req, res) => {
 
 app.get('/getTotalExpenditure3/:hospID', async (req, res) => {
   try {
-    const docID = req.params.hospID;
+    const hospID = req.params.hospID;
     const totalExpenditure = await Appointments.aggregate([
       { $match: { hospID: hospID } },
       { $group: { _id: null, totalExpenditure: { $sum: '$Fee' } } },

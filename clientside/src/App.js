@@ -32,6 +32,7 @@ import OrganDonation from './pages/OrganDonation';
 import ODThankyou from './pages/ODThankyou';
 import PleaseVerify from './pages/Misc/PleaseVerify';
 import BloodDonation from './pages/BloodDonation';
+import ThankyouPharmacy from './pages/Misc/ThankyouPharmacy';
 
 function App() {
   return (
@@ -62,8 +63,9 @@ function App() {
           <Route path="/userProfile/:username" element={<UserProfile />} />
           <Route path="/bookedappointments" element={<BookedAppointments />} />
           <Route path="/thankyou/:username" element={<Thankyou />} />
+          <Route path="/thankyoupharmacy/:username" element={<ThankyouPharmacy />} />
           <Route path="/cart/:username" element={<Cart />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/adminprofile/:username" element={<Admin />} />
           <Route path="/organdonation/:username" element={<OrganDonation />} />
           <Route path="/odthankyou/:username" element={<ODThankyou />} />
           <Route path="/sent" element={<PleaseVerify />} />

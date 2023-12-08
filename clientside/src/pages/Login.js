@@ -25,6 +25,8 @@ function Login(){
                     navigate(`/docProfile/${username}`);
                 } else if (type === 'hospital') {
                     navigate(`/hospProfile/${username}`);
+                } else if (type === 'admin') {
+                    navigate(`/adminProfile/${username}`);
                 }
             } else if (response.data === 'does not exist') {
                 alert('User does not exist');

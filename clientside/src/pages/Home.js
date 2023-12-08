@@ -66,7 +66,7 @@ const Home = () => {
                 <span>"Your Health is Our Priority."</span>
               </div>
               <div className="Home-c1-link">
-                <Link to="/pharmacy" target="_self">Explore Pharmacy</Link>
+                <Link to={`/pharmacy/${username}`} target="_self">Explore Pharmacy</Link>
               </div>
               <div className="Home-c1-pharm">
                 <img className='Home-c1-pharm-img' src={syringe} alt="syringe" />
