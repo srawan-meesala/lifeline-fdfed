@@ -278,6 +278,21 @@ app.get('/getUserDetails/:username', async (req, res) => {
     }
 });
 
+app.get('/getAdminDetails/:username', async (req, res) => {
+  const username = req.params.username;
+  try{
+      const user = await AdminRegisters.findOne({ username:username });
+      if(!user){
+          return res.json('User not found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
 app.get('/getDocDetails/:username', async (req, res) => {
   const docID = req.params.username;
   try{
@@ -299,6 +314,48 @@ app.get('/getHospDetails/:username', async (req, res) => {
       const user = await HospRegisters.findOne({ hospID:hospID });
       if(!user){
           return res.json('User not found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllPatients', async (req, res) => {
+  try{
+      const user = await PatientRegisters.findAll();
+      if(!user){
+          return res.json('No User found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllHospitals', async (req, res) => {
+  try{
+      const user = await HospRegisters.findAll();
+      if(!user){
+          return res.json('No Hospital found');
+      }
+      res.status(200).json(user);
+  } 
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
+app.get('/getAllDoctors', async (req, res) => {
+  try{
+      const user = await DocRegisters.findAll();
+      if(!user){
+          return res.json('No Doctor found');
       }
       res.status(200).json(user);
   } 
