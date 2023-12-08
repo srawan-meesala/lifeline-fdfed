@@ -2,6 +2,14 @@ import React from 'react'
 import { BiRupee } from "react-icons/bi";
 
 const DoctorDashboard = ({ userDetails, appointmentsLength, blogsLength, appointments }) => {
+  let patients = []
+  for (let i=0; i<appointments.length;i++) {
+    patients.push(appointments[i].Username)
+  }
+
+  let patientsSet = new Set(patients)
+  let patientsArray = Array.from(patientsSet)
+  
   var appointmentsThree = []
   if (appointmentsLength >=3) {
     appointmentsThree = appointments.slice(appointmentsLength-3, appointmentsLength)
@@ -40,8 +48,8 @@ const DoctorDashboard = ({ userDetails, appointmentsLength, blogsLength, appoint
           </div>
           <div className='DoctorProfile-card-4'>
             <div className='DoctorProfile-card-4-int-div'>
-              <div className='DoctorProfile-card-1-int-div-head'>Total number of medicines ordered:</div>
-              <div className='DoctorProfile-card-1-int-div-body'>10</div>
+              <div className='DoctorProfile-card-1-int-div-head'>Total Number of Patients:</div>
+              <div className='DoctorProfile-card-1-int-div-body'>{patientsArray.length}</div>
             </div>
           </div>
         </div>

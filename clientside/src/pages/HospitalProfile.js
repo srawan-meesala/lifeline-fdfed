@@ -108,7 +108,7 @@ function HospitalProfile() {
         </div>
       </div>
       {choose===1 && (
-        <HospitalDashboard userDetails={userDetails} />
+        <HospitalDashboard userDetails={userDetails} appointments={appointments} doctors={doctors}/>
       )}
       {choose===2 && (
         <HospitalAppointments userDetails={userDetails} appointments={appointments}/>
