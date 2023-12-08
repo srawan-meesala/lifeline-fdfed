@@ -14,12 +14,28 @@ function Footer() {
     setFeedback({ ...feedback, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Feedback submitted:', feedback);
-    // You can add your logic to send the feedback data to your server or perform other actions here
+  
+    try {
+      const response = await fetch('http://localhost:8000/api/submit-feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedback),
+      });
+  
+      if (response.ok) {
+        console.log('Feedback submitted successfully');
+      } else {
+        console.error('Failed to submit feedback');
+      }
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+    }
   };
+  
 
   return (
     <div className="footer-whole">

@@ -9,6 +9,7 @@ const BBRegisters = require('./models/bloodbanks')
 const Appointments = require('./models/appointments')
 const Blogs = require('./models/blogs')
 const PharmacyCart = require('./models/pharmacyCart')
+const Feedback = require('./models/feedback')
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
@@ -638,6 +639,27 @@ function sendVerificationEmail(to, link) {
       }
     });
 }
+
+app.post('/api/submit-feedback', (req, res) => {
+  const { name, email, phone, message } = req.body;
+
+  const newFeedback = new Feedback({
+    name,
+    email,
+    phone,
+    message,
+  });
+
+  newFeedback.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error saving feedback');
+    } else {
+      res.status(200).send('Feedback submitted successfully');
+    }
+  });
+});
+
 
 app.listen(8000,()=>{
     console.log("port connected to 8000");
