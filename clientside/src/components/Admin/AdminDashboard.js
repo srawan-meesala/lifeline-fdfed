@@ -4,23 +4,19 @@ import { AiFillDashboard } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
 import { FaHospital } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
-import { FaUserCircle } from "react-icons/fa";
 import { FaHandHoldingWater } from "react-icons/fa";
-import { IoSettingsSharp } from "react-icons/io5";
 import { MdLocalPharmacy } from "react-icons/md";
 import { BiRupee } from "react-icons/bi";
 
 import { BiLogOut } from "react-icons/bi";
 import { useLocation, useParams } from 'react-router-dom';
-import Hospitals from './Admin/Hospitals'
+import Hospitals from './Hospitals'
 import Dashboard from "./Dashboard";
-import Doctors from "./Admin/Doctors";
-import Patients from "./Admin/Patients";
-import Donors from "./Admin/Donors";
-import Transactions from "./Transactions";
-import Settings from "./Settings";
-import Pharmacy from "./Pharmacy";
-import Logout from "./Logout";
+import Doctors from "./Doctors";
+import Patients from "./Patients";
+import Donors from "./Donors";
+import Transactions from "../Transactions";
+import Pharmacy from "../Pharmacy";
 
 
 function AdminDashboard() {
@@ -35,7 +31,7 @@ function AdminDashboard() {
     setActiveComponent(componentName);
   };
 
-  
+
 
   useEffect(() => {
     async function fetchData() {
@@ -142,6 +138,7 @@ function AdminDashboard() {
       try {
         const response = await axios.get(`http://localhost:8000/getAllAppointments`);
         if (response.status === 200) {
+          console.log(response);
           setAppointments(response.data)
         }
         else {
@@ -160,7 +157,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAllBloodDonors`);
+        const response = await axios.get('http://localhost:8000/getAllBloodDonors');
         if (response.status === 200) {
           setBloodDonors(response.data)
         }
@@ -180,7 +177,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/blogsAPI`);
+        const response = await axios.get(`http://localhost:8000/blogAPI`);
         if (response.status === 200) {
           setBlogs(response.data)
         }
@@ -196,7 +193,7 @@ function AdminDashboard() {
   }, [])
 
   const componentMap = {
-    dashboard: <Dashboard 
+    dashboard: <Dashboard
       hospitals={hospitals}
       doctors={doctors}
       patients={patients}
@@ -205,11 +202,11 @@ function AdminDashboard() {
       bloodDonors={bloodDonors}
       blogs={blogs}
     />,
-    Hospitals: <Hospitals hospitals={hospitals}/>,
-    Doctors: <Doctors doctors={doctors}/>,
-    Patients: <Patients patients={patients}/>,
+    Hospitals: <Hospitals hospitals={hospitals} />,
+    Doctors: <Doctors doctors={doctors} />,
+    Patients: <Patients patients={patients} />,
     Pharmacy: <Pharmacy />,
-    Donors: <Donors donors={donors}/>,
+    Donors: <Donors donors={donors} />,
     Transactions: <Transactions />
   }
 
@@ -238,17 +235,9 @@ function AdminDashboard() {
               <div className='Admin-icon'><FaUserGroup /></div>
               <div className='DoctorProfile-func'>Patients</div>
             </div>
-            <div className='Admin-func-parts' onClick={() => toggleComponent('Pharmacy')}>
-              <div className='Admin-icon'><MdLocalPharmacy /></div>
-              <div className='DoctorProfile-func'>Pharmacy</div>
-            </div>
             <div className='Admin-func-parts' onClick={() => toggleComponent('Donors')}>
               <div className='Admin-icon'><FaHandHoldingWater /></div>
               <div className='DoctorProfile-func'>Donors</div>
-            </div>
-            <div className='Admin-func-parts' onClick={() => toggleComponent('Transactions')}>
-              <div className='Admin-icon'><BiRupee /></div>
-              <div className='DoctorProfile-func'>Transactions</div>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ function Blogs() {
         const response = await axios.get('http://localhost:8000/blogAPI');
         setBlogs(response.data);
       } catch (error) {
-        console.error('Error fetching doctors:', error);
+        console.error('Error fetching blogs:', error);
       }
     };
     fetchBlogs();

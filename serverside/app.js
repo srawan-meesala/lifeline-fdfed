@@ -380,6 +380,20 @@ app.get('/getAllDonors', async (req, res) => {
   }
 });
 
+app.get('/getAllBloodDonors', async (req, res) => {
+  try{
+      const user = await BBRegisters.find();
+      if(!user){
+          return res.json('No Donor found');
+      }
+      res.status(200).json(user);
+  }
+  catch(e){
+      console.error(e);
+      res.json('Internal Server Error');
+  }
+});
+
 app.get('/getAllAppointments', async (req, res) => {
   try{
       const user = await Appointments.find();

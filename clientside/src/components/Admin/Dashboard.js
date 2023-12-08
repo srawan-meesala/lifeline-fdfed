@@ -14,6 +14,12 @@ function Dashboard ({hospitals, patients, doctors, donors, bloodDonors, appointm
     const location = useLocation()
     const [userDetails,setUserDetails]= useState({});
     
+    var totalIncome = 0
+
+    for (let i=0; i<appointments.length; i++) {
+      totalIncome += (appointments[i].Fee * 0.1)
+    }
+
     useEffect(()=>{
         async function fetchData(){
           try{
@@ -77,7 +83,7 @@ function Dashboard ({hospitals, patients, doctors, donors, bloodDonors, appointm
         <div className='Admin-card-4'>
           <div className='Admin-card-4-int-div'>
           <div className ='Admin-card-1-int-div-left'>
-          <div className='Admin-card-1-int-div-body'><BiRupee/>{donors.length}</div>
+          <div className='Admin-card-1-int-div-body'><BiRupee/>{totalIncome}</div>
             <div className='Admin-card-1-int-div-head'>Total Income</div>
             </div>
             <div>
@@ -97,7 +103,7 @@ function Dashboard ({hospitals, patients, doctors, donors, bloodDonors, appointm
               </div>
               <div className='DoctorProfile-booked-appointments-int-div-body-part'>
                 <div className='AdminProfile-booked-appointments-int-div-body-date'>Total Number of Blogs: </div>
-                <div className='AdminProfile-booked-appointments-int-div-body-time AdminProfile-new'>{appointments.length}</div>
+                <div className='AdminProfile-booked-appointments-int-div-body-time AdminProfile-new'>{blogs.length}</div>
               </div>
             </div>
           </div>
