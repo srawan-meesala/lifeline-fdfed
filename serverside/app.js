@@ -848,6 +848,25 @@ app.post('/feedback',async(req,res)=>{
   }
 })
 
+app.post('/api/submit-feedback', async(req, res) => {
+  const { name, email, message } = req.body;
+
+  const newFeedback = new Feedback({
+    name,
+    email,
+    message,
+  });
+
+  await newFeedback.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error saving feedback');
+    } else {
+      res.status(200).send('Feedback submitted successfully');
+    }
+  });
+});
+
 function sendVerificationEmail(to, link) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -870,25 +889,6 @@ function sendVerificationEmail(to, link) {
       }
     });
 }
-
-app.post('/api/submit-feedback', async(req, res) => {
-  const { name, email, message } = req.body;
-
-  const newFeedback = new Feedback({
-    name,
-    email,
-    message,
-  });
-
-  await newFeedback.save((err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error saving feedback');
-    } else {
-      res.status(200).send('Feedback submitted successfully');
-    }
-  });
-});
 
 
 app.listen(8000,()=>{
