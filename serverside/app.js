@@ -845,12 +845,11 @@ function sendVerificationEmail(to, link) {
 }
 
 app.post('/api/submit-feedback', (req, res) => {
-  const { name, email, phone, message } = req.body;
+  const { name, email, message } = req.body;
 
   const newFeedback = new Feedback({
     name,
     email,
-    phone,
     message,
   });
 
