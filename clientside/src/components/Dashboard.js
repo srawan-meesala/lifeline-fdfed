@@ -11,13 +11,14 @@ import { BiRupee } from "react-icons/bi";
 
 function Dashboard (){
     const {username} = useParams()
-  const location = useLocation()
+    const location = useLocation()
     const [userDetails,setUserDetails]= useState({});
+    
     useEffect(()=>{
         async function fetchData(){
           try{
-            const response = await axios.get(`http://localhost:8000/getUserDetails/${username}`);
-            if(response.status == 200){
+            const response = await axios.get(`http://localhost:8000/getAdminDetails/${username}`);
+            if(response.status === 200){
               setUserDetails(response.data)
             }
             else{
@@ -36,7 +37,7 @@ function Dashboard (){
        <div className='DoctorProfile-top'>
         <div className='DoctorProfile-dashboard'>
           <div></div>
-          <div>Welcome {userDetails.firstName}</div>
+          <div>Welcome {userDetails.name}</div>
         </div>
         <div className='DoctorProfile-user-logo'>
           <div className='DoctorProfile-user-logo-pic'><FaUserCircle/></div>
