@@ -15,6 +15,7 @@ require('dotenv').config();
 const uuid = require('uuid')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
+const Feedback = require('./models/Feedback')
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
@@ -818,6 +819,23 @@ app.post('/deletehosp',async(req,res)=>{
   catch(error){
     console.error('Error fetching cart data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
+  }
+})
+
+app.post('/feedback',async(req,res)=>{
+  const {name,mailID,message} = req.body
+  try{
+    const feedback = new Feedback({
+      name,mailID,message
+  })
+    await feedback.save()
+    res.json('filled')
+  }
+  catch(error){{
+    console.error('Error fetching cart data:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+
   }
 })
 
