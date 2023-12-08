@@ -668,6 +668,62 @@ app.post('/bloodBanks', async (req, res) => {
   }
 });
 
+app.post('/checkout', async (req, res) => {
+  const { username, cartItems, totalPrice } = req.body;
+
+  try {
+    const newCart = new PharmacyCart({
+      username,
+      items: cartItems.map((item) => ({
+        _id: mongoose.Types.ObjectId(),
+        title: item.title,
+        quantity: item.quantity,
+        priceEach: item.priceEach,
+      })),
+    });
+
+    await newCart.save();
+
+    let cart = await PharmacyCart.findOne({ username });
+    if (cart) {
+      cart.items = [];
+      await cart.save();
+    }
+
+    res.json({ message: 'Checkout successful', cart: newCart });
+  } catch (error) {
+    console.error('Error during checkout:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+app.put('/updateCartItemQuantity', async (req, res) => {
+  const { username, itemId, newQuantity } = req.body;
+
+  try {
+    let cart = await PharmacyCart.findOne({ username });
+
+    if (!cart) {
+      return res.status(404).json({ error: 'Cart not found for the user' });
+    }
+
+    const existingItem = cart.items.find((item) => item._id.toString() === itemId);
+
+    if (!existingItem) {
+      return res.status(404).json({ error: 'Item not found in the cart' });
+    }
+
+    existingItem.quantity = newQuantity;
+
+    await cart.save();
+
+    res.json({ message: 'Item quantity updated successfully', cart });
+  } catch (error) {
+    console.error('Error updating item quantity:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 app.post('/addToCart', async (req, res) => {
   const { username, item } = req.body;
 
@@ -683,10 +739,8 @@ app.post('/addToCart', async (req, res) => {
       const existingItemIndex = cart.items.findIndex((i) => i.title === item.title);
 
       if (existingItemIndex !== -1) {
-        // If item already exists, update quantity
         cart.items[existingItemIndex].quantity += 1;
       } else {
-        // If item doesn't exist, add to the cart
         cart.items.push(item);
       }
     }
