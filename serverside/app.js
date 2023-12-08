@@ -408,12 +408,14 @@ app.post('/bookAppointment', async (req, res) => {
   const hosp = await HospRegisters.findOne({hospName:doc.hospName})
   const username = user.username
   const hospID = hosp.hospID
+  const hospName = hosp.hospName
   const fee = doc.fee
   try {
     const newAppointment = new Appointments({
       docID:docID,
       docName:doc.name,
       hospID:hospID,
+      hospName:hospName,
       Username:username,
       PatientName:patientName,
       Date:date,
@@ -477,6 +479,51 @@ app.get('/DoctorsAPI2/:hospID', async (req, res) => {
   } catch (error) {
     console.error('Error fetching doctors:', error);
     res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/getTotalExpenditure/:username', async (req, res) => {
+  try {
+    const username = req.params.username;
+    const totalExpenditure = await Appointments.aggregate([
+      { $match: { Username: username } },
+      { $group: { _id: null, totalExpenditure: { $sum: '$Fee' } } },
+    ]);
+
+    res.json({ totalExpenditure: totalExpenditure.length > 0 ? totalExpenditure[0].totalExpenditure : 0 });
+  } catch (error) {
+    console.error('Error fetching total expenditure:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/getTotalExpenditure2/:docID', async (req, res) => {
+  try {
+    const docID = req.params.docID;
+    const totalExpenditure = await Appointments.aggregate([
+      { $match: { docID: docID } },
+      { $group: { _id: null, totalExpenditure: { $sum: '$Fee' } } },
+    ]);
+
+    res.json({ totalExpenditure: totalExpenditure.length > 0 ? totalExpenditure[0].totalExpenditure : 0 });
+  } catch (error) {
+    console.error('Error fetching total expenditure:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/getTotalExpenditure3/:hospID', async (req, res) => {
+  try {
+    const docID = req.params.hospID;
+    const totalExpenditure = await Appointments.aggregate([
+      { $match: { hospID: hospID } },
+      { $group: { _id: null, totalExpenditure: { $sum: '$Fee' } } },
+    ]);
+
+    res.json({ totalExpenditure: totalExpenditure.length > 0 ? totalExpenditure[0].totalExpenditure : 0 });
+  } catch (error) {
+    console.error('Error fetching total expenditure:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

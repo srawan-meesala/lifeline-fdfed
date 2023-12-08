@@ -14,6 +14,9 @@ const AppointSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    hospName: {
+        type: String,
+    },
     appointmentID: {
         type: Number,
         unique: true,

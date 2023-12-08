@@ -29,7 +29,7 @@ const UserAppointments = ({userDetails,appointments}) => {
                                         Timeslot: <span>{(appointment.Timeslot)}</span>
                                     </div>
                                     <div className='UserProfile-appointments-card-name'>
-                                    Appointment Fees: <span>{(appointment.fee)}</span>
+                                    Appointment Fees: <span>{(appointment.Fee)}</span>
                                     </div>
                                     <div className='UserProfile-appointments-card-name'>
                                     Hospital Name: <span>{(appointment.hospName)}</span>

@@ -18,6 +18,8 @@ function DoctorProfile() {
   const {username} = useParams()
   const [choose, setChoose] = useState(1)
   const [userDetails,setUserDetails]=useState({})
+  const [totalExpenditure, setTotalExpenditure] = useState(0)
+
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
@@ -39,6 +41,23 @@ function DoctorProfile() {
     };
 
     fetchAppointments();
+  }, [userDetails.docID]);
+
+  useEffect(() => {
+    const fetchTotalExpenditure = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/getTotalExpenditure2/${userDetails.docID}`);
+        if (response.status === 200) {
+          setTotalExpenditure(response.data.totalExpenditure);
+        } else {
+          console.error('Failed to fetch total expenditure');
+        }
+      } catch (error) {
+        console.error('Error fetching total expenditure:', error);
+      }
+    };
+  
+    fetchTotalExpenditure();
   }, [userDetails.docID]);
 
   const [blogs, setBlogs] = useState([]);
@@ -117,6 +136,7 @@ function DoctorProfile() {
           appointments={appointments}
           appointmentsLength={appointments.length}
           blogsLength={blogs.length}
+          totalExpenditure={totalExpenditure}
         />
       )}
       {choose===2 && (

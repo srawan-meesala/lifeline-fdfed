@@ -18,6 +18,7 @@ function UserProfile() {
   const {username} = useParams()
   const [userDetails,setUserDetails]=useState({})
   const [appointments, setAppointments] = useState([])
+  const [totalExpenditure, setTotalExpenditure] = useState(0)
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
@@ -36,6 +37,23 @@ function UserProfile() {
     };
 
     fetchAppointments();
+  }, [userDetails.username]);
+
+  useEffect(() => {
+    const fetchTotalExpenditure = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/getTotalExpenditure/${userDetails.username}`);
+        if (response.status === 200) {
+          setTotalExpenditure(response.data.totalExpenditure);
+        } else {
+          console.error('Failed to fetch total expenditure');
+        }
+      } catch (error) {
+        console.error('Error fetching total expenditure:', error);
+      }
+    };
+  
+    fetchTotalExpenditure();
   }, [userDetails.username]);
 
   useEffect(()=>{
@@ -97,7 +115,7 @@ function UserProfile() {
         </div>
       </div>
       {choose===1 && (
-        <UserDashboard userDetails={userDetails} />
+        <UserDashboard userDetails={userDetails} appointments={appointments} appointmentsLength={appointments.length} totalExpenditure={totalExpenditure} />
       )}
       {choose===2 && (
         <UserAppointments userDetails={userDetails} appointments={appointments} />
