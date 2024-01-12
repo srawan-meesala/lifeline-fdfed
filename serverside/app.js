@@ -552,7 +552,6 @@ app.post('/uploadBlog',async(req,res)=> {
     const doc = await DocRegisters.findOne({docID})
     const docName = doc.name
     const spec = doc.specialization
-
     try{
       const newBlog = new Blogs({
         docID:docID,
