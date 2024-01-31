@@ -6,6 +6,7 @@ import Medicines from '../components/Pharmacy/Medicines';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import { FaCartShopping } from "react-icons/fa6";
 
 const PharmacyPage = () => {
   const {username} = useParams()
@@ -31,8 +32,8 @@ const PharmacyPage = () => {
   return (
     <div className="Pharmacy-whole">
       <Navbar title={'Pharmacy'} />
-      <div>
-        <Link to={`/cart/${username}`}>Cart</Link>
+      <div className='Pharmacy-cart-div'>
+        <Link className='Pharmacy-cart' to={`/cart/${username}`}><span><FaCartShopping/></span>Cart</Link>
       </div>
       <Medicines addToCart={addToCart} />
       {cartItems.map((cartItem, index) => (

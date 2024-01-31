@@ -65,7 +65,7 @@ function BookAppointment() {
       '10AM-11AM',
       '11AM-12PM',
       '1PM-2PM',
-      '2AM-3PM',
+      '2PM-3PM',
       '3PM-4PM',
     ]
     

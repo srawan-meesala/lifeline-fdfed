@@ -9,12 +9,12 @@ const BBRegisters = require('./models/bloodbanks')
 const Appointments = require('./models/appointments')
 const Blogs = require('./models/blogs')
 const PharmacyCart = require('./models/pharmacyCart')
-const Feedback = require('./models/feedback')
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
+const Feedback = require('./models/feedback')
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
@@ -494,10 +494,20 @@ app.get('/AppointmentsAPI/dateanddocid', async (req, res) => {
   }
 });
 
+app.post('/searchDoctors/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const doctors = await DocRegisters.find({ name: { $regex: name, $options: 'i' } });
+    res.json(doctors);
+  } catch (error) {
+    console.error('Error searching doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.post('/searchDoctors', async (req, res) => {
   try {
-    const { name } = req.body;
-    const doctors = await DocRegisters.find({ name: { $regex: new RegExp(name, 'i') } });
+    const doctors = await DocRegisters.find();
     res.json(doctors);
   } catch (error) {
     console.error('Error searching doctors:', error);
@@ -542,7 +552,6 @@ app.post('/uploadBlog',async(req,res)=> {
     const doc = await DocRegisters.findOne({docID})
     const docName = doc.name
     const spec = doc.specialization
-
     try{
       const newBlog = new Blogs({
         docID:docID,
@@ -821,6 +830,42 @@ app.post('/deletehosp',async(req,res)=>{
   }
 })
 
+app.post('/feedback',async(req,res)=>{
+  const {name,mailID,message} = req.body
+  try{
+    const feedback = new Feedback({
+      name,mailID,message
+  })
+    await feedback.save()
+    res.json('filled')
+  }
+  catch(error){{
+    console.error('Error fetching cart data:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+
+  }
+})
+
+app.post('/api/submit-feedback', async(req, res) => {
+  const { name, email, message } = req.body;
+
+  const newFeedback = new Feedback({
+    name,
+    email,
+    message,
+  });
+
+  await newFeedback.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error saving feedback');
+    } else {
+      res.status(200).send('Feedback submitted successfully');
+    }
+  });
+});
+
 function sendVerificationEmail(to, link) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -843,25 +888,6 @@ function sendVerificationEmail(to, link) {
       }
     });
 }
-
-app.post('/api/submit-feedback', (req, res) => {
-  const { name, email, message } = req.body;
-
-  const newFeedback = new Feedback({
-    name,
-    email,
-    message,
-  });
-
-  newFeedback.save((err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error saving feedback');
-    } else {
-      res.status(200).send('Feedback submitted successfully');
-    }
-  });
-});
 
 
 app.listen(8000,()=>{

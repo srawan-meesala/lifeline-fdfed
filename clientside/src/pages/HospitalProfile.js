@@ -7,7 +7,7 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { MdLocalPharmacy } from "react-icons/md";
 import { FaHospital } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import HospitalDashboard from "../components/HospitalProfile/HospitalDashboard";
 import HospitalSettings from "../components/HospitalProfile/HospitalSettings";
 import HospitalAppointments from "../components/HospitalProfile/HospitalAppointments";
@@ -18,7 +18,7 @@ function HospitalProfile() {
   const [choose, setChoose] = useState(1)
   const {hospID} = useParams()
   const [userDetails,setUserDetails]=useState({})
-
+  const navigate = useNavigate()
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
@@ -102,7 +102,7 @@ function HospitalProfile() {
           </div>
         </div>
         <div className='HospitalProfile-logout'>
-          <div className='HospitalProfile-logout-part'>
+          <div className='HospitalProfile-logout-part' onClick={()=>navigate('/')}>
             <div className='HospitalProfile-logout-icon'><BiLogOut/></div>
             <div className='HospitalProfile-logout-func'>Logout</div>
           </div>

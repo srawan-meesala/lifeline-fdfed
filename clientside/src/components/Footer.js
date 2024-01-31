@@ -1,40 +1,33 @@
 import React, { useState } from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import axios from 'axios';
 
 function Footer() {
-  const [feedback, setFeedback] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+  const [name, setName] = useState('');
+  const [mailID, setMailID] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFeedback({ ...feedback, [name]: value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:8000/api/submit-feedback', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(feedback),
+      const response = await axios.post('http://localhost:8000/Feedback', {
+        name, mailID, message
       });
   
-      if (response.ok) {
-        console.log('Feedback submitted successfully');
+      console.log(response.data);
+  
+      if (response.data === 'filled') {
+        alert('Form submitted successfully');
       } else {
-        console.error('Failed to submit feedback');
+        alert('Error while submitting form');
       }
     } catch (error) {
       console.error('Error submitting feedback:', error);
     }
   };
+  
   
 
   return (
@@ -70,7 +63,7 @@ function Footer() {
         </div>
         <div className="footer-feedback-form">
           <h2>Send Us Your Feedback</h2>
-          <form onSubmit={handleSubmit}>
+          <form method='POST' onSubmit={handleSubmit}>
             <div className='footer-form'>
                 <div className='footer-together'>
                     <div className="footer-form-group">
@@ -78,8 +71,7 @@ function Footer() {
                         type="text"
                         id="name"
                         name="name"
-                        value={feedback.name}
-                        onChange={handleInputChange}
+                        onChange={(e)=>{setName(e.target.value)}}
                         placeholder='Your Name'
                         required
                     />
@@ -89,8 +81,7 @@ function Footer() {
                         type="email"
                         id="email"
                         name="email"
-                        value={feedback.email}
-                        onChange={handleInputChange}
+                        onChange={(e)=>{setMailID(e.target.value)}}
                         placeholder='Your Email'
                         required
                     />
@@ -100,8 +91,7 @@ function Footer() {
                 <textarea
                     id="message"
                     name="message"
-                    value={feedback.message}
-                    onChange={handleInputChange}
+                    onChange={(e)=>{setMessage(e.target.value)}}
                     placeholder='Message'
                     required
                     className='footer-textarea'

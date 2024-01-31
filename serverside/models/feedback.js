@@ -1,12 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const feedbackSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    phone: String,
-    message: String,
-  });
-  
-  const Feedback = mongoose.model('Feedback', feedbackSchema);
+const FeedbackSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    mailID:{
+        type:String,
+        required:true
+    },
+    message:{
+        type:String,
+        required:true
+    }
+})
 
-module.exports =  Feedback
+const Feedback = new mongoose.model('Feedback', FeedbackSchema)
+
+module.exports = Feedback

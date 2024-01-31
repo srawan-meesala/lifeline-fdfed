@@ -31,7 +31,7 @@ const UserDashboard = ({userDetails,appointmentsLength,appointments,totalExpendi
           <div className='UserProfile-card-3'>
             <div className='UserProfile-card-3-int-div'>
               <div className='UserProfile-card-1-int-div-head'>Total number of Doctors consulted:</div>
-              <div className='UserProfile-card-1-int-div-body'>10</div>
+              <div className='UserProfile-card-1-int-div-body'>2</div>
             </div>
           </div>
           <div className='UserProfile-card-4'>
@@ -69,8 +69,10 @@ const UserDashboard = ({userDetails,appointmentsLength,appointments,totalExpendi
                 <div className="UserProfile-part-1-int-div-body"><div className='UserProfile-part-1-int-div-body-icon'><BiRupee/></div><span>{totalExpenditure}</span></div>
                 </div>
               </div>
-              <div className='UserProfile-part-2'>
-                <div className='UserProfile-part-2-int-div'>
+              <div className='DoctorProfile-part-2'>
+                <div className='DoctorProfile-part-2-int-div'>
+                <div className="DoctorProfile-part-1-int-div-head">You are in Lifeline from:</div>
+                <div className="DoctorProfile-part-1-int-div-body"><div className='UserProfile-part-1-int-div-body-icon'></div><span>2023</span></div>
                 </div>
               </div>
           </div>
