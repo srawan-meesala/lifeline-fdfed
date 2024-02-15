@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 const DocRegisters = require('./models/docRegister')
 const PatientRegisters = require('./models/patientRegister')
 const HospRegisters = require('./models/hospRegister')
@@ -46,7 +47,8 @@ app.post('/login', async (req, res) => {
           check = await AdminRegisters.findOne({ username: username });
       }
       if (check) {
-          if (password === check.password) {
+        const passwordCheck = await bcrypt.compare(password,check.password);
+          if (passwordCheck) {
               res.status(200).json('exist');
           } else {
               res.json('invalid credentials');
@@ -213,8 +215,9 @@ app.post('/patientRegister2', async (req, res) => {
         res.json('exists');
       } else {
         if (data) {
+          const hashedPassword = await bcrypt.hash(password);
           data.username = username;
-          data.password = password;
+          data.password = hashedPassword;
           await data.save();
           res.json('registered');
         } else {
@@ -232,8 +235,9 @@ app.post('/docRegister2', async (req, res) => {
   try {
     const data = await DocRegisters.findOne({ verificationToken });
     if (data) {
+      const hashedPassword = await bcrypt.hash(password);
       data.docID = docID;
-      data.password = password;
+      data.password = hashedPassword;
       await data.save();
       res.json('registered');
     } else {
@@ -250,8 +254,9 @@ app.post('/hospRegister2', async (req, res) => {
   try {
     const data = await HospRegisters.findOne({ verificationToken });
     if (data) {
+      hashedPassword = await bcrypt.hash(password);
       data.hospID = hospID;
-      data.password = password;
+      data.password = hashedPassword;
       await data.save();
       res.json('registered');
     } else {
