@@ -254,7 +254,7 @@ app.post('/hospRegister2', async (req, res) => {
   try {
     const data = await HospRegisters.findOne({ verificationToken });
     if (data) {
-      var hashedPassword = await bcrypt.hash(password);
+      const hashedPassword = await bcrypt.hash(password);
       data.hospID = hospID;
       data.password = hashedPassword;
       await data.save();
