@@ -215,7 +215,8 @@ app.post('/patientRegister2', async (req, res) => {
         res.json('exists');
       } else {
         if (data) {
-          const hashedPassword = await bcrypt.hash(password);
+          const saltrounds = 10
+          const hashedPassword = await bcrypt.hash(password,saltrounds);
           data.username = username;
           data.password = hashedPassword;
           await data.save();
@@ -235,7 +236,8 @@ app.post('/docRegister2', async (req, res) => {
   try {
     const data = await DocRegisters.findOne({ verificationToken });
     if (data) {
-      const hashedPassword = await bcrypt.hash(password);
+      const saltrounds = 10
+      const hashedPassword = await bcrypt.hash(password,saltrounds);
       data.docID = docID;
       data.password = hashedPassword;
       await data.save();
@@ -254,7 +256,8 @@ app.post('/hospRegister2', async (req, res) => {
   try {
     const data = await HospRegisters.findOne({ verificationToken });
     if (data) {
-      const hashedPassword = await bcrypt.hash(password);
+      const saltrounds = 10
+      const hashedPassword = await bcrypt.hash(password,saltrounds);
       data.hospID = hospID;
       data.password = hashedPassword;
       await data.save();
