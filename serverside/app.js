@@ -10,6 +10,8 @@ const BBRegisters = require('./models/bloodbanks')
 const Appointments = require('./models/appointments')
 const Blogs = require('./models/blogs')
 const PharmacyCart = require('./models/pharmacyCart')
+const morgan = require('morgan');
+
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
@@ -29,6 +31,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/Lifeline-fdfed')
     console.log('Failed to connect to MongoDB')
 })
 
+// Defining a morgan token
+morgan.token('custom', (req, res) => {
+  if (req.url === '/login' && req.method === 'POST') {
+    const type = req.body.type || '';
+    if (type === 'patient') {
+      return 'Patient login request';
+    } else if (type === 'doctor') {
+      return 'Doctor login request';
+    } else if (type === 'hospital') {
+      return 'Hospital login request';
+    } else if (type === 'admin') {
+      return 'Admin login request';
+    }
+  }
+  return null;
+});
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :custom'));
 
 app.post('/login', async (req, res) => {
   const username = req.body.username;
