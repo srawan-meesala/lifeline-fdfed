@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const UserSettings = ({ userDetails }) => {
     const navigate = useNavigate()
@@ -17,6 +18,9 @@ const UserSettings = ({ userDetails }) => {
             })
             if(response.data === 'deleted'){
                 alert('Deletion successful')
+                Cookies.remove('username')
+                Cookies.remove('type')
+                Cookies.remove('loggedIn')
                 navigate('/')
             }
             else if(response.data === 'mismatched'){

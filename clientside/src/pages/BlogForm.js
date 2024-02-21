@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import Cookies from 'js-cookie';
 
 function BlogForm() {
-    const {docID} = useParams()
+    const docID = Cookies.get('username');
     const [title,setTitle] = useState('')
     const [blog,setBlog] = useState('')
     async function uploadBlog(e) {

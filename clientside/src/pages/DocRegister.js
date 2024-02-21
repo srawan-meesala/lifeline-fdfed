@@ -5,7 +5,7 @@ import { ReactComponent as Logo } from '../images/undraw_remotely_2j6y.svg';
 
 
 function DocRegister() {
-  const navigate = useNavigate()
+    const navigate = useNavigate()
     var mobile  = new RegExp(/^\d{10}$/);
     const [name,setName] = useState('')
     const [mobileNumber,setMobileNumber] = useState('')

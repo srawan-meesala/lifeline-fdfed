@@ -1,12 +1,13 @@
 import {React,useState} from 'react'
 import axios from'axios'
-import { useParams,useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import '../styles/OrganDonation.css'
+import Cookies from 'js-cookie';
 
 const BloodDonation = () => {
     const navigate = useNavigate()
-    const {username} = useParams()
+    const username = Cookies.get('username');
     const [name,setName] = useState('')
     const [aadhar,setAadhar] = useState('')
     const [gender,setGender] = useState('male')
@@ -47,7 +48,7 @@ const BloodDonation = () => {
           if (response.data === 'exist') {
             alert('Registered already.Cannot register again');
           } else if(response.status === 200) {
-            navigate(`/odthankyou/${username}`)
+            navigate(`/odthankyou`)
           }
         } catch (error) {
           alert('Wrong details');

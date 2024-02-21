@@ -4,9 +4,10 @@ import Navbar from '../components/Navbar';
 import '../styles/Cart.css';
 import CartItem from '../components/CartItem';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Cart = () => {
-  const { username } = useParams();
+  const username = Cookies.get('username');
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
@@ -64,7 +65,7 @@ const Cart = () => {
         totalPrice,
       })
       .then(() => {
-        navigate(`/thankyoupharmacy/${username}`);
+        navigate(`/thankyoupharmacy`);
       })
       .catch((error) => {
         console.error('Error during checkout:', error);

@@ -28,7 +28,6 @@ function EmailVerificationHosp() {
 
   return (
     <div>
-      <p>Create Your Hospital ID and Password after Verifying</p>
     </div>
   );
 }

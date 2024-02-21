@@ -23,8 +23,7 @@ function BookAppointment() {
             docID,patientName, date, time, mobileNumber, note
           });
           if (response.data.status === 'created') {
-            const username = response.data.username
-            navigate(`/thankyou/${username}`)
+            navigate(`/thankyou`)
           } else {
             alert('Error while Bookking Appointment');
           }

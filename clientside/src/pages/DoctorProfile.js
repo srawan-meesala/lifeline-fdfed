@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { AiFillDashboard } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
@@ -12,12 +12,12 @@ import DoctorDashboard from "../components/DoctorProfile/DoctorDashboard";
 import DoctorSettings from "../components/DoctorProfile/DoctorSettings";
 import DoctorProfileShow from "../components/DoctorProfile/DoctorProfileShow";
 import DoctorBlogs from "../components/DoctorProfile/DoctorBlogs";
-
+import Cookies from 'js-cookie';
 
 function DoctorProfile() {
-  const {username} = useParams()
+  const username = Cookies.get('username')
   const [choose, setChoose] = useState(1)
-  const [userDetails,setUserDetails]=useState({})
+  const [userDetails, setUserDetails] = useState({})
   const [totalExpenditure, setTotalExpenditure] = useState(0)
   const navigate = useNavigate()
 
@@ -26,6 +26,13 @@ function DoctorProfile() {
   const BlogsOpener = () => setChoose(5)
   const ProfileOpener = () => setChoose(3)
   const SettingsOpener = () => setChoose(4)
+
+  const handleLogout = () => {
+    Cookies.remove('username')
+    Cookies.remove('loggedIn')
+    Cookies.remove('type')
+    navigate('/')
+  }
 
   const [appointments, setAppointments] = useState([])
 
@@ -56,7 +63,7 @@ function DoctorProfile() {
         console.error('Error fetching total expenditure:', error);
       }
     };
-  
+
     fetchTotalExpenditure();
   }, [userDetails.docID]);
 
@@ -75,23 +82,23 @@ function DoctorProfile() {
     fetchBlogs();
   }, [userDetails.docID]);
 
-  useEffect(()=>{
-    async function fetchData(){
-      try{
+  useEffect(() => {
+    async function fetchData() {
+      try {
         const response = await axios.get(`http://localhost:8000/getDocDetails/${username}`);
-        if(response.status === 200){
+        if (response.status === 200) {
           setUserDetails(response.data)
         }
-        else{
+        else {
           console.error('Failed to fetch user details')
         }
       }
-      catch(e){
+      catch (e) {
         console.log(e)
       }
     }
     fetchData()
-  },[username])
+  }, [username])
 
   return (
     <div className='DoctorProfile-whole'>
@@ -102,36 +109,36 @@ function DoctorProfile() {
         <div className='DoctorProfile-functions'>
           <div className='DoctorProfile-fuctions-int-div'>
             <div className='DoctorProfile-func-parts' onClick={DashboardOpener}>
-              <div className='DoctorProfile-icon'><AiFillDashboard/></div>
+              <div className='DoctorProfile-icon'><AiFillDashboard /></div>
               <div className='DoctorProfile-func'>Dashboard</div>
             </div>
             <div className='DoctorProfile-func-parts' onClick={AppointmentsOpener}>
-              <div className='DoctorProfile-icon'><BsFillStickiesFill/></div>
+              <div className='DoctorProfile-icon'><BsFillStickiesFill /></div>
               <div className='DoctorProfile-func'>Appointments</div>
             </div>
             <div className='DoctorProfile-func-parts' onClick={BlogsOpener}>
-              <div className='DoctorProfile-icon'><TfiWrite/></div>
+              <div className='DoctorProfile-icon'><TfiWrite /></div>
               <div className='DoctorProfile-func'>Your Blogs</div>
             </div>
             <div className='DoctorProfile-func-parts' onClick={ProfileOpener}>
-              <div className='DoctorProfile-icon'><FaUserDoctor/></div>
+              <div className='DoctorProfile-icon'><FaUserDoctor /></div>
               <div className='DoctorProfile-func'>Profile</div>
             </div>
             <div className='DoctorProfile-func-parts' onClick={SettingsOpener}>
-              <div className='DoctorProfile-icon'><IoSettingsSharp/></div>
+              <div className='DoctorProfile-icon'><IoSettingsSharp /></div>
               <div className='DoctorProfile-func'>Settings</div>
             </div>
           </div>
         </div>
         <div className='DoctorProfile-logout'>
-          <div className='DoctorProfile-logout-part' onClick={()=>navigate('/')}>
-            <div className='DoctorProfile-logout-icon'><BiLogOut/></div>
+          <div className='DoctorProfile-logout-part' onClick={handleLogout}>
+            <div className='DoctorProfile-logout-icon'><BiLogOut /></div>
             <div className='DoctorProfile-logout-func'>Logout</div>
           </div>
         </div>
       </div>
-      {choose===1 && (
-        <DoctorDashboard 
+      {choose === 1 && (
+        <DoctorDashboard
           userDetails={userDetails}
           appointments={appointments}
           appointmentsLength={appointments.length}
@@ -139,17 +146,17 @@ function DoctorProfile() {
           totalExpenditure={totalExpenditure}
         />
       )}
-      {choose===2 && (
-        <DoctorAppointments userDetails={userDetails} appointments={appointments}/>
+      {choose === 2 && (
+        <DoctorAppointments userDetails={userDetails} appointments={appointments} />
       )}
-      {choose===3 && (
+      {choose === 3 && (
         <DoctorProfileShow userDetails={userDetails} />
       )}
-      {choose===4 && (
+      {choose === 4 && (
         <DoctorSettings userDetails={userDetails} />
       )}
-      {choose===5 && (
-        <DoctorBlogs userDetails={userDetails} blogs={blogs}/>
+      {choose === 5 && (
+        <DoctorBlogs userDetails={userDetails} blogs={blogs} />
       )}
     </div>
   )

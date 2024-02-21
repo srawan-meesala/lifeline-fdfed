@@ -17,12 +17,12 @@ import Patients from "./Patients";
 import Donors from "./Donors";
 import Transactions from "../Transactions";
 import Pharmacy from "../Pharmacy";
+import Cookies from 'js-cookie';
 
 
 function AdminDashboard() {
-  const { username } = useParams()
+  const username = Cookies.get('username');
   const location = useLocation()
-  //   const [currentView, setCurrentView] = useState('dashboard');
   const [userDetails, setUserDetails] = useState({});
 
   const [activeComponent, setActiveComponent] = useState('dashboard');

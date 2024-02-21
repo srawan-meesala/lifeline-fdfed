@@ -40,36 +40,49 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/home/:username" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<AboutUs />} />
+          
+          <Route path="/sent" element={<PleaseVerify />} />
+
           <Route path="/patientRegister" element={<PatientRegister />} />
           <Route path="/verifypatient/:verificationToken" element={<EmailVerificationPatient />} />
           <Route path="/patientRegister2/:verificationToken" element={<PatientRegister2 />} />
+          
           <Route path="/hospRegister" element={<HospRegister />} />
           <Route path="/verifyhospital/:verificationToken" element={<EmailVerificationHosp />} />
           <Route path="/hospRegister2/:verificationToken" element={<HospRegister2 />} />
+          
           <Route path="/docRegister" element={<DocRegister />} />
           <Route path="/verifydoctor/:verificationToken" element={<EmailVerificationDoc />} />
           <Route path="/docRegister2/:verificationToken" element={<DocRegister2 />} />
+          
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogform/:docID" element={<BlogForm />} />
           <Route path="/blogcomplete/:blogID" element={<BlogComplete />} />
+          
           <Route path="/bookAppointment/:docID" element={<BookAppointment />} />
+          
           <Route path="/showDoctors" element={<ShowDoctors />} />
-          <Route path='/docProfile/:username' element={<DoctorProfile />} />
-          <Route path='/hospProfile/:hospID' element={<HospitalProfile />} />
-          <Route path='/pharmacy/:username' element={<PharmacyPage />} />
-          <Route path="/userProfile/:username" element={<UserProfile />} />
+          
+          <Route path='/docProfile' element={<DoctorProfile />} />
+          <Route path='/hospProfile' element={<HospitalProfile />} />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/adminprofile" element={<Admin />} />
+
           <Route path="/bookedappointments" element={<BookedAppointments />} />
-          <Route path="/thankyou/:username" element={<Thankyou />} />
-          <Route path="/thankyoupharmacy/:username" element={<ThankyouPharmacy />} />
-          <Route path="/cart/:username" element={<Cart />} />
-          <Route path="/adminprofile/:username" element={<Admin />} />
-          <Route path="/organdonation/:username" element={<OrganDonation />} />
-          <Route path="/odthankyou/:username" element={<ODThankyou />} />
-          <Route path="/sent" element={<PleaseVerify />} />
-          <Route path="/bloodDonation/:username" element={<BloodDonation />} />
+
+          <Route path="/thankyou" element={<Thankyou />} />
+
+          <Route path='/pharmacy' element={<PharmacyPage />} />
+          <Route path="/thankyoupharmacy" element={<ThankyouPharmacy />} />
+          <Route path="/cart" element={<Cart />} />
+
+          <Route path="/organdonation" element={<OrganDonation />} />
+          <Route path="/odthankyou" element={<ODThankyou />} />
+
+          <Route path="/bloodDonation" element={<BloodDonation />} />
         </Routes>
       </Router>
 

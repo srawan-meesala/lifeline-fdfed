@@ -867,11 +867,9 @@ app.post('/feedback',async(req,res)=>{
     await feedback.save()
     res.json('filled')
   }
-  catch(error){{
+  catch(error){
     console.error('Error fetching cart data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
-  }
-
   }
 })
 

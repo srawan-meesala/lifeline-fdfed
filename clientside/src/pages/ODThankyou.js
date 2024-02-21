@@ -1,12 +1,11 @@
 import React from 'react'
 import '../styles/ODThankyou.css'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function ODThankyou() {
   
   const navigate = useNavigate()
-  const {username} = useParams()
-  const ButtonHandler = () => navigate(`/home/${username}`)
+  const ButtonHandler = () => navigate(`/home`)
 
   return (  
     <div><div class="ODThankyou-containerr">

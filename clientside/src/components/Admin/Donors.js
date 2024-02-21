@@ -4,9 +4,10 @@ import axios from 'axios';
 import { FaPlus } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import RegistrationForm from '../DoctorRegistration';
+import Cookies from 'js-cookie';
 
 function Donors({donors}) {
-  const { username } = useParams()
+  const username = Cookies.get('username');
   const [userDetails, setUserDetails] = useState({});
   const [isListVisible, setListVisible] = useState(false);
   const [isFormVisible, setFormVisible] = useState(false);

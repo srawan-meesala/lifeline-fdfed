@@ -8,9 +8,11 @@ import { FaHospital } from "react-icons/fa";
 import { FaHandHoldingWater } from "react-icons/fa";
 import { useLocation, useParams } from 'react-router-dom';
 import { BiRupee } from "react-icons/bi";
+import Cookies from 'js-cookie';
 
 function Dashboard ({hospitals, patients, doctors, donors, bloodDonors, appointments, blogs}){
-    const {username} = useParams()
+    const username = Cookies.get('username');
+    
     const location = useLocation()
     const [userDetails,setUserDetails]= useState({});
     

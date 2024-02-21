@@ -1,16 +1,16 @@
 import '../styles/Pharmacy.css'
 import React, { useState } from 'react';
 import axios from 'axios'
-import { Link, useNavigate,useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Medicines from '../components/Pharmacy/Medicines';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { FaCartShopping } from "react-icons/fa6";
+import Cookies from 'js-cookie';
 
 const PharmacyPage = () => {
-  const {username} = useParams()
-  const navigate = useNavigate();
+  const { username } = Cookies.get('username');
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = async (item) => {
@@ -33,7 +33,7 @@ const PharmacyPage = () => {
     <div className="Pharmacy-whole">
       <Navbar title={'Pharmacy'} />
       <div className='Pharmacy-cart-div'>
-        <Link className='Pharmacy-cart' to={`/cart/${username}`}><span><FaCartShopping/></span>Cart</Link>
+        <Link className='Pharmacy-cart' to={`/cart`}><span><FaCartShopping/></span>Cart</Link>
       </div>
       <Medicines addToCart={addToCart} />
       {cartItems.map((cartItem, index) => (

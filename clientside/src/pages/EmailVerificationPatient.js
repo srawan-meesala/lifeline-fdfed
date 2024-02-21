@@ -27,9 +27,7 @@ function EmailVerificationPatient() {
   });
 
   return (
-    <div>
-      <p>Create Username and Password after Verifying </p>
-    </div>
+    <div></div>
   );
 }
 

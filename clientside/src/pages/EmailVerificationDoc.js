@@ -28,7 +28,6 @@ function EmailVerificationDoc() {
 
   return (
     <div>
-      <p>Create Your Doctor ID and Password after Verifying</p>
     </div>
   );
 }

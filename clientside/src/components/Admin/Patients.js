@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import RegistrationForm from '../HospitalRegistration';
+import Cookies from 'js-cookie';
 
 function Patients({patients}) {
-  const { username } = useParams()
+  const username = Cookies.get('username');
   const [userDetails, setUserDetails] = useState({});
   const [isListVisible, setListVisible] = useState(false);
   const [isFormVisible, setFormVisible] = useState(false);

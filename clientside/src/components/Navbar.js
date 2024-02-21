@@ -1,7 +1,18 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-function Navbar({title, username}) {
+function Navbar({ title }) {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Cookies.remove('username');
+    Cookies.remove('type');
+    Cookies.remove('loggedIn');
+    navigate('/');
+  };
+
   return (
     <div className='Navbar-whole'>
       <div className='Navbar-left-side'>
@@ -9,11 +20,11 @@ function Navbar({title, username}) {
       </div>
       <div className='Navbar-right-side'>
         <ul>
-          <li><Link to={`/home/${username}`}>Home</Link></li>
-          <li><Link to={`/userProfile/${username}`}>Dashboard</Link></li>
+          <li><Link to={`/home`}>Home</Link></li>
+          <li><Link to={`/userProfile`}>Dashboard</Link></li>
           <li><Link to='/blogs'>Blogs</Link></li>
           <li><Link to='/about'>About us</Link></li>
-          <li><Link to='/'>Logout</Link></li>
+          <li><button onClick={handleLogout}>Logout</button></li>
         </ul>
       </div>
     </div>
