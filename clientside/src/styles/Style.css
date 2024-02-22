@@ -1117,6 +1117,12 @@ html {
   align-items: flex-start;
 }
 
+.BlogComplete-head-1{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 .BlogComplete-head-heading{
   font-size: 60px;
   font-weight: 500;
@@ -1127,6 +1133,11 @@ html {
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.Blog-image{
+  margin-left: 800px;
+  height: 200px;
 }
 
 .BlogComplete-data{

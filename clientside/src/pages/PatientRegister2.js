@@ -14,7 +14,7 @@ function RegisterUsernamePassword() {
 
   async function submitPatientRegister2(e) {
     e.preventDefault();
-
+    alert('Verified Successfully')
     if(username.length < 5 || username.length > 25 )
     {
        alert("Username should be between 5 to 25 characters!!")

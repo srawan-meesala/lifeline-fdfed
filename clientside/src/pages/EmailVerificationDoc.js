@@ -13,7 +13,6 @@ function EmailVerificationDoc() {
           verificationToken,
         });
         if (response.data === 'verified') {
-          alert('Email verified successfully');
           navigate(`/docRegister2/${verificationToken}`);
         } else {
           alert('Error while verifying');

@@ -23,7 +23,11 @@ const blogsSchema = new mongoose.Schema({
     },
     blogID: {
         type: Number,
-        unique: true,
+        unique: true
+    },
+    imagepath: {
+        type:String,
+        required: true
     }
 }, {
     timestamps: true 

@@ -10,18 +10,38 @@ const BBRegisters = require('./models/bloodbanks')
 const Appointments = require('./models/appointments')
 const Blogs = require('./models/blogs')
 const PharmacyCart = require('./models/pharmacyCart')
-const morgan = require('morgan');
-
 const app = express()
 require('dotenv').config();
 const uuid = require('uuid')
 const nodemailer = require('nodemailer')
-const cors = require('cors')
 const Feedback = require('./models/feedback')
+const cors = require('cors')
+const morgan = require('morgan')
+const multer = require('multer')
+app.use('/bloguploads', express.static('bloguploads'));
+app.use(morgan('dev'))
 app.use(express.json())
-app.use(express.urlencoded({extended:false}))
 app.use(cors())
 
+const filetoStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `./bloguploads`);
+  },
+  filename: async (req, file, cb) => {
+    try {
+      const blog = await Blogs.findOne().sort({ _id: -1 });
+      const new_id = blog ? blog.blogID + 1 : 1; 
+      const ext = file.originalname.split('.').pop();
+      const filename = `blog_${new_id}.${ext}`;
+      cb(null, filename); 
+    } catch (err) {
+      console.log(err);
+      cb(err);
+    }
+  },
+});
+
+const upload = multer({storage:filetoStorageEngine})
 
 mongoose.connect('mongodb://127.0.0.1:27017/Lifeline-fdfed')
 .then(()=>{
@@ -31,7 +51,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/Lifeline-fdfed')
     console.log('Failed to connect to MongoDB')
 })
 
-// Defining a morgan token
 morgan.token('custom', (req, res) => {
   if (req.url === '/login' && req.method === 'POST') {
     const type = req.body.type || '';
@@ -575,27 +594,30 @@ app.post('/bookAppointment', async (req, res) => {
 });
 
 
-app.post('/uploadBlog',async(req,res)=> {
-    const {docID,title,blog} = req.body
-    const doc = await DocRegisters.findOne({docID})
-    const docName = doc.name
-    const spec = doc.specialization
-    try{
-      const newBlog = new Blogs({
-        docID:docID,
-        docName:docName,
-        specialization:spec,
-        title:title,
-        blog:blog
-      })
-      await newBlog.save();
-      res.status(200).json({status: 'uploaded'});
-    }
-    catch(error){
-      console.log(error)
-      res.status(500).json('Internal Server Error');
-    }
+app.post('/uploadBlog',upload.single('image'),async(req,res,next)=> {
+  const {docID,title,blog} = req.body
+  const imagepath = req.file.path;
+  const doc = await DocRegisters.findOne({docID})
+  const docName = doc.name
+  const spec = doc.specialization
+  try{
+    const newBlog = new Blogs({
+      docID:docID,
+      docName:docName,
+      specialization:spec,
+      title:title,
+      blog:blog,
+      imagepath:imagepath
+    })
+    await newBlog.save();
+    res.status(200).json({status: 'uploaded'});
+  }
+  catch(error){
+    console.log(error)
+    res.status(500).json('Internal Server Error');
+  }
 })
+
 
 app.get('/blogdata',async(req,res)=>{
   const {blogID} = req.query;
