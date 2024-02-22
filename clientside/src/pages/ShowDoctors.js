@@ -16,8 +16,7 @@ const ShowDoctors = () => {
       } catch (error) {
         console.error('Error fetching doctors:', error);
       }
-    };
-
+    }
     fetchDoctors();
 
     axios.get('http://localhost:8000/hospitalsAPI')
@@ -38,9 +37,20 @@ const ShowDoctors = () => {
     setSearchResults(query);
   };
 
-  const [sortOrder, setSortOrder] = useState('priceAsc')
+  const [sortOrder, setSortOrder] = useState('None')
 
-
+  useEffect(() => {
+    if (sortOrder === 'priceAsc') {
+      let sortedDocs = [...searchResults]
+      sortedDocs.sort((a, b) => a.fee - b.fee);
+      setSearchResults(sortedDocs);
+    } else if (sortOrder === 'priceDesc') {
+      let sortedDocs = [...searchResults]
+      sortedDocs.sort((a, b) => b.fee - a.fee);
+      setSearchResults(sortedDocs);
+    } else {
+    }
+  }, [sortOrder, searchResults]);
 
   return (
     <div className="containerr">
@@ -51,35 +61,35 @@ const ShowDoctors = () => {
       <div className="content-mid">
         <div className="content-searched">
           <p className="searched-for">
-            Search results 
+            Search results
           </p>
           <form action="/" className="filters">
-              <div className="sort">
-                  <label htmlFor="sortOrder">Sort order</label>
-                  <select onChange={e=>setSortOrder(e.target.value)} name="sortOrder" id="sortOrder">
-                      <option value="priceAsc">Price &darr;</option>
-                      <option value="priceDesc">Price &uarr;</option>
-                  </select>
-              </div>
-              <div className="spec sort">
-                  <label htmlFor="specialization">Specialization</label>
-                  <select name="specialization" id="specialization">
-                      <option value="cardiology">cardiology</option>
-                      <option value="cardiology">cardiology</option>
-                      <option value="cardiology">cardiology</option>
-                      <option value="cardiology">cardiology</option>
-                      <option value="cardiology">cardiology</option>
-                      <option value="cardiology">cardiology</option>
-                  </select>
-              </div>
-              <div className="exp-sort sort">
-                  <label htmlFor="expSort">Hospital Name</label>
-                  <select name="expSort" id="expSort">
-                    {hospitalsList.map(hospital=>(
-                      <option key={hospital.hospID} value={hospital.hospName}>{hospital.hospName}</option>
-                    ))}
-                  </select>
-              </div>
+            <div className="sort">
+              <label htmlFor="sortOrder">Sort order</label>
+              <select onChange={e => setSortOrder(e.target.value)} name="sortOrder" id="sortOrder">
+                <option value="priceAsc">Price &darr;</option>
+                <option value="priceDesc">Price &uarr;</option>
+              </select>
+            </div>
+            <div className="spec sort">
+              <label htmlFor="specialization">Specialization</label>
+              <select name="specialization" id="specialization">
+                <option value="cardiology">cardiology</option>
+                <option value="cardiology">cardiology</option>
+                <option value="cardiology">cardiology</option>
+                <option value="cardiology">cardiology</option>
+                <option value="cardiology">cardiology</option>
+                <option value="cardiology">cardiology</option>
+              </select>
+            </div>
+            <div className="exp-sort sort">
+              <label htmlFor="expSort">Hospital Name</label>
+              <select name="expSort" id="expSort">
+                {hospitalsList.map(hospital => (
+                  <option key={hospital.hospID} value={hospital.hospName}>{hospital.hospName}</option>
+                ))}
+              </select>
+            </div>
           </form>
         </div>
       </div>
@@ -104,5 +114,4 @@ export default ShowDoctors;
 
 
 
-        
-      
+
