@@ -785,6 +785,7 @@ app.put('/updateCartItemQuantity', async (req, res) => {
 
 app.post('/addToCart', async (req, res) => {
   const { username, item } = req.body;
+  
 
   try {
     let cart = await PharmacyCart.findOne({ username });

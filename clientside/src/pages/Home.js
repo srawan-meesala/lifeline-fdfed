@@ -150,8 +150,8 @@ const Home = () => {
               Organ Donation Camps by <span>Lifeline.</span>
             </div>
             <div className="Home-c4-content-body">
-              <Link className="Home-c4-content-body-a" to={`/organDonation/${username}`}>Register for Lifeline Organ Donation Camp Today.</Link><br />
-              <Link className="Home-c4-content-body-a" to={`/bloodDonation/${username}`} >Register for Lifeline Blood Bank Today.</Link>
+              <Link className="Home-c4-content-body-a" to={`/organDonation`}>Register for Lifeline Organ Donation Camp Today.</Link><br />
+              <Link className="Home-c4-content-body-a" to={`/bloodDonation`} >Register for Lifeline Blood Bank Today.</Link>
             </div>
           </div>
         </div>

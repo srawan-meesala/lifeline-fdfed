@@ -10,7 +10,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import Cookies from 'js-cookie';
 
 const PharmacyPage = () => {
-  const { username } = Cookies.get('username');
+  const username = Cookies.get('username');
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = async (item) => {
