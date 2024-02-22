@@ -18,10 +18,12 @@ const Feedback = require('./models/feedback')
 const cors = require('cors')
 const morgan = require('morgan')
 const multer = require('multer')
+const helmet = require('helmet')
 app.use('/bloguploads', express.static('bloguploads'));
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cors())
+app.use(helmet())
 
 const filetoStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -30,10 +32,10 @@ const filetoStorageEngine = multer.diskStorage({
   filename: async (req, file, cb) => {
     try {
       const blog = await Blogs.findOne().sort({ _id: -1 });
-      const new_id = blog ? blog.blogID + 1 : 1; 
+      const new_id = blog ? blog.blogID + 1 : 1;
       const ext = file.originalname.split('.').pop();
       const filename = `blog_${new_id}.${ext}`;
-      cb(null, filename); 
+      cb(null, filename);
     } catch (err) {
       console.log(err);
       cb(err);
@@ -41,15 +43,15 @@ const filetoStorageEngine = multer.diskStorage({
   },
 });
 
-const upload = multer({storage:filetoStorageEngine})
+const upload = multer({ storage: filetoStorageEngine })
 
 mongoose.connect('mongodb://127.0.0.1:27017/Lifeline-fdfed')
-.then(()=>{
+  .then(() => {
     console.log('MongoDB Connected Successfully')
-})
-.catch(()=>{
+  })
+  .catch(() => {
     console.log('Failed to connect to MongoDB')
-})
+  })
 
 morgan.token('custom', (req, res) => {
   if (req.url === '/login' && req.method === 'POST') {
@@ -75,28 +77,28 @@ app.post('/login', async (req, res) => {
   const type = req.body.type;
 
   try {
-      let check;
-      if (type === 'patient') {
-          check = await PatientRegisters.findOne({ username });
-      } else if (type === 'doctor') {
-          check = await DocRegisters.findOne({ docID: username });
-      } else if (type === 'hospital') {
-          check = await HospRegisters.findOne({ hospID: username });
-      } else if (type === 'admin') {
-          check = await AdminRegisters.findOne({ username: username });
-      }
-      if (check) {
-        const passwordCheck = await bcrypt.compare(password,check.password);
-          if (passwordCheck) {
-              res.status(200).json('exist');
-          } else {
-              res.json('invalid credentials');
-          }
+    let check;
+    if (type === 'patient') {
+      check = await PatientRegisters.findOne({ username });
+    } else if (type === 'doctor') {
+      check = await DocRegisters.findOne({ docID: username });
+    } else if (type === 'hospital') {
+      check = await HospRegisters.findOne({ hospID: username });
+    } else if (type === 'admin') {
+      check = await AdminRegisters.findOne({ username: username });
+    }
+    if (check) {
+      const passwordCheck = await bcrypt.compare(password, check.password);
+      if (passwordCheck) {
+        res.status(200).json('exist');
       } else {
-          res.json('does not exist');
+        res.json('invalid credentials');
       }
+    } else {
+      res.json('does not exist');
+    }
   } catch (e) {
-      res.json('error');
+    res.json('error');
   }
 });
 
@@ -136,7 +138,7 @@ app.post('/docRegister', async (req, res) => {
 
   try {
     const check = await DocRegisters.findOne({ mailID });
-    const hospital = await HospRegisters.findOne({hospID:hospID})
+    const hospital = await HospRegisters.findOne({ hospID: hospID })
     const hospName = hospital.hospName
     const city = hospital.city
     if (check) {
@@ -145,7 +147,7 @@ app.post('/docRegister', async (req, res) => {
 
     const verificationToken = uuid.v4();
     const data = new DocRegisters({
-      name, mobileNumber, mailID,hospName, hospID,city, specialization, fee, verificationToken
+      name, mobileNumber, mailID, hospName, hospID, city, specialization, fee, verificationToken
     });
 
     await data.save();
@@ -174,7 +176,7 @@ app.post('/hospRegister', async (req, res) => {
 
     const verificationToken = uuid.v4();
     const data = new HospRegisters({
-      hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation,verificationToken
+      hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation, verificationToken
     });
 
     await data.save();
@@ -189,22 +191,22 @@ app.post('/hospRegister', async (req, res) => {
 });
 
 app.post('/verifyEmailPatient', async (req, res) => {
-    const { verificationToken } = req.body;
-    try {
-      const data = await PatientRegisters.findOne({ verificationToken });
-  
-      if (data) {
-        data.verificationStatus = true;
-        await data.save();
-        res.json('verified');
-      } else {
-        res.json('invalid-token');
-      }
-    } 
-    catch (error) {
-      console.error(error);
-      res.status(500).json('Internal Server Error');
+  const { verificationToken } = req.body;
+  try {
+    const data = await PatientRegisters.findOne({ verificationToken });
+
+    if (data) {
+      data.verificationStatus = true;
+      await data.save();
+      res.json('verified');
+    } else {
+      res.json('invalid-token');
     }
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
 });
 
 app.post('/verifyEmailDoc', async (req, res) => {
@@ -219,7 +221,7 @@ app.post('/verifyEmailDoc', async (req, res) => {
     } else {
       res.json('invalid-token');
     }
-  } 
+  }
   catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');
@@ -238,7 +240,7 @@ app.post('/verifyEmailHosp', async (req, res) => {
     } else {
       res.json('invalid-token');
     }
-  } 
+  }
   catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');
@@ -246,37 +248,37 @@ app.post('/verifyEmailHosp', async (req, res) => {
 });
 
 app.post('/patientRegister2', async (req, res) => {
-    const { verificationToken, username, password } = req.body;  
-    try {
-      const data = await PatientRegisters.findOne({ verificationToken });
-      const data2 = await PatientRegisters.findOne({ username });
-      if(data2) {
-        res.json('exists');
+  const { verificationToken, username, password } = req.body;
+  try {
+    const data = await PatientRegisters.findOne({ verificationToken });
+    const data2 = await PatientRegisters.findOne({ username });
+    if (data2) {
+      res.json('exists');
+    } else {
+      if (data) {
+        const saltrounds = 10
+        const hashedPassword = await bcrypt.hash(password, saltrounds);
+        data.username = username;
+        data.password = hashedPassword;
+        await data.save();
+        res.json('registered');
       } else {
-        if (data) {
-          const saltrounds = 10
-          const hashedPassword = await bcrypt.hash(password,saltrounds);
-          data.username = username;
-          data.password = hashedPassword;
-          await data.save();
-          res.json('registered');
-        } else {
-          res.json('invalid-token');
-        }
+        res.json('invalid-token');
       }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json('Internal Server Error.');
     }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error.');
+  }
 });
 
 app.post('/docRegister2', async (req, res) => {
-  const { verificationToken, docID, password } = req.body;  
+  const { verificationToken, docID, password } = req.body;
   try {
     const data = await DocRegisters.findOne({ verificationToken });
     if (data) {
       const saltrounds = 10
-      const hashedPassword = await bcrypt.hash(password,saltrounds);
+      const hashedPassword = await bcrypt.hash(password, saltrounds);
       data.docID = docID;
       data.password = hashedPassword;
       await data.save();
@@ -291,12 +293,12 @@ app.post('/docRegister2', async (req, res) => {
 });
 
 app.post('/hospRegister2', async (req, res) => {
-  const { verificationToken, hospID, password } = req.body;  
+  const { verificationToken, hospID, password } = req.body;
   try {
     const data = await HospRegisters.findOne({ verificationToken });
     if (data) {
       const saltrounds = 10
-      const hashedPassword = await bcrypt.hash(password,saltrounds);
+      const hashedPassword = await bcrypt.hash(password, saltrounds);
       data.hospID = hospID;
       data.password = hashedPassword;
       await data.save();
@@ -312,146 +314,146 @@ app.post('/hospRegister2', async (req, res) => {
 
 
 app.get('/getUserDetails/:username', async (req, res) => {
-    const username = req.params.username;
-    try{
-        const user = await PatientRegisters.findOne({ username:username });
-        if(!user){
-            return res.json('User not found');
-        }
-        res.status(200).json(user);
-    } 
-    catch(e){
-        console.error(e);
-        res.json('Internal Server Error');
+  const username = req.params.username;
+  try {
+    const user = await PatientRegisters.findOne({ username: username });
+    if (!user) {
+      return res.json('User not found');
     }
+    res.status(200).json(user);
+  }
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
+  }
 });
 
 app.get('/getAdminDetails/:username', async (req, res) => {
   const username = req.params.username;
-  try{
-      const user = await AdminRegisters.findOne({ username:username });
-      if(!user){
-          return res.json('User not found');
-      }
-      res.status(200).json(user);
-  } 
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  try {
+    const user = await AdminRegisters.findOne({ username: username });
+    if (!user) {
+      return res.json('User not found');
+    }
+    res.status(200).json(user);
+  }
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getDocDetails/:username', async (req, res) => {
   const docID = req.params.username;
-  try{
-      const user = await DocRegisters.findOne({ docID:docID });
-      if(!user){
-          return res.json('User not found');
-      }
-      res.status(200).json(user);
-  } 
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  try {
+    const user = await DocRegisters.findOne({ docID: docID });
+    if (!user) {
+      return res.json('User not found');
+    }
+    res.status(200).json(user);
+  }
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getHospDetails/:username', async (req, res) => {
   const hospID = req.params.username;
-  try{
-      const user = await HospRegisters.findOne({ hospID:hospID });
-      if(!user){
-          return res.json('User not found');
-      }
-      res.status(200).json(user);
-  } 
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  try {
+    const user = await HospRegisters.findOne({ hospID: hospID });
+    if (!user) {
+      return res.json('User not found');
+    }
+    res.status(200).json(user);
+  }
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getAllPatients', async (req, res) => {
-  try{
-      const user = await PatientRegisters.find();
-      if(!user){
-          return res.json('No User found');
-      }
-      res.status(200).json(user);
-  } 
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  try {
+    const user = await PatientRegisters.find();
+    if (!user) {
+      return res.json('No User found');
+    }
+    res.status(200).json(user);
+  }
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getAllHospitals', async (req, res) => {
-  try{
-      const user = await HospRegisters.find();
-      if(!user){
-          return res.json('No Hospital found');
-      }
-      res.status(200).json(user);
-  } 
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  try {
+    const user = await HospRegisters.find();
+    if (!user) {
+      return res.json('No Hospital found');
+    }
+    res.status(200).json(user);
+  }
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getAllDoctors', async (req, res) => {
-  try{
-      const user = await DocRegisters.find();
-      if(!user){
-          return res.json('No Doctor found');
-      }
-      res.status(200).json(user);
-  } 
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  try {
+    const user = await DocRegisters.find();
+    if (!user) {
+      return res.json('No Doctor found');
+    }
+    res.status(200).json(user);
+  }
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getAllDonors', async (req, res) => {
-  try{
-      const user = await ODRegisters.find();
-      if(!user){
-          return res.json('No Donor found');
-      }
-      res.status(200).json(user);
+  try {
+    const user = await ODRegisters.find();
+    if (!user) {
+      return res.json('No Donor found');
+    }
+    res.status(200).json(user);
   }
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getAllBloodDonors', async (req, res) => {
-  try{
-      const user = await BBRegisters.find();
-      if(!user){
-          return res.json('No Donor found');
-      }
-      res.status(200).json(user);
+  try {
+    const user = await BBRegisters.find();
+    if (!user) {
+      return res.json('No Donor found');
+    }
+    res.status(200).json(user);
   }
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
 app.get('/getAllAppointments', async (req, res) => {
-  try{
-      const user = await Appointments.find();
-      if(!user){
-          return res.json('No Appointment found');
-      }
-      res.status(200).json(user);
+  try {
+    const user = await Appointments.find();
+    if (!user) {
+      return res.json('No Appointment found');
+    }
+    res.status(200).json(user);
   }
-  catch(e){
-      console.error(e);
-      res.json('Internal Server Error');
+  catch (e) {
+    console.error(e);
+    res.json('Internal Server Error');
   }
 });
 
@@ -486,9 +488,9 @@ app.get('/blogAPI', async (req, res) => {
 });
 
 app.get('/blogsAPI/:docID', async (req, res) => {
-  const {docID} = req.params
+  const { docID } = req.params
   try {
-    const blogs = await Blogs.find({docID:docID});
+    const blogs = await Blogs.find({ docID: docID });
     res.json(blogs);
   } catch (error) {
     console.error('Error fetching doctors:', error);
@@ -497,9 +499,9 @@ app.get('/blogsAPI/:docID', async (req, res) => {
 });
 
 app.get('/AppointmentsAPI/:docID', async (req, res) => {
-  const {docID} = req.params
+  const { docID } = req.params
   try {
-    const appointments = await Appointments.find({docID:docID});
+    const appointments = await Appointments.find({ docID: docID });
     res.json(appointments);
   } catch (error) {
     console.error('Error fetching doctors:', error);
@@ -508,9 +510,9 @@ app.get('/AppointmentsAPI/:docID', async (req, res) => {
 });
 
 app.get('/AppointmentsAPI2/:hospID', async (req, res) => {
-  const {hospID} = req.params
+  const { hospID } = req.params
   try {
-    const appointments = await Appointments.find({hospID:hospID});
+    const appointments = await Appointments.find({ hospID: hospID });
     res.json(appointments);
   } catch (error) {
     console.error('Error fetching doctors:', error);
@@ -519,9 +521,9 @@ app.get('/AppointmentsAPI2/:hospID', async (req, res) => {
 });
 
 app.get('/AppointmentsAPI3/:username', async (req, res) => {
-  const {username} = req.params
+  const { username } = req.params
   try {
-    const appointments = await Appointments.find({Username:username});
+    const appointments = await Appointments.find({ Username: username });
     res.json(appointments);
   } catch (error) {
     console.error('Error fetching appointments:', error);
@@ -530,10 +532,10 @@ app.get('/AppointmentsAPI3/:username', async (req, res) => {
 });
 
 app.get('/AppointmentsAPI/dateanddocid', async (req, res) => {
-  const {docID, date} = req.params
+  const { docID, date } = req.params
   try {
-    const appointments2 = await Appointments.find({docID:docID});
-    const appointments = appointments2.find({Date:date});
+    const appointments2 = await Appointments.find({ docID: docID });
+    const appointments = appointments2.find({ Date: date });
     res.json(appointments);
   } catch (error) {
     console.error('Error fetching doctors:', error);
@@ -563,30 +565,30 @@ app.post('/searchDoctors', async (req, res) => {
 });
 
 app.post('/bookAppointment', async (req, res) => {
-  const {docID,patientName,date,time,mobileNumber,note} = req.body;
-  const user = await PatientRegisters.findOne({firstName:patientName})
-  const doc = await DocRegisters.findOne({docID:docID})
-  const hosp = await HospRegisters.findOne({hospName:doc.hospName})
+  const { docID, patientName, date, time, mobileNumber, note } = req.body;
+  const user = await PatientRegisters.findOne({ firstName: patientName })
+  const doc = await DocRegisters.findOne({ docID: docID })
+  const hosp = await HospRegisters.findOne({ hospName: doc.hospName })
   const username = user.username
   const hospID = hosp.hospID
   const hospName = hosp.hospName
   const fee = doc.fee
   try {
     const newAppointment = new Appointments({
-      docID:docID,
-      docName:doc.name,
-      hospID:hospID,
-      hospName:hospName,
-      Username:username,
-      PatientName:patientName,
-      Date:date,
-      Timeslot:time,
-      Contact:mobileNumber,
-      Fee:fee,
-      Note:note
+      docID: docID,
+      docName: doc.name,
+      hospID: hospID,
+      hospName: hospName,
+      Username: username,
+      PatientName: patientName,
+      Date: date,
+      Timeslot: time,
+      Contact: mobileNumber,
+      Fee: fee,
+      Note: note
     });
     await newAppointment.save();
-    res.status(200).json({status: 'created',username:username});
+    res.status(200).json({ status: 'created', username: username });
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');
@@ -594,50 +596,50 @@ app.post('/bookAppointment', async (req, res) => {
 });
 
 
-app.post('/uploadBlog',upload.single('image'),async(req,res,next)=> {
-  const {docID,title,blog} = req.body
+app.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
+  const { docID, title, blog } = req.body
   const imagepath = req.file.path;
-  const doc = await DocRegisters.findOne({docID})
+  const doc = await DocRegisters.findOne({ docID })
   const docName = doc.name
   const spec = doc.specialization
-  try{
+  try {
     const newBlog = new Blogs({
-      docID:docID,
-      docName:docName,
-      specialization:spec,
-      title:title,
-      blog:blog,
-      imagepath:imagepath
+      docID: docID,
+      docName: docName,
+      specialization: spec,
+      title: title,
+      blog: blog,
+      imagepath: imagepath
     })
     await newBlog.save();
-    res.status(200).json({status: 'uploaded'});
+    res.status(200).json({ status: 'uploaded' });
   }
-  catch(error){
+  catch (error) {
     console.log(error)
     res.status(500).json('Internal Server Error');
   }
 })
 
 
-app.get('/blogdata',async(req,res)=>{
-  const {blogID} = req.query;
-  try{
-  const data = await Blogs.findOne({blogID:blogID})
-  console.log(data)
-  if(data){
-  res.status(200).json(data)
+app.get('/blogdata', async (req, res) => {
+  const { blogID } = req.query;
+  try {
+    const data = await Blogs.findOne({ blogID: blogID })
+    console.log(data)
+    if (data) {
+      res.status(200).json(data)
     }
   }
-  catch(error){
+  catch (error) {
     console.log(error)
     res.status(500).json('Internal Server Error');
   }
 })
 
 app.get('/DoctorsAPI2/:hospID', async (req, res) => {
-  const {hospID} = req.params
+  const { hospID } = req.params
   try {
-    const doctors = await DocRegisters.find({hospID:hospID});
+    const doctors = await DocRegisters.find({ hospID: hospID });
     res.json(doctors);
   } catch (error) {
     console.error('Error fetching doctors:', error);
@@ -691,7 +693,7 @@ app.get('/getTotalExpenditure3/:hospID', async (req, res) => {
 });
 
 app.post('/organDonation', async (req, res) => {
-  const {username, name, aadhaar, gender, donation, particular, past} = req.body
+  const { username, name, aadhaar, gender, donation, particular, past } = req.body
   try {
     const check = await ODRegisters.findOne({ username });
 
@@ -702,7 +704,7 @@ app.post('/organDonation', async (req, res) => {
       username, name, aadhaar, gender, donation, particular, past
     });
     await data.save();
-    res.status(200).json({ message: 'Registration successful'});
+    res.status(200).json({ message: 'Registration successful' });
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');
@@ -710,7 +712,7 @@ app.post('/organDonation', async (req, res) => {
 });
 
 app.post('/bloodBanks', async (req, res) => {
-  const {username, name, aadhar, gender, bloodGroup, age, past} = req.body
+  const { username, name, aadhar, gender, bloodGroup, age, past } = req.body
   try {
     const check = await BBRegisters.findOne({ username });
     if (check) {
@@ -720,7 +722,7 @@ app.post('/bloodBanks', async (req, res) => {
       username, name, aadhar, gender, bloodGroup, age, past
     });
     await data.save();
-    res.status(200).json({ message: 'Registration successful'});
+    res.status(200).json({ message: 'Registration successful' });
   } catch (error) {
     console.error(error);
     res.status(500).json('Internal Server Error');
@@ -785,7 +787,7 @@ app.put('/updateCartItemQuantity', async (req, res) => {
 
 app.post('/addToCart', async (req, res) => {
   const { username, item } = req.body;
-  
+
 
   try {
     let cart = await PharmacyCart.findOne({ username });
@@ -830,73 +832,73 @@ app.get('/cartData', async (req, res) => {
   }
 });
 
-app.post('/deleteuser',async(req,res)=>{
-  const {enteredUsername,enteredPassword,actualusername,actualpassword} = req.body
-  try{
-    if(enteredUsername === actualusername && enteredPassword === actualpassword){
-       await PatientRegisters.deleteOne({username : enteredUsername})
+app.post('/deleteuser', async (req, res) => {
+  const { enteredUsername, enteredPassword, actualusername, actualpassword } = req.body
+  try {
+    if (enteredUsername === actualusername && enteredPassword === actualpassword) {
+      await PatientRegisters.deleteOne({ username: enteredUsername })
       res.json('deleted')
     }
-    else{
+    else {
       res.json('mismatched')
     }
   }
-  catch(error){
+  catch (error) {
     console.error('Error fetching cart data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 })
 
-app.post('/deletedoc',async(req,res)=>{
-  const {entereddocID,enteredPassword,actualdocID,actualpassword} = req.body
-  try{
-    if(entereddocID === actualdocID && enteredPassword === actualpassword){
-       await DocRegisters.deleteOne({docID : entereddocID})
+app.post('/deletedoc', async (req, res) => {
+  const { entereddocID, enteredPassword, actualdocID, actualpassword } = req.body
+  try {
+    if (entereddocID === actualdocID && enteredPassword === actualpassword) {
+      await DocRegisters.deleteOne({ docID: entereddocID })
       res.json('deleted')
     }
-    else{
+    else {
       res.json('mismatched')
     }
   }
-  catch(error){
+  catch (error) {
     console.error('Error fetching cart data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 })
 
-app.post('/deletehosp',async(req,res)=>{
-  const {enteredhospID,enteredPassword,actualhospID,actualPassword} = req.body
-  try{
-    if(enteredhospID === actualhospID && enteredPassword === actualPassword){
-       await HospRegisters.deleteOne({hospID : enteredhospID})
+app.post('/deletehosp', async (req, res) => {
+  const { enteredhospID, enteredPassword, actualhospID, actualPassword } = req.body
+  try {
+    if (enteredhospID === actualhospID && enteredPassword === actualPassword) {
+      await HospRegisters.deleteOne({ hospID: enteredhospID })
       res.json('deleted')
     }
-    else{
+    else {
       res.json('mismatched')
     }
   }
-  catch(error){
+  catch (error) {
     console.error('Error fetching cart data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 })
 
-app.post('/feedback',async(req,res)=>{
-  const {name,mailID,message} = req.body
-  try{
+app.post('/feedback', async (req, res) => {
+  const { name, mailID, message } = req.body
+  try {
     const feedback = new Feedback({
-      name,mailID,message
-  })
+      name, mailID, message
+    })
     await feedback.save()
     res.json('filled')
   }
-  catch(error){
+  catch (error) {
     console.error('Error fetching cart data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 })
 
-app.post('/api/submit-feedback', async(req, res) => {
+app.post('/api/submit-feedback', async (req, res) => {
   const { name, email, message } = req.body;
 
   const newFeedback = new Feedback({
@@ -921,24 +923,24 @@ function sendVerificationEmail(to, link) {
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD,
-      },
-    });
-        
+    },
+  });
+
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to,
     subject: 'Email Verification',
     text: `Click the following link to verify your email: ${link}`,
-    };
-        
+  };
+
   transporter.sendMail(mailOptions, (error) => {
     if (error) {
       console.error('Error sending verification email:', error);
-      }
-    });
+    }
+  });
 }
 
 
-app.listen(8000,()=>{
-    console.log("port connected to 8000");
+app.listen(8000, () => {
+  console.log("port connected to 8000");
 })
