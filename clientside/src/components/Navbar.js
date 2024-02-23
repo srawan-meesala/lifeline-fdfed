@@ -24,7 +24,7 @@ function Navbar({ title }) {
           <li><Link to={`/userProfile`}>Dashboard</Link></li>
           <li><Link to='/blogs'>Blogs</Link></li>
           <li><Link to='/about'>About us</Link></li>
-          <li><button onClick={handleLogout}>Logout</button></li>
+          <li><button onClick={handleLogout} className='Navbar-right-side-button'>Logout</button></li>
         </ul>
       </div>
     </div>

@@ -536,6 +536,21 @@ html {
   align-items: center;
 }
 
+.Navbar-right-side-button{
+  background-color: #333;
+  color: #fff;
+  padding: 3px;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.Navbar-right-side-button:hover{
+  color: #ff9900;
+}
+
 .Navbar-right-side li {
   margin: 0 15px;
 }
