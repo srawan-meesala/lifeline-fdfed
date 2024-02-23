@@ -38,7 +38,7 @@ const DoctorBlogs = ({ userDetails, blogs }) => {
       </div>
       <div className='DoctorProfile-blog-add'>
         <div className='DoctorProfile-blog-add-link'>
-          <Link className='DoctorProfile-blog-add-link-link' to={`/blogform/${userDetails.docID}`}>
+          <Link className='DoctorProfile-blog-add-link-link' to={`/blogform`}>
             Upload a New Blog
           </Link>
         </div>

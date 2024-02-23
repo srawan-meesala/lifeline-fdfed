@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap");
 
 html {
   scroll-behavior: smooth;
@@ -11,14 +11,13 @@ html {
 
 /* Landing Page Styles */
 
-
 .Landing-body {
   overflow: hidden;
   background: radial-gradient(circle, rgb(193, 189, 255) 10%, transparent 11%);
   background-size: 1.3em 1.3em;
   background-color: #ffffff;
   opacity: 1;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .Landing-logo-brand {
@@ -30,7 +29,7 @@ html {
   cursor: pointer;
 }
 .Landing-logo-brand span {
-  color:black;
+  color: black;
 }
 
 .Landing-header-1 {
@@ -38,7 +37,7 @@ html {
   backdrop-filter: blur(1.5px);
 }
 
-.Landing-nav{
+.Landing-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,7 +50,7 @@ html {
   margin: 10px 20px;
 }
 
-.Landing-nav ul li a{
+.Landing-nav ul li a {
   color: black;
   font-size: 18px;
   text-decoration: none;
@@ -59,7 +58,7 @@ html {
 }
 
 .Landing-nav ul li a::after {
-  content:'';
+  content: "";
   width: 0;
   height: 3px;
   background: #880808;
@@ -92,7 +91,7 @@ html {
   left: 0;
 }
 
-.Landing-c1{
+.Landing-c1 {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -140,7 +139,7 @@ html {
   color: black;
   border: 0.5px #880808 solid;
 }
-.Landing-c1-side button:hover a{
+.Landing-c1-side button:hover a {
   color: #880808;
 }
 .Landing-c1-img {
@@ -151,72 +150,70 @@ html {
   justify-content: center;
   align-items: center;
 }
-.Landing-c1-img img{
+.Landing-c1-img img {
   width: 110%;
 }
 
 @media screen and (max-width: 1080px) {
   .Landing-c1 {
-      flex-direction: column;
+    flex-direction: column;
   }
-  .Landing-c1-side{
-      left: 0;
+  .Landing-c1-side {
+    left: 0;
   }
 
   .Landing-c2 {
-      margin-top: 30px;
-      flex-direction: column-reverse;
+    margin-top: 30px;
+    flex-direction: column-reverse;
   }
-  .Landing-c1-side{
-      right: 0;
+  .Landing-c1-side {
+    right: 0;
   }
 }
 
 /* Blogs css  */
 
-.Blogs-whole{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    overflow: auto;
+.Blogs-whole {
+  margin: 0;
+  padding: 0;
+  width: 99vw;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
 }
 
-.Blogs-Randomiser{
-    width: 100%;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.Blogs-Randomiser {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.Blogs-Randomiser-div{
-    display: flex;
-    width: 31%;
-    height: 100%;
-    align-items: center;
-    justify-content: space-around;
+.Blogs-Randomiser-div {
+  display: flex;
+  width: 31%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.Randomiser-div{
+.Randomiser-div {
   display: flex;
   align-items: center;
   width: 22%;
   height: 100%;
 }
 
-.Blogs-Randomiser-question{
-    width: 78%;
-    font-size: 18px;
-    font-weight: 500;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    color: black;
+.Blogs-Randomiser-question {
+  width: 78%;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: black;
 }
 
-.Randomiser-Button{
+.Randomiser-Button {
   background-color: orange;
   border: 0;
   width: 100%;
@@ -230,113 +227,108 @@ html {
   cursor: pointer;
 }
 
-.Randomiser-Button span:active{
-    color: #244;
+.Randomiser-Button span:active {
+  color: #244;
 }
 
-   
-
-.Blogs-content{
-    width: 100%;
-    min-height: 80%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.Blogs-content {
+  width: 100%;
+  min-height: 80%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.Blogs-content-div{
-    width: 90%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-
+.Blogs-content-div {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.Blogs-slots-1{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
+.Blogs-slots-1 {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.Blogs-card{
-    width: 29%;
-    height: 19rem;
-    filter: drop-shadow(0 5px 10px 0 #ffffff);
-    margin: 2%;
-    border-radius: 15px;
-    position: relative;
-    z-index: 0;
-    overflow: hidden;
-    transition: 0.6s ease-in;
-    cursor: pointer;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+.Blogs-card {
+  width: 29%;
+  height: 19rem;
+  filter: drop-shadow(0 5px 10px 0 #ffffff);
+  margin: 2%;
+  border-radius: 15px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  transition: 0.6s ease-in;
+  cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.Blogs-card::before{
-    content: "";
-    position: absolute;
-    z-index: -1;
-    background: #7952b3;
-    height:100%;
-    width: 3%;
-    border-radius: 32px;
-    transition: transform 0.25s ease-out;
+.Blogs-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: #7952b3;
+  height: 100%;
+  width: 3%;
+  border-radius: 32px;
+  transition: transform 0.25s ease-out;
 }
 
-.Blogs-card:hover::before{
-    transition-delay:0.2s ;
-    transform: scale(70);
+.Blogs-card:hover::before {
+  transition-delay: 0.2s;
+  transform: scale(70);
 }
 
-.Blogs-card:hover{
-    color: white;
-    transition: 0.2s;
+.Blogs-card:hover {
+  color: white;
+  transition: 0.2s;
 }
 
-
-.Blogs-card-content{
-    padding: 20px;
-    padding-left: 35px;
-    width: 80%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.Blogs-card-content {
+  padding: 20px;
+  padding-left: 35px;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.Blogs-card-title{
-    font-size: 40px;
-    font-weight: 500;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.Blogs-card-title {
+  font-size: 40px;
+  font-weight: 500;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-.Blogs-card-author{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+.Blogs-card-author {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.Blogs-card-author-name{
-    font-size: larger;
-    font-weight: 500;
-    font-family: 'Times New Roman', Times, serif;
+.Blogs-card-author-name {
+  font-size: larger;
+  font-weight: 500;
+  font-family: "Times New Roman", Times, serif;
 }
 
-.Blogs-card-author-prof{
-    font-family:'Times New Roman', Times, serif;
-    font-weight: 400;
+.Blogs-card-author-prof {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
 }
-
 
 /* footer css  */
-
 
 .footer-whole {
   background-color: #333;
@@ -344,7 +336,7 @@ html {
   padding: 40px 0;
   text-align: center;
 }
-  
+
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -365,7 +357,7 @@ html {
   font-size: 18px;
 }
 
-.footer-logo span{
+.footer-logo span {
   color: #ff9900;
 }
 
@@ -397,14 +389,14 @@ html {
   color: #ff9900;
 }
 
-.footer-down-part{
+.footer-down-part {
   padding-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.footer-feedback-form{
+.footer-feedback-form {
   width: 50%;
   background-color: #444;
   padding: 5px;
@@ -413,16 +405,16 @@ html {
   flex-direction: column;
 }
 
-.footer-together{
+.footer-together {
   display: flex;
   align-items: center;
   width: 85%;
 }
-  
-.footer-feedback-form  input[type="text"],
-.footer-feedback-form  input[type="email"],
-.footer-feedback-form  input[type="tel"],
-.footer-feedback-form  textarea {
+
+.footer-feedback-form input[type="text"],
+.footer-feedback-form input[type="email"],
+.footer-feedback-form input[type="tel"],
+.footer-feedback-form textarea {
   width: calc(100% - 15px); /* Adjusted width */
   padding: 4px; /* Reduced padding */
   font-size: 10px; /* Reduced font size */
@@ -432,8 +424,8 @@ html {
   margin-bottom: 5px; /* Added margin between form elements */
 }
 
-.footer-feedback-form  button {
-  background-color:  #ff9900;
+.footer-feedback-form button {
+  background-color: #ff9900;
   color: #fff;
   border: none;
   padding: 6px 12px; /* Reduced padding */
@@ -444,7 +436,7 @@ html {
   margin-top: 15px;
 }
 
-.footer-form-group{
+.footer-form-group {
   width: 100%;
   height: 5rem;
   display: flex;
@@ -452,44 +444,44 @@ html {
   justify-content: space-around;
 }
 
-.footer-form-group input[type=text]{
+.footer-form-group input[type="text"] {
   width: 90%;
   height: 40%;
 }
 
-.footer-form-group input[type=email]{
+.footer-form-group input[type="email"] {
   width: 90%;
   height: 40%;
 }
 
-.footer-form-group-2{
+.footer-form-group-2 {
   width: 80%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-  
-.footer-form{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.footer-form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-feedback-form input::placeholder,
 .footer-feedback-form textarea::placeholder {
-  color:  #ff9900;
+  color: #ff9900;
   font-size: 13px;
   font-style: italic;
 }
 
-.footer-form-group-2{
+.footer-form-group-2 {
   width: 80%;
   height: 8rem;
 }
 
-.footer-form-group-2 textarea{
+.footer-form-group-2 textarea {
   width: 100%;
   height: 100%;
   padding: 10px 10px;
@@ -501,10 +493,7 @@ html {
   resize: none;
 }
 
-
-
 /* Navbar css  */
-
 
 .Navbar-whole {
   display: flex;
@@ -536,7 +525,7 @@ html {
   align-items: center;
 }
 
-.Navbar-right-side-button{
+.Navbar-right-side-button {
   background-color: #333;
   color: #fff;
   padding: 3px;
@@ -547,7 +536,7 @@ html {
   font-weight: 500;
 }
 
-.Navbar-right-side-button:hover{
+.Navbar-right-side-button:hover {
   color: #ff9900;
 }
 
@@ -565,23 +554,21 @@ html {
   color: #ff9900;
 }
 
-.Navbar-logo-title{
+.Navbar-logo-title {
   font-weight: 300;
   color: white;
 }
 
-
-
 /* UserProfile css  */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-.UserProfile-whole{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+.UserProfile-whole {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
 }
 
 .UserProfile-left {
@@ -594,7 +581,9 @@ html {
   justify-content: space-between;
 }
 
-.UserProfile-logo, .UserProfile-functions, .UserProfile-logout {
+.UserProfile-logo,
+.UserProfile-functions,
+.UserProfile-logout {
   width: 100%;
   margin-bottom: 10px;
 }
@@ -608,11 +597,11 @@ html {
   align-items: center;
 }
 
-.UserProfile-logo-dot{
-  color: #FFB703;
+.UserProfile-logo-dot {
+  color: #ffb703;
 }
 
-.UserProfile-logo-dahboard{
+.UserProfile-logo-dahboard {
   color: black;
   font-size: 27px;
   font-weight: 400;
@@ -623,7 +612,7 @@ html {
   margin-bottom: 30%;
 }
 
-.UserProfile-fuctions-int-div{
+.UserProfile-fuctions-int-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -632,7 +621,7 @@ html {
   height: 80%;
 }
 
-.UserProfile-func-parts{
+.UserProfile-func-parts {
   width: 90%;
   height: 25%;
   margin-left: 20px;
@@ -641,7 +630,7 @@ html {
   cursor: pointer;
 }
 
-.UserProfile-logout-part{
+.UserProfile-logout-part {
   width: 90%;
   height: 35%;
   margin-left: 20px;
@@ -657,41 +646,41 @@ html {
   width: 100%;
 }
 
-.UserProfile-func-parts:hover{
+.UserProfile-func-parts:hover {
   background-color: #a1e4f5;
   border-radius: 15px;
   transition: 0.2s;
   color: black;
 }
 
-.UserProfile-logout-part:hover{
+.UserProfile-logout-part:hover {
   background-color: #a1e4f5;
   border-radius: 15px;
   transition: 0.2s;
   color: black;
 }
 
-.UserProfile-icon{
+.UserProfile-icon {
   width: 16%;
   font-size: 22px;
   margin-left: 20px;
   color: black;
 }
 
-.UserProfile-logout-icon{
+.UserProfile-logout-icon {
   width: 14%;
   font-size: 22px;
   margin-left: 20px;
   color: black;
 }
 
-.UserProfile-func{
+.UserProfile-func {
   width: 80%;
   font-size: 21px;
   font-weight: 400;
 }
 
-.UserProfile-logout-func{
+.UserProfile-logout-func {
   width: 80%;
   font-size: 21px;
   font-weight: 400;
@@ -706,17 +695,17 @@ html {
   align-items: center;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
-}  
+}
 
-.UserProfile-right{
+.UserProfile-right {
   width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color:white;
+  background-color: white;
 }
 
-.UserProfile-top{
+.UserProfile-top {
   width: 100%;
   height: 11%;
   max-height: 11%;
@@ -727,7 +716,7 @@ html {
   background-color: white;
 }
 
-.UserProfile-dashboard{
+.UserProfile-dashboard {
   width: 35%;
   padding-left: 3rem;
   font-size: 28px;
@@ -739,8 +728,7 @@ html {
   font-weight: 400;
 }
 
-
-.UserProfile-cards{
+.UserProfile-cards {
   width: 100%;
   height: 30%;
   display: flex;
@@ -750,12 +738,15 @@ html {
   background-color: #eee;
 }
 
-.UserProfile-card-1{
+.UserProfile-card-1 {
   width: 24%;
   height: 100%;
 }
 
-.UserProfile-card-1-int-div,.UserProfile-card-2-int-div,.UserProfile-card-3-int-div,.UserProfile-card-4-int-div{
+.UserProfile-card-1-int-div,
+.UserProfile-card-2-int-div,
+.UserProfile-card-3-int-div,
+.UserProfile-card-4-int-div {
   padding: 7px;
   display: flex;
   flex-direction: column;
@@ -763,49 +754,49 @@ html {
   justify-content: space-around;
 }
 
-.UserProfile-card-1-int-div-head{
+.UserProfile-card-1-int-div-head {
   height: 40%;
   padding-top: 10px;
   padding-left: 5px;
   font-size: 20px;
   font-weight: 300;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: black;
 }
 
-.UserProfile-card-1-int-div-head-black{
+.UserProfile-card-1-int-div-head-black {
   height: 40%;
   padding-top: 10px;
   padding-left: 5px;
   font-size: 20px;
   font-weight: 200;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: white;
   letter-spacing: 1px;
 }
 
-.UserProfile-card-1-int-div-body{
+.UserProfile-card-1-int-div-body {
   height: 60%;
   font-size: 50px;
   font-weight: 400;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.UserProfile-card-2{
-    width: 24%;
-    height: 100%;
+.UserProfile-card-2 {
+  width: 24%;
+  height: 100%;
 }
 
-.UserProfile-card-3{
-    width: 24%;
-    height: 100%;
+.UserProfile-card-3 {
+  width: 24%;
+  height: 100%;
 }
 
-.UserProfile-card-4{
-    width: 24%;
-    height: 100%;
+.UserProfile-card-4 {
+  width: 24%;
+  height: 100%;
 }
 
 .UserProfile-appointments {
@@ -838,11 +829,13 @@ html {
 
 .UserProfile-appointments-card-name {
   font-size: 18px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .UserProfile-appointments-card-name span {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
 }
 
@@ -857,11 +850,13 @@ html {
 
 .UserProfile-profile-name {
   font-size: 23px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .UserProfile-profile-name span {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
   color: #023047;
 }
@@ -869,7 +864,8 @@ html {
 .UserProfile-settings-cards {
   width: 80%;
   padding: 10vh 0 5vh 0;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -916,77 +912,76 @@ html {
   background-color: #ae1d1d;
 }
 
-.UserProfile-bottom-right{
-    width: 100%;
-    height: 69%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0% 2%;
-    padding-bottom: 2%;
-    background-color: #eee;
+.UserProfile-bottom-right {
+  width: 100%;
+  height: 69%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0% 2%;
+  padding-bottom: 2%;
+  background-color: #eee;
 }
 
-.UserProfile-booked-appointments{
-    width: 60%;
-    height: 100%;
+.UserProfile-booked-appointments {
+  width: 60%;
+  height: 100%;
 }
 
-.UserProfile-remaining{
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+.UserProfile-remaining {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.UserProfile-part-1{
-    width: 100%;
-    height: 50%;
+.UserProfile-part-1 {
+  width: 100%;
+  height: 50%;
 }
 
-.UserProfile-part-2{
-    width: 100%;
-    height: 50%;
+.UserProfile-part-2 {
+  width: 100%;
+  height: 50%;
 }
 
-.UserProfile-booked-appointments-int-div{
-    width: 94%;
-    height: 92%;
-    margin: 4% 3%;
-    background-color: #023047;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
-    padding: 7px;
-    display: flex;
-    flex-direction: column;
+.UserProfile-booked-appointments-int-div {
+  width: 94%;
+  height: 92%;
+  margin: 4% 3%;
+  background-color: #023047;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
 }
 
-.UserProfile-booked-appointments-int-div-head-top{
+.UserProfile-booked-appointments-int-div-head-top {
   padding: 10px;
   font-size: 25px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.UserProfile-booked-appointments-int-div-head-bottom{
+.UserProfile-booked-appointments-int-div-head-bottom {
   padding: 10px;
   padding-bottom: 0;
   font-size: 20px;
   font-weight: 400;
   font-family: Arial, Helvetica, sans-serif;
-  
 }
 
-.UserProfile-booked-appointments-int-div-head{
+.UserProfile-booked-appointments-int-div-head {
   color: white;
   display: flex;
   flex-direction: column;
 }
 
-.UserProfile-booked-appointments-int-div-body{
+.UserProfile-booked-appointments-int-div-body {
   height: 100%;
   padding: 15px;
   display: flex;
@@ -994,90 +989,92 @@ html {
   justify-content: space-around;
 }
 
-.UserProfile-booked-appointments-int-div-body-part{
-  font-size:20px;
+.UserProfile-booked-appointments-int-div-body-part {
+  font-size: 20px;
   font-weight: 300;
   color: white;
   padding: 3px;
 }
 
-.UserProfile-booked-appointments-int-div-body-part:hover{
+.UserProfile-booked-appointments-int-div-body-part:hover {
   background-color: #12465f;
   border-radius: 10px;
   transition: 0.2s;
 }
 
-.UserProfile-card-1-int-div,.UserProfile-card-3-int-div,.UserProfile-card-4-int-div{
-    width: 92%;
-    height: 92%;
-    margin: 4%;
-    border-radius: 24px;
-    color: black;
+.UserProfile-card-1-int-div,
+.UserProfile-card-3-int-div,
+.UserProfile-card-4-int-div {
+  width: 92%;
+  height: 92%;
+  margin: 4%;
+  border-radius: 24px;
+  color: black;
 }
 
-.UserProfile-card-2-int-div{
-    width: 92%;
-    height: 92%;
-    margin: 4%;
-    border-radius: 24px;
-    color: white;
+.UserProfile-card-2-int-div {
+  width: 92%;
+  height: 92%;
+  margin: 4%;
+  border-radius: 24px;
+  color: white;
 }
 
-.UserProfile-card-1-int-div{
+.UserProfile-card-1-int-div {
   background-color: #219ebc;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.UserProfile-card-2-int-div{
+.UserProfile-card-2-int-div {
   background-color: #023047;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.UserProfile-card-3-int-div{
+.UserProfile-card-3-int-div {
   background-color: #ffb703;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.UserProfile-card-4-int-div{
+.UserProfile-card-4-int-div {
   background-color: #fb8500;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.UserProfile-part-1-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #ffb703;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
+.UserProfile-part-1-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #ffb703;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
 }
 
-.UserProfile-part-2-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #fb8500;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
+.UserProfile-part-2-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #fb8500;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
 }
 
-.UserProfile-part-1-int-div{
+.UserProfile-part-1-int-div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.UserProfile-part-1-int-div-head{
+.UserProfile-part-1-int-div-head {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 30px;
   font-weight: 600;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.UserProfile-part-1-int-div-body{
+.UserProfile-part-1-int-div-body {
   display: flex;
   justify-content: space-around;
   height: 40%;
@@ -1085,24 +1082,22 @@ html {
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.UserProfile-part-1-int-div-body-icon{
+.UserProfile-part-1-int-div-body-icon {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-
-
 /* BlogComplete css  */
 
-.BlogComplete-whole{
+.BlogComplete-whole {
   margin: 0;
   padding: 0;
   max-width: 100vw;
@@ -1111,7 +1106,7 @@ html {
   justify-content: center;
 }
 
-.BlogComplete-matter{
+.BlogComplete-matter {
   width: 80%;
   min-height: 80%;
   background-color: #fff;
@@ -1123,59 +1118,66 @@ html {
   margin-top: 40px;
 }
 
-.BlogComplete-head{
+.BlogComplete-head {
   width: 100%;
-  height: 20%;
+  height: 70%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.BlogComplete-head-1{
+.BlogComplete-head-1 {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 
-.BlogComplete-head-heading{
+.BlogComplete-head-heading {
   font-size: 60px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.BlogComplete-head-info{
+.BlogComplete-head-info {
   width: 100%;
   display: flex;
   align-items: center;
 }
 
-.Blog-image{
-  margin-left: 800px;
-  height: 200px;
+.BlogComplete-head-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
 }
 
-.BlogComplete-data{
+.Blog-image {
+  height: 400px;
+}
+
+.BlogComplete-data {
   width: 80%;
   height: 100%;
   padding: 10px;
   padding-left: 0;
-  
+
   font-size: 20px;
 }
 
-.BlogComplete-data span{
+.BlogComplete-data span {
   font-size: 17px;
 }
 
-.BlogComplete-body{
+.BlogComplete-body {
   width: 100%;
   min-height: 75%;
 }
 
-.BlogComplete-body{
+.BlogComplete-body {
   width: 100%;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 20px;
   padding: 15px;
   line-height: 150%;
@@ -1193,11 +1195,11 @@ html {
   align-items: center;
 }
 
-.BookAppointment-matter{
+.BookAppointment-matter {
   width: 80%;
   height: 80%;
   background-color: #fff;
-  box-shadow: #7952b3 0px 2px 8px 0px;                              
+  box-shadow: #7952b3 0px 2px 8px 0px;
   border-radius: 15px;
   margin-bottom: 50px;
   display: flex;
@@ -1206,7 +1208,7 @@ html {
   margin-top: 40px;
 }
 
-.BookAppointment-head{
+.BookAppointment-head {
   width: 100%;
   height: 5%;
   padding: 10px;
@@ -1216,7 +1218,7 @@ html {
   font-weight: 500;
 }
 
-.BookAppointment-body{
+.BookAppointment-body {
   width: 100%;
   height: 90%;
   display: flex;
@@ -1227,7 +1229,7 @@ html {
   font-weight: 500;
 }
 
-.PatientLogin-logo{
+.PatientLogin-logo {
   position: absolute;
   top: 5vh;
   left: 5vw;
@@ -1245,7 +1247,8 @@ html {
   font-size: 29px;
 }
 
-.PatientLogin-left, .PatientLogin-right {
+.PatientLogin-left,
+.PatientLogin-right {
   width: 35%;
   display: flex;
   flex-direction: column;
@@ -1253,7 +1256,7 @@ html {
   justify-content: center;
 }
 
-.PatientLogin-right{
+.PatientLogin-right {
   height: 70%;
 }
 
@@ -1270,7 +1273,8 @@ html {
   justify-content: center;
 }
 
-.PatientLogin-form input, select {
+.PatientLogin-form input,
+select {
   width: 300px;
   padding: 10px;
   color: black;
@@ -1280,7 +1284,7 @@ html {
   color: rgba(60, 64, 67, 0.3);
 }
 
-.PatientLogin-form input[type=submit]{
+.PatientLogin-form input[type="submit"] {
   background-color: #023040;
   width: 100px;
   padding: 10px;
@@ -1325,7 +1329,6 @@ html {
   padding-top: 20px;
 }
 
-
 /* Patient Register Styles */
 
 .PatientRegister-body {
@@ -1342,7 +1345,8 @@ html {
   flex-direction: column;
   align-items: center;
   height: 120%;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .PatientRegister-form {
@@ -1379,7 +1383,8 @@ html {
   height: 80%;
 }
 
-.PatientRegister-form-input input, .PatientRegister-form-input select {
+.PatientRegister-form-input input,
+.PatientRegister-form-input select {
   width: 65%;
   padding: 5px;
   margin-bottom: 2px;
@@ -1426,7 +1431,8 @@ html {
   width: 90%;
 }
 
-.PatientRegister-left, .PatientRegister-right {
+.PatientRegister-left,
+.PatientRegister-right {
   width: 50%;
   height: 100%;
   display: flex;
@@ -1437,7 +1443,7 @@ html {
 
 /* Blogform css */
 
-.Blogform-whole{
+.Blogform-whole {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -1446,7 +1452,7 @@ html {
   flex-direction: column;
 }
 
-.Blogform-upper{
+.Blogform-upper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1454,12 +1460,12 @@ html {
   height: 15%;
 }
 
-.Blogform-headline{
+.Blogform-headline {
   font-size: 55px;
   font-weight: 600;
 }
 
-.Blogform-mid{
+.Blogform-mid {
   width: 100%;
   height: 95%;
   display: flex;
@@ -1467,7 +1473,7 @@ html {
   align-items: center;
 }
 
-.Blogform-mid-int{
+.Blogform-mid-int {
   width: 70%;
   height: 90%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -1477,7 +1483,7 @@ html {
   border-radius: 10px;
 }
 
-.Blogform-form-div{
+.Blogform-form-div {
   width: 90%;
   height: 100%;
   border-radius: 10px;
@@ -1486,11 +1492,11 @@ html {
   align-items: center;
 }
 
-.Blogform-remaining{
+.Blogform-remaining {
   height: 10%;
 }
 
-.Blogform-form{
+.Blogform-form {
   margin-top: 15px;
   width: 90%;
   height: 100%;
@@ -1498,22 +1504,22 @@ html {
   flex-direction: column;
 }
 
-.Blogform-label{
+.Blogform-label {
   font-size: 25px;
   font-weight: 500;
 }
 
-.Blogform-form input[type='text']{
-  height: 40px; 
+.Blogform-form input[type="text"] {
+  height: 40px;
   margin: 2px;
 }
 
-.Blogform-form textarea[type='text']{
-  height: 420px; 
+.Blogform-form textarea[type="text"] {
+  height: 420px;
   margin: 2px;
 }
 
-.Blogform-textarea{
+.Blogform-textarea {
   width: 100%;
   height: 370px;
   padding: 10px 10px;
@@ -1525,7 +1531,7 @@ html {
   resize: none;
 }
 
-.Blogform-remaining{
+.Blogform-remaining {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1533,7 +1539,7 @@ html {
   height: 20%;
 }
 
-.Blogform-remaining-button{
+.Blogform-remaining-button {
   width: 10%;
   height: 50%;
   border-radius: 10px;
@@ -1543,19 +1549,18 @@ html {
   cursor: pointer;
 }
 
-.Blogform-remaining-button:active{
+.Blogform-remaining-button:active {
   background-color: orange;
 }
 
-.Blogform-input::placeholder{
+.Blogform-input::placeholder {
   font-size: 15px;
   font-weight: 500;
 }
 
-
 /* css for BookAppointment */
 
-.BookAppointment-whole{
+.BookAppointment-whole {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -1565,14 +1570,14 @@ html {
   background-color: #023040;
 }
 
-.BookAppointment-form-div{
+.BookAppointment-form-div {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
-.BookAppointment-form-main{
+.BookAppointment-form-main {
   width: 70%;
   height: 80%;
   display: flex;
@@ -1582,7 +1587,7 @@ html {
   padding-left: 30px;
 }
 
-.BookAppointment-Headline{
+.BookAppointment-Headline {
   width: 100%;
   height: 10%;
   display: flex;
@@ -1593,7 +1598,7 @@ html {
   color: #fff;
 }
 
-.BookAppointment-form{
+.BookAppointment-form {
   display: flex;
   flex-direction: column;
   height: 90%;
@@ -1604,34 +1609,34 @@ html {
   background-color: #ddd;
 }
 
-.BookAppointment-input-name[type=text]{
+.BookAppointment-input-name[type="text"] {
   font-size: 15px;
   border: 2px solid #ccc;
   border-radius: 4px;
   height: 14%;
 }
 
-.BookAppointment-input-date[type=date]{
+.BookAppointment-input-date[type="date"] {
   width: 43%;
   height: 12%;
   border: 2px solid #ccc;
   border-radius: 4px;
 }
 
-.BookAppointment-select{
+.BookAppointment-select {
   border: 2px solid #ccc;
   border-radius: 4px;
   height: 9%;
 }
 
-.BookAppointment-button-div{
+.BookAppointment-button-div {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 20%;
 }
 
-.BookAppointment-button{
+.BookAppointment-button {
   width: 16%;
   height: 42%;
   border-radius: 10px;
@@ -1643,11 +1648,11 @@ html {
   cursor: pointer;
 }
 
-.BookAppointment-button:active{
+.BookAppointment-button:active {
   background-color: #034b63;
 }
 
-.BookAppointment-textarea{
+.BookAppointment-textarea {
   width: 100%;
   height: 120px;
   padding: 10px 10px;
@@ -1658,24 +1663,23 @@ html {
   resize: none;
 }
 
-.BookAppointment-label{
+.BookAppointment-label {
   font-size: 20px;
   font-weight: 500;
   padding: 4px;
 }
 
-.BookAppointment-form input::placeholder{
+.BookAppointment-form input::placeholder {
   font-size: 13px;
 }
 
-.BookAppointment-input-mobileNumber{
+.BookAppointment-input-mobileNumber {
   height: 14%;
   border: 2px solid #ccc;
   border-radius: 4px;
 }
 
-
-.BookAppointment-Cost{
+.BookAppointment-Cost {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1684,83 +1688,82 @@ html {
   color: black;
 }
 
-
 .AdminProfile-booked-appointments-int-div-body-date {
   font-size: 28px;
   font-weight: 600;
-  margin: 2rem 0
+  margin: 2rem 0;
 }
 
 .AdminProfile-booked-appointments-int-div-body-time {
   font-size: 30px;
-  font-weight: 400; 
+  font-weight: 400;
   margin-bottom: 2rem;
 }
 
 /* css for ShowDoctors */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins',sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .containerr {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    z-index: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  z-index: 0;
 }
 .container-1 {
-    position: relative;
-    top: 15%;
-    display: flex;
-    flex-direction: column;
-    right: 0;
-    left: 0;
+  position: relative;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  left: 0;
 }
 
 .searchbar-div {
-    max-width: 35rem;
-    max-height: 2rem;
+  max-width: 35rem;
+  max-height: 2rem;
 }
 .searchbar-div form {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 .searchbar {
-    text-align: left;
-    max-width: 40rem;
+  text-align: left;
+  max-width: 40rem;
 }
 .searchbar-search {
-    position: relative;
-    cursor: pointer;
-    padding: 0.4rem;
-    border: 0.1rem;
-    transition: 0.3s;
+  position: relative;
+  cursor: pointer;
+  padding: 0.4rem;
+  border: 0.1rem;
+  transition: 0.3s;
 }
 .searchbar-search:hover {
-    background-color: #eee;
-    border-radius: 5px;
-    color: black;
+  background-color: #eee;
+  border-radius: 5px;
+  color: black;
 }
 
 .material-symbols-outlined {
   position: absolute;
 }
 .header-home-page {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.panels{
+.panels {
   position: absolute;
-  display:flex;
+  display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -1781,7 +1784,7 @@ html {
   transition: 0.3s;
   border-radius: 10px;
 }
-.panel-1:hover{
+.panel-1:hover {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
 }
 
@@ -1793,31 +1796,31 @@ html {
   justify-content: center;
 }
 
-.body-panel{
-    width: 65%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 7%;
+.body-panel {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 7%;
 }
-.head-body{
+.head-body {
   height: 35%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
-.name-dr{
+.name-dr {
   font-size: 1.6rem;
   margin: 0;
   color: orange;
   font-weight: 500;
 }
-.name-hosp{
+.name-hosp {
   font-size: 0.8rem;
   color: #022a45;
 }
-.bio-body{
+.bio-body {
   height: 40%;
   width: 100%;
   display: flex;
@@ -1828,30 +1831,30 @@ html {
   color: #022a45;
   font-weight: 600;
 }
-.bio-body p{
+.bio-body p {
   margin: 0;
 }
-.contact-body{
+.contact-body {
   height: 35%;
   width: 50%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.contact-body button{
+.contact-body button {
   height: 43%;
   font-size: 0.9rem;
   transition: 0.3s;
   cursor: pointer;
 }
-.number-panel p span{
+.number-panel p span {
   display: block;
   font-size: 1.4rem;
 }
-.number-panel p{
+.number-panel p {
   margin: 0;
 }
-.number-panel{
+.number-panel {
   width: 8rem;
   text-align: end;
   padding: 5px;
@@ -1863,12 +1866,12 @@ html {
   justify-content: space-around;
 }
 
-.number-panel-icon-phone{
+.number-panel-icon-phone {
   height: 90%;
   width: 15%;
 }
 
-.appoint-panel{
+.appoint-panel {
   width: 10rem;
   padding: 5px;
   background-color: orange;
@@ -1876,44 +1879,44 @@ html {
   border-radius: 7px;
   border: none;
 }
-.contact-body button:hover{
+.contact-body button:hover {
   opacity: 0.7;
 }
 
-.ShowDoctors-searchbar{
+.ShowDoctors-searchbar {
   display: flex;
   width: 100vw;
   height: 7rem;
 }
 
-.ShowDoctors-searchbar-int{
+.ShowDoctors-searchbar-int {
   display: flex;
   width: 90%;
   align-items: center;
   justify-content: center;
 }
 
-.content-mid{
-    width: 100%;
-    height: 20vh;
-    top: 20vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 2rem;
+.content-mid {
+  width: 100%;
+  height: 20vh;
+  top: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2rem;
 }
-.content-searched{
-    width: 70%;
+.content-searched {
+  width: 70%;
 }
-.searched-for{
-    margin: 0;
-    font-size: 1.3rem;
+.searched-for {
+  margin: 0;
+  font-size: 1.3rem;
 }
-.searched-for span{
+.searched-for span {
   font-weight: 500;
 }
-.filters{
+.filters {
   width: 80%;
   margin: 0 10%;
   display: flex;
@@ -1921,7 +1924,7 @@ html {
   justify-content: space-between;
 }
 
-.sort{
+.sort {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1930,40 +1933,36 @@ html {
   height: 80%;
 }
 
-
-.submit-sort{
+.submit-sort {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.submit-sort button{
-    padding: 8px 10px;
-    background-color: orange;
-    color: #ddd;
-    border-radius: 5px;
-    border: none;
-    transition: 0.2s;
-    font-weight: 500;
+.submit-sort button {
+  padding: 8px 10px;
+  background-color: orange;
+  color: #ddd;
+  border-radius: 5px;
+  border: none;
+  transition: 0.2s;
+  font-weight: 500;
 }
-.submit-sort button:active{
-    background-color: #fff;
-    color: orange; 
+.submit-sort button:active {
+  background-color: #fff;
+  color: orange;
 }
-
 
 /* css for doctor profile */
 
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-.DoctorProfile-whole{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+.DoctorProfile-whole {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
 }
 
 .DoctorProfile-left {
@@ -1976,7 +1975,9 @@ html {
   justify-content: space-between;
 }
 
-.DoctorProfile-logo, .DoctorProfile-functions, .DoctorProfile-logout {
+.DoctorProfile-logo,
+.DoctorProfile-functions,
+.DoctorProfile-logout {
   width: 100%;
   margin-bottom: 10px;
 }
@@ -1990,11 +1991,11 @@ html {
   align-items: center;
 }
 
-.DoctorProfile-logo-dot{
-  color: #FFB703;
+.DoctorProfile-logo-dot {
+  color: #ffb703;
 }
 
-.DoctorProfile-logo-dahboard{
+.DoctorProfile-logo-dahboard {
   color: black;
   font-size: 27px;
   font-weight: 400;
@@ -2005,7 +2006,7 @@ html {
   margin-bottom: 30%;
 }
 
-.DoctorProfile-fuctions-int-div{
+.DoctorProfile-fuctions-int-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2014,7 +2015,7 @@ html {
   height: 80%;
 }
 
-.DoctorProfile-func-parts{
+.DoctorProfile-func-parts {
   width: 90%;
   height: 18%;
   margin-left: 20px;
@@ -2024,7 +2025,7 @@ html {
   border-radius: 15px;
 }
 
-.DoctorProfile-logout-part{
+.DoctorProfile-logout-part {
   width: 90%;
   height: 35%;
   margin-left: 20px;
@@ -2034,22 +2035,21 @@ html {
   cursor: pointer;
 }
 
-
-.DoctorProfile-func-parts:hover{
+.DoctorProfile-func-parts:hover {
   background-color: #a1e4f5;
   border-radius: 15px;
   transition: 0.2s;
   color: black;
 }
 
-.DoctorProfile-logout-part:hover{
+.DoctorProfile-logout-part:hover {
   background-color: #a1e4f5;
   border-radius: 15px;
   transition: 0.2s;
   color: black;
 }
 
-.DoctorProfile-icon{
+.DoctorProfile-icon {
   width: 16%;
   font-size: 22px;
   margin-left: 20px;
@@ -2076,20 +2076,20 @@ html {
   padding: 0.8rem 1rem;
 }
 
-.DoctorProfile-logout-icon{
+.DoctorProfile-logout-icon {
   width: 14%;
   font-size: 22px;
   margin-left: 20px;
   color: black;
 }
 
-.DoctorProfile-func{
+.DoctorProfile-func {
   width: 80%;
   font-size: 21px;
   font-weight: 400;
 }
 
-.DoctorProfile-logout-func{
+.DoctorProfile-logout-func {
   width: 80%;
   font-size: 21px;
   font-weight: 400;
@@ -2104,17 +2104,17 @@ html {
   align-items: center;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
-}  
+}
 
-.DoctorProfile-right{
+.DoctorProfile-right {
   width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color:white;
+  background-color: white;
 }
 
-.DoctorProfile-top{
+.DoctorProfile-top {
   width: 100%;
   height: 11%;
   display: flex;
@@ -2124,7 +2124,7 @@ html {
   background-color: white;
 }
 
-.DoctorProfile-dashboard{
+.DoctorProfile-dashboard {
   width: 35%;
   font-size: 30px;
   font-weight: 600;
@@ -2135,7 +2135,7 @@ html {
   font-weight: 400;
 }
 
-.DoctorProfile-user-logo{
+.DoctorProfile-user-logo {
   width: 20%;
   height: 100%;
   font-size: 30px;
@@ -2145,12 +2145,12 @@ html {
   align-items: center;
 }
 
-.DoctorProfile-user-logo-pic:hover{
+.DoctorProfile-user-logo-pic:hover {
   font-size: 32px;
   transition: 0.3s;
 }
 
-.DoctorProfile-cards{
+.DoctorProfile-cards {
   width: 100%;
   height: 30%;
   display: flex;
@@ -2160,12 +2160,15 @@ html {
   background-color: #eee;
 }
 
-.DoctorProfile-card-1{
+.DoctorProfile-card-1 {
   width: 24%;
   height: 100%;
 }
 
-.DoctorProfile-card-1-int-div,.DoctorProfile-card-2-int-div,.DoctorProfile-card-3-int-div,.DoctorProfile-card-4-int-div{
+.DoctorProfile-card-1-int-div,
+.DoctorProfile-card-2-int-div,
+.DoctorProfile-card-3-int-div,
+.DoctorProfile-card-4-int-div {
   padding: 7px;
   display: flex;
   flex-direction: column;
@@ -2173,121 +2176,120 @@ html {
   justify-content: space-around;
 }
 
-.DoctorProfile-card-1-int-div-head{
+.DoctorProfile-card-1-int-div-head {
   height: 40%;
   padding-top: 10px;
   padding-left: 5px;
   font-size: 20px;
   font-weight: 300;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.DoctorProfile-card-1-int-div-head-black{
+.DoctorProfile-card-1-int-div-head-black {
   height: 40%;
   padding-top: 10px;
   padding-left: 5px;
   font-size: 20px;
   font-weight: 200;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
 }
 
-.DoctorProfile-card-1-int-div-body{
+.DoctorProfile-card-1-int-div-body {
   height: 60%;
   font-size: 50px;
   font-weight: 400;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.DoctorProfile-card-2{
-    width: 24%;
-    height: 100%;
+.DoctorProfile-card-2 {
+  width: 24%;
+  height: 100%;
 }
 
-.DoctorProfile-card-3{
-    width: 24%;
-    height: 100%;
+.DoctorProfile-card-3 {
+  width: 24%;
+  height: 100%;
 }
 
-.DoctorProfile-card-4{
-    width: 24%;
-    height: 100%;
+.DoctorProfile-card-4 {
+  width: 24%;
+  height: 100%;
 }
 
-.DoctorProfile-bottom-right{
-    width: 100%;
-    height: 66%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0% 2%;
-    padding-bottom: 2%;
-    background-color: #eee;
+.DoctorProfile-bottom-right {
+  width: 100%;
+  height: 66%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0% 2%;
+  padding-bottom: 2%;
+  background-color: #eee;
 }
 
-.DoctorProfile-booked-appointments{
-    width: 60%;
-    height: 100%;
+.DoctorProfile-booked-appointments {
+  width: 60%;
+  height: 100%;
 }
 
-.DoctorProfile-remaining{
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+.DoctorProfile-remaining {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.DoctorProfile-part-1{
-    width: 100%;
-    height: 50%;
+.DoctorProfile-part-1 {
+  width: 100%;
+  height: 50%;
 }
 
-.DoctorProfile-part-2{
-    width: 100%;
-    height: 50%;
+.DoctorProfile-part-2 {
+  width: 100%;
+  height: 50%;
 }
 
-.DoctorProfile-booked-appointments-int-div{
-    width: 94%;
-    height: 92%;
-    margin: 4% 3%;
-    background-color: #023047;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
-    padding: 7px;
-    display: flex;
-    flex-direction: column;
+.DoctorProfile-booked-appointments-int-div {
+  width: 94%;
+  height: 92%;
+  margin: 4% 3%;
+  background-color: #023047;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
 }
 
-.DoctorProfile-booked-appointments-int-div-head-top{
+.DoctorProfile-booked-appointments-int-div-head-top {
   padding: 5px;
   font-size: 25px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.DoctorProfile-booked-appointments-int-div-head-bottom{
+.DoctorProfile-booked-appointments-int-div-head-bottom {
   padding: 5px;
   padding-bottom: 0;
   font-size: 20px;
   font-weight: 400;
   font-family: Arial, Helvetica, sans-serif;
-  
 }
 
-.DoctorProfile-booked-appointments-int-div-head{
+.DoctorProfile-booked-appointments-int-div-head {
   color: white;
   display: flex;
   flex-direction: column;
 }
 
-.DoctorProfile-booked-appointments-int-div-body{
+.DoctorProfile-booked-appointments-int-div-body {
   height: 100%;
   padding: 15px;
   display: flex;
@@ -2295,94 +2297,96 @@ html {
   justify-content: space-around;
 }
 
-.DoctorProfile-booked-appointments-int-div-body-part{
-  font-size:20px;
+.DoctorProfile-booked-appointments-int-div-body-part {
+  font-size: 20px;
   font-weight: 300;
   color: white;
   padding: 3px;
 }
 
-.DoctorProfile-booked-appointments-int-div-body-part:hover{
+.DoctorProfile-booked-appointments-int-div-body-part:hover {
   background-color: #12465f;
   border-radius: 10px;
   transition: 0.2s;
 }
 
-.DoctorProfile-card-1-int-div,.DoctorProfile-card-3-int-div,.DoctorProfile-card-4-int-div{
-    width: 92%;
-    height: 92%;
-    margin: 4%;
-    border-radius: 24px;
-    color: black;
+.DoctorProfile-card-1-int-div,
+.DoctorProfile-card-3-int-div,
+.DoctorProfile-card-4-int-div {
+  width: 92%;
+  height: 92%;
+  margin: 4%;
+  border-radius: 24px;
+  color: black;
 }
 
-.DoctorProfile-card-2-int-div{
-    width: 92%;
-    height: 92%;
-    margin: 4%;
-    border-radius: 24px;
-    color: white;
+.DoctorProfile-card-2-int-div {
+  width: 92%;
+  height: 92%;
+  margin: 4%;
+  border-radius: 24px;
+  color: white;
 }
 
-.DoctorProfile-card-1-int-div{
+.DoctorProfile-card-1-int-div {
   background-color: #219ebc;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.DoctorProfile-card-2-int-div{
+.DoctorProfile-card-2-int-div {
   background-color: #023047;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.DoctorProfile-card-3-int-div{
+.DoctorProfile-card-3-int-div {
   background-color: #ffb703;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.DoctorProfile-card-4-int-div{
+.DoctorProfile-card-4-int-div {
   background-color: #fb8500;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.DoctorProfile-part-1-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #ffb703;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
+.DoctorProfile-part-1-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #ffb703;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
 }
 
-.DoctorProfile-part-2-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #fb8500;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.DoctorProfile-part-1-int-div{
+.DoctorProfile-part-2-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #fb8500;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.DoctorProfile-part-1-int-div-head{
+.DoctorProfile-part-1-int-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.DoctorProfile-part-1-int-div-head {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 30px;
   font-weight: 600;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.DoctorProfile-part-1-int-div-body{
+.DoctorProfile-part-1-int-div-body {
   display: flex;
   justify-content: space-around;
   height: 40%;
@@ -2390,22 +2394,22 @@ html {
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.DoctorProfile-part-1-int-div-body-icon{
+.DoctorProfile-part-1-int-div-body-icon {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
 /* css for aboutus */
 
-.AboutUs-whole{
+.AboutUs-whole {
   margin: 0;
   padding: 0;
   display: flex;
@@ -2413,7 +2417,7 @@ html {
   height: 250vh;
 }
 
-.AboutUs-Part-1{
+.AboutUs-Part-1 {
   margin-top: 50px;
   display: flex;
   width: 90%;
@@ -2422,34 +2426,34 @@ html {
   padding: 20px;
 }
 
-.AboutUs-Part-1-img{
+.AboutUs-Part-1-img {
   width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.AboutUs-Part-1-img-int{
+.AboutUs-Part-1-img-int {
   width: 90%;
   height: 65%;
   border-radius: 10px;
 }
 
-.AboutUs-Part-1-info{
+.AboutUs-Part-1-info {
   width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.AboutUs-Part-1-info-data{
+.AboutUs-Part-1-info-data {
   height: 50%;
   margin-bottom: 90px;
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.AboutUs-Part-2{
+.AboutUs-Part-2 {
   display: flex;
   width: 90%;
   margin: 5%;
@@ -2457,14 +2461,14 @@ html {
   padding: 20px;
 }
 
-.AboutUs-Part-2-img{
+.AboutUs-Part-2-img {
   width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.AboutUs-Part-2-img-int{
+.AboutUs-Part-2-img-int {
   width: 90%;
   height: 65%;
   border-radius: 15px;
@@ -2472,7 +2476,7 @@ html {
   margin-left: 70px;
 }
 
-.AboutUs-Part-2-info{
+.AboutUs-Part-2-info {
   width: 50%;
   height: 100%;
   font-size: 33px;
@@ -2481,25 +2485,23 @@ html {
   justify-content: center;
 }
 
-.AboutUs-Part-2-info-data{
+.AboutUs-Part-2-info-data {
   height: 50%;
   margin-bottom: 180px;
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 /* css for HospitalProfile */
 
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-.HospitalProfile-whole{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+.HospitalProfile-whole {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
 }
 
 .HospitalProfile-left {
@@ -2512,7 +2514,9 @@ html {
   justify-content: space-between;
 }
 
-.HospitalProfile-logo, .HospitalProfile-functions, .HospitalProfile-logout {
+.HospitalProfile-logo,
+.HospitalProfile-functions,
+.HospitalProfile-logout {
   width: 100%;
   margin-bottom: 10px;
 }
@@ -2526,11 +2530,11 @@ html {
   align-items: center;
 }
 
-.HospitalProfile-logo-dot{
-  color: #FFB703;
+.HospitalProfile-logo-dot {
+  color: #ffb703;
 }
 
-.HospitalProfile-logo-dahboard{
+.HospitalProfile-logo-dahboard {
   color: black;
   font-size: 27px;
   font-weight: 400;
@@ -2541,7 +2545,7 @@ html {
   margin-bottom: 30%;
 }
 
-.HospitalProfile-fuctions-int-div{
+.HospitalProfile-fuctions-int-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2550,7 +2554,7 @@ html {
   height: 90%;
 }
 
-.HospitalProfile-func-parts{
+.HospitalProfile-func-parts {
   width: 90%;
   height: 25%;
   margin-left: 20px;
@@ -2559,7 +2563,7 @@ html {
   cursor: pointer;
 }
 
-.HospitalProfile-logout-part{
+.HospitalProfile-logout-part {
   width: 90%;
   height: 35%;
   margin-left: 20px;
@@ -2569,42 +2573,41 @@ html {
   cursor: pointer;
 }
 
-
-.HospitalProfile-func-parts:hover{
+.HospitalProfile-func-parts:hover {
   background-color: #a1e4f5;
   border-radius: 15px;
   transition: 0.2s;
   color: black;
 }
 
-.HospitalProfile-logout-part:hover{
+.HospitalProfile-logout-part:hover {
   background-color: #a1e4f5;
   border-radius: 15px;
   transition: 0.2s;
   color: black;
 }
 
-.HospitalProfile-icon{
+.HospitalProfile-icon {
   width: 16%;
   font-size: 22px;
   margin-left: 20px;
   color: black;
 }
 
-.HospitalProfile-logout-icon{
+.HospitalProfile-logout-icon {
   width: 14%;
   font-size: 22px;
   margin-left: 20px;
   color: black;
 }
 
-.HospitalProfile-func{
+.HospitalProfile-func {
   width: 80%;
   font-size: 21px;
   font-weight: 400;
 }
 
-.HospitalProfile-logout-func{
+.HospitalProfile-logout-func {
   width: 80%;
   font-size: 21px;
   font-weight: 400;
@@ -2619,17 +2622,17 @@ html {
   align-items: center;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
-}  
+}
 
-.HospitalProfile-right{
+.HospitalProfile-right {
   width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color:white;
+  background-color: white;
 }
 
-.HospitalProfile-top{
+.HospitalProfile-top {
   width: 100%;
   height: 11%;
   display: flex;
@@ -2639,7 +2642,7 @@ html {
   background-color: white;
 }
 
-.HospitalProfile-dashboard{
+.HospitalProfile-dashboard {
   width: 45%;
   font-size: 30px;
   font-weight: 600;
@@ -2651,7 +2654,7 @@ html {
   font-weight: 400;
 }
 
-.HospitalProfile-user-logo{
+.HospitalProfile-user-logo {
   width: 20%;
   height: 100%;
   font-size: 30px;
@@ -2661,12 +2664,12 @@ html {
   align-items: center;
 }
 
-.HospitalProfile-user-logo-pic:hover{
+.HospitalProfile-user-logo-pic:hover {
   font-size: 32px;
   transition: 0.3s;
 }
 
-.HospitalProfile-cards{
+.HospitalProfile-cards {
   width: 100%;
   height: 30%;
   display: flex;
@@ -2676,12 +2679,15 @@ html {
   background-color: #eee;
 }
 
-.HospitalProfile-card-1{
+.HospitalProfile-card-1 {
   width: 24%;
   height: 100%;
 }
 
-.HospitalProfile-card-1-int-div,.HospitalProfile-card-2-int-div,.HospitalProfile-card-3-int-div,.HospitalProfile-card-4-int-div{
+.HospitalProfile-card-1-int-div,
+.HospitalProfile-card-2-int-div,
+.HospitalProfile-card-3-int-div,
+.HospitalProfile-card-4-int-div {
   padding: 7px;
   display: flex;
   flex-direction: column;
@@ -2689,121 +2695,120 @@ html {
   justify-content: space-around;
 }
 
-.HospitalProfile-card-1-int-div-head{
+.HospitalProfile-card-1-int-div-head {
   height: 40%;
   padding-top: 10px;
   padding-left: 5px;
   font-size: 20px;
   font-weight: 300;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.HospitalProfile-card-1-int-div-head-black{
+.HospitalProfile-card-1-int-div-head-black {
   height: 40%;
   padding-top: 10px;
   padding-left: 5px;
   font-size: 20px;
   font-weight: 200;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
 }
 
-.HospitalProfile-card-1-int-div-body{
+.HospitalProfile-card-1-int-div-body {
   height: 60%;
   font-size: 50px;
   font-weight: 400;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.HospitalProfile-card-2{
-    width: 24%;
-    height: 100%;
+.HospitalProfile-card-2 {
+  width: 24%;
+  height: 100%;
 }
 
-.HospitalProfile-card-3{
-    width: 24%;
-    height: 100%;
+.HospitalProfile-card-3 {
+  width: 24%;
+  height: 100%;
 }
 
-.HospitalProfile-card-4{
-    width: 24%;
-    height: 100%;
+.HospitalProfile-card-4 {
+  width: 24%;
+  height: 100%;
 }
 
-.HospitalProfile-bottom-right{
-    width: 100%;
-    height: 66%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0% 2%;
-    padding-bottom: 2%;
-    background-color: #eee;
+.HospitalProfile-bottom-right {
+  width: 100%;
+  height: 66%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0% 2%;
+  padding-bottom: 2%;
+  background-color: #eee;
 }
 
-.HospitalProfile-booked-appointments{
-    width: 60%;
-    height: 100%;
+.HospitalProfile-booked-appointments {
+  width: 60%;
+  height: 100%;
 }
 
-.HospitalProfile-remaining{
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+.HospitalProfile-remaining {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.HospitalProfile-part-1{
-    width: 100%;
-    height: 50%;
+.HospitalProfile-part-1 {
+  width: 100%;
+  height: 50%;
 }
 
-.HospitalProfile-part-2{
-    width: 100%;
-    height: 50%;
+.HospitalProfile-part-2 {
+  width: 100%;
+  height: 50%;
 }
 
-.HospitalProfile-booked-appointments-int-div{
-    width: 94%;
-    height: 92%;
-    margin: 4% 3%;
-    background-color: #023047;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
-    padding: 7px;
-    display: flex;
-    flex-direction: column;
+.HospitalProfile-booked-appointments-int-div {
+  width: 94%;
+  height: 92%;
+  margin: 4% 3%;
+  background-color: #023047;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
 }
 
-.HospitalProfile-booked-appointments-int-div-head-top{
+.HospitalProfile-booked-appointments-int-div-head-top {
   padding: 5px;
   font-size: 25px;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.HospitalProfile-booked-appointments-int-div-head-bottom{
+.HospitalProfile-booked-appointments-int-div-head-bottom {
   padding: 5px;
   padding-bottom: 0;
   font-size: 20px;
   font-weight: 400;
   font-family: Arial, Helvetica, sans-serif;
-  
 }
 
-.HospitalProfile-booked-appointments-int-div-head{
+.HospitalProfile-booked-appointments-int-div-head {
   color: white;
   display: flex;
   flex-direction: column;
 }
 
-.HospitalProfile-booked-appointments-int-div-body{
+.HospitalProfile-booked-appointments-int-div-body {
   height: 100%;
   padding: 15px;
   display: flex;
@@ -2811,90 +2816,92 @@ html {
   justify-content: space-around;
 }
 
-.HospitalProfile-booked-appointments-int-div-body-part{
-  font-size:20px;
+.HospitalProfile-booked-appointments-int-div-body-part {
+  font-size: 20px;
   font-weight: 300;
   color: white;
   padding: 3px;
 }
 
-.HospitalProfile-booked-appointments-int-div-body-part:hover{
+.HospitalProfile-booked-appointments-int-div-body-part:hover {
   background-color: #12465f;
   border-radius: 10px;
   transition: 0.2s;
 }
 
-.HospitalProfile-card-1-int-div,.HospitalProfile-card-3-int-div,.HospitalProfile-card-4-int-div{
-    width: 92%;
-    height: 92%;
-    margin: 4%;
-    border-radius: 24px;
-    color: black;
+.HospitalProfile-card-1-int-div,
+.HospitalProfile-card-3-int-div,
+.HospitalProfile-card-4-int-div {
+  width: 92%;
+  height: 92%;
+  margin: 4%;
+  border-radius: 24px;
+  color: black;
 }
 
-.HospitalProfile-card-2-int-div{
-    width: 92%;
-    height: 92%;
-    margin: 4%;
-    border-radius: 24px;
-    color: white;
+.HospitalProfile-card-2-int-div {
+  width: 92%;
+  height: 92%;
+  margin: 4%;
+  border-radius: 24px;
+  color: white;
 }
 
-.HospitalProfile-card-1-int-div{
+.HospitalProfile-card-1-int-div {
   background-color: #219ebc;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.HospitalProfile-card-2-int-div{
+.HospitalProfile-card-2-int-div {
   background-color: #023047;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.HospitalProfile-card-3-int-div{
+.HospitalProfile-card-3-int-div {
   background-color: #ffb703;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.HospitalProfile-card-4-int-div{
+.HospitalProfile-card-4-int-div {
   background-color: #fb8500;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
 
-.HospitalProfile-part-1-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #ffb703;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
+.HospitalProfile-part-1-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #ffb703;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
 }
 
-.HospitalProfile-part-2-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #fb8500;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
+.HospitalProfile-part-2-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #fb8500;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
 }
 
-.HospitalProfile-part-1-int-div{
+.HospitalProfile-part-1-int-div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.HospitalProfile-part-1-int-div-head{
+.HospitalProfile-part-1-int-div-head {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 30px;
   font-weight: 600;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.HospitalProfile-part-1-int-div-body{
+.HospitalProfile-part-1-int-div-body {
   display: flex;
   justify-content: space-around;
   height: 40%;
@@ -2902,111 +2909,109 @@ html {
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.HospitalProfile-part-1-int-div-body-icon{
+.HospitalProfile-part-1-int-div-body-icon {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-
 /* css for Thankyou */
 
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap'); 
-*{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    font-family: 'poppins',sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: "poppins", sans-serif;
 }
-.Thankyou-containerr{
-    width: 100%;
-    height: 100vh;
-    background: transparent;
-    z-index: 1;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.Thankyou-containerr {
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.Thankyou-logo{
-    width: 80%;
-    font-weight: 600;
-    font-size: 3rem;
-    color: white;
-    margin: 2rem;
+.Thankyou-logo {
+  width: 80%;
+  font-weight: 600;
+  font-size: 3rem;
+  color: white;
+  margin: 2rem;
 }
-.Thankyou-content{
-    width: 90%;
-    height: 30%;
-    margin-top: 8%;
-    text-align: center;
-    font-size: 1.7rem;
-    font-weight: 500;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;    
+.Thankyou-content {
+  width: 90%;
+  height: 30%;
+  margin-top: 8%;
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
-.Thankyou-btn-home{
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.Thankyou-btn-home {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.Thankyou-btn-home button{
-    padding: 10px;
-    cursor: pointer;
-    background-color: #023040;
-    border: 1px solid #023040;
-    border-radius: 5px;
-    transition: 0.2s;
+.Thankyou-btn-home button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #023040;
+  border: 1px solid #023040;
+  border-radius: 5px;
+  transition: 0.2s;
 }
-.Thankyou-btn-home button:hover{
-    background-color: #fff;
+.Thankyou-btn-home button:hover {
+  background-color: #fff;
 }
-.Thankyou-btn-home button:hover a{
-    transition: 0.2s;
-    color: #023040;
+.Thankyou-btn-home button:hover a {
+  transition: 0.2s;
+  color: #023040;
 }
-.Thankyou-btn-home button a{
-    color: #fff;
-    text-decoration: none;
+.Thankyou-btn-home button a {
+  color: #fff;
+  text-decoration: none;
 }
 .Thankyou-btn-go-back {
-    color: white;
+  color: white;
 }
 .Thankyou-btn-go-back:hover {
-    color: #023040;
+  color: #023040;
 }
-.Thankyou-new-btn-hello{
-    color: #fff;
+.Thankyou-new-btn-hello {
+  color: #fff;
 }
-.Thankyou-new-btn-hello:hover{
-    color: #023040;
+.Thankyou-new-btn-hello:hover {
+  color: #023040;
 }
 /* Background styles */
 
-.Thankyou-background{
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    z-index: 0;
-    scale: 1.2;
+.Thankyou-background {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 0;
+  scale: 1.2;
 }
-.Thankyou-background svg{
-    width: 100%;
-    height: 100%;
+.Thankyou-background svg {
+  width: 100%;
+  height: 100%;
 }
 
-.Admin-whole{
+.Admin-whole {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -3017,7 +3022,7 @@ html {
   width: 18%;
   height: 100%;
   background-color: #022a45;
-  color:white;
+  color: white;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -3025,25 +3030,24 @@ html {
   justify-content: space-between;
 }
 
-.Admin-func-parts{
+.Admin-func-parts {
   width: 100%;
   height: 25%;
   margin-left: 30px;
-  padding:5px;
+  padding: 5px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid transparent; /* Set the initial border */
-  transition: border-bottom 0.3s ease, transform 0.3s ease; 
+  transition: border-bottom 0.3s ease, transform 0.3s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.025);
-  
 }
-.Admin-func-parts:hover{
+.Admin-func-parts:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   transform: scale(1.1);
-  
-  color: #87CEFA;
+
+  color: #87cefa;
 }
 
 .Admin-icon {
@@ -3053,10 +3057,10 @@ html {
 
 .Admin-func-parts:hover .Admin-icon {
   color: rgb(70, 149, 255);
-  transform:scale(1.1) ;/* Light yellow color for icons on hover */
+  transform: scale(1.1); /* Light yellow color for icons on hover */
 }
 
-.Admin-cards{
+.Admin-cards {
   width: 100%;
   height: 30%;
   display: flex;
@@ -3066,125 +3070,127 @@ html {
   background-color: #eee;
 }
 
-.Admin-card-1{
+.Admin-card-1 {
   width: 24%;
   height: 100%;
 }
 
-.Admin-card-1-int-div,.Admin-card-2-int-div,.Admin-card-3-int-div,.Admin-card-4-int-div{
+.Admin-card-1-int-div,
+.Admin-card-2-int-div,
+.Admin-card-3-int-div,
+.Admin-card-4-int-div {
   padding: 7px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   /* align-items: center; */
   justify-content: space-around;
 }
 
-.Admin-card-1-int-div-head{
+.Admin-card-1-int-div-head {
   height: 40%;
-  padding-top: 10px; 
+  padding-top: 10px;
   padding-left: 5px;
   font-size: 25px;
-  font-weight:bold;
-  font-family: 'Manrope', sans-serif;
+  font-weight: bold;
+  font-family: "Manrope", sans-serif;
   color: white;
 }
 
-
-.Admin-card-1-int-div-body{
+.Admin-card-1-int-div-body {
   height: 60%;
   font-size: 40px;
   font-weight: 400;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Poppins', sans-serif;
-  color:white;
+  font-family: "Manrope", sans-serif;
+  font-family: "Poppins", sans-serif;
+  color: white;
 }
 
-.Admin-card-2{
+.Admin-card-2 {
   width: 24%;
   height: 100%;
 }
 
-.Admin-card-3{
+.Admin-card-3 {
   width: 24%;
   height: 100%;
 }
 
-.Admin-card-4{
+.Admin-card-4 {
   width: 24%;
   height: 100%;
 }
 
-.Admin-card-1-int-div{
+.Admin-card-1-int-div {
   background-color: #219ebc;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-direction:row;
+  flex-direction: row;
 }
 
-.Admin-card-2-int-div{
+.Admin-card-2-int-div {
   background-color: #023047;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-direction:row;
+  flex-direction: row;
 }
 
-.Admin-card-3-int-div{
+.Admin-card-3-int-div {
   background-color: #ffb703;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-direction:row;
+  flex-direction: row;
 }
 
-.Admin-card-4-int-div{
+.Admin-card-4-int-div {
   background-color: #fb8500;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-direction:row;
+  flex-direction: row;
 }
 
-.Admin-part-1-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #ffb703;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
+.Admin-part-1-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #ffb703;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
 }
 
-.Admin-part-2-int-div{
-    width: 92%;
-    height: 85%;
-    margin: 5%;
-    background-color: #fb8500;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 24px;
+.Admin-part-2-int-div {
+  width: 92%;
+  height: 85%;
+  margin: 5%;
+  background-color: #fb8500;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 24px;
 }
 
-.Admin-part-1-int-div{
+.Admin-part-1-int-div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.Admin-part-1-int-div-head{
+.Admin-part-1-int-div-head {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.Admin-part-1-int-div-body{
+.Admin-part-1-int-div-body {
   display: flex;
   justify-content: space-around;
   height: 40%;
@@ -3192,44 +3198,47 @@ html {
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.Admin-part-1-int-div-body-icon{
+.Admin-part-1-int-div-body-icon {
   padding-top: 10px;
   padding-left: 5px;
   font-size: 40px;
   font-weight: 500;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: black;
 }
 
-.Admin-card-1-int-div-right
-{
-   margin-right:15%;
-   color : white;
-   
+.Admin-card-1-int-div-right {
+  margin-right: 15%;
+  color: white;
 }
 
-.Hospitals-right,.Hospitals-right-table ,.Doctors-right ,.Doctors-right-table
-{
-  background-color:#eee ;
+.Hospitals-right,
+.Hospitals-right-table,
+.Doctors-right,
+.Doctors-right-table {
+  background-color: #eee;
 }
-.Hospitals-right{
+.Hospitals-right {
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8); /* Adjust the background color and opacity as needed */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Adjust the background color and opacity as needed */
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease; /* Adding transition for smoother effects */ 
+  transition: background-color 0.3s ease; /* Adding transition for smoother effects */
 }
-
-
 
 table {
   width: 100%;
@@ -3237,11 +3246,14 @@ table {
   background-color: #fff;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid #ccc;
 }
 
-th, td {
+th,
+td {
   padding: 12px;
   text-align: left;
   font-size: 14px;
@@ -3258,42 +3270,50 @@ td:last-child {
   text-align: center;
 }
 
-.Hospitals-edit-icon, .Hospitals-delete-icon ,.Doctors-edit-icon, .Doctors-delete-icon {
+.Hospitals-edit-icon,
+.Hospitals-delete-icon,
+.Doctors-edit-icon,
+.Doctors-delete-icon {
   cursor: pointer;
   margin-right: 5px;
   font-size: 18px;
- 
 }
 
-.Hospitals-edit-icon,.Doctors-edit-icon{
+.Hospitals-edit-icon,
+.Doctors-edit-icon {
   color: #3c4651;
 }
-.Hospitals-delete-icon,.Doctors-delete-icon{
-  color:  #3c4651
+.Hospitals-delete-icon,
+.Doctors-delete-icon {
+  color: #3c4651;
 }
 
-.Hospitals-edit-icon:hover,.Doctors-edit-icon:hover{
+.Hospitals-edit-icon:hover,
+.Doctors-edit-icon:hover {
   color: #0056b3;
 }
 
-.Hospitals-delete-icon:hover,.Doctors-delete-icon:hover{
-  color:rgb(238, 133, 133);
+.Hospitals-delete-icon:hover,
+.Doctors-delete-icon:hover {
+  color: rgb(238, 133, 133);
 }
 
 tr:hover {
   background-color: #f0f0f0;
 }
 
-.ViewHosp,.ViewDoc{
+.ViewHosp,
+.ViewDoc {
   font-weight: 700;
   font-size: 38px;
-  padding: 15px; 
-  display:flex;
+  padding: 15px;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.AddHosp,.AddDoc {
+.AddHosp,
+.AddDoc {
   font-size: 20px;
   width: 85px;
   padding-left: 5px;
@@ -3308,31 +3328,31 @@ tr:hover {
   transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Adding transitions for smoother effects */
 }
 
-.AddHosp:hover,.AddDoc:hover {
+.AddHosp:hover,
+.AddDoc:hover {
   box-shadow: 8px 8px 15px grey; /* Adjusted shadow on hover */
   cursor: pointer;
 }
 
-.AddHosp:active,.AddDoc:hover {
+.AddHosp:active,
+.AddDoc:hover {
   background-color: rgb(7, 212, 7); /* Change color on click */
 }
 
-
 .modal-container {
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(251, 248, 248, 0.817); 
+  background-color: rgba(251, 248, 248, 0.817);
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease; /* Adding transition for smoother effects */ 
-  backdrop-filter: blur(5px); 
+  transition: background-color 0.3s ease; /* Adding transition for smoother effects */
+  backdrop-filter: blur(5px);
 }
-
 
 /* Style for the blurred background */
 
@@ -3351,7 +3371,6 @@ tr:hover {
   background-color: white;
   z-index: 1000;
   width: 400px; /* Adjust the width as needed */
-
 }
 
 h2 {
@@ -3380,7 +3399,6 @@ select {
 
 .DoctorRegistration-form-submit {
   text-align: center;
-  
 }
 
 .DoctorRegistration-form-btn {
@@ -3409,20 +3427,17 @@ select {
 }
 
 .closeButton:hover {
-  border-radius: 10%; 
-  border: 1px solid black; 
-  box-sizing: border-box; 
+  border-radius: 10%;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
 
-
-
-.Registration-close{
-  display:flex;
+.Registration-close {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-
 
 .DoctorRegistration-form-input {
   display: flex;
@@ -3430,5 +3445,3 @@ select {
   width: 100%;
   padding: 5px;
 }
-
-

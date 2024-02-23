@@ -43,29 +43,29 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<AboutUs />} />
-          
+
           <Route path="/sent" element={<PleaseVerify />} />
 
           <Route path="/patientRegister" element={<PatientRegister />} />
           <Route path="/verifypatient/:verificationToken" element={<EmailVerificationPatient />} />
           <Route path="/patientRegister2/:verificationToken" element={<PatientRegister2 />} />
-          
+
           <Route path="/hospRegister" element={<HospRegister />} />
           <Route path="/verifyhospital/:verificationToken" element={<EmailVerificationHosp />} />
           <Route path="/hospRegister2/:verificationToken" element={<HospRegister2 />} />
-          
+
           <Route path="/docRegister" element={<DocRegister />} />
           <Route path="/verifydoctor/:verificationToken" element={<EmailVerificationDoc />} />
           <Route path="/docRegister2/:verificationToken" element={<DocRegister2 />} />
-          
+
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogform/:docID" element={<BlogForm />} />
+          <Route path="/blogform" element={<BlogForm />} />
           <Route path="/blogcomplete/:blogID" element={<BlogComplete />} />
-          
+
           <Route path="/bookAppointment/:docID" element={<BookAppointment />} />
-          
+
           <Route path="/showDoctors" element={<ShowDoctors />} />
-          
+
           <Route path='/docProfile' element={<DoctorProfile />} />
           <Route path='/hospProfile' element={<HospitalProfile />} />
           <Route path="/userProfile" element={<UserProfile />} />

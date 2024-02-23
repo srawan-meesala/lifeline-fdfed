@@ -166,7 +166,7 @@ const Home = () => {
                 <div className="Home-c5-docs-cards">
                   {topDoctors.map((doctor) => (
                     <div key={doctor.docID} className="Home-c5-docs-card">
-                      <div className="Home-c5-docs-card-name">{doctor.name}</div>
+                      <div className="Home-c5-docs-card-name">Dr. {doctor.name}</div>
                       <div className="Home-c5-docs-card-down">
                         <div className="Home-c5-docs-card-down-spec">{doctor.specialization}</div>
                         <button className="Home-c5-docs-card-down-book" onClick={() => handleBookAppointment(doctor)} >

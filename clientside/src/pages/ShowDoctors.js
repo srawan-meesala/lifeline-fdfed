@@ -7,6 +7,7 @@ import axios from 'axios';
 const ShowDoctors = () => {
   const [hospitalsList, setHospitalsList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [updatedResults, setUpdatedResults] = useState(searchResults);
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -37,20 +38,42 @@ const ShowDoctors = () => {
     setSearchResults(query);
   };
 
-  const [sortOrder, setSortOrder] = useState('None')
+  const [query1, setQuery1] = useState('')
+
+
+  const [sortOrder, setSortOrder] = useState('priceAsc')
 
   useEffect(() => {
     if (sortOrder === 'priceAsc') {
-      let sortedDocs = [...searchResults]
+      let sortedDocs = [...updatedResults]
       sortedDocs.sort((a, b) => a.fee - b.fee);
-      setSearchResults(sortedDocs);
+      setUpdatedResults(sortedDocs);
     } else if (sortOrder === 'priceDesc') {
-      let sortedDocs = [...searchResults]
+      let sortedDocs = [...updatedResults]
       sortedDocs.sort((a, b) => b.fee - a.fee);
-      setSearchResults(sortedDocs);
+      setUpdatedResults(sortedDocs);
     } else {
     }
-  }, [sortOrder, searchResults]);
+  }, [sortOrder, searchResults, updatedResults]);
+
+  const [hospSelected, setHospSelected] = useState('All')
+
+  useEffect(() => {
+    console.log(hospSelected);
+    if (hospSelected === 'All') {
+      setUpdatedResults(searchResults)
+    } else {
+      let docsAll = [...searchResults]
+      let docsFromHospSelected = []
+      for (let doc in docsAll) {
+        if (docsAll[doc].hospName === hospSelected) {
+          docsFromHospSelected.push(docsAll[doc])
+        }
+        console.log(docsFromHospSelected);
+      }
+      setUpdatedResults(docsFromHospSelected);
+    }
+  }, [hospSelected, searchResults]);
 
   return (
     <div className="containerr">
@@ -84,7 +107,8 @@ const ShowDoctors = () => {
             </div>
             <div className="exp-sort sort">
               <label htmlFor="expSort">Hospital Name</label>
-              <select name="expSort" id="expSort">
+              <select onChange={e => setHospSelected(e.target.value)} name="expSort" id="expSort">
+                <option value="All">All</option>
                 {hospitalsList.map(hospital => (
                   <option key={hospital.hospID} value={hospital.hospName}>{hospital.hospName}</option>
                 ))}
@@ -94,8 +118,8 @@ const ShowDoctors = () => {
         </div>
       </div>
       <div className="panels">
-        {searchResults.length > 0 ? (
-          searchResults.map((doctor, index) => (
+        {updatedResults.length > 0 ? (
+          updatedResults.map((doctor, index) => (
             <EachDoctor
               key={index}
               city={getHospitalCity(doctor.hospitalName)}

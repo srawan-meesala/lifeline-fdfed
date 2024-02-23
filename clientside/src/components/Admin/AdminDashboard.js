@@ -18,13 +18,13 @@ import Donors from "./Donors";
 import Transactions from "../Transactions";
 import Pharmacy from "../Pharmacy";
 import Cookies from 'js-cookie';
-
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
   const username = Cookies.get('username');
   const location = useLocation()
   const [userDetails, setUserDetails] = useState({});
-
+  const navigate = useNavigate()
   const [activeComponent, setActiveComponent] = useState('dashboard');
 
   const toggleComponent = (componentName) => {
@@ -210,6 +210,13 @@ function AdminDashboard() {
     Transactions: <Transactions />
   }
 
+  const handleLogout = () => {
+    Cookies.remove("username")
+    Cookies.remove("loggedIn")
+    Cookies.remove("type")
+    navigate('/')
+  }
+
   return (
     <div className='Admin-whole'>
 
@@ -241,7 +248,7 @@ function AdminDashboard() {
             </div>
           </div>
         </div>
-        <div className='DoctorProfile-logout' onClick={() => toggleComponent('Logout')}>
+        <div className='DoctorProfile-logout' onClick={handleLogout}>
           <div className='DoctorProfile-logout-part'>
             <div className='DoctorProfile-logout-icon'><BiLogOut /></div>
             <div className='DoctorProfile-logout-func'>Logout</div>

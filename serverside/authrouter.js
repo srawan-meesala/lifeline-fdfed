@@ -13,7 +13,7 @@ router.use((err, req, res, next) => {
     res.status(500).send('OOPs! Something broke');
   });
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
     const type = req.body.type;
@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
     }
 });
   
-router.post('/patientRegister', async (req, res) => {
+router.post('/patientRegister', async (req, res, next) => {
     const {
       firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
     } = req.body;
@@ -73,7 +73,7 @@ router.post('/patientRegister', async (req, res) => {
     }
 });
   
-router.post('/docRegister', async (req, res) => {
+router.post('/docRegister', async (req, res, next) => {
     const {
       name, mobileNumber, mailID, hospID, specialization, fee
     } = req.body;
@@ -104,7 +104,7 @@ router.post('/docRegister', async (req, res) => {
     }
 });
   
-router.post('/hospRegister', async (req, res) => {
+router.post('/hospRegister', async (req, res, next) => {
     const {
       hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
     } = req.body;
