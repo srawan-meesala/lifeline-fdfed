@@ -715,9 +715,14 @@ app.get('/cartData', async (req, res) => {
 app.post('/deleteuser', async (req, res) => {
   const { enteredUsername, enteredPassword, actualusername, actualpassword } = req.body
   try {
-    if (enteredUsername === actualusername && enteredPassword === actualpassword) {
-      await PatientRegisters.deleteOne({ username: enteredUsername })
-      res.json('deleted')
+    if (enteredUsername === actualusername) {
+      const passwordCheck = await bcrypt.compare(enteredPassword, actualpassword);
+      if (passwordCheck) {
+        await PatientRegisters.deleteOne({ username: enteredUsername })
+        res.json('deleted')
+      } else {
+        res.json('mismatched')
+      }
     }
     else {
       res.json('mismatched')
@@ -732,9 +737,14 @@ app.post('/deleteuser', async (req, res) => {
 app.post('/deletedoc', async (req, res) => {
   const { entereddocID, enteredPassword, actualdocID, actualpassword } = req.body
   try {
-    if (entereddocID === actualdocID && enteredPassword === actualpassword) {
-      await DocRegisters.deleteOne({ docID: entereddocID })
-      res.json('deleted')
+    if (entereddocID === actualdocID) {
+      const passwordCheck = await bcrypt.compare(enteredPassword, actualpassword);
+      if (passwordCheck) {
+        await DocRegisters.deleteOne({ docID: entereddocID })
+        res.json('deleted')
+      } else {
+        res.json('mismatched')
+      }
     }
     else {
       res.json('mismatched')
@@ -749,9 +759,14 @@ app.post('/deletedoc', async (req, res) => {
 app.post('/deletehosp', async (req, res) => {
   const { enteredhospID, enteredPassword, actualhospID, actualPassword } = req.body
   try {
-    if (enteredhospID === actualhospID && enteredPassword === actualPassword) {
-      await HospRegisters.deleteOne({ hospID: enteredhospID })
-      res.json('deleted')
+    if (enteredhospID === actualhospID) {
+      const passwordCheck = await bcrypt.compare(enteredPassword, actualPassword);
+      if (passwordCheck) {
+        await HospRegisters.deleteOne({ hospID: enteredhospID })
+        res.json('deleted')
+      } else {
+        res.json('mismatched')
+      }
     }
     else {
       res.json('mismatched')

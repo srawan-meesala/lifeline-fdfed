@@ -38,9 +38,6 @@ const ShowDoctors = () => {
     setSearchResults(query);
   };
 
-  const [query1, setQuery1] = useState('')
-
-
   const [sortOrder, setSortOrder] = useState('priceAsc')
 
   useEffect(() => {
@@ -52,14 +49,41 @@ const ShowDoctors = () => {
       let sortedDocs = [...updatedResults]
       sortedDocs.sort((a, b) => b.fee - a.fee);
       setUpdatedResults(sortedDocs);
-    } else {
     }
-  }, [sortOrder, searchResults, updatedResults]);
+  }, [sortOrder]);
+
+  const [specs, setSpecs] = useState([])
+
+  useEffect(() => {
+    let allSpecs = new Set()
+    for (let searchResult of searchResults) {
+      allSpecs.add(searchResult.specialization)
+    }
+    let newSpecs = Array.from(allSpecs)
+    setSpecs(newSpecs)
+  }, [searchResults])
+
+  const [selected, setSelected] = useState('All')
+
+  useEffect(() => {
+    if (selected === 'All') {
+      setUpdatedResults(searchResults)
+    } else {
+      let docsAll = [...searchResults]
+      let docsSpecialized = []
+      for (let doc of docsAll) {
+        if (doc.specialization === selected) {
+          docsSpecialized.push(doc)
+        }
+        console.log(docsSpecialized);
+      }
+      setUpdatedResults(docsSpecialized)
+    }
+  }, [selected])
 
   const [hospSelected, setHospSelected] = useState('All')
 
   useEffect(() => {
-    console.log(hospSelected);
     if (hospSelected === 'All') {
       setUpdatedResults(searchResults)
     } else {
@@ -77,7 +101,7 @@ const ShowDoctors = () => {
 
   return (
     <div className="containerr">
-      <Navbar />
+      <Navbar title={'Book an Appointment'} />
       <div className="ShowDoctors-searchbar">
         <Searchbar onSearch={handleSearch} />
       </div>
@@ -96,13 +120,11 @@ const ShowDoctors = () => {
             </div>
             <div className="spec sort">
               <label htmlFor="specialization">Specialization</label>
-              <select name="specialization" id="specialization">
-                <option value="cardiology">cardiology</option>
-                <option value="cardiology">cardiology</option>
-                <option value="cardiology">cardiology</option>
-                <option value="cardiology">cardiology</option>
-                <option value="cardiology">cardiology</option>
-                <option value="cardiology">cardiology</option>
+              <select onChange={e => setSelected(e.target.value)} name="specialization" id="specialization">
+                <option value="All">All</option>
+                {specs.map((spec, i) => (
+                  <option key={i} value={spec}>{spec}</option>
+                ))}
               </select>
             </div>
             <div className="exp-sort sort">
@@ -133,6 +155,8 @@ const ShowDoctors = () => {
     </div>
   );
 };
+
+
 
 export default ShowDoctors;
 

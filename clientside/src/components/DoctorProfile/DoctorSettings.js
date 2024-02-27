@@ -14,7 +14,7 @@ const HospitalSettings = ({ userDetails }) => {
         e.preventDefault()
         try{
             const response = await axios.post('http://localhost:8000/deletedoc',{
-                entereddocID,enteredPassword,actualdocID,actualpassword
+                entereddocID, enteredPassword, actualdocID, actualpassword
             })
             if(response.data === 'deleted'){
                 alert('Deletion successful')
