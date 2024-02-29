@@ -17,8 +17,7 @@ const collection2Schema = new mongoose.Schema({
         type:String,
     },
     hospID:{
-        type:[String],
-        required:true
+        type:String,
     },
     city:{
         type:String,
@@ -50,6 +49,10 @@ const collection2Schema = new mongoose.Schema({
     },
     verificationStatus:{
         type:String,
+    },
+    approvalStatus:{
+        type:String,
+        default:'pending'
     },
     docID:{
         type:String,

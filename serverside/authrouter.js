@@ -15,8 +15,8 @@ const filetoStorageEngine = multer.diskStorage({
   },
   filename: async (req, file, cb) => {
     try {
-      const docid = await DocRegisters.findOne().sort({ _id: -1 });
-      const new_id = docid ? DocRegisters.docid + 1 : 1;
+      const doc = await DocRegisters.findOne().sort({ _id: -1 });
+      const new_id = doc ? doc.docID + 1 : 1;
       const ext = file.originalname.split('.').pop();
       const filename = `doc_${new_id}_certificate.${ext}`;
       cb(null, filename);
@@ -94,36 +94,44 @@ router.post('/patientRegister', async (req, res, next) => {
     }
 });
   
-router.post('/docRegister', upload.single('file') ,async (req, res, next) => {
-    const {name, mobileNumber, mailID, hospID, specialization,fee} = req.body;
-    const filepath = req.file.path;
-  
-    try {
+router.post('/docRegister', upload.single('file'), async (req, res, next) => {
+  const { name, mobileNumber, mailID, hospID, specialization, fee } = req.body;
+  const filepath = req.file.path;
+
+  try {
       const check = await DocRegisters.findOne({ mailID });
-      const hospital = await HospRegisters.findOne({ hospID: hospID })
-      const hospName = hospital.hospName
-      const city = hospital.city
+      const hospital = await HospRegisters.findOne({ hospID: hospID });
+      const hospName = hospital.hospName;
+      const city = hospital.city;
+      
       if (check) {
-        return res.json('exist');
+          return res.json('exist');
       }
-  
+
       const verificationToken = uuid.v4();
       const data = new DocRegisters({
-        name, mobileNumber, mailID, hospName, hospID, city, specialization, filepath,fee, verificationToken
+          name,
+          mobileNumber,
+          mailID,
+          hospName,
+          hospID,
+          city,
+          specialization,
+          filepath,
+          fee,
+          verificationToken
       });
-      
+
       await data.save();
-  
+
       const verificationLink = `http://localhost:3000/verifydoctor/${verificationToken}`;
       sendVerificationEmail(mailID, verificationLink);
-  
       res.status(200).json({ message: 'Registration successful. Please Wait for response mail from the respective Hospital.', verificationToken });
-    }
-    catch(error){
-      next(error)
-    }
+  } catch (error) {
+      next(error);
+  }
 });
-  
+ 
 router.post('/hospRegister', async (req, res, next) => {
     const {
       hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
@@ -152,7 +160,7 @@ router.post('/hospRegister', async (req, res, next) => {
     }
 });
 
-function sendVerificationEmail(to, link) {
+function sendVerificationEmail(to,link) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -174,5 +182,28 @@ function sendVerificationEmail(to, link) {
       }
     });
   }
+
+function sendVerificationEmail2(to) {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: 'Email Verification',
+    text: `Registration Pending.Please wait for the response mail from the hospital`,
+  };
+
+  transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      console.error('Error sending verification email:', error);
+    }
+  });
+}
 
 module.exports = router;

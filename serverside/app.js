@@ -19,6 +19,7 @@ const multer = require('multer')
 const helmet = require('helmet')
 const authRouter = require('./authrouter');
 app.use('/bloguploads', express.static('bloguploads'));
+app.use('/doc-certificates', express.static('doc-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cors())
@@ -793,23 +794,34 @@ app.post('/feedback', async (req, res) => {
   }
 })
 
-app.post('/api/submit-feedback', async (req, res) => {
-  const { name, email, message } = req.body;
+app.get('/registeredDoctors/:id', async (req, res) => {
+  const hospID = req.params.id
+  try {
+      const doctors = await DocRegisters.find({ hospID: hospID });
+      res.json(doctors);
+  } catch (error) {
+      console.error('Error fetching doctors:', error);
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
 
-  const newFeedback = new Feedback({
-    name,
-    email,
-    message,
-  });
+app.put('/approveDoctor/:id', async (req, res) => {
+  const mailID = req.params.id
+  try {
+      const doctor = await DocRegisters.findOne({mailID:mailID});
 
-  await newFeedback.save((err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error saving feedback');
-    } else {
-      res.status(200).send('Feedback submitted successfully');
-    }
-  });
+      if (!doctor) {
+          return res.status(404).json({ message: 'Doctor not found' });
+      }
+
+      doctor.status = req.body.status;
+      await doctor.save();
+
+      res.json(doctor);
+  } catch (error) {
+      console.error('Error approving/declining doctor:', error);
+      res.status(500).json({ message: 'Server Error' });
+  }
 });
 
 

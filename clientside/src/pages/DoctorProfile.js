@@ -35,7 +35,6 @@ function DoctorProfile() {
   }
 
   const [appointments, setAppointments] = useState([])
-
   useEffect(() => {
     const fetchAppointments = async () => {
       try {

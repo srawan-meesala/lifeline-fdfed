@@ -10,6 +10,7 @@ import { BiLogOut } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
 import HospitalDashboard from "../components/HospitalProfile/HospitalDashboard";
 import HospitalSettings from "../components/HospitalProfile/HospitalSettings";
+import HospitalApproveDoc from "../components/HospitalProfile/HospitalApproveDocs";
 import HospitalAppointments from "../components/HospitalProfile/HospitalAppointments";
 import HospitalProfileShow from "../components/HospitalProfile/HospitalProfileShow";
 import HospitalDoctors from "../components/HospitalProfile/HospitalDoctors";
@@ -18,17 +19,27 @@ import Cookies from 'js-cookie';
 function HospitalProfile() {
   const [choose, setChoose] = useState(1)
   const username = Cookies.get('username');
+  const [hospID,setHospID] = useState('')
   const [userDetails, setUserDetails] = useState({})
+  const [appointments, setAppointments] = useState([])
+  const [doctors, setDoctors] = useState([])
+  const [registeredDoctors,setRegisteredDoctors] = useState([])
   const navigate = useNavigate()
 
   const DashboardOpener = () => setChoose(1)
   const AppointmentsOpener = () => setChoose(2)
-  const DoctorsOpener = () => setChoose(3)
-  const ProfileOpener = () => setChoose(4)
-  const SettingsOpener = () => setChoose(5)
+  const DocApprovalOpener = () => setChoose(3)
+  const DoctorsOpener = () => setChoose(4)
+  const ProfileOpener = () => setChoose(5)
+  const SettingsOpener = () => setChoose(6)
 
-  const [appointments, setAppointments] = useState([])
-  const [doctors, setDoctors] = useState([])
+useEffect(()=>{
+  if(username){
+    setHospID(username);
+    fetchRegisteredDoctors(username);
+  }
+},[])
+  
 
   const handleLogout = () => {
     Cookies.remove('username')
@@ -36,6 +47,33 @@ function HospitalProfile() {
     Cookies.remove('type')
     navigate('/')
   }
+
+const fetchRegisteredDoctors = async (hospID) => {
+    try {
+        const response = await axios.get(`http://localhost:8000/registeredDoctors/${hospID}`);
+        setRegisteredDoctors(response.data);
+    } catch (error) {
+        console.error('Error fetching registered doctors:', error);
+    }
+};
+
+const handleApproveDoctor = async (mailID) => {
+    try {
+        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`, { approvalStatus: 'approved' });
+        fetchRegisteredDoctors(hospID);
+    } catch (error) {
+        console.error('Error approving doctor:', error);
+    }
+};
+
+const handleDeclineDoctor = async (mailID) => {
+    try {
+        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`, { approvalStatus: 'declined' });
+        fetchRegisteredDoctors(hospID);
+    } catch (error) {
+        console.error('Error declining doctor:', error);
+    }
+};
 
   useEffect(() => {
     async function fetchData() {
@@ -86,6 +124,10 @@ function HospitalProfile() {
               <div className='HospitalProfile-icon'><BsFillStickiesFill /></div>
               <div className='HospitalProfile-func'>Appointments</div>
             </div>
+            <div className='HospitalProfile-func-parts' onClick={DocApprovalOpener}>
+              <div className='HospitalProfile-icon'><BsFillStickiesFill /></div>
+              <div className='HospitalProfile-func'>Approvals</div>
+            </div>
             <div className='HospitalProfile-func-parts' onClick={DoctorsOpener}>
               <div className='HospitalProfile-icon'><FaUserDoctor /></div>
               <div className='HospitalProfile-func'>Doctors</div>
@@ -114,12 +156,15 @@ function HospitalProfile() {
         <HospitalAppointments userDetails={userDetails} appointments={appointments} />
       )}
       {choose === 3 && (
-        <HospitalDoctors userDetails={userDetails} doctors={doctors} />
+        <HospitalApproveDoc hospName={userDetails.hospName} registeredDoctors={registeredDoctors} appDoc={handleApproveDoctor} decDoc={handleDeclineDoctor}/>
       )}
       {choose === 4 && (
-        <HospitalProfileShow userDetails={userDetails} />
+        <HospitalDoctors userDetails={userDetails} doctors={doctors} />
       )}
       {choose === 5 && (
+        <HospitalProfileShow userDetails={userDetails} />
+      )}
+      {choose === 6 && (
         <HospitalSettings userDetails={userDetails} />
       )}
     </div>
