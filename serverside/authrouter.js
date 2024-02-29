@@ -1,12 +1,33 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcrypt');
+const express = require('express')
+const router = express.Router()
+const bcrypt = require('bcrypt')
+const multer = require('multer')
 const uuid = require('uuid')
 const nodemailer = require('nodemailer')
 const PatientRegisters = require('./models/patientRegister');
 const DocRegisters = require('./models/docRegister');
 const HospRegisters = require('./models/hospRegister');
 const AdminRegisters = require('./models/admin');
+
+const filetoStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `./doc-certificates`);
+  },
+  filename: async (req, file, cb) => {
+    try {
+      const docid = await DocRegisters.findOne().sort({ _id: -1 });
+      const new_id = docid ? DocRegisters.docid + 1 : 1;
+      const ext = file.originalname.split('.').pop();
+      const filename = `doc_${new_id}_certificate.${ext}`;
+      cb(null, filename);
+    } catch (err) {
+      console.log(err);
+      cb(err);
+    }
+  },
+});
+
+const upload = multer({ storage: filetoStorageEngine })
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
@@ -73,10 +94,9 @@ router.post('/patientRegister', async (req, res, next) => {
     }
 });
   
-router.post('/docRegister', async (req, res, next) => {
-    const {
-      name, mobileNumber, mailID, hospID, specialization, fee
-    } = req.body;
+router.post('/docRegister', upload.single('file') ,async (req, res, next) => {
+    const {name, mobileNumber, mailID, hospID, specialization,fee} = req.body;
+    const filepath = req.file.path;
   
     try {
       const check = await DocRegisters.findOne({ mailID });
@@ -89,15 +109,15 @@ router.post('/docRegister', async (req, res, next) => {
   
       const verificationToken = uuid.v4();
       const data = new DocRegisters({
-        name, mobileNumber, mailID, hospName, hospID, city, specialization, fee, verificationToken
+        name, mobileNumber, mailID, hospName, hospID, city, specialization, filepath,fee, verificationToken
       });
-  
+      
       await data.save();
   
       const verificationLink = `http://localhost:3000/verifydoctor/${verificationToken}`;
       sendVerificationEmail(mailID, verificationLink);
   
-      res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
+      res.status(200).json({ message: 'Registration successful. Please Wait for response mail from the respective Hospital.', verificationToken });
     }
     catch(error){
       next(error)

@@ -17,7 +17,7 @@ const collection2Schema = new mongoose.Schema({
         type:String,
     },
     hospID:{
-        type:String,
+        type:[String],
         required:true
     },
     city:{
@@ -34,6 +34,10 @@ const collection2Schema = new mongoose.Schema({
         }
     ],
     specialization:{
+        type:String,
+        required:true
+    },
+    filepath:{
         type:String,
         required:true
     },

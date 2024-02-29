@@ -3,7 +3,6 @@ import axios from "axios"
 import {  Link,useNavigate} from "react-router-dom"
 import { ReactComponent as Logo } from '../images/undraw_remotely_2j6y.svg';
 
-
 function DocRegister() {
     const navigate = useNavigate()
     var mobile  = new RegExp(/^\d{10}$/);
@@ -14,7 +13,12 @@ function DocRegister() {
     const [hospID,setHospID] = useState('')
     const [specialization,setSpecialization] = useState('')
     const [fee,setFee] = useState('')
+    const [file,setFile] = useState(null)
     const [verificationToken,setVerificationToken] = useState('')
+
+    const handleFileChange = (event) => {
+      setFile(event.target.files[0]);
+    };
 
     useEffect(() => {
       const fetchHospitals = async()=>{
@@ -31,13 +35,24 @@ function DocRegister() {
 
     async function submitDocRegister(e) {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('mobileNumber', mobileNumber);
+        formData.append('hospID', hospID);
+        formData.append('mailID', mailID);
+        formData.append('hospID', hospID);
+        formData.append('specialization', specialization);
+        formData.append('file', file);
+        formData.append('fee', fee);
         if(!mobile.test(mobileNumber)){
           alert("Invalid Mobile number!!");
         }
         else{
           try {
-            const response = await axios.post('http://localhost:8000/docRegister', {
-              name, mobileNumber, mailID, hospID, specialization,fee
+            const response = await axios.post('http://localhost:8000/docRegister',formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
             });
             if (response.data === 'exist') {
               alert('Doctor already registered');
@@ -60,7 +75,7 @@ function DocRegister() {
             </div>
             <div className="PatientLogin-right">
               <div className="PatientRegister-right-content">
-                <form method="POST" action="/docRegister"  className="DocRegister-form">
+                <form method="POST" action="/docRegister" encType="multipart/form-data" className="DocRegister-form">
                   <div className="PatientRegister-form-input">
                     <label >Name</label><b/>
                     <input type="text" onChange={(e) => { setName(e.target.value) }} name="Name" placeholder="Name" required  />
@@ -91,6 +106,10 @@ function DocRegister() {
                   <div className="PatientRegister-form-input">
                     <label >Specialization</label><b/>
                     <input type="text" onChange={(e) => { setSpecialization(e.target.value) }} name="specialization" placeholder="Specialization" required  />
+                  </div>
+                  <div className="PatientRegister-form-input">
+                    <label >Doctor Certificate</label><b/>
+                    <input type="file" onChange={handleFileChange} name="certificate" placeholder="Upload a File here" required  />
                   </div>
                   <div className="PatientRegister-form-input">
                     <label >Appointment Fee</label><b/>
