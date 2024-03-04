@@ -27,7 +27,26 @@ const filetoStorageEngine = multer.diskStorage({
   },
 });
 
+const filetoStorageEngine2 = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `./hosp-certificates`);
+  },
+  filename: async (req, file, cb) => {
+    try {
+      const hosp = await HospRegisters.findOne().sort({ _id: -1 });
+      const new_id = hosp ? hosp.hospID + 1 : 1;
+      const ext = file.originalname.split('.').pop();
+      const filename = `hosp_${new_id}_certificate.${ext}`;
+      cb(null, filename);
+    } catch (err) {
+      console.log(err);
+      cb(err);
+    }
+  },
+});
+
 const upload = multer({ storage: filetoStorageEngine })
+const upload2 = multer({ storage: filetoStorageEngine2 })
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
@@ -76,7 +95,6 @@ router.post('/patientRegister', async (req, res, next) => {
       if (check) {
         return res.json('exist');
       }
-  
       const verificationToken = uuid.v4();
       const data = new PatientRegisters({
         firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender, verificationToken
@@ -124,7 +142,7 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
 
       await data.save();
 
-      const verificationLink = `http://localhost:3000/verifydoctor/${verificationToken}`;
+      const verificationLink = `http://localhost:3000/sent2`;
       sendVerificationEmail(mailID, verificationLink);
       res.status(200).json({ message: 'Registration successful. Please Wait for response mail from the respective Hospital.', verificationToken });
   } catch (error) {
@@ -132,10 +150,11 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
   }
 });
  
-router.post('/hospRegister', async (req, res, next) => {
+router.post('/hospRegister',upload2.single('file'), async (req, res, next) => {
     const {
       hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
     } = req.body;
+    const filepath = req.file.path
   
     try {
       const check = await HospRegisters.findOne({ mailID });
@@ -146,12 +165,12 @@ router.post('/hospRegister', async (req, res, next) => {
   
       const verificationToken = uuid.v4();
       const data = new HospRegisters({
-        hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation, verificationToken
+        hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation,filepath, verificationToken
       });
   
       await data.save();
   
-      const verificationLink = `http://localhost:3000/verifyhospital/${verificationToken}`;
+      const verificationLink = `http://localhost:3000/sent2`;
       sendVerificationEmail(mailID, verificationLink);
       res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
     }

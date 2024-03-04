@@ -65,7 +65,7 @@ function DocRegister() {
                     },
                 });
                 if (response.data === 'exist') {
-                    alert('Doctor already registered');
+                    alert('Doctor already registered using current email');
                 } else {
                     navigate('/sent');
                     setVerificationToken(response.data.verificationToken);

@@ -13,7 +13,6 @@ function EmailVerificationHosp() {
           verificationToken,
         });
         if (response.data === 'verified') {
-          alert('Email verified successfully');
           navigate(`/hospRegister2/${verificationToken}`);
         } else {
           alert('Error while verifying');

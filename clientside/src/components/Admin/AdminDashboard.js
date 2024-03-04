@@ -12,6 +12,7 @@ import { BiLogOut } from "react-icons/bi";
 import { useLocation, useParams } from 'react-router-dom';
 import Hospitals from './Hospitals'
 import Dashboard from "./Dashboard";
+import HospApprovals from "./HospApprovals";
 import Doctors from "./Doctors";
 import Patients from "./Patients";
 import Donors from "./Donors";
@@ -30,8 +31,6 @@ function AdminDashboard() {
   const toggleComponent = (componentName) => {
     setActiveComponent(componentName);
   };
-
-
 
   useEffect(() => {
     async function fetchData() {
@@ -70,6 +69,40 @@ function AdminDashboard() {
     }
     fetchData()
   }, [])
+
+  const [registeredHosps,setRegisteredHosps] = useState([])
+
+  const fetchRegisteredHosps = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8000/registeredHosps`);
+      setRegisteredHosps(response.data);
+    } catch (error) {
+      console.error('Error fetching registered hospitals:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRegisteredHosps();
+  }, []);
+
+  const handleApproveHosp = async (mailID) => {
+    try {
+      await axios.put(`http://localhost:8000/approveHosp/${mailID}`);
+      alert('Approval Successful.');
+      fetchRegisteredHosps();
+    } catch (error) {
+      console.error('Error approving hospital:', error);
+    }
+  };
+
+  const handleDeclineHosp = async (mailID) => {
+    try {
+      await axios.put(`http://localhost:8000/declineHosp/${mailID}`);
+      fetchRegisteredHosps();
+    } catch (error) {
+      console.error('Error declining hospital:', error);
+    }
+  };
 
   const [hospitals, setHospitals] = useState([])
 
@@ -202,6 +235,7 @@ function AdminDashboard() {
       bloodDonors={bloodDonors}
       blogs={blogs}
     />,
+    ApproveHosp:<HospApprovals registeredHosps={registeredHosps} appHosp={handleApproveHosp} decHosp={handleDeclineHosp}/>,
     Hospitals: <Hospitals hospitals={hospitals} />,
     Doctors: <Doctors doctors={doctors} />,
     Patients: <Patients patients={patients} />,
@@ -229,6 +263,10 @@ function AdminDashboard() {
             <div className='Admin-func-parts' onClick={() => toggleComponent('dashboard')}>
               <div className='Admin-icon'><AiFillDashboard /></div>
               <div className='DoctorProfile-func'>Dashboard</div>
+            </div>
+            <div className='Admin-func-parts' onClick={() => toggleComponent('ApproveHosp')}>
+              <div className='Admin-icon'><AiFillDashboard /></div>
+              <div className='DoctorProfile-func'>Approvals</div>
             </div>
             <div className='Admin-func-parts' onClick={() => toggleComponent('Hospitals')} >
               <div className='Admin-icon'><FaHospital /></div>

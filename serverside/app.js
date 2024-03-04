@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const nodemailer = require('nodemailer')
 const bcrypt = require('bcrypt')
 const DocRegisters = require('./models/docRegister')
 const PatientRegisters = require('./models/patientRegister')
@@ -20,6 +21,7 @@ const helmet = require('helmet')
 const authRouter = require('./authrouter');
 app.use('/bloguploads', express.static('bloguploads'));
 app.use('/doc-certificates', express.static('doc-certificates'));
+app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cors())
@@ -797,7 +799,7 @@ app.post('/feedback', async (req, res) => {
 app.get('/registeredDoctors/:id', async (req, res) => {
   const hospID = req.params.id
   try {
-      const doctors = await DocRegisters.find({ hospID: hospID });
+      const doctors = await DocRegisters.find({ hospID: hospID },{approvalStatus:'pending'});
       res.json(doctors);
   } catch (error) {
       console.error('Error fetching doctors:', error);
@@ -813,9 +815,10 @@ app.put('/approveDoctor/:id', async (req, res) => {
       if (!doctor) {
           return res.status(404).json({ message: 'Doctor not found' });
       }
-
-      doctor.status = req.body.status;
+      doctor.approvalStatus = 'Approved';
       await doctor.save();
+      const verificationLink = `http://localhost:3000/verifydoctor/${doctor.verificationToken}`;
+      sendVerificationEmail(mailID, verificationLink);
 
       res.json(doctor);
   } catch (error) {
@@ -824,7 +827,124 @@ app.put('/approveDoctor/:id', async (req, res) => {
   }
 });
 
+app.put('/declineDoctor/:id', async (req, res) => {
+  const mailID = req.params.id
+  try {
+      const doctor = await DocRegisters.findOne({mailID:mailID});
+
+      if (!doctor) {
+          return res.status(404).json({ message: 'Doctor not found' });
+      }
+      doctor.approvalStatus = 'Declined';
+      await doctor.save();
+      sendVerificationEmail2(mailID);
+
+      res.json(doctor);
+  } catch (error) {
+      console.error('Error approving/declining doctor:', error);
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+app.get('/registeredHosps', async (req, res) => {
+  try {
+      const hospitals = await HospRegisters.find({approvalStatus:'pending'});
+      res.json(hospitals);
+      console.log(hospitals)
+  } catch (error) {
+      console.error('Error fetching hospitals:', error);
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+app.put('/approveHosp/:id', async (req, res) => {
+  const mailID = req.params.id
+  try {
+      const hospital = await HospRegisters.findOne({mailID:mailID});
+
+      if (!hospital) {
+          return res.status(404).json({ message: 'Hospital not found' });
+      }
+      hospital.approvalStatus = 'Approved';
+      await hospital.save();
+      const verificationLink = `http://localhost:3000/verifyhospital/${hospital.verificationToken}`;
+      sendVerificationEmail(mailID, verificationLink);
+
+      res.json(hospital);
+  } catch (error) {
+      console.error('Error approving/declining hospital:', error);
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+app.put('/declineHosp/:id', async (req, res) => {
+  const mailID = req.params.id
+  try {
+      const hospital = await HospRegisters.findOne({mailID:mailID});
+
+      if (!hospital) {
+          return res.status(404).json({ message: 'Hospital not found' });
+      }
+      hospital.approvalStatus = 'Declined';
+      await hospital.save();
+      sendVerificationEmail2(mailID);
+
+      res.json(doctor);
+  } catch (error) {
+      console.error('Error approving/declining hospital:', error);
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 
 app.listen(8000, () => {
   console.log("port connected to 8000");
 })
+
+function sendVerificationEmail(to,link) {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: 'Email Verification',
+    text: `Your Approval Has been successful.
+          Please Click the following link to continue: ${link}`,
+  };
+
+  transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      console.error('Error sending verification email:', error);
+    }
+  });
+}
+
+function sendVerificationEmail2(to) {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: 'Email Verification',
+    text: `Your Request to join Lifeline Has been Declined by the admin.
+          `,
+  };
+
+  transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      console.error('Error sending verification email:', error);
+    }
+  });
+}

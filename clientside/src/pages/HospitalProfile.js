@@ -59,7 +59,8 @@ const fetchRegisteredDoctors = async (hospID) => {
 
 const handleApproveDoctor = async (mailID) => {
     try {
-        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`, { approvalStatus: 'approved' });
+        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`);
+        alert('Approval Succesful.')
         fetchRegisteredDoctors(hospID);
     } catch (error) {
         console.error('Error approving doctor:', error);
@@ -68,7 +69,7 @@ const handleApproveDoctor = async (mailID) => {
 
 const handleDeclineDoctor = async (mailID) => {
     try {
-        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`, { approvalStatus: 'declined' });
+        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`);
         fetchRegisteredDoctors(hospID);
     } catch (error) {
         console.error('Error declining doctor:', error);

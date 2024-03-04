@@ -33,6 +33,7 @@ import ODThankyou from './pages/ODThankyou';
 import PleaseVerify from './pages/Misc/PleaseVerify';
 import BloodDonation from './pages/BloodDonation';
 import ThankyouPharmacy from './pages/Misc/ThankyouPharmacy';
+import RegisterPending from './pages/Misc/RegisterPending';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
 
           <Route path="/sent" element={<PleaseVerify />} />
+          <Route path="/sent2" element={<RegisterPending />} />
 
           <Route path="/patientRegister" element={<PatientRegister />} />
           <Route path="/verifypatient/:verificationToken" element={<EmailVerificationPatient />} />
