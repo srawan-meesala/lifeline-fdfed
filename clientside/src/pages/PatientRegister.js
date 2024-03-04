@@ -21,25 +21,32 @@ function PatientRegister() {
 
   async function submitRegister(e) {
     e.preventDefault();
-        if(!mobile.test(mobileNumber)) {
+    const currentDate = new Date();
+    const enteredDate = new Date(dob);
+    const minAgeDate = new Date(currentDate.getFullYear() - 12, currentDate.getMonth(), currentDate.getDate());
+    if (isNaN(enteredDate.getTime()) || enteredDate >= currentDate || enteredDate > minAgeDate) {
+      alert("Please enter a valid Date of Birth. Minimum age must be 12 years.");
+      return;
+    }
+    if(!mobile.test(mobileNumber)) {
           alert("Invalid Mobile number!!");
-      }else{
-        try {
-          const response = await axios.post('http://localhost:8000/patientRegister', {
-            firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
-          });
-    
-          if (response.data === 'exist') {
-            alert('User already registered');
-          } else {
-            navigate('/sent');
-            setVerificationToken(response.data.verificationToken);
+        }else{
+          try {
+            const response = await axios.post('http://localhost:8000/patientRegister', {
+              firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
+            });
+      
+            if (response.data === 'exist') {
+              alert('User already registered');
+            } else {
+              navigate('/sent');
+              setVerificationToken(response.data.verificationToken);
+            }
+          } catch (error) {
+            alert('Wrong details');
+            console.error(error);
           }
-        } catch (error) {
-          alert('Wrong details');
-          console.error(error);
         }
-      }
     
   }
 
