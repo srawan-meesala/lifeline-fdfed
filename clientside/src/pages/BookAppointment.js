@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
@@ -9,7 +9,7 @@ function BookAppointment() {
   const fee = state ? state.fee : null;
   const fees = parseInt(1.1 * fee);
   const navigate = useNavigate();
-  const name = Cookies.get('username')
+  const name = Cookies.get('username');
   const [patientName, setPatientName] = useState(name);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -40,20 +40,30 @@ function BookAppointment() {
     }
   }
 
-  const [appointments, setAppointments] = useState([]);
+  const [availableTimeslots, setAvailableTimeslots] = useState([]);
 
   const dateChangeHandler = async (e) => {
     const selectedDate = e.target.value;
     const currentDate = new Date().toISOString().split('T')[0]; // Get current date in 'YYYY-MM-DD' format
+    console.log("Selected date:", selectedDate);
+    console.log("Current date:", currentDate);
+
     if (selectedDate >= currentDate) {
       setDate(selectedDate);
       try {
-        const response = await axios.get(`http://localhost:8000/AppointmentsAPI/dateanddocid`, {
+        const response = await axios.get(`http://localhost:8000/AppointmentsAPI4/dateanddocid`, {
           params: { docID, date: selectedDate },
         });
+        console.log("Response data:", response.data);
         if (response.status === 200) {
-          setAppointments(response.data);
-          console.log('success');
+          const bookedTimeslots = response.data.map(appointment => appointment.Timeslot);
+          console.log("Booked timeslots:", bookedTimeslots);
+
+          const allTimeslots = ['10AM-11AM', '11AM-12PM', '1PM-2PM', '2PM-3PM', '3PM-4PM'];
+          const availableTimeslots = allTimeslots.filter(timeslot => !bookedTimeslots.includes(timeslot));
+          console.log("Available timeslots:", availableTimeslots);
+
+          setAvailableTimeslots(availableTimeslots);
         } else {
           console.error('Failed to fetch user details');
         }
@@ -61,20 +71,12 @@ function BookAppointment() {
         console.log(error);
       }
     } else {
-      alert('Please select a slot from future.');
+      alert('Please select a slot from the future.');
       setDate('');
     }
   };
 
-  console.log(appointments);
-  var times = [];
-  for (let a in appointments) {
-    times.push(a.Timeslot);
-  }
 
-  var timeslots = ['10AM-11AM', '11AM-12PM', '1PM-2PM', '2PM-3PM', '3PM-4PM'];
-
-  var timeslotsNew = timeslots.filter((n) => !times.includes(n));
   return (
     <div className="BookAppointment-whole">
       <Navbar />
@@ -87,9 +89,9 @@ function BookAppointment() {
             <label className="BookAppointment-label">Time</label>
             <select name="time" value={time} onChange={(e) => setTime(e.target.value)} required className="BookAppointment-select">
               <option value="">Select Timeslot</option>
-              {timeslotsNew.map((t, index) => {
-                return <option key={index}>{t}</option>;
-              })}
+              {availableTimeslots.map((t, index) => (
+                <option key={index}>{t}</option>
+              ))}
             </select>
             <label className="BookAppointment-label"> Mobile Number</label>
             <input type="tel" name="mobileNumber" className="BookAppointment-input-mobileNumber" onChange={(e) => setMobileNumber(e.target.value)} required />

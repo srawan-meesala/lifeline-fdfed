@@ -414,17 +414,32 @@ app.get('/AppointmentsAPI3/:username', async (req, res) => {
   }
 });
 
-app.get('/AppointmentsAPI/dateanddocid', async (req, res) => {
-  const { docID, date } = req.params
+app.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
+  const { docID, date } = req.query;
+  console.log(docID, date);
+  try {
+    const appointments = await Appointments.find({ docID: docID, Date: date });
+    const bookedTimeslots = appointments.map(appointment => appointment.Timeslot);
+    const allTimeslots = ['10AM-11AM', '11AM-12PM', '1PM-2PM', '2PM-3PM', '3PM-4PM'];
+    const availableTimeslots = allTimeslots.filter(timeslot => !bookedTimeslots.includes(timeslot));
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching appointments:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/AppointmentsAPIdoc/:docID', async (req, res) => {
+  const { docID } = req.params
   try {
     const appointments2 = await Appointments.find({ docID: docID });
-    const appointments = appointments2.find({ Date: date });
-    res.json(appointments);
+    res.json(appointments2);
   } catch (error) {
     console.error('Error fetching doctors:', error);
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 app.post('/searchDoctors/:name', async (req, res) => {
   try {
@@ -799,101 +814,101 @@ app.post('/feedback', async (req, res) => {
 app.get('/registeredDoctors/:id', async (req, res) => {
   const hospID = req.params.id
   try {
-      const doctors = await DocRegisters.find({ hospID: hospID,approvalStatus:'pending' });
-      console.log(doctors)
-      res.json(doctors);
+    const doctors = await DocRegisters.find({ hospID: hospID, approvalStatus: 'pending' });
+    console.log(doctors)
+    res.json(doctors);
   } catch (error) {
-      console.error('Error fetching doctors:', error);
-      res.status(500).json({ message: 'Server Error' });
+    console.error('Error fetching doctors:', error);
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
 app.put('/approveDoctor/:id', async (req, res) => {
   const mailID = req.params.id
   try {
-      const doctor = await DocRegisters.findOne({mailID:mailID});
+    const doctor = await DocRegisters.findOne({ mailID: mailID });
 
-      if (!doctor) {
-          return res.status(404).json({ message: 'Doctor not found' });
-      }
-      doctor.approvalStatus = 'Approved';
-      await doctor.save();
-      const verificationLink = `http://localhost:3000/verifydoctor/${doctor.verificationToken}`;
-      sendVerificationEmail(mailID, verificationLink);
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+    doctor.approvalStatus = 'Approved';
+    await doctor.save();
+    const verificationLink = `http://localhost:3000/verifydoctor/${doctor.verificationToken}`;
+    sendVerificationEmail(mailID, verificationLink);
 
-      res.json(doctor);
+    res.json(doctor);
   } catch (error) {
-      console.error('Error approving/declining doctor:', error);
-      res.status(500).json({ message: 'Server Error' });
+    console.error('Error approving/declining doctor:', error);
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
 app.put('/declineDoctor/:id', async (req, res) => {
   const mailID = req.params.id
   try {
-      const doctor = await DocRegisters.findOne({mailID:mailID});
+    const doctor = await DocRegisters.findOne({ mailID: mailID });
 
-      if (!doctor) {
-          return res.status(404).json({ message: 'Doctor not found' });
-      }
-      doctor.approvalStatus = 'Declined';
-      await doctor.save();
-      sendVerificationEmail2(mailID);
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+    doctor.approvalStatus = 'Declined';
+    await doctor.save();
+    sendVerificationEmail2(mailID);
 
-      res.json(doctor);
+    res.json(doctor);
   } catch (error) {
-      console.error('Error approving/declining doctor:', error);
-      res.status(500).json({ message: 'Server Error' });
+    console.error('Error approving/declining doctor:', error);
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
 app.get('/registeredHosps', async (req, res) => {
   try {
-      const hospitals = await HospRegisters.find({approvalStatus:'pending'});
-      res.json(hospitals);
-      console.log(hospitals)
+    const hospitals = await HospRegisters.find({ approvalStatus: 'pending' });
+    res.json(hospitals);
+    console.log(hospitals)
   } catch (error) {
-      console.error('Error fetching hospitals:', error);
-      res.status(500).json({ message: 'Server Error' });
+    console.error('Error fetching hospitals:', error);
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
 app.put('/approveHosp/:id', async (req, res) => {
   const mailID = req.params.id
   try {
-      const hospital = await HospRegisters.findOne({mailID:mailID});
+    const hospital = await HospRegisters.findOne({ mailID: mailID });
 
-      if (!hospital) {
-          return res.status(404).json({ message: 'Hospital not found' });
-      }
-      hospital.approvalStatus = 'Approved';
-      await hospital.save();
-      const verificationLink = `http://localhost:3000/verifyhospital/${hospital.verificationToken}`;
-      sendVerificationEmail(mailID, verificationLink);
+    if (!hospital) {
+      return res.status(404).json({ message: 'Hospital not found' });
+    }
+    hospital.approvalStatus = 'Approved';
+    await hospital.save();
+    const verificationLink = `http://localhost:3000/verifyhospital/${hospital.verificationToken}`;
+    sendVerificationEmail(mailID, verificationLink);
 
-      res.json(hospital);
+    res.json(hospital);
   } catch (error) {
-      console.error('Error approving/declining hospital:', error);
-      res.status(500).json({ message: 'Server Error' });
+    console.error('Error approving/declining hospital:', error);
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
 app.put('/declineHosp/:id', async (req, res) => {
   const mailID = req.params.id
   try {
-      const hospital = await HospRegisters.findOne({mailID:mailID});
+    const hospital = await HospRegisters.findOne({ mailID: mailID });
 
-      if (!hospital) {
-          return res.status(404).json({ message: 'Hospital not found' });
-      }
-      hospital.approvalStatus = 'Declined';
-      await hospital.save();
-      sendVerificationEmail2(mailID);
+    if (!hospital) {
+      return res.status(404).json({ message: 'Hospital not found' });
+    }
+    hospital.approvalStatus = 'Declined';
+    await hospital.save();
+    sendVerificationEmail2(mailID);
 
-      res.json(doctor);
+    res.json(hospital);
   } catch (error) {
-      console.error('Error approving/declining hospital:', error);
-      res.status(500).json({ message: 'Server Error' });
+    console.error('Error approving/declining hospital:', error);
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
@@ -902,7 +917,7 @@ app.listen(8000, () => {
   console.log("port connected to 8000");
 })
 
-function sendVerificationEmail(to,link) {
+function sendVerificationEmail(to, link) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
