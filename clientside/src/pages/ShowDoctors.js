@@ -86,7 +86,7 @@ const ShowDoctors = () => {
       }
       setUpdatedResults(docsFromHospSelected);
     }
-  }, [sortOrder, selected, hospSelected]);
+  }, [sortOrder, selected, hospSelected, searchResults]);
 
 
 

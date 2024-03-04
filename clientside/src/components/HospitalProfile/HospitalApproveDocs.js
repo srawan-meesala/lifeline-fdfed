@@ -1,7 +1,7 @@
 import React from 'react'
 
 const HospitalApproveDoc = ({hospName,registeredDoctors, appDoc, decDoc,viewfile}) => {
-
+console.log(registeredDoctors);
     const viewFile = (filepath) => {
         const certificate = `http://localhost:8000/${filepath}`
         window.open(certificate, '_blank');
@@ -22,7 +22,7 @@ const HospitalApproveDoc = ({hospName,registeredDoctors, appDoc, decDoc,viewfile
                     <p>No Doctors Registered.</p>
                 ) : (
                     registeredDoctors.map((doctor) => (
-                        <div key={doctor.docID} className="UserProfile-appointments-card">
+                        <div key={doctor._id} className="UserProfile-appointments-card">
                             <div className='UserProfile-appointments-card'>
                                 <div className="UserProfile-appointments-card-name">
                                     Doctor Name: <span>Dr. {doctor.name}</span>

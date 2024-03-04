@@ -449,10 +449,10 @@ app.post('/searchDoctors', async (req, res) => {
 
 app.post('/bookAppointment', async (req, res) => {
   const { docID, patientName, date, time, mobileNumber, note } = req.body;
-  const user = await PatientRegisters.findOne({ firstName: patientName })
+  const user = await PatientRegisters.findOne({ username: patientName })
   const doc = await DocRegisters.findOne({ docID: docID })
   const hosp = await HospRegisters.findOne({ hospName: doc.hospName })
-  const username = user.username
+  const username = patientName
   const hospID = hosp.hospID
   const hospName = hosp.hospName
   const fee = doc.fee
@@ -463,7 +463,7 @@ app.post('/bookAppointment', async (req, res) => {
       hospID: hospID,
       hospName: hospName,
       Username: username,
-      PatientName: patientName,
+      PatientName: user.firstName,
       Date: date,
       Timeslot: time,
       Contact: mobileNumber,
@@ -799,7 +799,8 @@ app.post('/feedback', async (req, res) => {
 app.get('/registeredDoctors/:id', async (req, res) => {
   const hospID = req.params.id
   try {
-      const doctors = await DocRegisters.find({ hospID: hospID },{approvalStatus:'pending'});
+      const doctors = await DocRegisters.find({ hospID: hospID,approvalStatus:'pending' });
+      console.log(doctors)
       res.json(doctors);
   } catch (error) {
       console.error('Error fetching doctors:', error);

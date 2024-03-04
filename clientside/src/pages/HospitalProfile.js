@@ -38,7 +38,7 @@ useEffect(()=>{
     setHospID(username);
     fetchRegisteredDoctors(username);
   }
-},[])
+},[username])
   
 
   const handleLogout = () => {
@@ -55,7 +55,7 @@ const fetchRegisteredDoctors = async (hospID) => {
     } catch (error) {
         console.error('Error fetching registered doctors:', error);
     }
-};
+};  
 
 const handleApproveDoctor = async (mailID) => {
     try {
@@ -76,39 +76,45 @@ const handleDeclineDoctor = async (mailID) => {
     }
 };
 
-  useEffect(() => {
+useEffect(() => {
+  if (hospID) {
     async function fetchData() {
       try {
-        if (username) {
-          const [
-            userDetailsResponse,
-            appointmentsResponse,
-            doctorsResponse
-          ] = await Promise.all([
-            axios.get(`http://localhost:8000/getHospDetails/${username}`),
-            axios.get(`http://localhost:8000/AppointmentsAPI2/${username}`),
-            axios.get(`http://localhost:8000/DoctorsAPI2/${username}`)
-          ]);
+        const [
+          userDetailsResponse,
+          appointmentsResponse,
+          doctorsResponse,
+          registeredDoctorsResponse
+        ] = await Promise.all([
+          axios.get(`http://localhost:8000/getHospDetails/${hospID}`),
+          axios.get(`http://localhost:8000/AppointmentsAPI2/${hospID}`),
+          axios.get(`http://localhost:8000/DoctorsAPI2/${hospID}`),
+          axios.get(`http://localhost:8000/registeredDoctors/${hospID}`)
+        ]);
 
-          if (userDetailsResponse.status === 200) {
-            setUserDetails(userDetailsResponse.data);
-          }
+        if (userDetailsResponse.status === 200) {
+          setUserDetails(userDetailsResponse.data);
+        }
 
-          if (appointmentsResponse.status === 200) {
-            setAppointments(Array.isArray(appointmentsResponse.data) ? appointmentsResponse.data : []);
-          }
+        if (appointmentsResponse.status === 200) {
+          setAppointments(Array.isArray(appointmentsResponse.data) ? appointmentsResponse.data : []);
+        }
 
-          if (doctorsResponse.status === 200) {
-            setDoctors(Array.isArray(doctorsResponse.data) ? doctorsResponse.data : []);
-          }
+        if (doctorsResponse.status === 200) {
+          setDoctors(Array.isArray(doctorsResponse.data) ? doctorsResponse.data : []);
+        }
+
+        if (registeredDoctorsResponse.status === 200) {
+          setRegisteredDoctors(Array.isArray(registeredDoctorsResponse.data) ? registeredDoctorsResponse.data : []);
         }
       } catch (error) {
-        console.error('Error fetching hospital details:', error);
+        console.error('Error fetching data:', error);
       }
     }
     fetchData();
-  }, [username]);
-
+  }
+}, [hospID]);
+  
   return (
     <div className='HospitalProfile-whole'>
       <div className='HospitalProfile-left'>
