@@ -15,6 +15,19 @@ function DocRegister() {
     const [fee, setFee] = useState('');
     const [file, setFile] = useState(null);
     const [verificationToken, setVerificationToken] = useState('');
+    const [allSpecs, setAllSpecs] = useState([
+        { "name": "Cardiologist" },
+        { "name": "Onchologist" },
+        { "name": "Physician" },
+        { "name": "Nuerologist" },
+        { "name": "Dermatolist" },
+        { "name": "Gastroenterologist" },
+        { "name": "Dentist" },
+        { "name": "Pathologist" },
+        { "name": "Pediatrician" },
+        { "name": "Gynecologist" },
+        { "name": "Nephrologist" },
+    ]);
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
@@ -102,10 +115,16 @@ function DocRegister() {
                         </div>
                         <div className="PatientRegister-form-input">
                             <label>Specialization</label><b />
-                            <input type="text" onChange={(e) => { setSpecialization(e.target.value) }} name="specialization" placeholder="Specialization" required />
+                            <select name="specialization" onChange={(e) => { setSpecialization(e.target.value) }}>
+                                <option value="None">Choose</option>
+                                {allSpecs.map((spec) => (
+                                    <option key={spec.name} value={spec.name}>{spec.name}</option>
+                                ))}
+                            </select>
+                            {/* <input type="text"  name="specialization" placeholder="Specialization" required /> */}
                         </div>
                         <div className="PatientRegister-form-input">
-                            <label>Doctor Certificate</label><b />
+                            <label>License</label><b />
                             <input type="file" onChange={handleFileChange} name="certificate" placeholder="Upload a File here" required />
                         </div>
                         <div className="PatientRegister-form-input">
