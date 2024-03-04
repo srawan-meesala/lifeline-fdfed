@@ -38,19 +38,6 @@ const ShowDoctors = () => {
     setSearchResults(query);
   };
 
-  const [sortOrder, setSortOrder] = useState('priceAsc')
-
-  useEffect(() => {
-    if (sortOrder === 'priceAsc') {
-      let sortedDocs = [...updatedResults]
-      sortedDocs.sort((a, b) => a.fee - b.fee);
-      setUpdatedResults(sortedDocs);
-    } else if (sortOrder === 'priceDesc') {
-      let sortedDocs = [...updatedResults]
-      sortedDocs.sort((a, b) => b.fee - a.fee);
-      setUpdatedResults(sortedDocs);
-    }
-  }, [sortOrder]);
 
   const [specs, setSpecs] = useState([])
 
@@ -63,41 +50,50 @@ const ShowDoctors = () => {
     setSpecs(newSpecs)
   }, [searchResults])
 
+  const [sortOrder, setSortOrder] = useState('priceAsc')
   const [selected, setSelected] = useState('All')
+  const [hospSelected, setHospSelected] = useState('All')
 
   useEffect(() => {
+    let sortedDocs = [...searchResults]
+    if (sortOrder === 'priceAsc') {
+      sortedDocs.sort((a, b) => a.fee - b.fee);
+    } else if (sortOrder === 'priceDesc') {
+      sortedDocs.sort((a, b) => b.fee - a.fee);
+    }
+
+    let docsSpecialized = []
     if (selected === 'All') {
-      setUpdatedResults(searchResults)
+      docsSpecialized = [...sortedDocs]
     } else {
-      let docsAll = [...searchResults]
-      let docsSpecialized = []
+      let docsAll = [...sortedDocs]
       for (let doc of docsAll) {
         if (doc.specialization === selected) {
           docsSpecialized.push(doc)
         }
-        console.log(docsSpecialized);
       }
-      setUpdatedResults(docsSpecialized)
     }
-  }, [selected])
 
-  const [hospSelected, setHospSelected] = useState('All')
-
-  useEffect(() => {
     if (hospSelected === 'All') {
-      setUpdatedResults(searchResults)
+      setUpdatedResults(docsSpecialized)
     } else {
-      let docsAll = [...searchResults]
+      let docsAll = [...docsSpecialized]
       let docsFromHospSelected = []
       for (let doc in docsAll) {
         if (docsAll[doc].hospName === hospSelected) {
           docsFromHospSelected.push(docsAll[doc])
         }
-        console.log(docsFromHospSelected);
       }
       setUpdatedResults(docsFromHospSelected);
     }
-  }, [hospSelected, searchResults]);
+  }, [sortOrder, selected, hospSelected]);
+
+
+
+
+  // useEffect(() => {
+
+  // }, [hospSelected, searchResults]);
 
   return (
     <div className="containerr">
