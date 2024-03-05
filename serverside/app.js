@@ -419,9 +419,6 @@ app.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
   console.log(docID, date);
   try {
     const appointments = await Appointments.find({ docID: docID, Date: date });
-    const bookedTimeslots = appointments.map(appointment => appointment.Timeslot);
-    const allTimeslots = ['10AM-11AM', '11AM-12PM', '1PM-2PM', '2PM-3PM', '3PM-4PM'];
-    const availableTimeslots = allTimeslots.filter(timeslot => !bookedTimeslots.includes(timeslot));
     res.json(appointments);
   } catch (error) {
     console.error('Error fetching appointments:', error);
