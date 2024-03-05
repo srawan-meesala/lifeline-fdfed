@@ -1,10 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 
 const UserAppointments = ({ userDetails, appointments }) => {
 
     const [appointmentsPresent, setAppointmentsPresent] = useState(appointments)
     const [filter, setFilter] = useState('All')
 
+    useEffect(() => {
+        filterAppointments();
+    }, [filter]);
+
+    const filterAppointments = () => {
+        switch (filter) {
+            case 'All':
+                setAppointmentsPresent(appointments);
+                break;
+            case 'lastWeek':
+            const lastWeekAppointments = appointments.filter(appointment => {
+                const appointmentDate = new Date(appointment.Date);
+                const today = new Date();
+                const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate()-7);
+                return appointmentDate >= lastWeek;
+            });
+            setAppointmentsPresent(lastWeekAppointments);
+            break;
+            case 'lastMonth':
+                const lastMonthAppointments = appointments.filter(appointment => {
+                    const appointmentDate = new Date(appointment.Date);
+                    const today = new Date();
+                    const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+                    return appointmentDate >= lastMonth;
+                });
+                setAppointmentsPresent(lastMonthAppointments);
+                break;
+            default:
+                setAppointmentsPresent(appointments);
+                break;
+        }
+    };
+
+    const handleFilterChange = (e) => {
+        setFilter(e.target.value);
+    };
 
     return (
         <div className='UserProfile-right'>
@@ -16,9 +52,10 @@ const UserAppointments = ({ userDetails, appointments }) => {
             <div className='UserProfile-appointments'>
                 <div className="UserProfile-appointments-title">Your Appointments</div>
                 <div className="UserProfile-appointments-title">
-                    <select name="filter">
+                    <select name="filter" onChange={handleFilterChange}>
                         <option value="All">All</option>
-                        <option value="last">Last Month</option>
+                        <option value="lastWeek">Last Week</option>
+                        <option value="lastMonth">Last Month</option>
                     </select>
                 </div>
                 <div className="UserProfile-appointments-cards">

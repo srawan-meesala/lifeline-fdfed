@@ -645,7 +645,7 @@ app.post('/checkout', async (req, res) => {
       cart.items = [];
       await cart.save();
     }
-
+    
     res.json({ message: 'Checkout successful', cart: newCart });
   } catch (error) {
     console.error('Error during checkout:', error);
