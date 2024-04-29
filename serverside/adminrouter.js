@@ -292,6 +292,54 @@ app.get('/getAdminDetails/:username', async (req, res) => {
     }
   });
 
+  function sendVerificationEmail(to, link) {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+  
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to,
+      subject: 'Email Verification',
+      text: `Your Approval Has been successful.
+            Please Click the following link to continue: ${link}`,
+    };
+  
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        console.error('Error sending verification email:', error);
+      }
+    });
+  }
+
+  function sendVerificationEmail2(to) {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+  
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to,
+      subject: 'Email Verification',
+      text: `Your Request to join Lifeline Has been Declined by the admin.
+            `,
+    };
+  
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        console.error('Error sending verification email:', error);
+      }
+    });
+  }
+
   app.put('/approveHosp/:id', async (req, res) => {
     const mailID = req.params.id
     try {

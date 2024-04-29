@@ -2,13 +2,26 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const app = express()
+
+const cors = require('cors')
+const helmet = require('helmet')
 app.use(cors())
 app.use(helmet())
+
+const authRouter = require('./authrouter');
+const adminRouter = require('./adminrouter');
+const docRouter = require('./docrouter');
+const hospRouter = require('./hosprouter');
+const patientRouter = require('./patientrouter');
+const blogsRouter = require('./blogsrouter');
+const pharmacyRouter = require('./pharmacyrouter');
 app.use('/', authRouter);
 app.use('/', adminRouter);
 app.use('/', patientRouter);
 app.use('/', docRouter);
 app.use('/', hospRouter);
+app.use('/', blogsRouter);
+app.use('/', pharmacyRouter);
 
 mongoose.connect('mongodb://127.0.0.1:27017/Lifeline-fdfed')
   .then(() => {
