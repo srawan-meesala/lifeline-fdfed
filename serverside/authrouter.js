@@ -1,13 +1,33 @@
 const express = require('express')
-const router = express.Router()
-const bcrypt = require('bcrypt')
-const multer = require('multer')
-const uuid = require('uuid')
+const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
-const PatientRegisters = require('./models/patientRegister');
-const DocRegisters = require('./models/docRegister');
-const HospRegisters = require('./models/hospRegister');
-const AdminRegisters = require('./models/admin');
+const bcrypt = require('bcrypt')
+const DocRegisters = require('./models/docRegister')
+const PatientRegisters = require('./models/patientRegister')
+const HospRegisters = require('./models/hospRegister')
+const AdminRegisters = require('./models/admin')
+const ODRegisters = require('./models/organdonation')
+const BBRegisters = require('./models/bloodbanks')
+const Appointments = require('./models/appointments')
+const Blogs = require('./models/blogs')
+const PharmacyCart = require('./models/pharmacyCart')
+const app = express()
+require('dotenv').config();
+const Feedback = require('./models/feedback')
+const cors = require('cors')
+const morgan = require('morgan')
+const multer = require('multer')
+const helmet = require('helmet')
+const authRouter = require('./authrouter');
+const adminRouter = require('./adminrouter');
+const patientRouter = require('./patientrouter');
+const docRouter = require('./docrouter');
+const hospRouter = require('./hosprouter');
+app.use('/bloguploads', express.static('bloguploads'));
+app.use('/doc-certificates', express.static('doc-certificates'));
+app.use('/hosp-certificates', express.static('hosp-certificates'));
+app.use(morgan('dev'))
+app.use(express.json())
 
 const filetoStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -179,6 +199,130 @@ router.post('/hospRegister',upload2.single('file'), async (req, res, next) => {
     }
 });
 
+router.post('/verifyEmailPatient', async (req, res) => {
+  const { verificationToken } = req.body;
+  try {
+    const data = await PatientRegisters.findOne({ verificationToken });
+
+    if (data) {
+      data.verificationStatus = true;
+      await data.save();
+      res.json('verified');
+    } else {
+      res.json('invalid-token');
+    }
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+router.post('/verifyEmailDoc', async (req, res) => {
+  const { verificationToken } = req.body;
+  try {
+    const data = await DocRegisters.findOne({ verificationToken });
+
+    if (data) {
+      data.verificationStatus = true;
+      await data.save();
+      res.json('verified');
+    } else {
+      res.json('invalid-token');
+    }
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+router.post('/verifyEmailHosp', async (req, res) => {
+  const { verificationToken } = req.body;
+  try {
+    const data = await HospRegisters.findOne({ verificationToken });
+
+    if (data) {
+      data.verificationStatus = true;
+      await data.save();
+      res.json('verified');
+    } else {
+      res.json('invalid-token');
+    }
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+router.post('/patientRegister2', async (req, res) => {
+  const { verificationToken, username, password } = req.body;
+  try {
+    const data = await PatientRegisters.findOne({ verificationToken });
+    const data2 = await PatientRegisters.findOne({ username });
+    if (data2) {
+      res.json('exists');
+    } else {
+      if (data) {
+        const saltrounds = 10
+        const hashedPassword = await bcrypt.hash(password, saltrounds);
+        data.username = username;
+        data.password = hashedPassword;
+        await data.save();
+        res.json('registered');
+      } else {
+        res.json('invalid-token');
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error.');
+  }
+});
+
+router.post('/docRegister2', async (req, res) => {
+  const { verificationToken, docID, password } = req.body;
+  try {
+    const data = await DocRegisters.findOne({ verificationToken });
+    if (data) {
+      const saltrounds = 10
+      const hashedPassword = await bcrypt.hash(password, saltrounds);
+      data.docID = docID;
+      data.password = hashedPassword;
+      await data.save();
+      res.json('registered');
+    } else {
+      res.json('invalid-token');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+router.post('/hospRegister2', async (req, res) => {
+  const { verificationToken, hospID, password } = req.body;
+  try {
+    const data = await HospRegisters.findOne({ verificationToken });
+    if (data) {
+      const saltrounds = 10
+      const hashedPassword = await bcrypt.hash(password, saltrounds);
+      data.hospID = hospID;
+      data.password = hashedPassword;
+      await data.save();
+      res.json('registered');
+    } else {
+      res.json('invalid-token');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Internal Server Error');
+  }
+});
+
+
+
 function sendVerificationEmail(to,link) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -201,28 +345,5 @@ function sendVerificationEmail(to,link) {
       }
     });
   }
-
-function sendVerificationEmail2(to) {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to,
-    subject: 'Email Verification',
-    text: `Registration Pending.Please wait for the response mail from the hospital`,
-  };
-
-  transporter.sendMail(mailOptions, (error) => {
-    if (error) {
-      console.error('Error sending verification email:', error);
-    }
-  });
-}
 
 module.exports = router;

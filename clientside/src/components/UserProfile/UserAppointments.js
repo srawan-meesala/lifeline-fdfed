@@ -11,7 +11,7 @@ const UserAppointments = ({ userDetails, appointments }) => {
 
     const filterAppointments = () => {
         const today = new Date();
-        switch (filter) {
+        switch (filter) {   
             case 'All':
                 setAppointmentsPresent(appointments);
                 break;
