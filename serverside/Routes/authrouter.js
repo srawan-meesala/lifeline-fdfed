@@ -2,22 +2,23 @@ const express = require('express')
 const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcrypt')
-const DocRegisters = require('./models/docRegister')
-const PatientRegisters = require('./models/patientRegister')
-const HospRegisters = require('./models/hospRegister')
-const AdminRegisters = require('./models/admin')
-const ODRegisters = require('./models/organdonation')
-const BBRegisters = require('./models/bloodbanks')
-const Appointments = require('./models/appointments')
-const Blogs = require('./models/blogs')
-const PharmacyCart = require('./models/pharmacyCart')
+const DocRegisters = require('../models/docRegister')
+const PatientRegisters = require('../models/patientRegister')
+const HospRegisters = require('../models/hospRegister')
+const AdminRegisters = require('../models/admin')
+const ODRegisters = require('../models/organdonation')
+const BBRegisters = require('../models/bloodbanks')
+const Appointments = require('../models/appointments')
+const Blogs = require('../models/blogs')
+const PharmacyCart = require('../models/pharmacyCart')
 const app = express()
 require('dotenv').config();
-const Feedback = require('./models/feedback')
+const Feedback = require('../models/feedback')
 const cors = require('cors')
 const morgan = require('morgan')
 const multer = require('multer')
 const helmet = require('helmet')
+const uuid = require('uuid')
 const authRouter = require('./authrouter');
 const adminRouter = require('./adminrouter');
 const patientRouter = require('./patientrouter');
@@ -65,138 +66,164 @@ const filetoStorageEngine2 = multer.diskStorage({
   },
 });
 
+function sendVerificationEmail(to, link) {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: 'Email Verification',
+    text: `Your Approval Has been successful.
+          Please Click the following link to continue: ${link}`,
+  };
+
+  transporter.sendMail(mailOptions, (error) => {
+    if (error) {
+      console.error('Error sending verification email:', error);
+    }
+  });
+}
+
 const upload = multer({ storage: filetoStorageEngine })
 const upload2 = multer({ storage: filetoStorageEngine2 })
 
+const router = express.Router()
+
 router.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('OOPs! Something broke');
-  });
+  console.error(err.stack);
+  res.status(500).send('OOPs! Something broke');
+});
 
 router.post('/login', async (req, res, next) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    const type = req.body.type;
-    try {
-      let check;
-      if (type === 'patient') {
-        check = await PatientRegisters.findOne({ username });
-      } else if (type === 'doctor') {
-        check = await DocRegisters.findOne({ docID: username });
-      } else if (type === 'hospital') {
-        check = await HospRegisters.findOne({ hospID: username });
-      } else if (type === 'admin') {
-        check = await AdminRegisters.findOne({ username: username });
-      }
-      if (check) {
-        const passwordCheck = await bcrypt.compare(password, check.password);
-        if (passwordCheck) {
-          res.status(200).json('exist');
-        } else {
-          res.json('invalid credentials');
-        }
+  const username = req.body.username;
+  const password = req.body.password;
+  const type = req.body.type;
+  try {
+    let check;
+    if (type === 'patient') {
+      check = await PatientRegisters.findOne({ username });
+    } else if (type === 'doctor') {
+      check = await DocRegisters.findOne({ docID: username });
+    } else if (type === 'hospital') {
+      check = await HospRegisters.findOne({ hospID: username });
+    } else if (type === 'admin') {
+      check = await AdminRegisters.findOne({ username: username });
+    }
+    if (check) {
+      const passwordCheck = await bcrypt.compare(password, check.password);
+      if (passwordCheck) {
+        res.status(200).json('exist');
       } else {
-        res.json('does not exist');
+        res.json('invalid credentials');
       }
+    } else {
+      res.json('does not exist');
     }
-    catch(error){
-      next(error)
-    }
+  }
+  catch (error) {
+    next(error)
+  }
 });
-  
+
 router.post('/patientRegister', async (req, res, next) => {
-    const {
-      firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
-    } = req.body;
-  
-    try {
-      const check = await PatientRegisters.findOne({ mailID });
-  
-      if (check) {
-        return res.json('exist');
-      }
-      const verificationToken = uuid.v4();
-      const data = new PatientRegisters({
-        firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender, verificationToken
-      });
-  
-      await data.save();
-  
-      const verificationLink = `http://localhost:3000/verifypatient/${verificationToken}`;
-      sendVerificationEmail(mailID, verificationLink);
-  
-      res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
+  const {
+    firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
+  } = req.body;
+
+  try {
+    const check = await PatientRegisters.findOne({ mailID });
+
+    if (check) {
+      return res.json('exist');
     }
-    catch(error){
-      next(error)
-    }
+    const verificationToken = uuid.v4();
+    const data = new PatientRegisters({
+      firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender, verificationToken
+    });
+
+    await data.save();
+
+    const verificationLink = `http://localhost:3000/verifypatient/${verificationToken}`;
+    sendVerificationEmail(mailID, verificationLink);
+
+    res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
+  }
+  catch (error) {
+    next(error)
+  }
 });
-  
+
 router.post('/docRegister', upload.single('file'), async (req, res, next) => {
   const { name, mobileNumber, mailID, hospID, specialization, fee } = req.body;
   const filepath = req.file.path;
 
   try {
-      const check = await DocRegisters.findOne({ mailID });
-      const hospital = await HospRegisters.findOne({ hospID: hospID });
-      const hospName = hospital.hospName;
-      const city = hospital.city;
-      
-      if (check) {
-          return res.json('exist');
-      }
+    const check = await DocRegisters.findOne({ mailID });
+    const hospital = await HospRegisters.findOne({ hospID: hospID });
+    const hospName = hospital.hospName;
+    const city = hospital.city;
 
-      const verificationToken = uuid.v4();
-      const data = new DocRegisters({
-          name,
-          mobileNumber,
-          mailID,
-          hospName,
-          hospID,
-          city,
-          specialization,
-          filepath,
-          fee,
-          verificationToken
-      });
+    if (check) {
+      return res.json('exist');
+    }
 
-      await data.save();
+    const verificationToken = uuid.v4();
+    const data = new DocRegisters({
+      name,
+      mobileNumber,
+      mailID,
+      hospName,
+      hospID,
+      city,
+      specialization,
+      filepath,
+      fee,
+      verificationToken
+    });
 
-      const verificationLink = `http://localhost:3000/sent2`;
-      sendVerificationEmail(mailID, verificationLink);
-      res.status(200).json({ message: 'Registration successful. Please Wait for response mail from the respective Hospital.', verificationToken });
+    await data.save();
+
+    const verificationLink = `http://localhost:3000/sent2`;
+    sendVerificationEmail(mailID, verificationLink);
+    res.status(200).json({ message: 'Registration successful. Please Wait for response mail from the respective Hospital.', verificationToken });
   } catch (error) {
-      next(error);
+    next(error);
   }
 });
- 
-router.post('/hospRegister',upload2.single('file'), async (req, res, next) => {
-    const {
-      hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
-    } = req.body;
-    const filepath = req.file.path
-  
-    try {
-      const check = await HospRegisters.findOne({ mailID });
-  
-      if (check) {
-        return res.json('exist');
-      }
-  
-      const verificationToken = uuid.v4();
-      const data = new HospRegisters({
-        hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation,filepath, verificationToken
-      });
-  
-      await data.save();
-  
-      const verificationLink = `http://localhost:3000/sent2`;
-      sendVerificationEmail(mailID, verificationLink);
-      res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
+
+router.post('/hospRegister', upload2.single('file'), async (req, res, next) => {
+  const {
+    hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
+  } = req.body;
+  const filepath = req.file.path
+
+  try {
+    const check = await HospRegisters.findOne({ mailID });
+
+    if (check) {
+      return res.json('exist');
     }
-    catch(error){
-      next(error)
-    }
+
+    const verificationToken = uuid.v4();
+    const data = new HospRegisters({
+      hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation, filepath, verificationToken
+    });
+
+    await data.save();
+
+    const verificationLink = `http://localhost:3000/sent2`;
+    sendVerificationEmail(mailID, verificationLink);
+    res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
+  }
+  catch (error) {
+    next(error)
+  }
 });
 
 router.post('/verifyEmailPatient', async (req, res) => {
@@ -320,30 +347,5 @@ router.post('/hospRegister2', async (req, res) => {
     res.status(500).json('Internal Server Error');
   }
 });
-
-
-
-function sendVerificationEmail(to,link) {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
-  
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to,
-      subject: 'Email Verification',
-      text: `Click the following link to verify your email: ${link}`,
-    };
-  
-    transporter.sendMail(mailOptions, (error) => {
-      if (error) {
-        console.error('Error sending verification email:', error);
-      }
-    });
-  }
 
 module.exports = router;

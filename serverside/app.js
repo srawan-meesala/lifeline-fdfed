@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const app = express()
 
 const cors = require('cors')
@@ -8,13 +10,17 @@ const helmet = require('helmet')
 app.use(cors())
 app.use(helmet())
 
-const authRouter = require('./authrouter');
-const adminRouter = require('./adminrouter');
-const docRouter = require('./docrouter');
-const hospRouter = require('./hosprouter');
-const patientRouter = require('./patientrouter');
-const blogsRouter = require('./blogsrouter');
-const pharmacyRouter = require('./pharmacyrouter');
+const swaggerOptions = require('./swaggerOptions');
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+const authRouter = require('./Routes/authrouter');
+const adminRouter = require('./Routes/adminrouter');
+const docRouter = require('./Routes/docrouter');
+const hospRouter = require('./Routes/hosprouter');
+const patientRouter = require('./Routes/patientrouter');
+const blogsRouter = require('./Routes/blogsrouter');
+const pharmacyRouter = require('./Routes/pharmacyrouter');
 app.use('/', authRouter);
 app.use('/', adminRouter);
 app.use('/', patientRouter);
