@@ -29,7 +29,14 @@ app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
 
-app.get('/getAdminDetails/:username', async (req, res) => {
+const router = express.Router()
+
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('OOPs! Something broke');
+});
+
+router.get('/getAdminDetails/:username', async (req, res) => {
   const username = req.params.username;
   try {
     const user = await AdminRegisters.findOne({ username: username });
@@ -44,7 +51,7 @@ app.get('/getAdminDetails/:username', async (req, res) => {
   }
 });
 
-app.get('/getAllPatients', async (req, res) => {
+router.get('/getAllPatients', async (req, res) => {
   try {
     const user = await PatientRegisters.find();
     if (!user) {
@@ -58,7 +65,7 @@ app.get('/getAllPatients', async (req, res) => {
   }
 });
 
-app.get('/getAllHospitals', async (req, res) => {
+router.get('/getAllHospitals', async (req, res) => {
   try {
     const user = await HospRegisters.find();
     if (!user) {
@@ -72,7 +79,7 @@ app.get('/getAllHospitals', async (req, res) => {
   }
 });
 
-app.get('/getAllDoctors', async (req, res) => {
+router.get('/getAllDoctors', async (req, res) => {
   try {
     const user = await DocRegisters.find();
     if (!user) {
@@ -86,7 +93,7 @@ app.get('/getAllDoctors', async (req, res) => {
   }
 });
 
-app.get('/getAllDonors', async (req, res) => {
+router.get('/getAllDonors', async (req, res) => {
   try {
     const user = await ODRegisters.find();
     if (!user) {
@@ -100,7 +107,7 @@ app.get('/getAllDonors', async (req, res) => {
   }
 });
 
-app.get('/getAllBloodDonors', async (req, res) => {
+router.get('/getAllBloodDonors', async (req, res) => {
   try {
     const user = await BBRegisters.find();
     if (!user) {
@@ -114,7 +121,7 @@ app.get('/getAllBloodDonors', async (req, res) => {
   }
 });
 
-app.get('/getAllAppointments', async (req, res) => {
+router.get('/getAllAppointments', async (req, res) => {
   try {
     const user = await Appointments.find();
     if (!user) {
@@ -128,7 +135,7 @@ app.get('/getAllAppointments', async (req, res) => {
   }
 });
 
-app.get('/hospitalsAPI', async (req, res) => {
+router.get('/hospitalsAPI', async (req, res) => {
   try {
     const hospitals = await HospRegisters.find();
     res.json(hospitals);
@@ -138,7 +145,7 @@ app.get('/hospitalsAPI', async (req, res) => {
   }
 });
 
-app.get('/doctorsAPI', async (req, res) => {
+router.get('/doctorsAPI', async (req, res) => {
   try {
     const doctors = await DocRegisters.find();
     res.json(doctors);
@@ -148,7 +155,7 @@ app.get('/doctorsAPI', async (req, res) => {
   }
 });
 
-app.get('/blogAPI', async (req, res) => {
+router.get('/blogAPI', async (req, res) => {
   try {
     const blogs = await Blogs.find();
     res.json(blogs);
@@ -158,7 +165,7 @@ app.get('/blogAPI', async (req, res) => {
   }
 });
 
-app.get('/blogsAPI/:docID', async (req, res) => {
+router.get('/blogsAPI/:docID', async (req, res) => {
   const { docID } = req.params
   try {
     const blogs = await Blogs.find({ docID: docID });
@@ -169,7 +176,7 @@ app.get('/blogsAPI/:docID', async (req, res) => {
   }
 });
 
-app.get('/AppointmentsAPI/:docID', async (req, res) => {
+router.get('/AppointmentsAPI/:docID', async (req, res) => {
   const { docID } = req.params
   try {
     const appointments = await Appointments.find({ docID: docID });
@@ -180,7 +187,7 @@ app.get('/AppointmentsAPI/:docID', async (req, res) => {
   }
 });
 
-app.get('/AppointmentsAPI2/:hospID', async (req, res) => {
+router.get('/AppointmentsAPI2/:hospID', async (req, res) => {
   const { hospID } = req.params
   try {
     const appointments = await Appointments.find({ hospID: hospID });
@@ -191,7 +198,7 @@ app.get('/AppointmentsAPI2/:hospID', async (req, res) => {
   }
 });
 
-app.get('/AppointmentsAPI3/:username', async (req, res) => {
+router.get('/AppointmentsAPI3/:username', async (req, res) => {
   const { username } = req.params
   try {
     const appointments = await Appointments.find({ Username: username });
@@ -202,7 +209,7 @@ app.get('/AppointmentsAPI3/:username', async (req, res) => {
   }
 });
 
-app.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
+router.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
   const { docID, date } = req.query;
   console.log(docID, date);
   try {
@@ -214,7 +221,7 @@ app.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
   }
 });
 
-app.get('/AppointmentsAPIdoc/:docID', async (req, res) => {
+router.get('/AppointmentsAPIdoc/:docID', async (req, res) => {
   const { docID } = req.params
   try {
     const appointments2 = await Appointments.find({ docID: docID });
@@ -225,7 +232,7 @@ app.get('/AppointmentsAPIdoc/:docID', async (req, res) => {
   }
 });
 
-app.get('/DoctorsAPI2/:hospID', async (req, res) => {
+router.get('/DoctorsAPI2/:hospID', async (req, res) => {
   const { hospID } = req.params
   try {
     const doctors = await DocRegisters.find({ hospID: hospID });
@@ -236,7 +243,7 @@ app.get('/DoctorsAPI2/:hospID', async (req, res) => {
   }
 });
 
-app.get('/getTotalExpenditure/:username', async (req, res) => {
+router.get('/getTotalExpenditure/:username', async (req, res) => {
   try {
     const username = req.params.username;
     const totalExpenditure = await Appointments.aggregate([
@@ -251,7 +258,7 @@ app.get('/getTotalExpenditure/:username', async (req, res) => {
   }
 });
 
-app.get('/getTotalExpenditure2/:docID', async (req, res) => {
+router.get('/getTotalExpenditure2/:docID', async (req, res) => {
   try {
     const docID = req.params.docID;
     const totalExpenditure = await Appointments.aggregate([
@@ -266,7 +273,7 @@ app.get('/getTotalExpenditure2/:docID', async (req, res) => {
   }
 });
 
-app.get('/getTotalExpenditure3/:hospID', async (req, res) => {
+router.get('/getTotalExpenditure3/:hospID', async (req, res) => {
   try {
     const hospID = req.params.hospID;
     const totalExpenditure = await Appointments.aggregate([
@@ -281,7 +288,7 @@ app.get('/getTotalExpenditure3/:hospID', async (req, res) => {
   }
 });
 
-app.get('/registeredHosps', async (req, res) => {
+router.get('/registeredHosps', async (req, res) => {
   try {
     const hospitals = await HospRegisters.find({ approvalStatus: 'pending' });
     res.json(hospitals);
@@ -444,3 +451,5 @@ app.post('/deletehosp', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 })
+
+module.exports = router;

@@ -28,8 +28,14 @@ app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
+const router = express.Router()
 
-app.post('/checkout', async (req, res) => {
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('OOPs! Something broke');
+});
+
+router.post('/checkout', async (req, res) => {
   const { username, cartItems, totalPrice } = req.body;
 
   try {
@@ -58,7 +64,7 @@ app.post('/checkout', async (req, res) => {
   }
 });
 
-app.put('/updateCartItemQuantity', async (req, res) => {
+router.put('/updateCartItemQuantity', async (req, res) => {
   const { username, itemId, newQuantity } = req.body;
 
   try {
@@ -85,7 +91,7 @@ app.put('/updateCartItemQuantity', async (req, res) => {
   }
 });
 
-app.post('/addToCart', async (req, res) => {
+router.post('/addToCart', async (req, res) => {
   const { username, item } = req.body;
 
 
@@ -116,7 +122,7 @@ app.post('/addToCart', async (req, res) => {
   }
 });
 
-app.get('/cartData', async (req, res) => {
+router.get('/cartData', async (req, res) => {
   const { username } = req.query;
 
   try {
@@ -131,3 +137,5 @@ app.get('/cartData', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+module.exports = router;

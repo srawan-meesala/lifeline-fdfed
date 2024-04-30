@@ -29,7 +29,14 @@ app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
 
-app.get('/getHospDetails/:username', async (req, res) => {
+const router = express.Router()
+
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('OOPs! Something broke');
+});
+
+router.get('/getHospDetails/:username', async (req, res) => {
   const hospID = req.params.username;
   try {
     const user = await HospRegisters.findOne({ hospID: hospID });
@@ -44,7 +51,7 @@ app.get('/getHospDetails/:username', async (req, res) => {
   }
 });
 
-app.get('/registeredDoctors/:id', async (req, res) => {
+router.get('/registeredDoctors/:id', async (req, res) => {
   const hospID = req.params.id
   try {
     const doctors = await DocRegisters.find({ hospID: hospID, approvalStatus: 'pending' });
@@ -56,7 +63,7 @@ app.get('/registeredDoctors/:id', async (req, res) => {
   }
 });
 
-app.put('/approveDoctor/:id', async (req, res) => {
+router.put('/approveDoctor/:id', async (req, res) => {
   const mailID = req.params.id
   try {
     const doctor = await DocRegisters.findOne({ mailID: mailID });
@@ -76,7 +83,7 @@ app.put('/approveDoctor/:id', async (req, res) => {
   }
 });
 
-app.put('/declineDoctor/:id', async (req, res) => {
+router.put('/declineDoctor/:id', async (req, res) => {
   const mailID = req.params.id
   try {
     const doctor = await DocRegisters.findOne({ mailID: mailID });
@@ -142,3 +149,5 @@ function sendVerificationEmail2(to) {
     }
   });
 }
+
+module.exports = router;

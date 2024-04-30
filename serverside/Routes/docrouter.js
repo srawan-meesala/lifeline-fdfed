@@ -29,8 +29,14 @@ app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
 
+const router = express.Router()
 
-app.get('/getDocDetails/:username', async (req, res) => {
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('OOPs! Something broke');
+});
+
+router.get('/getDocDetails/:username', async (req, res) => {
   const docID = req.params.username;
   try {
     const user = await DocRegisters.findOne({ docID: docID });
@@ -44,4 +50,6 @@ app.get('/getDocDetails/:username', async (req, res) => {
     res.json('Internal Server Error');
   }
 });
+
+module.exports = router;
 

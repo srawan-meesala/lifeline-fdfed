@@ -49,7 +49,14 @@ const filetoStorageEngine = multer.diskStorage({
 
 const upload = multer({ storage: filetoStorageEngine })
 
-app.get('/blogdata', async (req, res) => {
+const router = express.Router()
+
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('OOPs! Something broke');
+});
+
+router.get('/blogdata', async (req, res) => {
   const { blogID } = req.query;
   try {
     const data = await Blogs.findOne({ blogID: blogID })
@@ -64,7 +71,7 @@ app.get('/blogdata', async (req, res) => {
   }
 })
 
-app.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
+router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
   const { docID, title, blog } = req.body
   const imagepath = req.file.path;
   const doc = await DocRegisters.findOne({ docID })
@@ -87,3 +94,5 @@ app.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
     res.status(500).json('Internal Server Error');
   }
 })
+
+module.exports = router;
