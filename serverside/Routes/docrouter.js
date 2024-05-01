@@ -1,28 +1,8 @@
 const express = require('express')
-const mongoose = require('mongoose')
-const nodemailer = require('nodemailer')
-const bcrypt = require('bcrypt')
 const DocRegisters = require('../models/docRegister')
-const PatientRegisters = require('../models/patientRegister')
-const HospRegisters = require('../models/hospRegister')
-const AdminRegisters = require('../models/admin')
-const ODRegisters = require('../models/organdonation')
-const BBRegisters = require('../models/bloodbanks')
-const Appointments = require('../models/appointments')
-const Blogs = require('../models/blogs')
-const PharmacyCart = require('../models/pharmacyCart')
 const app = express()
-require('dotenv').config();
-const Feedback = require('../models/feedback')
-const cors = require('cors')
+require('dotenv').config()
 const morgan = require('morgan')
-const multer = require('multer')
-const helmet = require('helmet')
-const authRouter = require('./authrouter');
-const adminRouter = require('./adminrouter');
-const patientRouter = require('./patientrouter');
-const docRouter = require('./docrouter');
-const hospRouter = require('./hosprouter');
 app.use('/bloguploads', express.static('bloguploads'));
 app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
@@ -36,20 +16,52 @@ router.use((err, req, res, next) => {
   res.status(500).send('OOPs! Something broke');
 });
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Doctor
+ *     description: Operations related to doctors
+ */
+
+/**
+ * @swagger
+ * /getDocDetails/{username}:
+ *   get:
+ *     tags: [Doctor]
+ *     summary: Retrieve details of a doctor by username
+ *     description: Retrieve details of a doctor based on their username.
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: Username of the doctor to retrieve details for.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with doctor details.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './models/docRegister'
+ *       404:
+ *         description: Doctor not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getDocDetails/:username', async (req, res) => {
   const docID = req.params.username;
   try {
     const user = await DocRegisters.findOne({ docID: docID });
     if (!user) {
-      return res.json('User not found');
+      return res.status(404).json('User not found');
     }
     res.status(200).json(user);
-  }
-  catch (e) {
+  } catch (e) {
     console.error(e);
-    res.json('Internal Server Error');
+    res.status(500).json('Internal Server Error');
   }
 });
 
-module.exports = router;
 
+module.exports = router;

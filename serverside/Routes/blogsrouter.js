@@ -56,6 +56,38 @@ router.use((err, req, res, next) => {
   res.status(500).send('OOPs! Something broke');
 });
 
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Blog
+ *     description: Operations related to blogs
+ */
+
+/**
+ * @swagger
+ * /blogdata:
+ *   get:
+ *     tags: [Blog]
+ *     summary: Get blog data
+ *     description: Retrieves blog data by blog ID.
+ *     parameters:
+ *       - in: query
+ *         name: blogID
+ *         required: true
+ *         description: ID of the blog to retrieve.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with blog data.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './models/blogs'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/blogdata', async (req, res) => {
   const { blogID } = req.query;
   try {
@@ -63,6 +95,8 @@ router.get('/blogdata', async (req, res) => {
     console.log(data)
     if (data) {
       res.status(200).json(data)
+    } else {
+      res.status(404).json('Blog not found');
     }
   }
   catch (error) {
@@ -71,6 +105,43 @@ router.get('/blogdata', async (req, res) => {
   }
 })
 
+
+/**
+ * @swagger
+ * /uploadBlog:
+ *   post:
+ *     tags: [Blog]
+ *     summary: Upload a blog
+ *     description: Uploads a blog with an image.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               docID:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *               blog:
+ *                 type: string
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Blog uploaded successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
   const { docID, title, blog } = req.body
   const imagepath = req.file.path;

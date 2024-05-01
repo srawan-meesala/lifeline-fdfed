@@ -1,29 +1,15 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcrypt')
 const DocRegisters = require('../models/docRegister')
 const PatientRegisters = require('../models/patientRegister')
 const HospRegisters = require('../models/hospRegister')
 const AdminRegisters = require('../models/admin')
-const ODRegisters = require('../models/organdonation')
-const BBRegisters = require('../models/bloodbanks')
-const Appointments = require('../models/appointments')
-const Blogs = require('../models/blogs')
-const PharmacyCart = require('../models/pharmacyCart')
 const app = express()
 require('dotenv').config();
-const Feedback = require('../models/feedback')
-const cors = require('cors')
 const morgan = require('morgan')
 const multer = require('multer')
-const helmet = require('helmet')
 const uuid = require('uuid')
-const authRouter = require('./authrouter');
-const adminRouter = require('./adminrouter');
-const patientRouter = require('./patientrouter');
-const docRouter = require('./docrouter');
-const hospRouter = require('./hosprouter');
 app.use('/bloguploads', express.static('bloguploads'));
 app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));

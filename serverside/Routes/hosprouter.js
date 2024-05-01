@@ -1,28 +1,10 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
-const bcrypt = require('bcrypt')
 const DocRegisters = require('../models/docRegister')
-const PatientRegisters = require('../models/patientRegister')
 const HospRegisters = require('../models/hospRegister')
-const AdminRegisters = require('../models/admin')
-const ODRegisters = require('../models/organdonation')
-const BBRegisters = require('../models/bloodbanks')
-const Appointments = require('../models/appointments')
-const Blogs = require('../models/blogs')
-const PharmacyCart = require('../models/pharmacyCart')
 const app = express()
 require('dotenv').config();
-const Feedback = require('../models/feedback')
-const cors = require('cors')
 const morgan = require('morgan')
-const multer = require('multer')
-const helmet = require('helmet')
-const authRouter = require('./authrouter');
-const adminRouter = require('./adminrouter');
-const patientRouter = require('./patientrouter');
-const docRouter = require('./docrouter');
-const hospRouter = require('./hosprouter');
 app.use('/bloguploads', express.static('bloguploads'));
 app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
@@ -36,6 +18,39 @@ router.use((err, req, res, next) => {
   res.status(500).send('OOPs! Something broke');
 });
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Hospital
+ *     description: Operations related to hospitals
+ */
+
+/**
+ * @swagger
+ * /getHospDetails/{username}:
+ *   get:
+ *     tags: [Hospital]
+ *     summary: Retrieve details of a hospital by username
+ *     description: Retrieve details of a hospital based on its username.
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: Username of the hospital to retrieve details for.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with hospital details.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './components/schemas/HospDetails'
+ *       404:
+ *         description: Hospital not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getHospDetails/:username', async (req, res) => {
   const hospID = req.params.username;
   try {
@@ -51,6 +66,32 @@ router.get('/getHospDetails/:username', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /registeredDoctors/{id}:
+ *   get:
+ *     tags: [Hospital]
+ *     summary: Retrieve list of doctors registered with a hospital
+ *     description: Retrieve the list of doctors who are registered with a hospital but pending approval.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the hospital.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with the list of doctors.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './components/schemas/Doctor'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/registeredDoctors/:id', async (req, res) => {
   const hospID = req.params.id
   try {
@@ -63,6 +104,32 @@ router.get('/registeredDoctors/:id', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /approveDoctor/{id}:
+ *   put:
+ *     tags: [Hospital]
+ *     summary: Approve a doctor's registration
+ *     description: Approve a doctor's registration and send a verification email.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the doctor to approve.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with the approved doctor's details.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './components/schemas/Doctor'
+ *       404:
+ *         description: Doctor not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.put('/approveDoctor/:id', async (req, res) => {
   const mailID = req.params.id
   try {
@@ -83,6 +150,32 @@ router.put('/approveDoctor/:id', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /declineDoctor/{id}:
+ *   put:
+ *     tags: [Hospital]
+ *     summary: Decline a doctor's registration
+ *     description: Decline a doctor's registration and send a notification email.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the doctor to decline.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with the declined doctor's details.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './components/schemas/Doctor'
+ *       404:
+ *         description: Doctor not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.put('/declineDoctor/:id', async (req, res) => {
   const mailID = req.params.id
   try {

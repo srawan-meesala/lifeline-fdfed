@@ -10,10 +10,6 @@ const helmet = require('helmet')
 app.use(cors())
 app.use(helmet())
 
-const swaggerOptions = require('./swaggerOptions');
-const swaggerSpec = swaggerJSDoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 const authRouter = require('./Routes/authrouter');
 const adminRouter = require('./Routes/adminrouter');
 const docRouter = require('./Routes/docrouter');
@@ -28,6 +24,10 @@ app.use('/', docRouter);
 app.use('/', hospRouter);
 app.use('/', blogsRouter);
 app.use('/', pharmacyRouter);
+
+const swaggerOptions = require('./swaggerOptions');
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 mongoose.connect('mongodb://127.0.0.1:27017/Lifeline-fdfed')
   .then(() => {

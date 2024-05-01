@@ -1,28 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const nodemailer = require('nodemailer')
-const bcrypt = require('bcrypt')
-const DocRegisters = require('../models/docRegister')
-const PatientRegisters = require('../models/patientRegister')
-const HospRegisters = require('../models/hospRegister')
-const AdminRegisters = require('../models/admin')
-const ODRegisters = require('../models/organdonation')
-const BBRegisters = require('../models/bloodbanks')
-const Appointments = require('../models/appointments')
-const Blogs = require('../models/blogs')
 const PharmacyCart = require('../models/pharmacyCart')
 const app = express()
-require('dotenv').config();
-const Feedback = require('../models/feedback')
-const cors = require('cors')
 const morgan = require('morgan')
-const multer = require('multer')
-const helmet = require('helmet')
-const authRouter = require('./authrouter');
-const adminRouter = require('./adminrouter');
-const patientRouter = require('./patientrouter');
-const docRouter = require('./docrouter');
-const hospRouter = require('./hosprouter');
+require('dotenv').config();
 app.use('/bloguploads', express.static('bloguploads'));
 app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
@@ -35,6 +16,50 @@ router.use((err, req, res, next) => {
   res.status(500).send('OOPs! Something broke');
 });
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Pharmacy
+ *     description: Operations related to pharmacy cart and items
+ */
+
+/**
+ * @swagger
+ * /checkout:
+ *   post:
+ *     tags: [Pharmacy]
+ *     summary: Checkout pharmacy cart
+ *     description: Adds cart items to the database and clears the cart after successful checkout.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               cartItems:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *               totalPrice:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Successful checkout.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 cart:
+ *                   $ref: './models/pharmacyCart'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/checkout', async (req, res) => {
   const { username, cartItems, totalPrice } = req.body;
 
@@ -64,6 +89,43 @@ router.post('/checkout', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /updateCartItemQuantity:
+ *   put:
+ *     tags: [Pharmacy]
+ *     summary: Update quantity of an item in the pharmacy cart
+ *     description: Updates the quantity of a specific item in the pharmacy cart.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               itemId:
+ *                 type: string
+ *               newQuantity:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Item quantity updated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 cart:
+ *                   $ref: './models/pharmacyCart'
+ *       404:
+ *         description: Cart or item not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.put('/updateCartItemQuantity', async (req, res) => {
   const { username, itemId, newQuantity } = req.body;
 
@@ -91,10 +153,32 @@ router.put('/updateCartItemQuantity', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /addToCart:
+ *   post:
+ *     tags: [Pharmacy]
+ *     summary: Add item to pharmacy cart
+ *     description: Adds an item to the pharmacy cart.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               item:
+ *                 type: object
+ *     responses:
+ *       200:
+ *         description: Item added to cart successfully.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/addToCart', async (req, res) => {
   const { username, item } = req.body;
-
-
   try {
     let cart = await PharmacyCart.findOne({ username });
 
@@ -122,6 +206,32 @@ router.post('/addToCart', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /cartData:
+ *   get:
+ *     tags: [Pharmacy]
+ *     summary: Get pharmacy cart data
+ *     description: Fetches the pharmacy cart data for a given username.
+ *     parameters:
+ *       - in: query
+ *         name: username
+ *         required: true
+ *         description: Username of the user whose cart data is to be fetched.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with pharmacy cart data.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/pharmacyCart'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/cartData', async (req, res) => {
   const { username } = req.query;
 

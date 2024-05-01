@@ -1,5 +1,4 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcrypt')
 const DocRegisters = require('../models/docRegister')
@@ -10,19 +9,9 @@ const ODRegisters = require('../models/organdonation')
 const BBRegisters = require('../models/bloodbanks')
 const Appointments = require('../models/appointments')
 const Blogs = require('../models/blogs')
-const PharmacyCart = require('../models/pharmacyCart')
 const app = express()
 require('dotenv').config();
-const Feedback = require('../models/feedback')
-const cors = require('cors')
 const morgan = require('morgan')
-const multer = require('multer')
-const helmet = require('helmet')
-const authRouter = require('./authrouter');
-const adminRouter = require('./adminrouter');
-const patientRouter = require('./patientrouter');
-const docRouter = require('./docrouter');
-const hospRouter = require('./hosprouter');
 app.use('/bloguploads', express.static('bloguploads'));
 app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
@@ -36,6 +25,37 @@ router.use((err, req, res, next) => {
   res.status(500).send('OOPs! Something broke');
 });
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Admin
+ *     description: Operations related to admin functionalities
+ */
+
+/**
+ * @swagger
+ * /getAdminDetails/{username}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get admin details
+ *     description: Retrieves admin details by username.
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: Username of the admin to retrieve.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with admin details.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './models/admin'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getAdminDetails/:username', async (req, res) => {
   const username = req.params.username;
   try {
@@ -51,6 +71,25 @@ router.get('/getAdminDetails/:username', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /getAllPatients:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all patients
+ *     description: Retrieves all registered patients.
+ *     responses:
+ *       200:
+ *         description: Successful response with patient details.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/patientRegister'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getAllPatients', async (req, res) => {
   try {
     const user = await PatientRegisters.find();
@@ -65,6 +104,25 @@ router.get('/getAllPatients', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /getAllHospitals:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all hospitals
+ *     description: Retrieves a list of all hospitals.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of hospitals.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/hospRegister'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getAllHospitals', async (req, res) => {
   try {
     const user = await HospRegisters.find();
@@ -79,6 +137,25 @@ router.get('/getAllHospitals', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/getAllDoctors:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all doctors
+ *     description: Retrieves a list of all registered doctors.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of doctors.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/docRegister'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getAllDoctors', async (req, res) => {
   try {
     const user = await DocRegisters.find();
@@ -93,6 +170,25 @@ router.get('/getAllDoctors', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/getAllDonors:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all organ donors
+ *     description: Retrieves a list of all organ donors.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of organ donors.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/organdonation'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getAllDonors', async (req, res) => {
   try {
     const user = await ODRegisters.find();
@@ -107,6 +203,25 @@ router.get('/getAllDonors', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/getAllBloodDonors:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all blood donors
+ *     description: Retrieves a list of all blood donors.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of blood donors.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/bloodbanks'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getAllBloodDonors', async (req, res) => {
   try {
     const user = await BBRegisters.find();
@@ -121,6 +236,25 @@ router.get('/getAllBloodDonors', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/getAllAppointments:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all appointments
+ *     description: Retrieves a list of all appointments.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of appointments.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/appointments'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getAllAppointments', async (req, res) => {
   try {
     const user = await Appointments.find();
@@ -135,6 +269,25 @@ router.get('/getAllAppointments', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/hospitalsAPI:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all hospitals via API
+ *     description: Retrieves a list of all hospitals via API.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of hospitals.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/hospRegister'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/hospitalsAPI', async (req, res) => {
   try {
     const hospitals = await HospRegisters.find();
@@ -144,6 +297,7 @@ router.get('/hospitalsAPI', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 router.get('/doctorsAPI', async (req, res) => {
   try {
@@ -155,6 +309,25 @@ router.get('/doctorsAPI', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/blogAPI:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get all blogs
+ *     description: Retrieves a list of all blogs.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of blogs.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/blogs'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/blogAPI', async (req, res) => {
   try {
     const blogs = await Blogs.find();
@@ -165,6 +338,34 @@ router.get('/blogAPI', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/blogAPI/{docID}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get blogs by doctor ID
+ *     description: Retrieves a list of blogs written by a specific doctor based on their ID.
+ *     parameters:
+ *       - in: path
+ *         name: docID
+ *         required: true
+ *         description: ID of the doctor whose blogs are to be fetched.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with list of blogs by the specified doctor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/blogs'
+ *       404:
+ *         description: No blogs found for the specified doctor ID.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/blogsAPI/:docID', async (req, res) => {
   const { docID } = req.params
   try {
@@ -176,6 +377,32 @@ router.get('/blogsAPI/:docID', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/AppointmentsAPI/{docID}:
+ *   parameters:
+ *     - in: path
+ *       name: docID
+ *       required: true
+ *       schema:
+ *         type: string
+ *       description: The ID of the doctor to retrieve appointments for.
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get appointments by doctor ID
+ *     description: Retrieves a list of appointments for the specified doctor ID.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of appointments.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/appointments'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/AppointmentsAPI/:docID', async (req, res) => {
   const { docID } = req.params
   try {
@@ -187,6 +414,32 @@ router.get('/AppointmentsAPI/:docID', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/AppointmentsAPI2/{hospID}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get appointments by hospital ID
+ *     description: Retrieves a list of appointments for a specific hospital based on the hospital ID.
+ *     parameters:
+ *       - in: path
+ *         name: hospID
+ *         required: true
+ *         description: ID of the hospital to retrieve appointments for.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with list of appointments.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/appointments'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/AppointmentsAPI2/:hospID', async (req, res) => {
   const { hospID } = req.params
   try {
@@ -198,6 +451,32 @@ router.get('/AppointmentsAPI2/:hospID', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/AppointmentsAPI3/{username}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get appointments by username
+ *     description: Retrieves appointments for a specific user by their username.
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: The username of the user whose appointments are to be retrieved.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with appointments for the specified user.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/appointments'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/AppointmentsAPI3/:username', async (req, res) => {
   const { username } = req.params
   try {
@@ -209,6 +488,39 @@ router.get('/AppointmentsAPI3/:username', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/AppointmentsAPI4/dateanddocid:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get appointments by date and doctor ID
+ *     description: Retrieves appointments based on a specific date and doctor ID.
+ *     parameters:
+ *       - in: query
+ *         name: docID
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the doctor.
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *           format: date
+ *         required: true
+ *         description: The date of the appointments (YYYY-MM-DD).
+ *     responses:
+ *       200:
+ *         description: Successful response with appointments for the specified date and doctor ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/appointments'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
   const { docID, date } = req.query;
   console.log(docID, date);
@@ -221,6 +533,32 @@ router.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/AppointmentsAPIdoc/{docID}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get appointments by doctor ID
+ *     description: Retrieves appointments based on a specific doctor ID.
+ *     parameters:
+ *       - in: path
+ *         name: docID
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the doctor.
+ *     responses:
+ *       200:
+ *         description: Successful response with appointments for the specified doctor ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/appointments'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/AppointmentsAPIdoc/:docID', async (req, res) => {
   const { docID } = req.params
   try {
