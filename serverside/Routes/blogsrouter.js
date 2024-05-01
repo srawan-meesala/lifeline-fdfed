@@ -1,6 +1,7 @@
 const express = require('express')
 const DocRegisters = require('../models/docRegister')
 const Blogs = require('../models/blogs')
+const redis = require("redis");
 const app = express()
 require('dotenv').config()
 const morgan = require('morgan')
@@ -38,6 +39,19 @@ router.use((err, req, res, next) => {
   res.status(500).send('OOPs! Something broke');
 });
 
+const redisClient = redis.createClient({
+  host: '127.0.0.1',
+  port: 6379,
+});
+
+redisClient.on("error", function(error) {
+  console.error("Error connecting to Redis:", error);
+});
+
+redisClient.on("connect", function() {
+  console.log("Connected to Redis server");
+});
+
 
 /**
  * @swagger
@@ -70,22 +84,65 @@ router.use((err, req, res, next) => {
  *       500:
  *         description: Internal Server Error.
  */
-router.get('/blogdata', async (req, res) => {
+
+
+
+
+const blogCacheMiddleware = (req, res, next) => {
+  const cacheKey = `blog:${req.query.blogID}`; // Added backticks to create a template literal
+
+  redisClient.get(cacheKey, (err, data) => {
+    if (err) throw err;
+
+    if (data !== null) {
+      console.log('Blog data retrieved from cache');
+      res.status(200).json(JSON.parse(data));
+    } else {
+      next();
+    }
+  });
+};
+
+router.get('/blogdata', blogCacheMiddleware, async (req, res) => {
   const { blogID } = req.query;
   try {
-    const data = await Blogs.findOne({ blogID: blogID })
-    console.log(data)
-    if (data) {
-      res.status(200).json(data)
-    } else {
-      res.status(404).json('Blog not found');
+    const blog = await Blogs.findOne({ blogID: blogID });
+    if (!blog) {
+      return res.status(404).json('Blog not found');
     }
-  }
-  catch (error) {
-    console.log(error)
+    // Cache data using Redis
+    const cacheKey = `blog:${blogID}`; // Added backticks to create a template literal
+    redisClient.setex(cacheKey, 3600, JSON.stringify(blog)); // Cache for 1 hour
+    res.status(200).json(blog);
+  } catch (error) {
+    console.error(error);
     res.status(500).json('Internal Server Error');
   }
-})
+});
+
+
+
+
+
+
+//WITHOUT REDIS
+
+// router.get('/blogdata', async (req, res) => {
+//   const { blogID } = req.query;
+//   try {
+//     const data = await Blogs.findOne({ blogID: blogID })
+//     console.log(data)
+//     if (data) {
+//       res.status(200).json(data)
+//     } else {
+//       res.status(404).json('Blog not found');
+//     }
+//   }
+//   catch (error) {
+//     console.log(error)
+//     res.status(500).json('Internal Server Error');
+//   }
+// })
 
 
 /**
