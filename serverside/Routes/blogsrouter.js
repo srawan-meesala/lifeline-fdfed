@@ -89,7 +89,7 @@ redisClient.on("connect", function() {
 
 
 const blogCacheMiddleware = (req, res, next) => {
-  const cacheKey = `blog:${req.query.blogID}`; // Added backticks to create a template literal
+  const cacheKey = `blog:${req.query.blogID}`; 
 
   redisClient.get(cacheKey, (err, data) => {
     if (err) throw err;
@@ -181,12 +181,18 @@ router.get('/blogdata', blogCacheMiddleware, async (req, res) => {
  *       500:
  *         description: Internal Server Error.
  */
+
+
+
+
+
 router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
-  const { docID, title, blog } = req.body
+  const { docID, title, blog } = req.body;
   const imagepath = req.file.path;
-  const doc = await DocRegisters.findOne({ docID })
-  const docName = doc.name
-  const spec = doc.specialization
+  const doc = await DocRegisters.findOne({ docID });
+  const docName = doc.name;
+  const spec = doc.specialization;
+
   try {
     const newBlog = new Blogs({
       docID: docID,
@@ -195,14 +201,52 @@ router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
       title: title,
       blog: blog,
       imagepath: imagepath
-    })
+    });
+
     await newBlog.save();
+
+    // Invalidate the cache for the /blogdata route
+    const cacheKey = `blog:${newBlog._id}`; // Properly formatted cache key
+    redisClient.del(cacheKey, (err, reply) => {
+      if (err) throw err;
+      console.log(`Cache for blog with ID ${newBlog._id} invalidated`); // Corrected console.log statement
+    });
+
     res.status(200).json({ status: 'uploaded' });
-  }
-  catch (error) {
-    console.log(error)
+  } catch (error) {
+    console.error(error);
     res.status(500).json('Internal Server Error');
   }
-})
+});
+
+
+
+
+
+//WITHOUT REDIS
+
+// router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
+//   const { docID, title, blog } = req.body
+//   const imagepath = req.file.path;
+//   const doc = await DocRegisters.findOne({ docID })
+//   const docName = doc.name
+//   const spec = doc.specialization
+//   try {
+//     const newBlog = new Blogs({
+//       docID: docID,
+//       docName: docName,
+//       specialization: spec,
+//       title: title,
+//       blog: blog,
+//       imagepath: imagepath
+//     })
+//     await newBlog.save();
+//     res.status(200).json({ status: 'uploaded' });
+//   }
+//   catch (error) {
+//     console.log(error)
+//     res.status(500).json('Internal Server Error');
+//   }
+// })
 
 module.exports = router;
