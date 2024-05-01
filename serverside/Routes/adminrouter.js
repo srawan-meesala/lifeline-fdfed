@@ -9,6 +9,7 @@ const ODRegisters = require('../models/organdonation')
 const BBRegisters = require('../models/bloodbanks')
 const Appointments = require('../models/appointments')
 const Blogs = require('../models/blogs')
+const redis = require("redis");
 const app = express()
 require('dotenv').config();
 const morgan = require('morgan')
@@ -24,6 +25,21 @@ router.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('OOPs! Something broke');
 });
+
+// // Create a Redis client
+const redisClient = redis.createClient({
+  host: '127.0.0.1',
+  port: 6379,
+});
+
+redisClient.on("connect", function () {
+  console.log("Connected to Redis server");
+});
+
+redisClient.on("error", function (error) {
+  console.error("Error connecting to Redis:", error);
+});
+
 
 /**
  * @swagger
@@ -90,19 +106,77 @@ router.get('/getAdminDetails/:username', async (req, res) => {
  *       500:
  *         description: Internal Server Error.
  */
-router.get('/getAllPatients', async (req, res) => {
-  try {
-    const user = await PatientRegisters.find();
-    if (!user) {
-      return res.json('No User found');
+
+
+
+
+
+
+const cacheMiddleware = (req, res, next) => {
+  const cacheKey = 'allPatients';
+
+  redisClient.get(cacheKey, (err, data) => {
+    if (err) throw err;
+
+    if (data !== null) {
+      console.log('Data retrieved from cache');
+      res.json(JSON.parse(data));
+    } else {
+      next();
     }
-    res.status(200).json(user);
-  }
-  catch (e) {
-    console.error(e);
-    res.json('Internal Server Error');
+  });
+};
+
+router.get('/getAllPatients', cacheMiddleware, async (req, res) => {
+  try {
+    const patients = await PatientRegisters.find();
+    if (!patients) {
+      return res.status(404).json({ message: 'No patients found' });
+    }
+    // Cache data using Redis
+    redisClient.setex('allPatients', 3600, JSON.stringify(patients)); // Cache for 1 hour
+    res.status(200).json(patients);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+
+
+
+
+
+
+//WITHOUT REDIS
+
+// router.get('/getAllPatients', async (req, res) => {
+//   try {
+//     const user = await PatientRegisters.find();
+//     if (!user) {
+//       return res.json('No User found');
+//     }
+//     res.status(200).json(user);
+//   }
+//   catch (e) {
+//     console.error(e);
+//     res.json('Internal Server Error');
+//   }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @swagger
@@ -123,19 +197,65 @@ router.get('/getAllPatients', async (req, res) => {
  *       500:
  *         description: Internal Server Error.
  */
-router.get('/getAllHospitals', async (req, res) => {
-  try {
-    const user = await HospRegisters.find();
-    if (!user) {
-      return res.json('No Hospital found');
+
+
+
+const hospitalCacheMiddleware = (req, res, next) => {
+  const cacheKey = 'allHospitals';
+
+  redisClient.get(cacheKey, (err, data) => {
+    if (err) throw err;
+
+    if (data !== null) {
+      console.log('Data retrieved from cache');
+      res.json(JSON.parse(data));
+    } else {
+      next();
     }
-    res.status(200).json(user);
-  }
-  catch (e) {
-    console.error(e);
-    res.json('Internal Server Error');
+  });
+};
+
+router.get('/getAllHospitals', hospitalCacheMiddleware, async (req, res) => {
+  try {
+    const hospitals = await HospRegisters.find();
+    if (!hospitals) {
+      return res.json('No hospitals found');
+    }
+    // Cache data using Redis
+    redisClient.setex('allHospitals', 3600, JSON.stringify(hospitals)); // Cache for 1 hour
+    res.status(200).json(hospitals);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+//WITHOUT REDIS
+
+// router.get('/getAllHospitals', async (req, res) => {
+//   try {
+//     const user = await HospRegisters.find();
+//     if (!user) {
+//       return res.json('No Hospital found');
+//     }
+//     res.status(200).json(user);
+//   }
+//   catch (e) {
+//     console.error(e);
+//     res.json('Internal Server Error');
+//   }
+// });
+
 
 /**
  * @swagger
@@ -156,19 +276,64 @@ router.get('/getAllHospitals', async (req, res) => {
  *       500:
  *         description: Internal Server Error.
  */
-router.get('/getAllDoctors', async (req, res) => {
-  try {
-    const user = await DocRegisters.find();
-    if (!user) {
-      return res.json('No Doctor found');
+
+
+
+
+
+const doctorCacheMiddleware = (req, res, next) => {
+  const cacheKey = 'allDoctors';
+
+  redisClient.get(cacheKey, (err, data) => {
+    if (err) throw err;
+
+    if (data !== null) {
+      console.log('Data retrieved from cache');
+      res.json(JSON.parse(data));
+    } else {
+      next();
     }
-    res.status(200).json(user);
-  }
-  catch (e) {
-    console.error(e);
-    res.json('Internal Server Error');
+  });
+};
+
+router.get('/getAllDoctors', doctorCacheMiddleware, async (req, res) => {
+  try {
+    const doctors = await DocRegisters.find();
+    if (!doctors) {
+      return res.json('No doctors found');
+    }
+    // Cache data using Redis
+    redisClient.setex('allDoctors', 3600, JSON.stringify(doctors)); // Cache for 1 hour
+    res.status(200).json(doctors);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+
+
+
+
+
+
+
+
+//WITHOUT REDIS
+
+// router.get('/getAllDoctors', async (req, res) => {
+//   try {
+//     const user = await DocRegisters.find();
+//     if (!user) {
+//       return res.json('No Doctor found');
+//     }
+//     res.status(200).json(user);
+//   }
+//   catch (e) {
+//     console.error(e);
+//     res.json('Internal Server Error');
+//   }
+// });
 
 /**
  * @swagger
