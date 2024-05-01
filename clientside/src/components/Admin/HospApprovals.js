@@ -25,18 +25,30 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
     fetchData()
   }, [username])  
 
-    const viewFile = async (filepath) => {
+  const viewFile = async (filepath) => {
         try {
-            const response = await axios.get(`http://localhost:8000/getCertificate?filepath=${filepath}`, {
+            // Format the file path
+            const formattedFilepath = encodeURIComponent(filepath.trim());
+            console.log(formattedFilepath)
+            // Send the request with the formatted file path
+            const response = await axios.get(`http://localhost:8000/getCertificate?filepath=${formattedFilepath}`, {
                 responseType: 'blob' // Specify response type as blob
             });
-            const file = new Blob([response.data]); // No need to specify file type here
+
+            // Create a Blob object from the response data
+            const file = new Blob([response.data]);
+
+            // Create a URL for the Blob object
             const fileURL = URL.createObjectURL(file);
+
+            // Open the URL in a new tab
             window.open(fileURL, '_blank');
         } catch (error) {
             console.error('Error viewing certificate:', error);
         }
     };
+
+
  
     return (
         <div className='UserProfile-right'>

@@ -1019,6 +1019,7 @@ function sendVerificationEmail2(to) {
  */
 app.put('/approveHosp/:id', async (req, res) => {
   const mailID = req.params.id
+  console.log(mailID)
   try {
     const hospital = await HospRegisters.findOne({ mailID: mailID });
 

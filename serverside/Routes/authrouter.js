@@ -215,7 +215,7 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
 
     // Upload certificate to Firebase Storage
     const file = req.file;
-    const certificateRef = ref(storage, `doctor_certificates/${file.originalname + " " + name}`);
+    const certificateRef = ref(storage, `doctor_certificates/${file.originalname + "_" + name}`);
     await uploadBytes(certificateRef, file.buffer);
     const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname + " " + name}`;
 
@@ -236,7 +236,7 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
     await data.save();
 
     const verificationLink = `http://localhost:3000/sent2`;
-    sendVerificationEmail(mailID, verificationLink);
+    sendVerificationEmail(mailID, verificationLink, );
     res.status(200).json({ message: 'Registration successful. Please Wait for response mail from the respective Hospital.', verificationToken });
   } catch (error) {
     next(error);
@@ -276,11 +276,10 @@ router.post('/hospRegister', upload.single('file'), async (req, res, next) => {
       return res.json('exist');
     }
 
-    // Upload certificate to Firebase Storage
     const file = req.file;
-    const certificateRef = ref(storage, `hospital_certificates/${file.originalname + " " + hospName}`);
+    const certificateRef = ref(storage, `hospital_certificates/${file.originalname + "_" + hospName}`);
     await uploadBytes(certificateRef, file.buffer);
-    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname + " " + hospName}`;
+    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/hospital_certificates/${file.originalname + "_" + hospName}`;
 
     const verificationToken = uuid.v4();
     const data = new HospRegisters({
