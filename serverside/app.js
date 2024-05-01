@@ -29,7 +29,7 @@ const swaggerOptions = require('./swaggerOptions');
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-mongoose.connect('mongodb://127.0.0.1:27017/Lifeline-fdfed')
+mongoose.connect('mongodb+srv://lifelinebusinesscare:Lifeline%40123@lifeline.wfmypuq.mongodb.net/Lifeline-fdfed')
   .then(() => {
     console.log('MongoDB Connected Successfully')
   })

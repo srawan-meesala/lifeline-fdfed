@@ -32,9 +32,10 @@ function PatientRegister() {
           alert("Invalid Mobile number!!");
         }else{
           try {
-            const response = await axios.post('http://localhost:8000/patientRegister', {
-              firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
-            });
+            const patientdata ={firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
+            }
+            console.log(patientdata);
+            const response = await axios.post('http://localhost:8000/patientRegister', patientdata);
       
             if (response.data === 'exist') {
               alert('User already registered');
@@ -58,7 +59,7 @@ function PatientRegister() {
             </div>
             <div className="PatientLogin-right">
                 <div className="PatientRegister-right-content">
-                  <form method="POST" action="/patientRegister"  className="PatientRegister-form">
+                  <form method="POST" action='/patientRegister' className="PatientRegister-form">
                       <div className="PatientRegister-form-input">
                         <label >First Name</label><b/>
                         <input type="text" onChange={(e) => { setFirstName(e.target.value) }} name="firstName" placeholder="First Name" required  />
@@ -85,8 +86,8 @@ function PatientRegister() {
                       </div>
                       <div className="PatientRegister-form-input">
                         <label >Blood Group</label><b/>
-                        <select value={bloodGroup} onChange={(e) => { setBloodGroup(e.target.value) }} name="bloodGroup" required >
-                          <option value="A+" selected>A+</option>
+                        <select value={bloodGroup} defaultValue={"A+"} onChange={(e) => { setBloodGroup(e.target.value) }} name="bloodGroup" required >
+                          <option value="A+">A+</option>
                           <option value="B+">B+</option>
                           <option value="O+">O+</option>
                           <option value="AB+">AB+</option>
@@ -98,14 +99,14 @@ function PatientRegister() {
                       </div>
                       <div className="PatientRegister-form-input">
                         <label >Marital Status</label><b/>
-                        <select value={maritalStatus} onChange={(e) => { setMaritalStatus(e.target.value) }} name="maritalStatus" required>
+                        <select value={maritalStatus} defaultValue={"married"} onChange={(e) => { setMaritalStatus(e.target.value) }} name="maritalStatus" required>
                           <option value='married' selected>Married</option>
                           <option value='unmarried'>Unmarried</option>
                         </select>
                       </div>
                       <div className="PatientRegister-form-input">
                         <label >Gender</label><b/>
-                        <select value={gender} onChange={(e) => { setGender(e.target.value) }} name="gender" required>
+                        <select value={gender} defaultValue={"male"} onChange={(e) => { setGender(e.target.value) }} name="gender" required>
                           <option value="male" selected>Male</option>
                           <option value="female">Female</option>
                           <option value="other">Other</option>
