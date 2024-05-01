@@ -12,46 +12,27 @@ require('dotenv').config();
 const morgan = require('morgan')
 const multer = require('multer')
 const uuid = require('uuid')
+const { initializeApp } = require('firebase/app')
+const { getStorage, ref, uploadBytes } = require('firebase/storage')
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID
+}
 app.use('/bloguploads', express.static('bloguploads'));
 app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
-const filetoStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, `./doc-certificates`);
-  },
-  filename: async (req, file, cb) => {
-    try {
-      const doc = await DocRegisters.findOne().sort({ _id: -1 });
-      const new_id = doc ? doc.docID + 1 : 1;
-      const ext = file.originalname.split('.').pop();
-      const filename = `doc_${new_id}_certificate.${ext}`;
-      cb(null, filename);
-    } catch (err) {
-      console.log(err);
-      cb(err);
-    }
-  },
-});
 
-const filetoStorageEngine2 = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, `./hosp-certificates`);
-  },
-  filename: async (req, file, cb) => {
-    try {
-      const hosp = await HospRegisters.findOne().sort({ _id: -1 });
-      const new_id = hosp ? hosp.hospID + 1 : 1;
-      const ext = file.originalname.split('.').pop();
-      const filename = `hosp_${new_id}_certificate.${ext}`;
-      cb(null, filename);
-    } catch (err) {
-      console.log(err);
-      cb(err);
-    }
-  },
-});
+const firebaseApp = initializeApp(firebaseConfig);
+const storage = getStorage(firebaseApp);
+const filetoStorageEngine = multer.memoryStorage();
+
 
 function sendVerificationEmail(to, link) {
   const transporter = nodemailer.createTransport({
@@ -78,7 +59,6 @@ function sendVerificationEmail(to, link) {
 }
 
 const upload = multer({ storage: filetoStorageEngine })
-const upload2 = multer({ storage: filetoStorageEngine2 })
 
 const router = express.Router()
 
@@ -222,7 +202,6 @@ router.post('/patientRegister', async (req, res, next) => {
  */
 router.post('/docRegister', upload.single('file'), async (req, res, next) => {
   const { name, mobileNumber, mailID, hospID, specialization, fee } = req.body;
-  const filepath = req.file.path;
 
   try {
     const check = await DocRegisters.findOne({ mailID });
@@ -234,6 +213,12 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
       return res.json('exist');
     }
 
+    // Upload certificate to Firebase Storage
+    const file = req.file;
+    const certificateRef = ref(storage, `doctor_certificates/${file.originalname + " " + name}`);
+    await uploadBytes(certificateRef, file.buffer);
+    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname + " " + name}`;
+
     const verificationToken = uuid.v4();
     const data = new DocRegisters({
       name,
@@ -243,7 +228,7 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
       hospID,
       city,
       specialization,
-      filepath,
+      filepath, // Save certificate URL to MongoDB
       fee,
       verificationToken
     });
@@ -279,11 +264,10 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
  *       500:
  *         description: Internal Server Error.
  */
-router.post('/hospRegister', upload2.single('file'), async (req, res, next) => {
+router.post('/hospRegister', upload.single('file'), async (req, res, next) => {
   const {
     hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
   } = req.body;
-  const filepath = req.file.path
 
   try {
     const check = await HospRegisters.findOne({ mailID });
@@ -291,6 +275,12 @@ router.post('/hospRegister', upload2.single('file'), async (req, res, next) => {
     if (check) {
       return res.json('exist');
     }
+
+    // Upload certificate to Firebase Storage
+    const file = req.file;
+    const certificateRef = ref(storage, `hospital_certificates/${file.originalname + " " + hospName}`);
+    await uploadBytes(certificateRef, file.buffer);
+    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname + " " + hospName}`;
 
     const verificationToken = uuid.v4();
     const data = new HospRegisters({

@@ -18,8 +18,9 @@ app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
-
+const { getStorage, ref, getDownloadURL } = require("firebase/storage");
 const router = express.Router()
+const storage = getStorage();
 
 router.use((err, req, res, next) => {
   console.error(err.stack);
@@ -47,6 +48,18 @@ redisClient.on("error", function (error) {
  *   - name: Admin
  *     description: Operations related to admin functionalities
  */
+
+app.get("/getCertificate", async (req, res) => {
+  const { filepath } = req.query;
+  try {
+      const imageRef = ref(storage, filepath); // Construct the reference to the image in Firebase Storage
+      const imageUrl = await getDownloadURL(imageRef); // Get the download URL for the image
+      res.status(200).json({ imageUrl });
+  } catch (error) {
+      console.error("Error fetching image URL:", error);
+      res.status(500).json({ error: "Failed to fetch image URL" });
+  }
+});
 
 /**
  * @swagger
