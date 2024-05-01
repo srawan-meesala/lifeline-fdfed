@@ -139,7 +139,7 @@ router.get('/getAllHospitals', async (req, res) => {
 
 /**
  * @swagger
- * /admin/getAllDoctors:
+ * /getAllDoctors:
  *   get:
  *     tags: [Admin]
  *     summary: Get all doctors
@@ -172,7 +172,7 @@ router.get('/getAllDoctors', async (req, res) => {
 
 /**
  * @swagger
- * /admin/getAllDonors:
+ * /getAllDonors:
  *   get:
  *     tags: [Admin]
  *     summary: Get all organ donors
@@ -205,7 +205,7 @@ router.get('/getAllDonors', async (req, res) => {
 
 /**
  * @swagger
- * /admin/getAllBloodDonors:
+ * /getAllBloodDonors:
  *   get:
  *     tags: [Admin]
  *     summary: Get all blood donors
@@ -238,7 +238,7 @@ router.get('/getAllBloodDonors', async (req, res) => {
 
 /**
  * @swagger
- * /admin/getAllAppointments:
+ * /getAllAppointments:
  *   get:
  *     tags: [Admin]
  *     summary: Get all appointments
@@ -271,7 +271,7 @@ router.get('/getAllAppointments', async (req, res) => {
 
 /**
  * @swagger
- * /admin/hospitalsAPI:
+ * /hospitalsAPI:
  *   get:
  *     tags: [Admin]
  *     summary: Get all hospitals via API
@@ -311,7 +311,7 @@ router.get('/doctorsAPI', async (req, res) => {
 
 /**
  * @swagger
- * /admin/blogAPI:
+ * /blogAPI:
  *   get:
  *     tags: [Admin]
  *     summary: Get all blogs
@@ -340,7 +340,7 @@ router.get('/blogAPI', async (req, res) => {
 
 /**
  * @swagger
- * /admin/blogAPI/{docID}:
+ * /blogAPI/{docID}:
  *   get:
  *     tags: [Admin]
  *     summary: Get blogs by doctor ID
@@ -379,7 +379,7 @@ router.get('/blogsAPI/:docID', async (req, res) => {
 
 /**
  * @swagger
- * /admin/AppointmentsAPI/{docID}:
+ * /AppointmentsAPI/{docID}:
  *   parameters:
  *     - in: path
  *       name: docID
@@ -416,7 +416,7 @@ router.get('/AppointmentsAPI/:docID', async (req, res) => {
 
 /**
  * @swagger
- * /admin/AppointmentsAPI2/{hospID}:
+ * /AppointmentsAPI2/{hospID}:
  *   get:
  *     tags: [Admin]
  *     summary: Get appointments by hospital ID
@@ -453,7 +453,7 @@ router.get('/AppointmentsAPI2/:hospID', async (req, res) => {
 
 /**
  * @swagger
- * /admin/AppointmentsAPI3/{username}:
+ * /AppointmentsAPI3/{username}:
  *   get:
  *     tags: [Admin]
  *     summary: Get appointments by username
@@ -490,7 +490,7 @@ router.get('/AppointmentsAPI3/:username', async (req, res) => {
 
 /**
  * @swagger
- * /admin/AppointmentsAPI4/dateanddocid:
+ * /AppointmentsAPI4/dateanddocid:
  *   get:
  *     tags: [Admin]
  *     summary: Get appointments by date and doctor ID
@@ -535,7 +535,7 @@ router.get('/AppointmentsAPI4/dateanddocid', async (req, res) => {
 
 /**
  * @swagger
- * /admin/AppointmentsAPIdoc/{docID}:
+ * /AppointmentsAPIdoc/{docID}:
  *   get:
  *     tags: [Admin]
  *     summary: Get appointments by doctor ID
@@ -570,6 +570,32 @@ router.get('/AppointmentsAPIdoc/:docID', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /DoctorsAPI2/{hospID}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get doctors by hospital ID
+ *     description: Retrieves a list of doctors based on the provided hospital ID.
+ *     parameters:
+ *       - in: path
+ *         name: hospID
+ *         required: true
+ *         description: ID of the hospital
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with list of doctors.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/docRegister'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/DoctorsAPI2/:hospID', async (req, res) => {
   const { hospID } = req.params
   try {
@@ -581,6 +607,33 @@ router.get('/DoctorsAPI2/:hospID', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /getTotalExpenditure/{username}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get total expenditure by username
+ *     description: Retrieves the total expenditure of appointments made by the provided username.
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: Username of the patient
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with total expenditure.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 totalExpenditure:
+ *                   type: number
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getTotalExpenditure/:username', async (req, res) => {
   try {
     const username = req.params.username;
@@ -596,6 +649,34 @@ router.get('/getTotalExpenditure/:username', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /getTotalExpenditure2/{docID}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get total expenditure for a specific doctor
+ *     description: Retrieves the total expenditure for appointments with a specific doctor.
+ *     parameters:
+ *       - in: path
+ *         name: docID
+ *         description: ID of the doctor
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with total expenditure.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 totalExpenditure:
+ *                   type: number
+ *                   description: Total expenditure for appointments with the specified doctor.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getTotalExpenditure2/:docID', async (req, res) => {
   try {
     const docID = req.params.docID;
@@ -611,6 +692,34 @@ router.get('/getTotalExpenditure2/:docID', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /getTotalExpenditure3/{hospID}:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get total expenditure for a specific hospital
+ *     description: Retrieves the total expenditure for appointments at a specific hospital.
+ *     parameters:
+ *       - in: path
+ *         name: hospID
+ *         description: ID of the hospital
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with total expenditure.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 totalExpenditure:
+ *                   type: number
+ *                   description: Total expenditure for appointments at the specified hospital.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/getTotalExpenditure3/:hospID', async (req, res) => {
   try {
     const hospID = req.params.hospID;
@@ -626,6 +735,25 @@ router.get('/getTotalExpenditure3/:hospID', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /registeredHosps:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Get registered hospitals awaiting approval
+ *     description: Retrieves a list of registered hospitals that are pending approval.
+ *     responses:
+ *       200:
+ *         description: Successful response with list of registered hospitals awaiting approval.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: './models/hospRegister'
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.get('/registeredHosps', async (req, res) => {
   try {
     const hospitals = await HospRegisters.find({ approvalStatus: 'pending' });
@@ -685,6 +813,32 @@ function sendVerificationEmail2(to) {
   });
 }
 
+/**
+ * @swagger
+ * /approveHosp/{id}:
+ *   put:
+ *     tags: [Admin]
+ *     summary: Approve hospital registration
+ *     description: Approves the registration of a hospital.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the hospital's email for approval.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response with the approved hospital data.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './models/hospRegister'
+ *       404:
+ *         description: Hospital not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 app.put('/approveHosp/:id', async (req, res) => {
   const mailID = req.params.id
   try {
@@ -705,6 +859,32 @@ app.put('/approveHosp/:id', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/declineHosp/{id}:
+ *   put:
+ *     tags: [Admin]
+ *     summary: Decline hospital approval
+ *     description: Declines approval for a hospital registration request.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Hospital's email ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Hospital approval declined successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: './models/hospRegister'
+ *       404:
+ *         description: Hospital not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 app.put('/declineHosp/:id', async (req, res) => {
   const mailID = req.params.id
   try {
@@ -724,6 +904,36 @@ app.put('/declineHosp/:id', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /admin/deleteuser:
+ *   post:
+ *     tags: [Admin]
+ *     summary: Delete user account
+ *     description: Deletes a user account from the system.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               enteredUsername:
+ *                 type: string
+ *               enteredPassword:
+ *                 type: string
+ *               actualusername:
+ *                 type: string
+ *               actualpassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User account deleted successfully.
+ *       400:
+ *         description: Incorrect username or password.
+ *       500:
+ *         description: Internal Server Error.
+ */
 app.post('/deleteuser', async (req, res) => {
   const { enteredUsername, enteredPassword, actualusername, actualpassword } = req.body
   try {
@@ -746,6 +956,38 @@ app.post('/deleteuser', async (req, res) => {
   }
 })
 
+/**
+ * @swagger
+ * /admin/deletedoc:
+ *   post:
+ *     tags: [Admin]
+ *     summary: Delete doctor account
+ *     description: Deletes a doctor account based on the provided doctor ID and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               entereddocID:
+ *                 type: string
+ *               enteredPassword:
+ *                 type: string
+ *               actualdocID:
+ *                 type: string
+ *               actualpassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Doctor account successfully deleted.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Doctor account not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 app.post('/deletedoc', async (req, res) => {
   const { entereddocID, enteredPassword, actualdocID, actualpassword } = req.body
   try {
@@ -768,6 +1010,38 @@ app.post('/deletedoc', async (req, res) => {
   }
 })
 
+/**
+ * @swagger
+ * /admin/deletehosp:
+ *   post:
+ *     tags: [Admin]
+ *     summary: Delete hospital account
+ *     description: Deletes a hospital account based on the provided hospital ID and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               enteredhospID:
+ *                 type: string
+ *               enteredPassword:
+ *                 type: string
+ *               actualhospID:
+ *                 type: string
+ *               actualPassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Hospital account successfully deleted.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Hospital account not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 app.post('/deletehosp', async (req, res) => {
   const { enteredhospID, enteredPassword, actualhospID, actualPassword } = req.body
   try {
