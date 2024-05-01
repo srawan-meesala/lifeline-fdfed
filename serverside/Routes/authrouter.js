@@ -6,6 +6,8 @@ const PatientRegisters = require('../models/patientRegister')
 const HospRegisters = require('../models/hospRegister')
 const AdminRegisters = require('../models/admin')
 const app = express()
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 require('dotenv').config();
 const morgan = require('morgan')
 const multer = require('multer')
@@ -15,7 +17,6 @@ app.use('/doc-certificates', express.static('doc-certificates'));
 app.use('/hosp-certificates', express.static('hosp-certificates'));
 app.use(morgan('dev'))
 app.use(express.json())
-
 const filetoStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, `./doc-certificates`);
@@ -170,6 +171,7 @@ router.post('/login', async (req, res, next) => {
  *         description: Internal Server Error.
  */
 router.post('/patientRegister', async (req, res, next) => {
+  console.log(req.body);
   const {
     firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
   } = req.body;

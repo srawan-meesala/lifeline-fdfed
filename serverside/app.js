@@ -4,12 +4,13 @@ const morgan = require('morgan')
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const app = express()
-
+app.use(express.json())
 const cors = require('cors')
 const helmet = require('helmet')
 app.use(cors())
 app.use(helmet())
-
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 const authRouter = require('./Routes/authrouter');
 const adminRouter = require('./Routes/adminrouter');
 const docRouter = require('./Routes/docrouter');
