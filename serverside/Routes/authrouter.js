@@ -170,12 +170,10 @@ router.post('/login', async (req, res, next) => {
  *         description: Internal Server Error.
  */
 router.post('/patientRegister', async (req, res, next) => {
-  console.log(req.body);
   const {
     firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
   } = req.body;
   
-
   try {
     const check = await PatientRegisters.findOne({ mailID });
 

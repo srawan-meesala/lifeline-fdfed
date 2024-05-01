@@ -21,33 +21,42 @@ function PatientRegister() {
 
   async function submitRegister(e) {
     e.preventDefault();
+    const formData = new FormData()
     const currentDate = new Date();
     const enteredDate = new Date(dob);
     const minAgeDate = new Date(currentDate.getFullYear() - 12, currentDate.getMonth(), currentDate.getDate());
+    
+    formData.append('firstName',firstName);
+    formData.append('lastName',lastName);
+    formData.append('mobileNumber', mobileNumber);
+    formData.append('mailID', mailID);
+    formData.append('dob', dob);
+    formData.append('occupation', occupation);
+    formData.append('bloodGroup', bloodGroup);
+    formData.append('maritalStatus', maritalStatus);
+    formData.append('gender', gender);
+
     if (isNaN(enteredDate.getTime()) || enteredDate >= currentDate || enteredDate > minAgeDate) {
       alert("Please enter a valid Date of Birth. Minimum age must be 12 years.");
       return;
     }
     if(!mobile.test(mobileNumber)) {
           alert("Invalid Mobile number!!");
-        }else{
-          try {
-            const patientdata ={firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
-            }
-            console.log(patientdata);
-            const response = await axios.post('http://localhost:8000/patientRegister', patientdata);
-      
-            if (response.data === 'exist') {
-              alert('User already registered');
-            } else {
-              navigate('/sent');
-              setVerificationToken(response.data.verificationToken);
-            }
-          } catch (error) {
-            alert('Wrong details');
-            console.error(error);
-          }
-        }
+    }else{
+    try {
+      const response = await axios.post('http://localhost:8000/patientRegister',formData
+    )
+      if (response.data === 'exist') {
+        alert('User already registered');
+      } else {
+        navigate('/sent');
+        setVerificationToken(response.data.verificationToken);
+      }
+    } catch (error) {
+      alert('Wrong details');
+      console.error(error);
+    }
+  }
     
   }
 
