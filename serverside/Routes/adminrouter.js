@@ -861,7 +861,7 @@ app.put('/approveHosp/:id', async (req, res) => {
 
 /**
  * @swagger
- * /admin/declineHosp/{id}:
+ * /declineHosp/{id}:
  *   put:
  *     tags: [Admin]
  *     summary: Decline hospital approval
@@ -906,7 +906,7 @@ app.put('/declineHosp/:id', async (req, res) => {
 
 /**
  * @swagger
- * /admin/deleteuser:
+ * /deleteuser:
  *   post:
  *     tags: [Admin]
  *     summary: Delete user account
@@ -958,7 +958,7 @@ app.post('/deleteuser', async (req, res) => {
 
 /**
  * @swagger
- * /admin/deletedoc:
+ * /deletedoc:
  *   post:
  *     tags: [Admin]
  *     summary: Delete doctor account
@@ -1012,7 +1012,7 @@ app.post('/deletedoc', async (req, res) => {
 
 /**
  * @swagger
- * /admin/deletehosp:
+ * /deletehosp:
  *   post:
  *     tags: [Admin]
  *     summary: Delete hospital account

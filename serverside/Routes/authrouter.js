@@ -86,6 +86,37 @@ router.use((err, req, res, next) => {
   res.status(500).send('OOPs! Something broke');
 });
 
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Login
+ *     description: Authenticates a user based on provided username, password, and user type.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               type:
+ *                 type: string
+ *                 enum: [patient, doctor, hospital, admin]
+ *     responses:
+ *       200:
+ *         description: User exists and credentials are valid.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: User does not exist.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/login', async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -117,6 +148,27 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /patientRegister:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Register Patient
+ *     description: Registers a new patient.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/PatientRegisters'
+ *     responses:
+ *       200:
+ *         description: Registration successful.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/patientRegister', async (req, res, next) => {
   const {
     firstName, lastName, mobileNumber, mailID, dob, occupation, bloodGroup, maritalStatus, gender
@@ -145,6 +197,27 @@ router.post('/patientRegister', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /docRegister:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Register Doctor
+ *     description: Registers a new doctor.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             $ref: '#/components/schemas/DocRegisters'
+ *     responses:
+ *       200:
+ *         description: Registration successful.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/docRegister', upload.single('file'), async (req, res, next) => {
   const { name, mobileNumber, mailID, hospID, specialization, fee } = req.body;
   const filepath = req.file.path;
@@ -183,6 +256,27 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /hospRegister:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Register Hospital
+ *     description: Registers a new hospital.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             $ref: '#/components/schemas/HospRegisters'
+ *     responses:
+ *       200:
+ *         description: Registration successful.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/hospRegister', upload2.single('file'), async (req, res, next) => {
   const {
     hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation
@@ -212,6 +306,32 @@ router.post('/hospRegister', upload2.single('file'), async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /verifyEmailPatient:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Verify Patient Email
+ *     description: Verifies the email of a registered patient.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               verificationToken:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Email verified successfully.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Verification token not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/verifyEmailPatient', async (req, res) => {
   const { verificationToken } = req.body;
   try {
@@ -231,6 +351,32 @@ router.post('/verifyEmailPatient', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /verifyEmailDoc:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Verify Doctor Email
+ *     description: Verifies the email of a registered doctor.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               verificationToken:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Email verified successfully.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Verification token not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/verifyEmailDoc', async (req, res) => {
   const { verificationToken } = req.body;
   try {
@@ -250,6 +396,32 @@ router.post('/verifyEmailDoc', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /verifyEmailHosp:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Verify Hospital Email
+ *     description: Verifies the email of a registered hospital.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               verificationToken:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Email verified successfully.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Verification token not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/verifyEmailHosp', async (req, res) => {
   const { verificationToken } = req.body;
   try {
@@ -269,6 +441,36 @@ router.post('/verifyEmailHosp', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /patientRegister2:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Complete Patient Registration
+ *     description: Completes the registration process for a patient by setting username and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               verificationToken:
+ *                 type: string
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Registration completed successfully.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Verification token not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/patientRegister2', async (req, res) => {
   const { verificationToken, username, password } = req.body;
   try {
@@ -294,6 +496,36 @@ router.post('/patientRegister2', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /docRegister2:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Complete Doctor Registration
+ *     description: Completes the registration process for a doctor by setting doctor ID and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               verificationToken:
+ *                 type: string
+ *               docID:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Registration completed successfully.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Verification token not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/docRegister2', async (req, res) => {
   const { verificationToken, docID, password } = req.body;
   try {
@@ -314,6 +546,36 @@ router.post('/docRegister2', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /hospRegister2:
+ *   post:
+ *     tags: [Authentication]
+ *     summary: Complete Hospital Registration
+ *     description: Completes the registration process for a hospital by setting hospital ID and password.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               verificationToken:
+ *                 type: string
+ *               hospID:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Registration completed successfully.
+ *       400:
+ *         description: Invalid request body or parameters.
+ *       404:
+ *         description: Verification token not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
 router.post('/hospRegister2', async (req, res) => {
   const { verificationToken, hospID, password } = req.body;
   try {
