@@ -38,7 +38,7 @@ const collection2Schema = new mongoose.Schema({
     },
     filepath:{
         type:String,
-        required:true
+        required:false
     },
     fee:{
         type:String,

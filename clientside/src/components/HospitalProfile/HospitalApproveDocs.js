@@ -4,28 +4,6 @@ import axios from 'axios';
 const HospitalApproveDoc = ({hospName,registeredDoctors, appDoc, decDoc}) => {
     console.log(registeredDoctors);
     
-    const viewFile = async (filepath) => {
-        try {
-            // Format the file path
-            const formattedFilepath = encodeURIComponent(filepath.trim());
-            console.log(formattedFilepath)
-            // Send the request with the formatted file path
-            const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getCertificate?filepath=${formattedFilepath}`, {
-                responseType: 'blob' // Specify response type as blob
-            });
-
-            // Create a Blob object from the response data
-            const file = new Blob([response.data]);
-
-            // Create a URL for the Blob object
-            const fileURL = URL.createObjectURL(file);
-
-            // Open the URL in a new tab
-            window.open(fileURL, '_blank');
-        } catch (error) {
-            console.error('Error viewing certificate:', error);
-        }
-    };
 
     return (
         <div className='UserProfile-right'>
@@ -58,9 +36,6 @@ const HospitalApproveDoc = ({hospName,registeredDoctors, appDoc, decDoc}) => {
                                 </div>
                                 <div className="UserProfile-appointments-card-name">
                                     Appointment Fees: <span>Rs. {doctor.fee}</span>
-                                </div>
-                                <div className="UserProfile-appointments-card-name">
-                                    <button onClick={() => viewFile(doctor.filepath)}>View Certificate</button>
                                 </div>
                                 <div className="UserProfile-appointments-card-name">
                                     <span> <button onClick={() => appDoc(doctor.mailID)}>Approve</button></span>

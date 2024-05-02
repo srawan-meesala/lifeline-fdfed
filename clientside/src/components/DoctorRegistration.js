@@ -6,7 +6,7 @@ const DoctorRegistration = ({ onClose }) => {
   const [name,setName] = useState('')
   const [mobileNumber,setmobileNumber] = useState('')
   const [mailID,setmailID] = useState('')
-  const [hospital,setHospital] = useState('')
+  const [hospName,setHospName] = useState('')
   const [specialization,setSpecialization] = useState('')
   const [fee,setFee] = useState('')
  
@@ -43,7 +43,7 @@ const handleSubmit = (e) => {
         <input  type="email" onChange={(e) => { setmailID(e.target.value) }} name="mailID" placeholder="mailID" required  /><br/>
        </div>
        <div className ="PatientRegister-form-input"> <label className="DoctorRegistration-label" >Choose Hospital</label><b/>
-        <input  type="text" onChange={(e) => { setHospital(e.target.value) }} name="hospital" placeholder="hospital"  required  /><br/>
+        <input  type="text" onChange={(e) => { setHospName(e.target.value) }} name="hospital" placeholder="hospital"  required  /><br/>
         </div>
         <div className ="PatientRegister-form-input"><label className="DoctorRegistration-label" >Specialization</label><b/>
         <input  type="text" onChange={(e) => { setSpecialization(e.target.value) }} name="specialization" placeholder="Specialization" required  /><br/>
