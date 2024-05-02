@@ -218,12 +218,6 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
       return res.json('exist');
     }
 
-    // Upload certificate to Firebase Storage
-    const file = req.file;
-    const certificateRef = ref(storage, `doctor_certificates/${file.originalname}${name}`);
-    await uploadBytes(certificateRef, file.buffer);
-    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/doctor_certificates/${file.originalname}${name}`;
-
     const verificationToken = uuid.v4();
     const data = new DocRegisters({
       name,
@@ -233,7 +227,6 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
       hospID,
       city,
       specialization,
-      filepath, // Save certificate URL to MongoDB
       fee,
       verificationToken
     });
