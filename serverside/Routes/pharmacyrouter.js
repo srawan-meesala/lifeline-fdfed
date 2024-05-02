@@ -26,7 +26,7 @@ router.use((err, req, res, next) => {
 /**
  * @swagger
  * /checkout:
- *   post:
+ *   post:      
  *     tags: [Pharmacy]
  *     summary: Checkout pharmacy cart
  *     description: Adds cart items to the database and clears the cart after successful checkout.

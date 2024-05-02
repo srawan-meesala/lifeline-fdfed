@@ -50,8 +50,8 @@ mongoose.connect('mongodb+srv://lifelinebusinesscare:Lifeline%40123@lifeline.wfm
   .then(() => {
     console.log('MongoDB Connected Successfully')
   })
-  .catch(() => {
-    console.log('Failed to connect to MongoDB')
+  .catch((error) => {
+    console.log('Failed to connect to MongoDB', error)
   })
 
 morgan.token('custom', (req, res) => {
