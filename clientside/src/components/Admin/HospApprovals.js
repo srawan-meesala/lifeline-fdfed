@@ -67,12 +67,12 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
                                     City: <span>{(doctor.city)}</span>
                                 </div>
                                 <div className="UserProfile-appointments-card-name">
-                                    Bloodbanks: <span>Rs. {doctor.bloodBanks}</span>
+                                    Bloodbanks: <span> {doctor.bloodBanks}</span>
                                 </div>
                                 <div className="UserProfile-appointments-card-name">
-                                    Diagnosis Center: <span>Rs. {doctor.diagnosisCenter}</span>
+                                    Diagnosis Center: <span> {doctor.diagnosisCenter}</span>
                                 </div><div className="UserProfile-appointments-card-name">
-                                    Organ Donation: <span>Rs. {doctor.organDonation}</span>
+                                    Organ Donation: <span> {doctor.organDonation}</span>
                                 </div>
                                 <div className="UserProfile-appointments-card-name">
                                     <button onClick={() => viewFile(doctor.filepath)}>View Certificate</button>
