@@ -2,9 +2,6 @@ import React from 'react'
 import axios from 'axios';
 import { useEffect,useState } from 'react';
 import Cookies from 'js-cookie';
-import firebase from 'firebase';
-var storage = firebase.storage();
-var storageRef = storage.ref();
 
 const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
   const username = Cookies.get('username');
@@ -28,19 +25,6 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
     fetchData()
   }, [username])  
 
-    const viewFile = async (filepath) => {
-        try {
-            const response = await axios.get(filepath); 
-            const imageUrl = response.data.imageUrl;
-            var fileRef = storageRef.child(imageUrl);
-            window.open(fileRef, '_blank');
-        } catch (error) {
-            console.error('Error viewing certificate:', error);
-        }
-    };
-
-
- 
     return (
         <div className='UserProfile-right'>
             <div className='UserProfile-top'>
@@ -78,9 +62,9 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
                                 </div><div className="UserProfile-appointments-card-name">
                                     Organ Donation: <span> {doctor.organDonation}</span>
                                 </div>
-                                <div className="UserProfile-appointments-card-name">
+                                {/* <div className="UserProfile-appointments-card-name">
                                     <button onClick={() => viewFile(doctor.filepath)}>View Certificate</button>
-                                </div>
+                                </div> */}
                                 <div className="UserProfile-appointments-card-name">
                                     <span> <button onClick={() => appHosp(doctor.mailID)}>Approve</button></span>
                                     <button onClick={() => decHosp(doctor.mailID)}>Decline</button>
