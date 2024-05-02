@@ -26,7 +26,6 @@ app.use(bodyParser.json());
 // redisClient.on("error", function (error) {
 //   console.error("Error connecting to Redis:", error);
 // });
-
 const authRouter = require('./Routes/authrouter');
 const adminRouter = require('./Routes/adminrouter');
 const docRouter = require('./Routes/docrouter');
