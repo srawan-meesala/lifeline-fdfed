@@ -33,6 +33,7 @@ describe("Authentication routes", () => {
   const mockUsers = {
       patient: { username: 'John123', password: 'John@123', type: 'patient' },
   };
+  
 
   beforeEach(() => {
       PatientRegisters.findOne.mockClear();
@@ -93,3 +94,47 @@ describe("Patient Routes", () => {
 
     });
 
+
+
+    describe("Doctor Routes", () => {
+      describe("GET /getDocDetails/:username", () => {
+          it("should return doctor details if the doctor exists", async () => {
+              const docDetails = { docID : "srawan", name: "Srawan Meesala" };
+              DocRegisters.findOne.mockResolvedValue(docDetails);
+              
+              const response = await request(app)
+                  .get("/getDocDetails/srawan")
+                  .expect(200);
+  
+              expect(response.body).toEqual(docDetails);
+              expect(DocRegisters.findOne).toHaveBeenCalledWith({ docID: "srawan" });
+          });
+  
+        });
+        
+      });
+
+
+
+      describe("Hospital Routes", () => {
+        describe("GET /getHospDetails/:username", () => {
+            it("should return hospital details if the hospitals exists", async () => {
+                const hospDetails = { hospID : "xenon"};
+                HospRegisters.findOne.mockResolvedValue(hospDetails);
+                
+                const response = await request(app)
+                    .get("/gethospDetails/xenon")
+                    .expect(200);
+    
+                expect(response.body).toEqual(hospDetails);
+                expect(HospRegisters.findOne).toHaveBeenCalledWith({ hospID: "xenon" });
+            });
+    
+          });
+          
+        });
+
+
+        
+  
+  
