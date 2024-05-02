@@ -25,23 +25,17 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
     fetchData()
   }, [username])  
 
-  const viewFile = async (filepath) => {
-    try {
-        const formattedFilepath = encodeURIComponent(filepath.trim());
+    const viewFile = async (filepath) => {
+        try {
+            const response = await axios.get(filepath); 
+            
+            const imageUrl = response.data.imageUrl;
 
-        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getCertificate?filepath=${formattedFilepath}`, {
-            responseType: 'blob' 
-        });
-
-        const file = new Blob([response.data]);
-
-        const fileURL = URL.createObjectURL(file);
-
-        window.open(fileURL, '_blank');
-    } catch (error) {
-        console.error('Error viewing certificate:', error);
-    }
-  };
+            window.open(imageUrl, '_blank');
+        } catch (error) {
+            console.error('Error viewing certificate:', error);
+        }
+    };
 
 
  
