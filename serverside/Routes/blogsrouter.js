@@ -120,7 +120,7 @@ router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
   
   // Upload image to Firebase Storage
   const file = req.file;
-  const imageRef = ref(storage, `blogs/${file.originalname}`);
+  const imageRef = ref(storage, `blogs/${file.originalname}${title}`);
   try {
     await uploadBytes(imageRef, file.buffer);
   } catch (error) {
@@ -129,7 +129,7 @@ router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
   }
 
   // Get download URL of the uploaded image
-  const imageUrl = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname}`;
+  const imageUrl = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/blogs/${file.originalname}${title}`;
 
   // Save blog data to MongoDB
   const doc = await DocRegisters.findOne({ docID });

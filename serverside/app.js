@@ -13,6 +13,20 @@ app.use(helmet())
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+// const redis = require('redis');
+// const redisClient = redis.createClient({
+//   host: '10.2.2.55',
+//   port: 6379,
+// });
+
+// redisClient.on("connect", function () {
+//   console.log("Connected to Redis server");
+// });
+
+// redisClient.on("error", function (error) {
+//   console.error("Error connecting to Redis:", error);
+// });
+
 const authRouter = require('./Routes/authrouter');
 const adminRouter = require('./Routes/adminrouter');
 const docRouter = require('./Routes/docrouter');
