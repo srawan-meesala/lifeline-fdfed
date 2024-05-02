@@ -20,7 +20,12 @@ app.use(morgan('dev'))
 app.use(express.json())
 const { getStorage, ref, getDownloadURL } = require("firebase/storage");
 const router = express.Router()
-const storage = getStorage();
+const storage = getStorage()
+
+const cors = require('cors')
+app.use(cors())
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
 
 router.use((err, req, res, next) => {
   console.error(err.stack);
@@ -49,7 +54,7 @@ redisClient.on("error", function (error) {
  *     description: Operations related to admin functionalities
  */
 
-app.get("/getCertificate", async (req, res) => {
+router.get("/getCertificate", async (req, res) => {
   const { filepath } = req.query;
   try {
       const imageRef = ref(storage, filepath); // Construct the reference to the image in Firebase Storage
@@ -1017,7 +1022,7 @@ function sendVerificationEmail2(to) {
  *       500:
  *         description: Internal Server Error.
  */
-app.put('/approveHosp/:id', async (req, res) => {
+router.put('/approveHosp/:id', async (req, res) => {
   const mailID = req.params.id
   console.log(mailID)
   try {
@@ -1064,7 +1069,7 @@ app.put('/approveHosp/:id', async (req, res) => {
  *       500:
  *         description: Internal Server Error.
  */
-app.put('/declineHosp/:id', async (req, res) => {
+router.put('/declineHosp/:id', async (req, res) => {
   const mailID = req.params.id
   try {
     const hospital = await HospRegisters.findOne({ mailID: mailID });

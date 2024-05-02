@@ -6,8 +6,10 @@ const PatientRegisters = require('../models/patientRegister')
 const HospRegisters = require('../models/hospRegister')
 const AdminRegisters = require('../models/admin')
 const app = express()
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
 require('dotenv').config();
 const morgan = require('morgan')
 const multer = require('multer')
@@ -215,7 +217,7 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
 
     // Upload certificate to Firebase Storage
     const file = req.file;
-    const certificateRef = ref(storage, `doctor_certificates/${file.originalname + "_" + name}`);
+    const certificateRef = ref(storage, `doctor_certificates/${file.originalname}${name}`);
     await uploadBytes(certificateRef, file.buffer);
     const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname + " " + name}`;
 
@@ -277,9 +279,9 @@ router.post('/hospRegister', upload.single('file'), async (req, res, next) => {
     }
 
     const file = req.file;
-    const certificateRef = ref(storage, `hospital_certificates/${file.originalname + "_" + hospName}`);
+    const certificateRef = ref(storage, `hospital_certificates/${file.originalname}${hospName}`);
     await uploadBytes(certificateRef, file.buffer);
-    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/hospital_certificates/${file.originalname + "_" + hospName}`;
+    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/hospital_certificates/${file.originalname}${hospName}`;
 
     const verificationToken = uuid.v4();
     const data = new HospRegisters({
