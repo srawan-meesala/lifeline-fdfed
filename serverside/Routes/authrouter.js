@@ -10,6 +10,9 @@ const app = express()
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+const cors = require('cors');
+app.use(cors());
+
 require('dotenv').config();
 const morgan = require('morgan')
 const multer = require('multer')
