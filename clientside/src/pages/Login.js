@@ -13,7 +13,7 @@ function Login() {
     async function submitLogin(e) {
         e.preventDefault();
         try {
-            const response = await axios.post('https://lifeline-fdfed-api.onrender.com:8000/login', {
+            const response = await axios.post('https://lifeline-fdfed-api.onrender.com/login', {
                 username,
                 password,
                 type,
