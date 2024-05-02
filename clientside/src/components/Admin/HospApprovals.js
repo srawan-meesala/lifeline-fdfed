@@ -2,6 +2,9 @@ import React from 'react'
 import axios from 'axios';
 import { useEffect,useState } from 'react';
 import Cookies from 'js-cookie';
+import firebase from 'firebase';
+var storage = firebase.storage();
+var storageRef = storage.ref();
 
 const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
   const username = Cookies.get('username');
@@ -29,7 +32,8 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
         try {
             const response = await axios.get(filepath); 
             const imageUrl = response.data.imageUrl;
-            window.open(imageUrl, '_blank');
+            var fileRef = storageRef.child(imageUrl);
+            window.open(fileRef, '_blank');
         } catch (error) {
             console.error('Error viewing certificate:', error);
         }
