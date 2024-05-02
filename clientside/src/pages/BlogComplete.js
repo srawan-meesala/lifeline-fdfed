@@ -31,6 +31,8 @@ const BlogComplete = () => {
     const date = new Date(timestamp);
     return date.toLocaleDateString();
   };
+
+  console.log(blogData.imagepath)
   return (
     <>
     <Navbar title={'Blogs'}/>
