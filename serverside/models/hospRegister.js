@@ -29,10 +29,6 @@ const collection4Schema = new mongoose.Schema({
         type:String,
         required:true
     },
-    filepath:{
-        type:String,
-        required:true
-    },
     verificationToken:{
         type:String,
     },

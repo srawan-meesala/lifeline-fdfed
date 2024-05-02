@@ -273,15 +273,9 @@ router.post('/hospRegister', upload.single('file'), async (req, res, next) => {
     if (check) {
       return res.json('exist');
     }
-
-    const file = req.file;
-    const certificateRef = ref(storage, `hospital_certificates/${file.originalname}${hospName}`);
-    await uploadBytes(certificateRef, file.buffer);
-    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/hospital_certificates/${file.originalname}${hospName}`;
-
     const verificationToken = uuid.v4();
     const data = new HospRegisters({
-      hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation, filepath, verificationToken
+      hospName, mobileNumber, mailID, city, diagnosisCenter, bloodBanks, organDonation, verificationToken
     });
 
     await data.save();
