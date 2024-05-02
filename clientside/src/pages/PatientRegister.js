@@ -49,7 +49,7 @@ function PatientRegister() {
         gender
       }
       console.log(patientData);
-      const response = await axios.post('http://localhost:8000/patientRegister', patientData)
+      const response = await axios.post('https://lifeline-fdfed-api.onrender.com/patientRegister', patientData)
       if (response.data === 'exist') {
         setError('User already registered');
       } else {

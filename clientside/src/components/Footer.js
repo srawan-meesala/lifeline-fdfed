@@ -12,7 +12,7 @@ function Footer() {
     e.preventDefault();
   
     try {
-      const response = await axios.post('http://localhost:8000/Feedback', {
+      const response = await axios.post('https://lifeline-fdfed-api.onrender.com/Feedback', {
         name, mailID, message
       });
   

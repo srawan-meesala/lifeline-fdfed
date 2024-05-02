@@ -35,7 +35,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAdminDetails/${username}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAdminDetails/${username}`);
         if (response.status === 200) {
           setUserDetails(response.data)
         }
@@ -55,7 +55,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAllPatients`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAllPatients`);
         if (response.status === 200) {
           setPatients(response.data)
         }
@@ -74,7 +74,7 @@ function AdminDashboard() {
 
   const fetchRegisteredHosps = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/registeredHosps`);
+      const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/registeredHosps`);
       setRegisteredHosps(response.data);
     } catch (error) {
       console.error('Error fetching registered hospitals:', error);
@@ -87,7 +87,7 @@ function AdminDashboard() {
 
   const handleApproveHosp = async (mailID) => {
     try {
-      await axios.put(`http://localhost:8000/approveHosp/${mailID}`);
+      await axios.put(`https://lifeline-fdfed-api.onrender.com/approveHosp/${mailID}`);
       alert('Approval Successful.');
       fetchRegisteredHosps();
     } catch (error) {
@@ -97,7 +97,7 @@ function AdminDashboard() {
 
   const handleDeclineHosp = async (mailID) => {
     try {
-      await axios.put(`http://localhost:8000/declineHosp/${mailID}`);
+      await axios.put(`https://lifeline-fdfed-api.onrender.com/declineHosp/${mailID}`);
       fetchRegisteredHosps();
     } catch (error) {
       console.error('Error declining hospital:', error);
@@ -109,7 +109,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAllHospitals`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAllHospitals`);
         if (response.status === 200) {
           setHospitals(response.data)
         }
@@ -129,7 +129,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAllDoctors`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAllDoctors`);
         if (response.status === 200) {
           setDoctors(response.data)
         }
@@ -149,7 +149,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAllDonors`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAllDonors`);
         if (response.status === 200) {
           setDonors(response.data)
         }
@@ -169,7 +169,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAllAppointments`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAllAppointments`);
         if (response.status === 200) {
           console.log(response);
           setAppointments(response.data)
@@ -190,7 +190,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://localhost:8000/getAllBloodDonors');
+        const response = await axios.get('https://lifeline-fdfed-api.onrender.com/getAllBloodDonors');
         if (response.status === 200) {
           setBloodDonors(response.data)
         }
@@ -210,7 +210,7 @@ function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/blogAPI`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/blogAPI`);
         if (response.status === 200) {
           setBlogs(response.data)
         }

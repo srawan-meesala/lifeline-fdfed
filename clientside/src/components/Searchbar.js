@@ -15,7 +15,7 @@ const Searchbar = ({ onSearch }) => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:8000/searchDoctors/${searchQuery}`);
+      const response = await axios.post(`https://lifeline-fdfed-api.onrender.com/searchDoctors/${searchQuery}`);
       onSearch(response.data);
     } catch (error) {
       console.error('Error searching doctors:', error);

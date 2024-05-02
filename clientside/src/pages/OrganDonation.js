@@ -32,7 +32,7 @@ const OrganDonation = () => {
     }
     else {
       try {
-        const response = await axios.post('http://localhost:8000/organDonation', {
+        const response = await axios.post('https://lifeline-fdfed-api.onrender.com/organDonation', {
           username, name, aadhaar, gender, donation, particular, past
         });
 

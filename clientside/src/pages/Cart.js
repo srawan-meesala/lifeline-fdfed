@@ -19,7 +19,7 @@ const Cart = () => {
 
   const fetchCartData = () => {
     axios
-      .get(`http://localhost:8000/cartData?username=${username}`)
+      .get(`https://lifeline-fdfed-api.onrender.com/cartData?username=${username}`)
       .then((response) => {
         setCartItems(response.data);
         updateTotals(response.data);
@@ -44,7 +44,7 @@ const Cart = () => {
 
   const handleQuantityIncrease = (itemId) => {
     axios
-      .put(`http://localhost:8000/updateCartItemQuantity`, {
+      .put(`https://lifeline-fdfed-api.onrender.com/updateCartItemQuantity`, {
         username,
         itemId,
         newQuantity: 1,
@@ -59,7 +59,7 @@ const Cart = () => {
 
   const handleCheckout = () => {
     axios
-      .post(`http://localhost:8000/checkout`, {
+      .post(`https://lifeline-fdfed-api.onrender.com/checkout`, {
         username,
         cartItems,
         totalPrice,

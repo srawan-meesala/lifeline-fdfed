@@ -38,7 +38,7 @@ function DoctorProfile() {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/AppointmentsAPI/${userDetails.docID}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/AppointmentsAPI/${userDetails.docID}`);
         setAppointments(Array.isArray(response.data) ? response.data : []);
         console.log(appointments);
       } catch (error) {
@@ -52,7 +52,7 @@ function DoctorProfile() {
   useEffect(() => {
     const fetchTotalExpenditure = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/getTotalExpenditure2/${userDetails.docID}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getTotalExpenditure2/${userDetails.docID}`);
         if (response.status === 200) {
           setTotalExpenditure(response.data.totalExpenditure);
         } else {
@@ -71,7 +71,7 @@ function DoctorProfile() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/blogsAPI/${userDetails.docID}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/blogsAPI/${userDetails.docID}`);
         setBlogs(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -84,7 +84,7 @@ function DoctorProfile() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getDocDetails/${username}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getDocDetails/${username}`);
         if (response.status === 200) {
           setUserDetails(response.data)
         }

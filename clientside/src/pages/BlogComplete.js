@@ -9,7 +9,7 @@ const BlogComplete = () => {
   useEffect(()=>{
     const fetchBlogData = async()=>{
       try{
-        const response = await axios.get('http://localhost:8000/blogdata',{
+        const response = await axios.get('https://lifeline-fdfed-api.onrender.com/blogdata',{
           params:{blogID},
         })
         if(response.status === 200){
@@ -39,7 +39,7 @@ const BlogComplete = () => {
           <div className='BlogComplete-head'>
             <div className='BlogComplete-head-image'>
               {blogData.imagepath && (
-                <img className='Blog-image' src={`http://localhost:8000/${blogData.imagepath}`} alt='Blogimage' />
+                <img className='Blog-image' src={`https://lifeline-fdfed-api.onrender.com/${blogData.imagepath}`} alt='Blogimage' />
               )}
             </div>
             <div className='BlogComplete-head-1'>

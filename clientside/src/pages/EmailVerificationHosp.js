@@ -9,7 +9,7 @@ function EmailVerificationHosp() {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/verifyEmailHosp', {
+        const response = await axios.post('https://lifeline-fdfed-api.onrender.com/verifyEmailHosp', {
           verificationToken,
         });
         if (response.data === 'verified') {

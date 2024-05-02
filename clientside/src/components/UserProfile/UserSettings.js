@@ -13,7 +13,7 @@ const UserSettings = ({ userDetails }) => {
     const handlesubmit = async(e)=>{
         e.preventDefault()
         try{
-            const response = await axios.post('http://localhost:8000/deleteuser',{
+            const response = await axios.post('https://lifeline-fdfed-api.onrender.com/deleteuser',{
                 enteredUsername,enteredPassword,actualusername,actualpassword
             })
             if(response.data === 'deleted'){

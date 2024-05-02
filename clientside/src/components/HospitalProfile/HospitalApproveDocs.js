@@ -3,7 +3,7 @@ import React from 'react'
 const HospitalApproveDoc = ({hospName,registeredDoctors, appDoc, decDoc,viewfile}) => {
 console.log(registeredDoctors);
     const viewFile = (filepath) => {
-        const certificate = `http://localhost:8000/${filepath}`
+        const certificate = `https://lifeline-fdfed-api.onrender.com/${filepath}`
         window.open(certificate, '_blank');
     };
       

@@ -12,7 +12,7 @@ const HospitalSettings = ({ userDetails }) => {
     const handlesubmit = async(e)=>{
         e.preventDefault()
         try{
-            const response = await axios.post('http://localhost:8000/deletedoc',{
+            const response = await axios.post('https://lifeline-fdfed-api.onrender.com/deletedoc',{
                 entereddocID, enteredPassword, actualdocID, actualpassword
             })
             if(response.data === 'deleted'){

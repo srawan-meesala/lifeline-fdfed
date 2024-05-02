@@ -21,7 +21,7 @@ function BookAppointment() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/bookAppointment', {
+      const response = await axios.post('https://lifeline-fdfed-api.onrender.com/bookAppointment', {
         docID,
         patientName,
         date,
@@ -51,7 +51,7 @@ function BookAppointment() {
     if (selectedDate >= currentDate) {
       setDate(selectedDate);
       try {
-        const response = await axios.get(`http://localhost:8000/AppointmentsAPI4/dateanddocid`, {
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/AppointmentsAPI4/dateanddocid`, {
           params: { docID, date: selectedDate },
         });
         console.log("Response data:", response.data);

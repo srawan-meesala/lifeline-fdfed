@@ -12,7 +12,7 @@ const ShowDoctors = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/doctorsAPI');
+        const response = await axios.get('https://lifeline-fdfed-api.onrender.com/doctorsAPI');
         setSearchResults(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
@@ -20,7 +20,7 @@ const ShowDoctors = () => {
     }
     fetchDoctors();
 
-    axios.get('http://localhost:8000/hospitalsAPI')
+    axios.get('https://lifeline-fdfed-api.onrender.com/hospitalsAPI')
       .then(response => {
         setHospitalsList(response.data);
       })

@@ -34,7 +34,7 @@ function RegisterDocUsernamePassword() {
     
     if (password === confirmPassword) {
       try {
-        const response = await axios.post('http://localhost:8000/docRegister2', {
+        const response = await axios.post('https://lifeline-fdfed-api.onrender.com/docRegister2', {
           verificationToken, docID, password,
         });
 

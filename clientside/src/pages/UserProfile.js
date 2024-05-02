@@ -38,13 +38,13 @@ function UserProfile() {
       try {
         const username = Cookies.get('username');
 
-        const responseUser = await axios.get(`http://localhost:8000/getUserDetails/${username}`);
+        const responseUser = await axios.get(`https://lifeline-fdfed-api.onrender.com/getUserDetails/${username}`);
         setUserDetails(responseUser.data);
 
-        const responseAppointments = await axios.get(`http://localhost:8000/AppointmentsAPI3/${username}`);
+        const responseAppointments = await axios.get(`https://lifeline-fdfed-api.onrender.com/AppointmentsAPI3/${username}`);
         setAppointments(Array.isArray(responseAppointments.data) ? responseAppointments.data : []);
         
-        const responseTotalExpenditure = await axios.get(`http://localhost:8000/getTotalExpenditure/${username}`);
+        const responseTotalExpenditure = await axios.get(`https://lifeline-fdfed-api.onrender.com/getTotalExpenditure/${username}`);
         setTotalExpenditure(responseTotalExpenditure.status === 200 ? responseTotalExpenditure.data.totalExpenditure : 0);
       } catch (error) {
         console.error('Error fetching data:', error);

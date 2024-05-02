@@ -131,7 +131,7 @@ router.post('/uploadBlog', upload.single('image'), async (req, res, next) => {
   // Get download URL of the uploaded image
   const imageUrl = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/blogs/${file.originalname}${title}`;
 
-  // Save blog data to MongoDB
+  // Save blog data to MongoDB  
   const doc = await DocRegisters.findOne({ docID });
   const docName = doc.name;
   const spec = doc.specialization;

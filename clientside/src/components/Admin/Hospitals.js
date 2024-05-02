@@ -14,7 +14,7 @@ function Hospitals({hospitals}) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAdminDetails/${username}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAdminDetails/${username}`);
         if (response.status === 200) {
           setUserDetails(response.data)
         }

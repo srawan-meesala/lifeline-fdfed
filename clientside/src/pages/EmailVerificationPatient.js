@@ -9,7 +9,7 @@ function EmailVerificationPatient() {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/verifyEmailPatient', {
+        const response = await axios.post('https://lifeline-fdfed-api.onrender.com/verifyEmailPatient', {
           verificationToken,
         });
         if (response.data === 'verified') {

@@ -10,7 +10,7 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8000/getAdminDetails/${username}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getAdminDetails/${username}`);
         if (response.status === 200) {
           setUserDetails(response.data)
         }
@@ -31,7 +31,7 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
             const formattedFilepath = encodeURIComponent(filepath.trim());
             console.log(formattedFilepath)
             // Send the request with the formatted file path
-            const response = await axios.get(`http://localhost:8000/getCertificate?filepath=${formattedFilepath}`, {
+            const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/getCertificate?filepath=${formattedFilepath}`, {
                 responseType: 'blob' // Specify response type as blob
             });
 

@@ -25,12 +25,12 @@ const Home = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/blogAPI');
+        const response = await axios.get('https://lifeline-fdfed-api.onrender.com/blogAPI');
         setBlogs(response.data);
         setBlogs1(response.data.slice(0, 2))
         setBlogs2(response.data.slice(2, 4))
 
-        const docResponse = await axios.get('http://localhost:8000/doctorsAPI');
+        const docResponse = await axios.get('https://lifeline-fdfed-api.onrender.com/doctorsAPI');
         setTopDoctors(docResponse.data.slice(0, 3));
       } catch (error) {
         console.error('Error fetching doctors:', error);

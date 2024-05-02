@@ -14,7 +14,7 @@ function RegisterHospUsernamePassword() {
     e.preventDefault();
     if (password === confirmPassword) {
       try {
-        const response = await axios.post('http://localhost:8000/hospRegister2', {
+        const response = await axios.post('https://lifeline-fdfed-api.onrender.com/hospRegister2', {
           verificationToken, hospID, password,
         });
 

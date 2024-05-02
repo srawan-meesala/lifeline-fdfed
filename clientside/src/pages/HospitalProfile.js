@@ -50,7 +50,7 @@ useEffect(()=>{
 
 const fetchRegisteredDoctors = async (hospID) => {
     try {
-        const response = await axios.get(`http://localhost:8000/registeredDoctors/${hospID}`);
+        const response = await axios.get(`https://lifeline-fdfed-api.onrender.com/registeredDoctors/${hospID}`);
         setRegisteredDoctors(response.data);
     } catch (error) {
         console.error('Error fetching registered doctors:', error);
@@ -59,7 +59,7 @@ const fetchRegisteredDoctors = async (hospID) => {
 
 const handleApproveDoctor = async (mailID) => {
     try {
-        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`);
+        await axios.put(`https://lifeline-fdfed-api.onrender.com/approveDoctor/${mailID}`);
         alert('Approval Succesful.')
         fetchRegisteredDoctors(hospID);
     } catch (error) {
@@ -69,7 +69,7 @@ const handleApproveDoctor = async (mailID) => {
 
 const handleDeclineDoctor = async (mailID) => {
     try {
-        await axios.put(`http://localhost:8000/approveDoctor/${mailID}`);
+        await axios.put(`https://lifeline-fdfed-api.onrender.com/approveDoctor/${mailID}`);
         fetchRegisteredDoctors(hospID);
     } catch (error) {
         console.error('Error declining doctor:', error);
@@ -86,10 +86,10 @@ useEffect(() => {
           doctorsResponse,
           registeredDoctorsResponse
         ] = await Promise.all([
-          axios.get(`http://localhost:8000/getHospDetails/${hospID}`),
-          axios.get(`http://localhost:8000/AppointmentsAPI2/${hospID}`),
-          axios.get(`http://localhost:8000/DoctorsAPI2/${hospID}`),
-          axios.get(`http://localhost:8000/registeredDoctors/${hospID}`)
+          axios.get(`https://lifeline-fdfed-api.onrender.com/getHospDetails/${hospID}`),
+          axios.get(`https://lifeline-fdfed-api.onrender.com/AppointmentsAPI2/${hospID}`),
+          axios.get(`https://lifeline-fdfed-api.onrender.com/DoctorsAPI2/${hospID}`),
+          axios.get(`https://lifeline-fdfed-api.onrender.com/registeredDoctors/${hospID}`)
         ]);
 
         if (userDetailsResponse.status === 200) {

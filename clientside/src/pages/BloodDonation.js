@@ -41,7 +41,7 @@ const BloodDonation = () => {
       }
       else{
         try {
-          const response = await axios.post('http://localhost:8000/bloodBanks', {
+          const response = await axios.post('https://lifeline-fdfed-api.onrender.com/bloodBanks', {
             username, name, aadhar, gender, bloodGroup, age, past
           });
     

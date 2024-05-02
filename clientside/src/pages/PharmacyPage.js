@@ -15,13 +15,13 @@ const PharmacyPage = () => {
 
   const addToCart = async (item) => {
     try {
-      const response = await axios.post('http://localhost:8000/addToCart', {
+      const response = await axios.post('https://lifeline-fdfed-api.onrender.com/addToCart', {
         username: username, 
         item: { title: item.name, quantity: 1, priceEach: item.price },
       });
 
       console.log(response.data.message);
-      const updatedCartResponse = await axios.get(`http://localhost:8000/cartData?username=username`);
+      const updatedCartResponse = await axios.get(`https://lifeline-fdfed-api.onrender.com/cartData?username=username`);
       setCartItems(updatedCartResponse.data);
       alert('Added to Cart')
     } catch (error) {

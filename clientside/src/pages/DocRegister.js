@@ -36,7 +36,7 @@ function DocRegister() {
     useEffect(() => {
         const fetchHospitals = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/hospitalsAPI');
+                const response = await axios.get('https://lifeline-fdfed-api.onrender.com/hospitalsAPI');
                 setHospitals(response.data);
             } catch (error) {
                 console.error('Error fetching hospitals:', error);
@@ -59,7 +59,7 @@ function DocRegister() {
             alert("Invalid Mobile number!!");
         } else {
             try {
-                const response = await axios.post('http://localhost:8000/docRegister', formData, {
+                const response = await axios.post('https://lifeline-fdfed-api.onrender.com/docRegister', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },

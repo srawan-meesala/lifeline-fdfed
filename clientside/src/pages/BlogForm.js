@@ -20,7 +20,7 @@ function BlogForm() {
     formData.append('blog', blog);
     formData.append('image', file);
     try {
-      const response = await axios.post('http://localhost:8000/uploadBlog', formData, {
+      const response = await axios.post('https://lifeline-fdfed-api.onrender.com/uploadBlog', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

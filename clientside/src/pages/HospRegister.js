@@ -32,7 +32,7 @@ function HospitalRegister() {
         alert("Invalid Mobile number!!");
     }else{
       try {
-      const response = await axios.post('http://localhost:8000/hospRegister',formData, {
+      const response = await axios.post('https://lifeline-fdfed-api.onrender.com/hospRegister',formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
       },

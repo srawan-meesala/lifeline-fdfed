@@ -34,7 +34,7 @@ function RegisterUsernamePassword() {
 
     if (password === confirmPassword) {
       try {
-        const response = await axios.post('http://localhost:8000/patientRegister2', {
+        const response = await axios.post('https://lifeline-fdfed-api.onrender.com/patientRegister2', {
           verificationToken, username, password,
         });
 
