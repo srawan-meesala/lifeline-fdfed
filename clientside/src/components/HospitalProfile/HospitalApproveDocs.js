@@ -5,7 +5,7 @@ console.log(registeredDoctors);
     const viewFile = (filepath) => {
         const certificate = `http://localhost:8000/${filepath}`
         window.open(certificate, '_blank');
-      };
+    };
       
     return (
         <div className='UserProfile-right'>

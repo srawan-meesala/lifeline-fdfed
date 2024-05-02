@@ -219,7 +219,7 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
     const file = req.file;
     const certificateRef = ref(storage, `doctor_certificates/${file.originalname}${name}`);
     await uploadBytes(certificateRef, file.buffer);
-    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname + " " + name}`;
+    const filepath = `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${file.originalname}${name}`;
 
     const verificationToken = uuid.v4();
     const data = new DocRegisters({
