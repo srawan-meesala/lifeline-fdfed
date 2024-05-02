@@ -123,10 +123,7 @@ function DocRegister() {
                             </select>
                             {/* <input type="text"  name="specialization" placeholder="Specialization" required /> */}
                         </div>
-                        <div className="PatientRegister-form-input">
-                            <label>License</label><b />
-                            <input type="file" onChange={handleFileChange} name="certificate" placeholder="Upload a File here" required />
-                        </div>
+                        
                         <div className="PatientRegister-form-input">
                             <label>Appointment Fee</label><b />
                             <input type="text" onChange={(e) => { setFee(e.target.value) }} name="fee" placeholder="Appointment Fee" required />

@@ -60,9 +60,6 @@ const HospitalApproveDoc = ({hospName,registeredDoctors, appDoc, decDoc}) => {
                                     Appointment Fees: <span>Rs. {doctor.fee}</span>
                                 </div>
                                 <div className="UserProfile-appointments-card-name">
-                                    <button onClick={() => viewFile(doctor.filepath)}>View Certificate</button>
-                                </div>
-                                <div className="UserProfile-appointments-card-name">
                                     <span> <button onClick={() => appDoc(doctor.mailID)}>Approve</button></span>
                                     <button onClick={() => decDoc(doctor.mailID)}>Decline</button>
                                 </div>
