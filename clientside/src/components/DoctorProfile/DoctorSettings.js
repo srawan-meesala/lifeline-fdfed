@@ -9,7 +9,6 @@ const HospitalSettings = ({ userDetails }) => {
     const [enteredPassword, setEnteredPassword] = useState('')
     const actualdocID = userDetails.docID
     const actualpassword = userDetails.password
-    
     const handlesubmit = async(e)=>{
         e.preventDefault()
         try{
