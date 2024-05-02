@@ -28,9 +28,7 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
     const viewFile = async (filepath) => {
         try {
             const response = await axios.get(filepath); 
-            
             const imageUrl = response.data.imageUrl;
-
             window.open(imageUrl, '_blank');
         } catch (error) {
             console.error('Error viewing certificate:', error);
