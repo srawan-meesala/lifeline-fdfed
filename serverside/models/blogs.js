@@ -25,7 +25,7 @@ const blogsSchema = new mongoose.Schema({
         type: Number,
         unique: true
     },
-    imagepath: {
+    imageUrl: {
         type:String,
         required: true
     }

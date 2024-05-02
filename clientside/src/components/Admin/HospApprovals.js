@@ -68,7 +68,7 @@ const HospApproval = ({registeredHosps, appHosp, decHosp}) => {
                         <div key={doctor.hospID} className="UserProfile-appointments-card">
                             <div className='UserProfile-appointments-card'>
                                 <div className="UserProfile-appointments-card-name">
-                                    Hospital Name: <span>Dr. {doctor.hospName}</span>
+                                    Hospital Name: <span>{doctor.hospName}</span>
                                 </div>
                                 <div className='UserProfile-appointments-card-name'>
                                     Contact Number: <span>{doctor.mobileNumber}</span>
