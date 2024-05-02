@@ -171,7 +171,7 @@ router.post('/patientRegister', async (req, res, next) => {
 
     await data.save();
 
-    const verificationLink = `http://localhost:3000/verifypatient/${verificationToken}`;
+    const verificationLink = `lifeline-care.vercel.app/verifypatient/${verificationToken}`;
     sendVerificationEmail(mailID, verificationLink);
 
     res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
@@ -237,7 +237,7 @@ router.post('/docRegister', upload.single('file'), async (req, res, next) => {
 
     await data.save();
 
-    const verificationLink = `http://localhost:3000/sent2`;
+    const verificationLink = `lifeline-care.vercel.app/sent2`;
     sendVerificationEmail(mailID, verificationLink, );
     res.status(200).json({ message: 'Registration successful. Please Wait for response mail from the respective Hospital.', verificationToken });
   } catch (error) {
@@ -290,7 +290,7 @@ router.post('/hospRegister', upload.single('file'), async (req, res, next) => {
 
     await data.save();
 
-    const verificationLink = `http://localhost:3000/sent2`;
+    const verificationLink = `lifeline-care.vercel.app/sent2`;
     sendVerificationEmail(mailID, verificationLink);
     res.status(200).json({ message: 'Registration successful. Please check your email for verification.', verificationToken });
   }

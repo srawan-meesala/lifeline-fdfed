@@ -1033,7 +1033,7 @@ router.put('/approveHosp/:id', async (req, res) => {
     }
     hospital.approvalStatus = 'Approved';
     await hospital.save();
-    const verificationLink = `http://localhost:3000/verifyhospital/${hospital.verificationToken}`;
+    const verificationLink = `lifeline-care.vercel.app/verifyhospital/${hospital.verificationToken}`;
     sendVerificationEmail(mailID, verificationLink);
 
     res.json(hospital);

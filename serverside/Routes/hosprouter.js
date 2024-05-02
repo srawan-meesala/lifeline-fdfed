@@ -140,7 +140,7 @@ router.put('/approveDoctor/:id', async (req, res) => {
     }
     doctor.approvalStatus = 'Approved';
     await doctor.save();
-    const verificationLink = `http://localhost:3000/verifydoctor/${doctor.verificationToken}`;
+    const verificationLink = `lifeline-care.vercel.app/verifydoctor/${doctor.verificationToken}`;
     sendVerificationEmail(mailID, verificationLink);
 
     res.json(doctor);
